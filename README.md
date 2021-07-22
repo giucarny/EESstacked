@@ -1,2 +1,2 @@
 # EESstacked
-A repository for the creation of stacked matrices derived from the EES and additional data sources. 
+A repository for stacking the European Election Studies (EES) voter study data.
