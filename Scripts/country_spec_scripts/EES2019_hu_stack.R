@@ -4,7 +4,7 @@
 # last update: 2021-08-09
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # countrycode = 1348
-# countryshort = 'HU
+# countryshort = 'HU'
 
 # Keep the EES 2019 Hungary sample # ===================================================================
 EES2019_hu <- 
