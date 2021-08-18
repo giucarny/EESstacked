@@ -1,6 +1,6 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 Stacking Script 
-# Author: G.Carteny
+# Authors: G.Carteny
 # last update: 2021-08-01
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -46,6 +46,16 @@ source(here('Scripts', 'aux_data_scripts', 'EP2019_res.R'))
 
 source(here('Scripts', 'aux_data_scripts', 'EES2019_cdbk.R'))
 
+
 # Stack observations # =================================================================================
 
-# source.all(here('Scripts', 'country_spec_scripts'))
+source.all(here('Scripts', 'country_spec_scripts'))
+
+EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
+
+rm(list=ls(pattern='_stack'))
+
+
+# Stack original EES2019 # =============================================================================
+
+EES2019_stckd %<>% left_join(., EES2019, by=c('countrycode', 'respid'))
