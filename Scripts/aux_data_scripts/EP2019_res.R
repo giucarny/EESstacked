@@ -33,9 +33,9 @@ getres.fun <- function(res) {
   z %<>%
     mutate(countryshort = DIVISION_ID, 
            votesh = VOTES_PERCENT/100, 
-           party_name_eng = LABEL, 
-           party_name = ACRONYM) %>%
-    dplyr::select(countryshort, party_name, party_name_eng, votesh)
+           partyname_eng = LABEL, 
+           partyname = ACRONYM) %>%
+    dplyr::select(countryshort, partyname, partyname_eng, votesh)
   
   return(z)
 }

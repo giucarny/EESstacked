@@ -44,7 +44,7 @@ ptv_crit <-
 
 votes_crit <- 
   EP2019_nl %>% 
-  filter(party_name_eng!='Other parties') 
+  filter(partyname_eng!='Other parties') 
 
 #votes_crit: 13 parties
 

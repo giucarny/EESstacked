@@ -46,7 +46,7 @@ ptv_crit <-
 
 votes_crit <- 
   EP2019_at %>% 
-  filter(party_name!='Other parties') 
+  filter(partyname!='Other parties') 
 
   #votes_crit: 6 parties
   #parties: SPÖ, ÖVP, FPÖ, Grüne, NEOS, Jetzt

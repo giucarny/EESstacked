@@ -47,7 +47,7 @@ ptv_crit <-
 
 votes_crit <- 
   EP2019_ro %>% 
-  filter(party_name!='Other parties') 
+  filter(partyname!='Other parties') 
 
 #votes_crit: 7 parties and coalitions
 #party/coalition: PSD, ALDE, PNL, UDMR, PMP, Pro Romania, Coal. Alliance

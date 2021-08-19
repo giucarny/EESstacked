@@ -46,7 +46,7 @@ ptv_crit <-
 
 votes_crit <- 
   EP2019_pt %>% 
-  filter(party_name!='Other parties') 
+  filter(partyname!='Other parties') 
 
 #votes_crit: 7 parties and coalitions
 #parties and coalitions: BE, CDU, PS, PSD CDS-PP, PAN, A

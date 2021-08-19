@@ -47,7 +47,7 @@ ptv_crit <-
 
 votes_crit <- 
   EP2019_lv %>% 
-  filter(party_name!='Other parties')
+  filter(partyname!='Other parties')
 
 #votes_crit: 16 parties and coalitions
 #all parties/coalitions with PTV variable obtained at least on eseat in the EP

@@ -46,7 +46,7 @@ ptv_crit <-
 
 votes_crit <- 
   EP2019_fr %>% 
-  filter(party_name!='Other parties') 
+  filter(partyname!='Other parties') 
 
   #votes_crit: 10 parties and coalitions
   #parties: FI, Coal, (PS+RDG+PP+N), EELV, LR, RN, DLF+CNIP, Coal, (LREM+Modem+MRSL), PCF, UDI, Generation.s

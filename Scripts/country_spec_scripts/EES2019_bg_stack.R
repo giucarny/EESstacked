@@ -16,8 +16,8 @@ EES2019_bg <-
 EP2019_bg <- 
   EP2019 %>% 
   filter(countryshort=='BG') %>% 
-  dplyr::select(countryshort, party_name_eng, votesh) %>% 
-  mutate(party_name_eng = party_name_eng %>% gsub('/(.*)','',.))
+  dplyr::select(countryshort, partyname_eng, votesh) %>% 
+  mutate(partyname_eng = partyname_eng %>% gsub('/(.*)','',.))
 
 
 EES2019_cdbk_bg <- 
@@ -45,7 +45,7 @@ ptv_crit <-
 
 votes_crit <- 
   EP2019_bg %>% 
-  filter(party_name_eng!='Other parties') 
+  filter(partyname_eng!='Other parties') 
 
 #votes_crit: 9 parties
 
