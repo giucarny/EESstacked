@@ -47,11 +47,14 @@ EES2019_cdbk %<>%
          partyname = Party_name_questionnaire,
          partyname_eng = `English name`,
          region = Region) %>% 
+  mutate(partyname = stringi::stri_trans_general(str = partyname, id = "Latin-ASCII")) %>% 
   dplyr::select(countryshort, countrycode, Region, partyname, partyname_eng, 
                 Q10_PTV, Q13_left_right, Q24_EU, Q7_EES, Q7, Q7n, Q2, Q2_EES, Q2n,
                 Q9_Q25_EES, Q9, Q9n, q25, Q25n)
 
 
 EES2019_cdbk$countrycode[EES2019_cdbk$countrycode==1119] <- 1191
+
+
 
 rm(list=ls(pattern='fun'))

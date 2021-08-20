@@ -19,7 +19,7 @@ rm(list = ls())
 
 # Load the full version of the EES 2019 voter study # - - - - - - - - - - - - - - - - - - - - - - - - -
 
-EES2019 <- haven::read_dta(here('Data', 'EES2019', 'ZA7581_v1-0-0.dta'))
+EES2019 <- read_dta(here('Data', 'EES2019', 'ZA7581_v1-0-0.dta'))
 
 # Create a 'countryname' variable # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -33,18 +33,13 @@ EES2019 <-
 # Create a 'countryshort' variable # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 EES2019 %<>% 
-  mutate(countryshort = region_NUTS1 %>% str_extract(pattern = '^.{0,2}'))
+  mutate(countryshort = region_NUTS1 %>% str_extract(pattern = '^.{0,2}')) %>% 
+  mutate(countryshort = case_when(countrycode==1250 ~ 'FR', T ~ countryshort))
 
 
-# Load/Source & Mutate auxiliary data sets # ===========================================================
+# Source the auxiliary data set # ======================================================================
 
-# Source the 2019 European Parliament election results # - - - - - - - - - - - - - - - - - - - - - - - -
-
-source(here('Scripts', 'aux_data_scripts', 'EP2019_res.R'))
-
-# Source the EES 2019 voter study codebook # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-source(here('Scripts', 'aux_data_scripts', 'EES2019_cdbk.R'))
+source(here('Scripts', 'aux_data_scripts', 'EES2019_cdbk_enh.R'))
 
 
 # Stack observations # =================================================================================
