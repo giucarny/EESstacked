@@ -84,8 +84,7 @@ EP2019_seats <- lapply(seats, getseats.fun) %>% do.call('rbind',.)
 
 EP2019 <- 
   left_join(EP2019_votes, EP2019_seats, 
-            by=c("countryshort","partyid", "partyname", "partyname_eng")) %>% 
-  dplyr::select(-c(partyid)) %>% 
+            by=c("countryshort", "partyid", "partyname", "partyname_eng")) %>% 
   mutate(seats = case_when(is.na(seats)~as.integer(0), T~seats))
 
 
