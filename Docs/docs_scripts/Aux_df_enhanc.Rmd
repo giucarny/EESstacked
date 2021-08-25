@@ -67,9 +67,13 @@ The workflow for enhancing the auxiliary data frames is similar to the one that 
 
 The country specific scripts for creating the enhanced codebook should follow a simple structure. In the following lines I will present such structure using the EES 2019 codebook and the 2019 EP elections results for Italy.  
 
-For working on the scripts first run the current version of the 'EES2019_stack.R' script **until line 42**. 
-This will allow to load the R packages and the two auxiliary data frames, plus the EES 2019 original dataframe.  
-After this passage we can start creating our country-specific dataset. 
+For working on the scripts: 
+
+1. Run the current version of the 'EES2019_stack.R' script **until line 42**. 
+2. Run the 'EES2019_cdbk_enh.R'^[In the subdirectory "~/EESstacked/Scripts/aux_data_scripts/"] **until line 15**.
+
+
+This will allow (Step 1) to load the R packages, the EES 2019 original dataframe, (Step 2) and the two auxiliary data frames. After these two steps we can start creating our country-specific dataset. 
 
 First, banally, we must select data referring to the country that we are interested in.
 
@@ -84,7 +88,6 @@ EP2019_it <-
 ```
 
 Then we must print on our console the two datasets and check how to create a common variable on the EP2019 result that will allow us to merge the data of interest (in our case, party vote shares and seats) with the data already in the EES2019 codebook. 
-
 
 ```{r, eval=T, echo=T}
 
@@ -139,8 +142,7 @@ rm(list=ls(pattern='_it$'))
 
 ```
 
-
-As you can see below now the EES2019 codebook has two new columns, referring to party vote shares and 
+As you can see below, now the EES2019 codebook has two new columns, referring to party vote shares and 
 seats.
 
 ```{r, eval=T, echo=T}
@@ -150,8 +152,8 @@ EES2019_it_enhcdbk %>%
 
 ```
 
-Once the script is completed then the next step will be launching again the main stacking script (namely,
-the 'EES2019_it_stack.R') until line 42. If everything works fine you should have in your environment an 
+Once the script is completed, then the next step will be *launching again the main stacking script* (namely,
+the 'EES2019_it_stack.R' script) **until line 42**. If everything works fine you should have in your environment an 
 object called `EES2019_cdbk` that includes the data you just created in your country-specific script, 
 plus the already existing ones. 
 
