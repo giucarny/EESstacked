@@ -69,7 +69,7 @@ The country specific scripts for creating the enhanced codebook should follow a 
 
 For working on the scripts: 
 
-1. Run the current version of the 'EES2019_stack.R' script **until line 42**. 
+1. Run the current version of the 'EES2019_stack.R' script **until line 37**. 
 2. Run the 'EES2019_cdbk_enh.R'^[In the subdirectory "~/EESstacked/Scripts/aux_data_scripts/"] **until line 15**.
 
 
