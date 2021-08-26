@@ -40,16 +40,16 @@ As mentioned during our last call (23.08.2021), the following tasks for creating
 3.  Estimating the generic variables of the SDM, as explained in our first call, and summarized in the presentation that I sent you at the beginning of our job. 
 
 
-This short document consists in a short tutorial for facing the step (1). Once completed it other I will provide the tutorials for the following two steps. 
+This short document consists in a short tutorial for facing the step (1). Once completed it, I will provide the tutorials for the following two steps. 
 
 # Why Enhancing our Auxiliary Data Frames
 
-After reviewing the scripts for stacking the EES 2019 original data frame I noticed that the current workflow can be implemented. In particular I noticed that using two distinct dataframes, *that differ just a limited set of information*, for selecting the relevant parties consists a sub-optimal workflow. And this workflow can be enhanced by **merging the two dataframes**.  
-Although this process implies that we have to review the job that has been done few days ago, I think that this step is required for the following reasons: 
+After reviewing the scripts for stacking the EES 2019 original data frame I noticed that the current workflow can be implemented. In particular I noticed that using two distinct dataframes, *that differ just a limited set of information*, for selecting the relevant parties consists in a sub-optimal workflow. And this workflow can be enhanced by **merging the two dataframes**.  
+Although this process implies that we must review the job that has been done a few days ago, I think that this step is required for the following reasons: 
 
 1. It will make the relevant parties selection process more transparent and understandable, thus contributing to the **reproducibility** and **replicability** of our workflow. Since I do believe (as many others) that reproducibility and replicability are core concepts of scientific research in any field, I think that this already represents a good reason to enhance our workflow;
-2. It will allow us to create **a first version of a dataframe that bridges the EES 2019 voter study and other data sources** (not only the European Parliament elections data, as in this case). This would be *really* useful (a) for the ProConEU project and perhaps (b) for other researchers that might be interested in using our data. I think that we might publish this 'bridge dataset' when the new version of the EES dataset will be published on Gesis, but this is just my own speculation that I need to discuss with other members of the ProConEU project.
-3. It will allow to make the SDM creation **less dependent on manual coding**, more interactive, giving the opportunity to create SDM according to different criteria just switching a few objects in the R workflow. In perspective, this might allow us to create an app/interface for creating the SDM without reviewing the whole script. 
+2. It will allow us to create **a first version of a dataframe that bridges the EES 2019 voter study and other data sources** (not only the European Parliament elections data, as in this case). This would be *really* useful (a) for the ProConEU project and perhaps (b) for other researchers that might be interested in using our data. I think that we might publish this 'bridge dataset' when the new version of the EES dataset will be published on Gesis, but this is just my own speculation that I need to discuss with thr other members of the ProConEU project.
+3. It will allow to make the SDM creation **less dependent on manual coding**, more interactive, giving the opportunity to create a SDM according to different criteria just switching a few objects in the R workflow. In perspective, this might allow us to create an app/interface for creating the SDM without reviewing the whole script. 
 
 
 # How to Enhance our Auxiliary Data Frames  
@@ -61,17 +61,21 @@ The good news, however, is that coding 6/7 countries it is definitely not an eno
 
 ## General workflow 
 
-The workflow for enhancing the auxiliary data frames is similar to the one that we have already developed for stacking the original variables of the EES 2019 voter study. A new script named 'EES2019_cdbk_enh' will (1) source our two auxiliary data frames, and then (2) it will source a set of country-specific scripts merging the EES2019 codebook and the EP results for each EES 2019 voter study sample. Finally (3) the script will pool together these scripts, binding them in a single, enhanced codebook. After this passage the stacking process will follow almost the same workflow that we developed earlier, although some adjustments will be required
+The workflow for enhancing the auxiliary data frames is similar to the one developed for stacking the original variables of the EES 2019 voter study. A new script named 'EES2019_cdbk_enh' will (1) source our two auxiliary data frames, and then (2) it will source a set of country-specific scripts merging the EES2019 codebook and the EP results for each EES 2019 voter study sample. Finally (3) the script will pool together these scripts, binding them in a single, enhanced codebook. After this passage the stacking process will follow almost the same workflow that we developed earlier, although some adjustments will be required
 
 ## Country-specific codebook scripts
 
 The country specific scripts for creating the enhanced codebook should follow a simple structure. In the following lines I will present such structure using the EES 2019 codebook and the 2019 EP elections results for Italy.  
 
-For working on the scripts first run the current version of the 'EES2019_stack.R' script **until line 42**. 
-This will allow to load the R packages and the two auxiliary data frames, plus the EES 2019 original dataframe.  
-After this passage we can start creating our country-specific dataset. 
+For working on the scripts: 
 
-First, banally, we must select data referring to the country that we are interested in.
+1. Run the current version of the 'EES2019_stack.R' script **until line 37**. 
+2. Run the 'EES2019_cdbk_enh.R'^[In the subdirectory "~/EESstacked/Scripts/aux_data_scripts/"] **until line 15**.
+
+
+This will allow (Step 1) to load the R packages, the EES 2019 original dataframe, (Step 2) and the two auxiliary data frames. After these steps we can start creating our country-specific dataset. 
+
+First, banally, we must select data referring to a specific country.
 
 ```{r, eval=T, echo=T}
 EES2019_cdbk_it <-
@@ -83,8 +87,7 @@ EP2019_it <-
   filter(countryshort=='IT')
 ```
 
-Then we must print on our console the two datasets and check how to create a common variable on the EP2019 result that will allow us to merge the data of interest (in our case, party vote shares and seats) with the data already in the EES2019 codebook. 
-
+Then we must print on our console the two datasets, and check how to create a common variable on the EP2019 result that will allow us to merge the data of interest (in our case, party vote shares and seats) with the EES2019 codebook data. 
 
 ```{r, eval=T, echo=T}
 
@@ -139,8 +142,7 @@ rm(list=ls(pattern='_it$'))
 
 ```
 
-
-As you can see below now the EES2019 codebook has two new columns, referring to party vote shares and 
+As you can see below, now the EES2019 codebook has two new columns, referring to party vote shares and 
 seats.
 
 ```{r, eval=T, echo=T}
@@ -150,8 +152,8 @@ EES2019_it_enhcdbk %>%
 
 ```
 
-Once the script is completed then the next step will be launching again the main stacking script (namely,
-the 'EES2019_it_stack.R') until line 42. If everything works fine you should have in your environment an 
+Once the script is completed, then the next step will be *launching again the main stacking script* (namely,
+the 'EES2019_it_stack.R' script) **until line 42**. If everything works fine you should have in your environment an 
 object called `EES2019_cdbk` that includes the data you just created in your country-specific script, 
 plus the already existing ones. 
 
