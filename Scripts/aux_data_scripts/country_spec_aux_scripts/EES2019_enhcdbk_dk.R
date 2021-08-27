@@ -39,25 +39,24 @@ EP2019_dk %<>%
                         partyid=='DK07' ~ as.integer(703),
                         partyid=='DK08' ~ as.integer(702),
                         partyid=='DK09' ~ as.integer(706),
-                        partyid=='DK10' ~ as.integer(000),
+                        partyid=='DK10' ~ as.integer(1),
                         T~NA_integer_))
 
 #EES_cdbk_dk includes the party 'Kristendemokraterne' which isn't 
 #included in EP2019_dk. This party has the Q7-value NA.
 #Vice versa EP2019_dk includes the Party 'Alternativet' which isn't included in
-#EES_cdbk_dk.
-#'Alternativet'-Q7_data is changed to 000 in the EP_2019_dk column 
+#EES_cdbk_dk and therefore should have the Q7-value NA.
+#'Alternativet'-Q7_data is changed to 1 in the EP_2019_dk column 
 #Q7 so that in the left join no data is mixed. 
 
-#I will change EES2019_dk_enhcdbk manually for 'Alternativet' so that the 
-#votesh and seats data are included for 'Alternativet'.
+#I will change EES2019_dk_enhcdbk and EP2019_dk manually so that there are no 
+#'data mix-ups'.
 
 EES2019_dk_enhcdbk <- 
   left_join(EES2019_cdbk_dk,
             EP2019_dk %>% dplyr::select(Q7, votesh, seats),
-            by = 'Q7') %>%
-  add_row(countryshort=as.character('DK'), countrycode=1208, partyname='Alternativet', 
-          votesh=0.0337, seats=0 )
+            by = 'Q7') 
+EP2019_dk[10,7] <- NA
 
 
 

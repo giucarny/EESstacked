@@ -21,7 +21,6 @@ EES2019_cdbk_dk <-
   EES2019_cdbk %>% 
   filter(countryshort=='DK')
 
-
 # Get the respondent ID codes # ========================================================================
 
 respid <- 
@@ -40,9 +39,10 @@ ptv_crit <-
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EES2019_dk_enhcdbk %>% 
+  EES2019_cdbk_dk %>% 
   mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
   dplyr::select(partyname, votesh, seats)
+
 
 # Select the relevant parties # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 

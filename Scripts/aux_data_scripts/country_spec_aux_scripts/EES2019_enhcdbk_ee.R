@@ -48,7 +48,7 @@ EES2019_ee_enhcdbk <-
 
 # Check the new dataset 
 
-#EES2019_dk_enhcdbk %>% 
+#EES2019_ee_enhcdbk %>% 
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
 
 # Clean the environment # ==============================================================================
