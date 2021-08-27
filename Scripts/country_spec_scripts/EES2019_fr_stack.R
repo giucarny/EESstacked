@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Stacking Observations (EES 2019 Voter Study, French Sample) 
 # Author: G.Carteny, Matthias Körnig(Ger529)
-# last update: 2021-08-12
+# last update: 2021-08-27
 # Based on the template from the Italy stack. Just countrycode and names exchanged
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -12,15 +12,19 @@ EES2019_fr <-
   filter(countrycode==1250)
 
 
-# Filter the codebook and EP elections data # ==========================================================
+# Filter the codebook data # ==========================================================================
 
-EP2019_fr <- 
-  EP2019 %>% 
-  filter(countryshort=='FR')
+# EP2019_fr <- 
+#   EP2019 %>% 
+#   filter(countryshort=='FR')
+# 
+# 
+# EES2019_cdbk_fr <- 
+#   EES2019_cdbk %>% 
+#   filter(countryshort=='FR')
 
-
-EES2019_cdbk_fr <- 
-  EES2019_cdbk %>% 
+EES2019_cdbk_fr <-
+  EES2019_cdbk %>%
   filter(countryshort=='FR')
 
 
@@ -45,8 +49,9 @@ ptv_crit <-
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EP2019_fr %>% 
-  filter(partyname!='Other parties') 
+  EES2019_cdbk_fr %>%
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
 
   #votes_crit: 10 parties and coalitions
   #parties: FI, Coal, (PS+RDG+PP+N), EELV, LR, RN, DLF+CNIP, Coal, (LREM+Modem+MRSL), PCF, UDI, Generation.s

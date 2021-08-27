@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Stacking Observations (EES 2019 Voter Study, Latvian Sample) 
 # Author: G.Carteny, M.Koernig
-# last update: 2021-08-12
+# last update: 2021-08-27
 # Based on the template from the Italy stack. Just countrycode and names exchanged
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -12,17 +12,20 @@ EES2019_lv <-
   filter(countrycode==1428)
 
 
-# Filter the codebook and EP elections data # ==========================================================
+# Filter the codebook data # ===========================================================================
 
-EP2019_lv <- 
-  EP2019 %>% 
+# EP2019_lv <- 
+#   EP2019 %>% 
+#   filter(countryshort=='LV')
+# 
+# 
+# EES2019_cdbk_lv <- 
+#   EES2019_cdbk %>% 
+#   filter(countryshort=='LV')
+
+EES2019_cdbk_lv <-
+  EES2019_cdbk %>%
   filter(countryshort=='LV')
-
-
-EES2019_cdbk_lv <- 
-  EES2019_cdbk %>% 
-  filter(countryshort=='LV')
-
 
 # Get the respondent ID codes # ========================================================================
 
@@ -46,8 +49,9 @@ ptv_crit <-
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EP2019_lv %>% 
-  filter(partyname!='Other parties')
+  EES2019_cdbk_lv %>%
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
 
 #votes_crit: 16 parties and coalitions
 #all parties/coalitions with PTV variable obtained at least on eseat in the EP

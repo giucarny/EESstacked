@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Stacking Observations (EES 2019 Voter Study, Ireland Sample) 
 # Author: M.Koernig, G.Carteny
-# last update: 2021-08-12
+# last update: 2021-08-27
 # Based on the template from the Italy stack. Just countrycode and names exchanged
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -12,17 +12,20 @@ EES2019_ie <-
   filter(countrycode==1372)
 
 
-# Filter the codebook and EP elections data # ==========================================================
+# Filter the codebook data # ===========================================================================
 
-EP2019_ie <- 
-  EP2019 %>% 
+# EP2019_ie <- 
+#   EP2019 %>% 
+#   filter(countryshort=='IE')
+# 
+# 
+# EES2019_cdbk_ie <- 
+#   EES2019_cdbk %>% 
+#   filter(countryshort=='IE')
+
+EES2019_cdbk_ie <-
+  EES2019_cdbk %>%
   filter(countryshort=='IE')
-
-
-EES2019_cdbk_ie <- 
-  EES2019_cdbk %>% 
-  filter(countryshort=='IE')
-
 
 # Get the respondent ID codes # ========================================================================
 
@@ -45,8 +48,9 @@ ptv_crit <-
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EP2019_ie %>% 
-  filter(partyname!='Other parties') 
+  EES2019_cdbk_ie %>%
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
 
 #votes_crit: 8 parties
 #parties: FF, FG, LAB, GP, SF, Ind., SD, I4C

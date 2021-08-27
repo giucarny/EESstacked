@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Stacking Observations (EES 2019 Voter Study, Portugal Sample) 
 # Author: G.Carteny, M.Koernig
-# last update: 2021-08-12
+# last update: 2021-08-27
 # Based on the template from the Italy stack. Just countrycode and names exchanged
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -12,17 +12,20 @@ EES2019_pt <-
   filter(countrycode==1620)
 
 
-# Filter the codebook and EP elections data # ==========================================================
+# Filter the codebook data # ============================================================================
 
-EP2019_pt <- 
-  EP2019 %>% 
+# EP2019_pt <- 
+#   EP2019 %>% 
+#   filter(countryshort=='PT')
+# 
+# 
+# EES2019_cdbk_pt <- 
+#   EES2019_cdbk %>% 
+#   filter(countryshort=='PT')
+
+EES2019_cdbk_pt <-
+  EES2019_cdbk %>%
   filter(countryshort=='PT')
-
-
-EES2019_cdbk_pt <- 
-  EES2019_cdbk %>% 
-  filter(countryshort=='PT')
-
 
 # Get the respondent ID codes # ========================================================================
 
@@ -45,8 +48,9 @@ ptv_crit <-
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EP2019_pt %>% 
-  filter(partyname!='Other parties') 
+  EES2019_cdbk_pt %>%
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
 
 #votes_crit: 7 parties and coalitions
 #parties and coalitions: BE, CDU, PS, PSD CDS-PP, PAN, A
