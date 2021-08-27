@@ -12,7 +12,8 @@ EES2019_cdbk_sk <-
 
 EP2019_sk <-
   EP2019 %>%
-  filter(countryshort=='SK')
+  filter(countryshort=='SK') %>% 
+  distinct() # Drop duplicated rows (partyid==SK10)
 
 # Create a common variable for merging datasets # ======================================================
 
@@ -42,7 +43,7 @@ EP2019_sk %<>%
                         partyid=='SK08' ~ as.integer(2501), #LSNS
                         partyid=='SK09' ~ as.integer(2509), #Sme Rodina
                         partyid=='SK10' ~ as.integer(2508), #SP-SPOLU
-                        T~NA_integer_))
+                        T~NA_integer_)) 
 
 EES2019_sk_enhcdbk <- 
   left_join(EES2019_cdbk_sk,
@@ -53,9 +54,6 @@ EES2019_sk_enhcdbk <-
 
 # EES2019_sk_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
-
-# Drop one of the duplicated SPOLU + PS Rows
-EES2019_sk_enhcdbk <- EES2019_sk_enhcdbk %>% distinct()
 
 # EES2019_sk_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
