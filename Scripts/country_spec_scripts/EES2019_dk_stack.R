@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Stacking Observations (EES 2019 Voter Study, Denmark Sample) 
 # Author: W.Haeussling
-# last update: 2021-08-08
+# last update: 2021-08-27
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Keep the EES 2019 Denmark sample # ===================================================================
@@ -11,12 +11,11 @@ EES2019_dk <-
   filter(countrycode==1208)
 
 
-# Filter the codebook and EP elections data # ==========================================================
+# Filter the codebook data # ==========================================================
 
-EP2019_dk <- 
-  EP2019 %>% 
-  filter(countryshort=='DK')
-
+#EP2019_dk <- 
+#  EP2019 %>% 
+#  filter(countryshort=='DK')
 
 EES2019_cdbk_dk <- 
   EES2019_cdbk %>% 
@@ -41,8 +40,9 @@ ptv_crit <-
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EP2019_dk %>% 
-  filter(partyname!='Other parties') 
+  EES2019_dk_enhcdbk %>% 
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
 
 # Select the relevant parties # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
