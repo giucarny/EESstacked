@@ -62,6 +62,10 @@ EES2019_lu_stack <-
          stack = paste0(respid, '-', party)) %>%
   dplyr::select(countrycode, respid, party, stack)
 
+#The parties Dei Lenk (DL ) (1805), Alternativ Demokratesch Reformpartei 
+#(ADR) (1806) and Piratepartei (PPL) (1807) don't have seats but are included 
+#in the dataframe.
+
 # Clean the environment # ==============================================================================
 
 rm(list=ls(pattern='_lu$|_crit$'))  
