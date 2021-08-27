@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Stacking Observations (EES 2019 Voter Study, Slovakia Sample) 
 # Author: J.Leiser
-# last update: 2021-08-09
+# last update: 2021-08-26
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # countrycode = 1703
 # countryshort = 'SK'
@@ -14,13 +14,17 @@ EES2019_sk <-
 
 # Filter the codebook and EP elections data # ==========================================================
 
-EP2019_sk <- 
-  EP2019 %>% 
-  filter(countryshort=='SK')
+# EP2019_sk <- 
+#   EP2019 %>% 
+#   filter(countryshort=='SK')
+# 
+# 
+# EES2019_cdbk_sk <- 
+#   EES2019_cdbk %>% 
+#   filter(countryshort=='SK')
 
-
-EES2019_cdbk_sk <- 
-  EES2019_cdbk %>% 
+EES2019_cdbk_sk <-
+  EES2019_cdbk %>%
   filter(countryshort=='SK')
 
 # Get the respondent ID codes # ========================================================================
@@ -29,7 +33,7 @@ respid <-
   EES2019_sk$respid %>% 
   as.numeric()
 
-class(respid) #check class
+#class(respid) #check class
 
 # Choose the relevant parties # ========================================================================
 
@@ -41,24 +45,17 @@ ptv_crit <-
   dplyr::select(partyname, Q10_PTV) 
 
 # ptv_crit
-# 9 parties
-# parties = KDH, LSNS, Sme rodina, Smer-SD, SaS, OL'aNo, PS + SPOLU, SNS,
-# Most-Hid
 
 
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EP2019_sk %>% 
-  filter(partyname!='Other parties') 
+  EES2019_cdbk_sk %>%
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
 
 # votes_crit
-# 12 parties
-# parties = KDH, SaS, SNS, SMER-SD, SMK-MPK, OL'aNO + NOVA, MOST-HID
-# LSNS, Sme Rodina, PS + SPOLU, KU, KDZP
 
-# from the 9 parties with a PTV variable, all 9 obtained a seat in EP election
-# only keep those 9
 
 # Select the relevant parties # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -78,17 +75,6 @@ EES2019_sk_stack <-
          stack = paste0(respid, '-', party)) %>%
   dplyr::select(countrycode, respid, party, stack)
 
-# Final plausibility check # ====================================================================
-
-# unique(EES2019_sk_stack$countrycode)
-# correct country code
-
-# unique(EES2019_sk$respid) %>% length()
-# unique(EES2019_sk_stack$respid) %>% length()
-# number of unique respondents IDs in both original data and SDM match
-
-# dim(EES2019_sk_stack)
-# 9000 by 4 data frame as expected (9 parties x 1000 respondents)
 
 # Clean the environment # ==============================================================================
 

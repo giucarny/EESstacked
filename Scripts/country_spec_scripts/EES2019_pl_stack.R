@@ -11,15 +11,19 @@ EES2019_pl <-
   EES2019 %>% 
   filter(countrycode==1616)
 
-# Filter the codebook and EP elections data # ==========================================================
+# Filter the codebook data # ==========================================================
 
-EP2019_pl <- 
-  EP2019 %>% 
-  filter(countryshort=='PL')
+# EP2019_pl <- 
+#   EP2019 %>% 
+#   filter(countryshort=='PL')
+# 
+# 
+# EES2019_cdbk_pl <- 
+#   EES2019_cdbk %>% 
+#   filter(countryshort=='PL')
 
-
-EES2019_cdbk_pl <- 
-  EES2019_cdbk %>% 
+EES2019_cdbk_pl <-
+  EES2019_cdbk %>%
   filter(countryshort=='PL')
 
 # Get the respondent ID codes # ========================================================================
@@ -28,7 +32,7 @@ respid <-
   EES2019_pl$respid %>% 
   as.numeric()
 
-class(respid) #check class
+#class(respid) #check class
 
 # Choose the relevant parties # ========================================================================
 
@@ -40,20 +44,18 @@ ptv_crit <-
   dplyr::select(partyname, Q10_PTV) 
 
 # ptv_crit
-# 8 parties
-# parties = PO, PSL, SLD, PIS, Kukiz '15, Wiosna Roberta Biedronia, Razem, KE
+
 
 
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EP2019_pl %>% 
-  filter(partyname!='Other parties') 
+  EES2019_cdbk_pl %>%
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
 
 # votes_crit
-# 7 parties
-# parties = PiS, Konfederacja, Kukiz '15, Wiosna, KE ( = PO + PSL + SLD + others) 
-# Polska Fair Play, Coal Lewica Razem
+
 
 # All parties with PTV variable are in vote_crit either independently or as part of a 
 # coalition
@@ -79,18 +81,6 @@ EES2019_pl_stack <-
          stack = paste0(respid, '-', party)) %>%
   dplyr::select(countrycode, respid, party, stack)
 
-# Final plausibility check # ====================================================================
-
-# unique(EES2019_pl_stack$countrycode)
-# correct country code
-
-# unique(EES2019_pl$respid) %>% length()
-# unique(EES2019_pl_stack$respid) %>% length()
-# number of unique respondents IDs in both original data and SDM match
-
-# dim(EES2019_pl_stack)
-# 5000 by 4 data frame as expected (5 parties (PIS, Kukiz,
-# Wiosna, Razem and KE) x 1000 respondents)
 
 # Clean the environment # ==============================================================================
 

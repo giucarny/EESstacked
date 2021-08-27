@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Stacking Observations (EES 2019 Voter Study, Czech Republic Sample) 
 # Author: J.Leiser
-# last update: 2021-08-05
+# last update: 2021-08-26
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # countrycode = 1203
 # countryshort = 'CZ'
@@ -11,15 +11,19 @@ EES2019_cz <-
   EES2019 %>% 
   filter(countrycode==1203)
 
-# Filter the codebook and EP elections data # ==========================================================
+# Filter the codebook data # ==========================================================
 
-EP2019_cz <- 
-  EP2019 %>% 
-  filter(countryshort=='CZ')
+# EP2019_cz <- 
+#   EP2019 %>% 
+#   filter(countryshort=='CZ')
+# 
+# 
+# EES2019_cdbk_cz <- 
+#   EES2019_cdbk %>% 
+#   filter(countryshort=='CZ')
 
-
-EES2019_cdbk_cz <- 
-  EES2019_cdbk %>% 
+EES2019_cdbk_cz <-
+  EES2019_cdbk %>%
   filter(countryshort=='CZ')
 
 # Get the respondent ID codes # ========================================================================
@@ -28,7 +32,7 @@ respid <-
   EES2019_cz$respid %>% 
   as.numeric()
 
-class(respid) #check class
+#class(respid) #check class
 
 # Choose the relevant parties # ========================================================================
 
@@ -39,23 +43,20 @@ ptv_crit <-
   EES2019_cdbk_cz %>% 
   dplyr::select(partyname, Q10_PTV) 
 
-# ptv_crit #8 Parties
-# Parties = KDU/CSL, CSSD, ODS, KSCM, ANO, Piráti, SPD, TOP 09
+# ptv_crit 
+
 
 
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EP2019_cz %>% 
-  filter(partyname!='Other parties') 
+  EES2019_cdbk_cz %>%
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
 
 # votes_crit 
-# 12 Parties
-# parties = ODS, CSSD, KSCM, KDU-CSL, TOP 09 + STAN, ANO 2011, Piráti, SPD, HLAS,
-# EU TROLL, Vedci pro CR, Coal ROZUMNÍ ND	
 
-# from the 8 parties with a PTV variable, all 8 obtained a seat in EP election
-# only keep those 8
+
 
 # Select the relevant parties # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -75,17 +76,7 @@ EES2019_cz_stack <-
          stack = paste0(respid, '-', party)) %>%
   dplyr::select(countrycode, respid, party, stack)
 
-# Final plausibility check # ====================================================================
 
-# unique(EES2019_cz_stack$countrycode)
-# correct country code
-
-# unique(EES2019_cz$respid) %>% length()
-# unique(EES2019_cz_stack$respid) %>% length()
-# number of unique respondents IDs in both original data and SDM match
-
-# dim(EES2019_cz_stack)
-# 8000 by 4 data frame as expected (8 parties x 1000 respondents)
 
 # Clean the environment # ==============================================================================
 
