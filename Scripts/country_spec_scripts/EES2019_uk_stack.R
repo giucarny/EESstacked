@@ -11,11 +11,11 @@ EES2019_uk <-
   filter(countrycode==1826)
 
 
-# Filter the codebook and EP elections data # ==========================================================
+# Filter the codebook data # ==========================================================
 
-EP2019_uk <- 
-  EP2019 %>% 
-  filter(countryshort=='UK')
+#EP2019_uk <- 
+#  EP2019 %>% 
+#  filter(countryshort=='UK')
 
 
 EES2019_cdbk_uk <- 
@@ -36,13 +36,14 @@ respid <-
 
 ptv_crit <-
   EES2019_cdbk_uk %>% 
-  dplyr::select(partyname, Q10_PTV) 
+  dplyr::select(partyname, Q10_PTV)
 
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EP2019_uk %>% 
-  filter(partyname!='Other parties') 
+  EES2019_cdbk_uk %>%
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats) 
 
 # Select the relevant parties # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -60,6 +61,9 @@ EES2019_uk_stack <-
   mutate(countrycode=EES2019_uk$countrycode %>% unique,
          stack = paste0(respid, '-', party)) %>%
   dplyr::select(countrycode, respid, party, stack)
+
+#The party UKIP (2806) does not have a seat, but is included. The parties 
+#Plaid (2809), SF (2810) and DUP (2811) all have 1 seat, but are not included.
 
 # Clean the environment # ==============================================================================
 

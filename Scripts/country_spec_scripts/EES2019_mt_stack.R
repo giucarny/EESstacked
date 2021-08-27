@@ -11,11 +11,11 @@ EES2019_mt <-
   filter(countrycode==1470)
 
 
-# Filter the codebook and EP elections data # ==========================================================
+# Filter the codebook data # ===========================================================================
 
-EP2019_mt <- 
-  EP2019 %>% 
-  filter(countryshort=='MT')
+#EP2019_mt <- 
+#  EP2019 %>% 
+#  filter(countryshort=='MT')
 
 
 EES2019_cdbk_mt <- 
@@ -41,8 +41,9 @@ ptv_crit <-
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EP2019_mt %>% 
-  filter(partyname!='Other parties') 
+  EES2019_cdbk_mt %>%
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
 
 # Select the relevant parties # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -60,6 +61,9 @@ EES2019_mt_stack <-
   mutate(countrycode=EES2019_mt$countrycode %>% unique,
          stack = paste0(respid, '-', party)) %>%
   dplyr::select(countrycode, respid, party, stack)
+
+#The parties Alternattiva Demokratika (1903), Partit Demokratiku (1904) and 
+#Imperu Ewropew (1905) don't have a seat but are included.
 
 # Clean the environment # ==============================================================================
 
