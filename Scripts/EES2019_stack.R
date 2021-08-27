@@ -12,8 +12,13 @@ have = want %in% rownames(installed.packages())
 if ( any(!have) ) { install.packages( want[!have] ) }
 junk <- lapply(want, library, character.only = TRUE)
 options(scipen = 99)
-rm(list = ls())
 
+rm(list = ls())
+# rm(list= ls()[!(ls() %in% c('keepThis','andThis'))]) # useful for further implementations
+
+# Criteria # ===========================================================================================
+
+part <- F
 
 # Load & Mutate EES data # =============================================================================
 
@@ -44,11 +49,20 @@ source(here('Scripts', 'aux_data_scripts', 'EES2019_cdbk_enh.R'))
 
 # Stack observations # =================================================================================
 
-source.all(here('Scripts', 'country_spec_scripts'))
+if (part) {
+  
+  source(here('Scripts', 'EES2019_stack_part.R'))
+  EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
+  rm(list=ls(pattern='_stack'))
+  
+} else {
+  
+  source.all(here('Scripts', 'country_spec_scripts'))
+  EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
+  rm(list=ls(pattern='_stack'))
+}
 
-EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
-
-rm(list=ls(pattern='_stack'))
+rm(part)
 
 
 # Stack original EES2019 # =============================================================================
