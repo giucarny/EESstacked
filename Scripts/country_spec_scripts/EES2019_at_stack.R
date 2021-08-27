@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Stacking Observations (EES 2019 Voter Study, Austrian Sample) 
 # Author: G.Carteny, Matthias Körnig(Ger529)
-# last update: 2021-08-12
+# last update: 2021-08-27
 # Based on the template from the Italy stack. Just countrycode and names exchanged
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -12,15 +12,19 @@ EES2019_at <-
   filter(countrycode==1040)
 
 
-# Filter the codebook and EP elections data # ==========================================================
+# Filter the codebook data # ============================================================================
 
-EP2019_at <- 
-  EP2019 %>% 
-  filter(countryshort=='AT')
+# EP2019_at <- 
+#   EP2019 %>% 
+#   filter(countryshort=='AT')
+# 
+# 
+# EES2019_cdbk_at <- 
+#   EES2019_cdbk %>% 
+#   filter(countryshort=='AT')
 
-
-EES2019_cdbk_at <- 
-  EES2019_cdbk %>% 
+EES2019_cdbk_at <-
+  EES2019_cdbk %>%
   filter(countryshort=='AT')
 
 
@@ -45,8 +49,9 @@ ptv_crit <-
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EP2019_at %>% 
-  filter(partyname!='Other parties') 
+  EES2019_cdbk_at %>%
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
 
   #votes_crit: 6 parties
   #parties: SPÖ, ÖVP, FPÖ, Grüne, NEOS, Jetzt
