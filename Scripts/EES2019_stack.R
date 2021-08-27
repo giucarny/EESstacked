@@ -50,17 +50,13 @@ source(here('Scripts', 'aux_data_scripts', 'EES2019_cdbk_enh.R'))
 # Stack observations # =================================================================================
 
 if (part) {
-  
   source(here('Scripts', 'EES2019_stack_part.R'))
-  EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
-  rm(list=ls(pattern='_stack'))
-  
 } else {
-  
   source.all(here('Scripts', 'country_spec_scripts'))
-  EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
-  rm(list=ls(pattern='_stack'))
 }
+
+EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
+rm(list=ls(pattern='_stack'))
 
 rm(part)
 
