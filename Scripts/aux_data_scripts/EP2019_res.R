@@ -82,6 +82,23 @@ EP2019_votes <- lapply(votes, getvotes.fun) %>% do.call('rbind',.)
 
 EP2019_seats <- lapply(seats, getseats.fun) %>% do.call('rbind',.)
 
+# Party 'Coalition Unidas Podemos Cambiar Europa' and 'Coalition Ahora Repúblicas' appear more than once
+# in the data due to different seat quantities, with the latter determined by split of the elected 
+# members of the parliament when joining the European Parliament political groups. Since this info is
+# not relevant, we aggregate the duplicated rows, in terms of seats. Votes data do not suffer such 
+# issue
+
+# Correct the Spanish case # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+EP2019_seats %<>% 
+  mutate(seats = case_when(partyid=='ES03' ~ as.integer(6),
+                           partyid=='ES08' ~ as.integer(3), 
+                           T ~ seats)) %>% 
+  distinct()
+
+
+# Join votes and seats # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 EP2019 <- 
   left_join(EP2019_votes, EP2019_seats, 
             by=c("countryshort", "partyid", "partyname", "partyname_eng")) %>% 
