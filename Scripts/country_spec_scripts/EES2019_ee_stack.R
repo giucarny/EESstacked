@@ -11,17 +11,15 @@ EES2019_ee <-
   filter(countrycode==1233)
 
 
-# Filter the codebook and EP elections data # ==========================================================
+# Filter the codebook data # ==========================================================
 
-EP2019_ee <- 
-  EP2019 %>% 
-  filter(countryshort=='EE')
-
+#EP2019_ee <- 
+#  EP2019 %>% 
+#  filter(countryshort=='EE')
 
 EES2019_cdbk_ee <- 
   EES2019_cdbk %>% 
   filter(countryshort=='EE')
-
 
 # Get the respondent ID codes # ========================================================================
 
@@ -41,8 +39,9 @@ ptv_crit <-
 # Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
 
 votes_crit <- 
-  EP2019_ee %>% 
-  filter(partyname!='Other parties') 
+  EES2019_cdbk_ee %>% 
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
 
 # Select the relevant parties # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
