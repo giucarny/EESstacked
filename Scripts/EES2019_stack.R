@@ -16,10 +16,6 @@ options(scipen = 99)
 rm(list = ls())
 # rm(list= ls()[!(ls() %in% c('keepThis','andThis'))]) # useful for further implementations
 
-# Criteria # ===========================================================================================
-
-part <- T
-
 # Load & Mutate EES data # =============================================================================
 
 # Load the full version of the EES 2019 voter study # - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -46,19 +42,12 @@ EES2019 %<>%
 
 source(here('Scripts', 'aux_data_scripts', 'EES2019_cdbk_enh.R'))
 
-
 # Stack observations # =================================================================================
 
-if (part) {
-  source(here('Scripts', 'EES2019_stack_part.R'))
-} else {
-  source.all(here('Scripts', 'country_spec_scripts'))
-}
+source.all(here('Scripts', 'country_spec_scripts'))
 
 EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
 rm(list=ls(pattern='_stack'))
-
-rm(part)
 
 
 # Stack original EES2019 # =============================================================================

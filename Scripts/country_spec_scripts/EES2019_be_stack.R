@@ -13,11 +13,6 @@ EES2019_be <-
 
 # Filter the codebook and EP elections data # ==========================================================
 
-EP2019_be <- 
-  EP2019 %>% 
-  filter(countryshort=='BE')
-
-
 EES2019_cdbk_be <- 
   EES2019_cdbk %>% 
   filter(countryshort=='BE')
@@ -40,11 +35,12 @@ ptv_crit <-
 
 #ptv_crit: 14 parties (7 Flanders, 7 Wallonia)
 
-# Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
+# Check the seats obtained by each party - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-votes_crit <- 
-  EP2019_be %>% 
-  filter(partyname!='Other parties') 
+  seats_crit <- 
+  EES2019_cdbk_be %>% 
+  dplyr::select(partyname, seats) %>% 
+  mutate(seats = case_when(seats==0 ~ NA_integer_, T~seats))
 
 #votes_crit: 19 parties
 

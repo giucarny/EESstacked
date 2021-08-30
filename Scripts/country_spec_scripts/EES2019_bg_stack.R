@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Stacking Observations (EES 2019 Voter Study, Bulgarian Sample) 
 # Author: G.Carteny
-# last update: 2021-08-18
+# last update: 2021-08-30
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Keep the EES 2019 Bulgarian sample # ===================================================================
@@ -13,11 +13,16 @@ EES2019_bg <-
 
 # Filter the codebook and EP elections data # ==========================================================
 
-EP2019_bg <- 
-  EP2019 %>% 
-  filter(countryshort=='BG') %>% 
-  dplyr::select(countryshort, partyname_eng, votesh) %>% 
-  mutate(partyname_eng = partyname_eng %>% gsub('/(.*)','',.))
+# EP2019_bg <- 
+#   EP2019 %>% 
+#   filter(countryshort=='BG') %>% 
+#   dplyr::select(countryshort, partyname_eng, votesh) %>% 
+#   mutate(partyname_eng = partyname_eng %>% gsub('/(.*)','',.))
+# 
+# 
+# EES2019_cdbk_bg <- 
+#   EES2019_cdbk %>% 
+#   filter(countryshort=='BG')
 
 
 EES2019_cdbk_bg <- 
@@ -39,15 +44,15 @@ ptv_crit <-
   EES2019_cdbk_bg %>% 
   dplyr::select(partyname_eng, Q10_PTV) 
 
-#ptv_crit: 7 parties 
+# ptv_crit: 7 parties 
 
-# Check the vote shares of parties that obtained at least one seat in the EP # - - - - - - - - - - - - -
+# Check the seats obtained by each party - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-votes_crit <- 
-  EP2019_bg %>% 
-  filter(partyname_eng!='Other parties') 
+seats_crit <- 
+  EES2019_cdbk_bg %>% 
+  dplyr::select(partyname_eng, seats)
 
-#votes_crit: 9 parties
+# seats_crit: 5 parties
 
 # Select the relevant parties # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
