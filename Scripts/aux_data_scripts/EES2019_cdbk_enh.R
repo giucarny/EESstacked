@@ -17,7 +17,14 @@ source(here('Scripts', 'aux_data_scripts', 'EES2019_cdbk.R'))
 
 # Source country-specific script # =====================================================================
 
-source.all(here('Scripts', 'aux_data_scripts', 'country_spec_aux_scripts'))
+
+invisible(
+  lapply(
+    paste0(here('Scripts', 'aux_data_scripts', 'country_spec_aux_scripts'), '/',
+           list.files(here('Scripts', 'aux_data_scripts', 'country_spec_aux_scripts'))), 
+    source)
+)
+
 
 EES2019_cdbk <- mget(ls(pattern = '_enhcdbk')) %>% do.call('rbind',.)
 

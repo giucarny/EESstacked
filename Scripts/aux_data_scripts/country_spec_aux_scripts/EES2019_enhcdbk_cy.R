@@ -17,6 +17,12 @@ EP2019_cy <-
   mutate(partyname = partyname %>% gsub('^(.*[/])','',.) %>% str_trim(),
          partyname_eng = partyname_eng %>% gsub('^(.*[/])','',.) %>% str_trim()) 
 
+# Apply a specific change for the Cypriot data # =======================================================
+
+EES2019_cdbk_cy %<>% 
+  mutate(Q7 = case_when(Q7n==as.integer(9) ~ NA_integer_,
+                        Q2==as.integer(505) ~ as.integer(505),
+                        T ~ Q7))
 
 # Create a common variable for merging datasets # ======================================================
 
@@ -54,6 +60,7 @@ EES2019_cy_enhcdbk <-
 # EES2019_cy_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats) %>%
 #   print(., n=nrow(.))
+
 
 # Clean the environment # ==============================================================================
 

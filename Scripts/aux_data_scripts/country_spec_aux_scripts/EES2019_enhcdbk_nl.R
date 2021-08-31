@@ -51,7 +51,8 @@ EP2019_nl %<>%
 EES2019_nl_enhcdbk <- 
   left_join(EES2019_cdbk_nl,
             EP2019_nl %>% dplyr::select(Q7, votesh, seats),
-            by = 'Q7')
+            by = 'Q7') %>% 
+  mutate(q25 = as.integer(q25))
 
 # Check the new dataset 
 

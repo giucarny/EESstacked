@@ -262,7 +262,7 @@ decisions case by case.
 
 # Who Does What
 
-For accomplish the tasks discussed above I suggested to work on the same countries and scripts that we 
+For accomplish the tasks discussed above I suggest to work on the same countries and scripts that we 
 have been working with in the previous weeks. 
 
 - **Willie**: Denmark, Estonia, Germany, Luxembourg, Malta, Spain, United Kingdom;
