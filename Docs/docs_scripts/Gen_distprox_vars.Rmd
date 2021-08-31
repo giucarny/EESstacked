@@ -1,0 +1,33 @@
+---
+title: EES2019 Stacking Process 
+subtitle: Generic Distance/Proximity Variables Estimation 
+author: Giuseppe Carteny
+date: 31.08.2021 
+toc: true
+output: 
+  bookdown::pdf_document2:
+    includes:
+      in_header: First_steps_header.tex
+urlcolor: RedOrange
+--- 
+
+
+
+## Which Variables
+
+The sole 'non-proximity' variable that we have to compute is **`Q26`**. This variable measures the 
+extent to which the respondent feels close to the party identified in `Q25_rec`. 
+This var is needed for computing another variable in accordance to the `Q25_rec` values.
+
+
+The list of **proximity/distance** variables is the following: 
+
+* **`Q10`**: Respondent's propensity to vote for a specific party;
+* **`Q11`**: Respondent's self-placement on the left-right *continuum*;
+* **`Q13`**: Respondent's perception of a specific party position on the left-right *continuum*;
+* **`Q23`**: Respondent's position about EU integration^[In the original 
+[EES 2019 Master Questionnaire](https://dbk.gesis.org/dbksearch/download.asp?id=67447) reference is made 
+to EU *unification* rather than *integration* process. Nonetheless, the two concepts can be considered 
+almost equivalent.];
+* **`Q24`**: Respondent's perception of a specific party position on the EU integration process.
+
