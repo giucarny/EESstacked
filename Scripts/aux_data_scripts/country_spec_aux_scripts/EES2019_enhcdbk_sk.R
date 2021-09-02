@@ -8,7 +8,8 @@
 
 EES2019_cdbk_sk <-
   EES2019_cdbk %>%
-  filter(countryshort=='SK')
+  filter(countryshort=='SK') %>% 
+  mutate(Q9 = case_when(Q7==as.integer(2502) ~ as.integer(2510), T ~ Q9))
 
 EP2019_sk <-
   EP2019 %>%

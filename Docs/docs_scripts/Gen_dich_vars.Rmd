@@ -130,21 +130,22 @@ Values:
 
 ```
 
+\newpage
 # Which Variables
 
 The list of variables to be transformed in dichotomous generic variables is the following: 
 
 * **`Q2`**: Which party the respondent believes would be best at dealing with the problem specified in 
 `Q1`;
-* **`Q6`**: Whether the respondent (recalls to have) voted at the 2019 European Parliament elections;
 * **`Q7`**: Which party the respondent (recalls to have) voted for at the 2019 European Parliament elections;
-* **`Q9`**: Which party the respondent (recalls to have) voted for at the last (national) general election;
+* **`Q9_rec`**: Which party the respondent (recalls to have) voted for at the last (national) general 
+election. This variable consists in a recoded version of the original EES 2019 `Q9` variable;
 * **`Q25_rec`**: Which party the respondent feels close to (aka party identification). This variable 
-consists in a recoded version of the original EES 2019 `Q25` variable;
+consists in a recoded version of the original EES 2019 `Q25` variable.
 
 # Who Does What 
 
-I will take care of Belgium, Bulgaria, and Cyprus, and you will take care of the following countries: 
+I will take care of Belgium, Bulgaria, Cyprus, and Italy, while you will take care of the following countries: 
 
 - **Willie**: Denmark, Estonia, Germany, Luxembourg, Malta, Netherlands, Spain, United Kingdom;
 - **Julian**: Czech Rep., Finland, Greece, Hungary, Lithuania, Slovakia, Poland, Sweden;

@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Italian Sample) 
 # Author: G.Carteny
-# last update: 2021-09-01
+# last update: 2021-09-02
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -18,8 +18,16 @@ rm(cntry)
 # Generic dichotomous variables estimation # ===========================================================
 
 # Check first the variable of interest values 
-# EES2019_stckd_it %>% dplyr::select(Q7) %>% distinct
-
+# lapply(c('Q2', 'Q7', 'Q9'),
+#        function(vrbl) {
+#          EES2019_stckd_it %>%
+#            dplyr::select(all_of(vrbl)) %>%
+#            mutate(across(all_of(vrbl), ~as.numeric(.))) %>%
+#            distinct})
+# 
+# EES2019_stckd_it %>%
+#   dplyr::select(Q2) %>% 
+#   val_labels() 
 
 EES2019_it_stack <- 
   cbind(EES2019_stckd_it,  

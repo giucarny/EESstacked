@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 Stacking Script 
 # Authors: G.Carteny
-# last update: 2021-08-31
+# last update: 2021-09-02
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -41,9 +41,11 @@ EES2019 %<>%
 source(here('Scripts', 'aux_data_scripts', 'EES2019_cdbk_enh.R'))
 
 
-# Harmonize Q25 and Q7 values # ========================================================================
+# Harmonize Q25 and Q9 values # ========================================================================
 
 source(here('Scripts', 'aux_data_scripts', 'EES2019_Q25_rec.R'))
+
+source(here('Scripts', 'aux_data_scripts', 'EES2019_Q9_rec.R'))
 
 
 # Load auxiliary functions # ===========================================================================

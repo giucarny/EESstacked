@@ -10,7 +10,8 @@
 EES2019_cdbk_bg <-
   EES2019_cdbk %>%
   filter(countryshort=='BG') %>% 
-  mutate(Q7 = case_when(Q2==as.integer(306) ~ as.integer(306), T~Q7))
+  mutate(Q7 = case_when(Q2==as.integer(306) ~ as.integer(306), T~Q7),
+         Q9 = case_when(Q7==as.integer(306) ~ as.integer(306), T~Q9))
 
 EP2019_bg <-
   EP2019 %>%

@@ -12,6 +12,8 @@ gendic.fun <- function(data, var, stack_var) {
     data$Q2[data$Q2==9999] <- 96
   } else if (var == 'Q7') {
     data$Q7[data$Q7==9999] <- 0
+  } else if (var == 'Q9') {
+    data$Q9[data$Q9==97]   <- 0
   }
   
   newvar <- paste0(var, '_gen')
