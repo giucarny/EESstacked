@@ -17,8 +17,8 @@ rm(cntry)
 
 # Generic dichotomous variables estimation # ===========================================================
 
-# Check first the variable of interest values 
-# lapply(c('Q2', 'Q7', 'Q9_rec'),
+# Check first the variable of interest values
+# lapply(c('Q2', 'Q7', 'Q9_rec', 'Q25_rec'),
 #        function(vrbl) {
 #          EES2019_stckd_it %>%
 #            dplyr::select(all_of(vrbl)) %>%
@@ -26,14 +26,14 @@ rm(cntry)
 #            distinct})
 # 
 # EES2019_stckd_it %>%
-#   dplyr::select(Q2) %>% 
-#   val_labels() 
+#   dplyr::select(Q2) %>%
+#   val_labels()
 
 
 EES2019_it_stack <- 
   cbind(EES2019_stckd_it,  
         lapply(data = EES2019_stckd_it, 
-               X = list('Q2', 'Q7', 'Q9_rec'),
+               X = list('Q2', 'Q7', 'Q9_rec', 'Q25_rec'),
                stack_var = 'party',
                FUN = gendic.fun) %>% 
           do.call('cbind',.)) %>% 
@@ -41,9 +41,9 @@ EES2019_it_stack <-
 
 # Check the dataset 
 
-# EES2019_it_stack %>%
-#   dplyr::select(respid, party, Q7, Q7_gen) %>%
-#   print(n=100)
+EES2019_it_stack %>%
+  dplyr::select(respid, party, Q7, Q7_gen) %>%
+  print(n=100)
 
 
 # Clean the environment # ==============================================================================

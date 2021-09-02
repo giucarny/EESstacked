@@ -13,7 +13,7 @@
 Q9_recoded <-
   EES2019_cdbk %>%
   mutate(Q9_rec = case_when( is.na(Q9) ~ NA_integer_,
-                              !is.na(Q9) ~ Q7)) %>%
+                            !is.na(Q9) ~ Q7)) %>%
   dplyr::select(Q9, Q9_rec) %>%
   distinct() %>% 
   na.omit()
