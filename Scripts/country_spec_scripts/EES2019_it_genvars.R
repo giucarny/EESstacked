@@ -41,14 +41,23 @@ EES2019_it_stack <-
 
 # Check the dataset 
 
-EES2019_it_stack %>%
-  dplyr::select(respid, party, Q7, Q7_gen) %>%
-  print(n=100)
+# checkdataset.fun <- 
+#   function(vrbl) {
+#     
+#     orivar <- vrbl
+#     genvar <- paste0(vrbl, '_gen')
+#     
+#     EES2019_it_stack %>%
+#       dplyr::select(respid, party, all_of(orivar), all_of(genvar)) %>%
+#       print(n=100)
+#     
+#   }
 
+# checkdataset.fun('Q25_rec')
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_it$'))  
+rm(list=ls(pattern='_it$|fun'))  
 
 
 
