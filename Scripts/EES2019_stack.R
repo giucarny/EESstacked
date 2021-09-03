@@ -6,7 +6,7 @@
 
 # Admin # ==============================================================================================
 
-want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "miceadds", "stringr")
+want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr")
 have = want %in% rownames(installed.packages())
 if ( any(!have) ) { install.packages( want[!have] ) }
 junk <- lapply(want, library, character.only = TRUE)
