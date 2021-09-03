@@ -34,6 +34,7 @@ gendic.fun <- function(data, var, stack_var) {
   return(df)
 }
 
+
 # Examples 
 
 # Q2_gen <- gendic.fun(EES2019_stckd, var = 'Q2', stack_var = 'party')
