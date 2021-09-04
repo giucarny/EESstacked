@@ -8,20 +8,23 @@
 
 gendic.fun <- function(data, var, stack_var) {
   
-  if (var == 'Q2') {
-    data$Q2[data$Q2==9999] <- 96
+  mainexp <- paste0(var, '>=96 & ', var,'<100', ' ~ as.integer(', var,'), ')
+  addexp <- ''
+  
+  if (var == 'Q9_rec') {
+    mainexp <- paste0(var, '>96 & ', var,'<100', ' ~ as.integer(', var,'), ')
+    addexp <- paste0('is.na(',var,') ~ as.integer(0),')
   } else if (var == 'Q7') {
-    data$Q7[data$Q7==9999] <- 0
-  } else if (var == 'Q9') {
-    data$Q9[data$Q9==97]   <- 0
-  }
+    mainexp <- paste0(var, '>96 & ', var,'<100', ' ~ as.integer(', var,'), ')
+  } 
   
   data[[var]] <- data[[var]] %>% as.integer
   
   newvar <- paste0(var, '_gen')
-  exprss <- paste0('case_when(', var, '>96 & ', var,'<100', ' ~ as.integer(', var,'), ',
-                   var, ' == ', stack_var, ' ~ as.integer(1),',
-                   ' T ~ as.integer(0))')
+  exprss <- paste0('case_when(', mainexp,
+                              var, ' == ', stack_var, ' ~ as.integer(1),',
+                              addexp,
+                              'T ~ as.integer(0))')
   
   q <- quote(mutate(data, !! newvar := exprss))
   

@@ -48,8 +48,8 @@ EES2019 %<>%
                         Q2==11 ~ as.integer(0),
                         Q2==9999 ~ as.integer(96), 
                         T ~ Q2),
-         Q7 = case_when(Q9==as.integer(9999) ~ as.integer(0), 
-                        T ~ Q9),
+         Q7 = case_when(Q7==as.integer(9999) ~ as.integer(0), 
+                        T ~ Q7),
          Q9 = case_when(Q9==as.integer(97) ~ as.integer(0), 
                         T ~ Q9))
 

@@ -62,7 +62,7 @@ EES2019_dk_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_dk$|fun'))  
+rm(list=ls(pattern='_dk$'))  
 
 
 
