@@ -26,7 +26,7 @@ rm(cntry)
 #            distinct})
 # 
 # EES2019_stckd_dk %>%
-#   dplyr::select(Q7) %>%
+#   dplyr::select(Q2) %>%
 #   val_labels()
 
 #Q2 also has values 10 (other parties) and 11 (none of the parties).

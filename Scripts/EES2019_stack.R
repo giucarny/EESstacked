@@ -36,6 +36,34 @@ EES2019 %<>%
   mutate(countryshort = region_NUTS1 %>% str_extract(pattern = '^.{0,2}')) %>% 
   mutate(countryshort = case_when(countrycode==1250 ~ 'FR', T ~ countryshort))
 
+# Change missing values for Q2, Q7, Q9,... # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Q2_labs <- val_labels(EES2019$Q2)
+Q7_labs <- val_labels(EES2019$Q7)
+Q9_labs <- val_labels(EES2019$Q9)
+
+EES2019 %<>% 
+  mutate(across(c(Q2, Q7, Q9), ~as.integer(.)),
+         Q2 = case_when(Q2==10 ~ as.integer(90), 
+                        Q2==11 ~ as.integer(0),
+                        Q2==9999 ~ as.integer(96), 
+                        T ~ Q2),
+         Q7 = case_when(Q9==as.integer(9999) ~ as.integer(0), 
+                        T ~ Q9),
+         Q9 = case_when(Q9==as.integer(97) ~ as.integer(0), 
+                        T ~ Q9))
+
+Q2_labs[Q2_labs %in% c(10,11,9999)] <- c(90,0,96)
+Q7_labs                             <- Q7_labs[-length(Q7_labs)]
+Q9_labs[Q9_labs %in% c(97)]         <- c(0)
+
+val_labels(EES2019$Q2) <- Q2_labs
+val_labels(EES2019$Q7) <- Q7_labs
+val_labels(EES2019$Q9) <- Q9_labs
+
+rm(list=ls(pattern='labs'))
+
+
 # Source the auxiliary data set # ======================================================================
 
 source(here('Scripts', 'aux_data_scripts', 'EES2019_cdbk_enh.R'))
