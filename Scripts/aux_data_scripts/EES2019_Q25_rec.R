@@ -3,11 +3,7 @@
 # Author: G.Carteny
 # last update: 2021-09-01
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Q25 should be re-labeled, but for now we leave it w/o labs
-
-# Q25_rec_labs <- EES2019$Q7 %>% val_labels()
-# attr(Q25_rec_labs[1], 'names') <- 'does not feel close to any party'
+  
 
 Q25_recoded <-
   EES2019_cdbk %>%
@@ -17,6 +13,8 @@ Q25_recoded <-
   dplyr::select(Q25, Q25_rec) %>%
   distinct() %>% 
   na.omit()
+
+Q25_labs <- val_labels(EES2019$Q25)
 
 EES2019 %<>%
   mutate(Q25 = as.integer(Q25)) %>%
@@ -32,4 +30,6 @@ EES2019 %<>%
   dplyr::select(-c(Q25_aux)) %>% 
   ungroup()
 
-rm(list=ls(pattern='Q25'))
+val_labels(EES2019$Q25) <- Q25_labs
+
+rm(list=ls(pattern='Q25|labs'))
