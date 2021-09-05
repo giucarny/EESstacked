@@ -34,7 +34,9 @@ EES2019 <-
 
 EES2019 %<>% 
   mutate(countryshort = region_NUTS1 %>% str_extract(pattern = '^.{0,2}')) %>% 
-  mutate(countryshort = case_when(countrycode==1250 ~ 'FR', T ~ countryshort))
+  mutate(countryshort = case_when(countrycode==1250 ~ 'FR',
+                                  countrycode==1470 ~ 'MT',
+                                  T ~ countryshort))
 
 # Change missing values for Q2, Q7, Q9,... # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
