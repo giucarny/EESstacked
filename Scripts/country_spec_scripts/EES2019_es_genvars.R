@@ -48,18 +48,18 @@ EES2019_es_stack <-
 
 # Check the dataset 
 
-checkdataset.fun <- 
-  function(vrbl) {
-    
-    orivar <- vrbl
-    genvar <- paste0(vrbl, '_gen')
-    
-    EES2019_es_stack %>%
-      dplyr::select(respid, party, all_of(orivar), all_of(genvar)) %>%
-      print(n=100)
-    
-  }
-es2<- checkdataset.fun('Q7') %>% filter(Q7==90, Q7_gen!=0)
+#checkdataset.fun <- 
+#  function(vrbl) {
+#    
+#    orivar <- vrbl
+#    genvar <- paste0(vrbl, '_gen')
+#    
+#    EES2019_es_stack %>%
+#      dplyr::select(respid, party, all_of(orivar), all_of(genvar)) %>%
+#      print(n=100)
+#    
+#  }
+# checkdataset.fun('Q7') %>% filter(Q7==90, Q7_gen!=0)
 
 # Clean the environment # ==============================================================================
 
