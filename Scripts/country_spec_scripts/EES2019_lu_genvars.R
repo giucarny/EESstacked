@@ -29,11 +29,12 @@ rm(cntry)
 #  dplyr::select(Q7) %>%
 #  val_labels()
 
-#Q2 also has values 10 (other parties) and 11 (none of the parties).
-#Q7 also has values 90 (other parties).
-#Q9_rec and Q25_rec also have value 90 (other parties).
-#Given that these values don't refer to parties, I made no additional changes 
+#Q2 , Q7, Q9_rec and Q25_rec also have value 90 (other parties). This 
+#corresponds with a 0 in Q2_gen, Q7_gen, Q9_rec_gen and Q25_rec_gen.
+#Given that 90 does not refer to parties, I made no additional changes 
 #to the code. 
+#Q9_rec also has value NA. This corresponds with a 0 in Q9_rec_gen. Since NA 
+#does not refer to parties, I made no additional changes to the code. 
 
 EES2019_lu_stack <- 
   cbind(EES2019_stckd_lu,  
@@ -57,7 +58,7 @@ EES2019_lu_stack <-
 #      print(n=100)
 #    
 #  }
-# checkdataset.fun('Q2')
+# checkdataset.fun('Q9_rec')%>%filter(is.na(Q9_rec), Q9_rec_gen!=0)
 
 # Clean the environment # ==============================================================================
 
