@@ -58,4 +58,4 @@ EES2019_el_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_el$|fun'))  
+rm(list=ls(pattern='_el$'))  

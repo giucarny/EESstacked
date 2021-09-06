@@ -59,4 +59,4 @@ EES2019_fi_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_fi$|fun'))  
+rm(list=ls(pattern='_fi$'))  

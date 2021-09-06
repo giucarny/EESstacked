@@ -60,5 +60,5 @@ EES2019_cz_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_cz$|fun'))  
+rm(list=ls(pattern='_cz$'))  
  

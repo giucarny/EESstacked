@@ -61,4 +61,4 @@ EES2019_lt_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_lt$|fun'))  
+rm(list=ls(pattern='_lt$'))  

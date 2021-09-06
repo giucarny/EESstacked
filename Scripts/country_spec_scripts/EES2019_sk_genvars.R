@@ -58,4 +58,4 @@ EES2019_sk_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_sk$|fun'))  
+rm(list=ls(pattern='_sk$'))  

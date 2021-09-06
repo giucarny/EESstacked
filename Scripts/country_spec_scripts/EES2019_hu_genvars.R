@@ -58,5 +58,5 @@ EES2019_hu_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_hu$|fun'))  
+rm(list=ls(pattern='_hu$'))  
 
