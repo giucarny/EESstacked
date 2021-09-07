@@ -63,5 +63,5 @@ EES2019_es_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_es$|fun'))  
+rm(list=ls(pattern='_es$'))  
 

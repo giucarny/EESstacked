@@ -57,7 +57,7 @@ EES2019_ro_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_ro$|fun'))  
+rm(list=ls(pattern='_ro$'))  
 
 
 

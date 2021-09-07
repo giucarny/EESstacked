@@ -62,6 +62,6 @@ EES2019_lu_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_lu$|fun'))  
+rm(list=ls(pattern='_lu$'))  
 
 

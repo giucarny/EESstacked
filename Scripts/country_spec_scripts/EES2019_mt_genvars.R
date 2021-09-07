@@ -62,5 +62,5 @@ EES2019_mt_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_mt$|fun'))  
+rm(list=ls(pattern='_mt$'))  
 

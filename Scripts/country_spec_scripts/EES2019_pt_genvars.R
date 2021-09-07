@@ -57,7 +57,7 @@ EES2019_pt_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_pt$|fun'))  
+rm(list=ls(pattern='_pt$'))  
 
 
 

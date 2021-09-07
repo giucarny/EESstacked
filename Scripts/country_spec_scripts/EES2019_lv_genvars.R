@@ -57,7 +57,7 @@ EES2019_lv_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_lv$|fun'))  
+rm(list=ls(pattern='_lv$'))  
 
 
 

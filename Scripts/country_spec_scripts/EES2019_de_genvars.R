@@ -63,7 +63,7 @@ EES2019_de_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_de$|fun'))  
+rm(list=ls(pattern='_de$'))  
 
 
 

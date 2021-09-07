@@ -61,4 +61,4 @@ EES2019_uk_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_uk$|fun'))  
+rm(list=ls(pattern='_uk$'))  

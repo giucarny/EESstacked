@@ -57,7 +57,7 @@ EES2019_at_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_at$|fun'))  
+rm(list=ls(pattern='_at$'))  
 
 
 

@@ -57,7 +57,7 @@ EES2019_si_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_si$|fun'))  
+rm(list=ls(pattern='_si$'))  
 
 
 

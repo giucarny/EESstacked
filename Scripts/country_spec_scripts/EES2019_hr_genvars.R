@@ -57,7 +57,7 @@ EES2019_hr_stack <-
 
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_hr$|fun'))  
+rm(list=ls(pattern='_hr$'))  
 
 
 
