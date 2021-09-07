@@ -38,16 +38,122 @@ gendic.fun <- function(data, var, stack_var) {
 }
 
 
-# Examples 
+# Generic Distance/Proximity variables estimation # ====================================================
 
-# Q2_gen <- gendic.fun(EES2019_stckd, var = 'Q2', stack_var = 'party')
-# 
-# Q7_gen <- gendic.fun(EES2019_stckd, var = 'Q7', stack_var = 'party')
+
+gendis.fun <- 
+  function(data,cdbk,vrbl,crit, rescale, check) {
+    if (vrbl=='Q11') {
+      cdbk_vrbl = c('Q7', 'Q13_left_right')
+    } else if (vrbl=='Q23') {
+      cdbk_vrbl = c('Q7', 'Q24_EU')
+    } else if (vrbl=='Q10') {
+      cdbk_vrbl = c('Q7', 'Q10_PTV')
+    }
+    
+    corr_tab <- 
+      cdbk %>% 
+      dplyr::select(all_of(cdbk_vrbl)) %>% 
+      mutate(across(all_of(cdbk_vrbl), ~tolower(.))) %>% 
+      na.omit() 
+    
+    trgt_vrbls <- 
+      corr_tab %>% 
+      .[[cdbk_vrbl[cdbk_vrbl!='Q7']]]
+    
+    df <- data
+    
+    if (vrbl=='Q11' | vrbl=='Q23') {
+      exprss0 <- 'dplyr::select(.data = df, respid, all_of(vrbl), all_of(trgt_vrbls))'  
+    } else if (vrbl=='Q10') {
+      exprss0 <- 'dplyr::select(.data = df, respid, all_of(trgt_vrbls))'
+    }
+    
+    df <- 
+      eval(parse(text = exprss0))
+    
+    df %<>% mutate(across(names(.), ~as.numeric(.)))
+    
+    
+    if (vrbl=='Q11' | vrbl=='Q23') {
+      
+      cond <- '.>10'  
+      
+      exprss1 <- 
+        paste0('mutate(.data=df, across(c(all_of(trgt_vrbls), all_of(vrbl)),', 
+               '~case_when(', cond, '~ NA_real_, T~.)))')
+      
+      exprss2_head <- 'mutate(.data=df, across(all_of(trgt_vrbls),'
+      exprss2_tail <- '))'
+      
+      if (crit == 'idiosyncratic') {
+        exprss2_mid <- paste0('~abs(', vrbl, '-.)')
+      } else if (crit == 'average') {
+        exprss2_mid <- paste0('~abs(', vrbl, '-mean(., na.rm=T))')
+      }
+      
+      exprss2 <- paste0(exprss2_head, exprss2_mid, exprss2_tail)
+      
+      
+      df <- eval(parse(text = exprss1))  
+      df_check = df
+      df <- eval(parse(text = exprss2))
+      
+      df %<>% 
+        dplyr::select(-c(all_of(vrbl)))
+      
+    } else if (vrbl=='Q10') {
+      
+      df_check = df
+      
+    }
+    
+    names(df)[names(df) %in% trgt_vrbls] <- corr_tab[['Q7']]  
+    
+    if (vrbl=='Q11') {
+      newvar <- 'Q13_gen'
+    } else if (vrbl=='Q23') {
+      newvar <- 'Q24_gen'
+    } else if (vrbl=='Q10') {
+      newvar <- 'Q10_gen'
+    }
+    
+    df_stack  <- 
+      df %>% 
+      pivot_longer(cols = names(.)[str_detect(names(.),'^[0-9]')], 
+                   names_to = 'party',
+                   values_to = newvar)
+    
+    if (rescale) {
+      
+      if (vrbl=='Q10' | vrbl=='Q11' | vrbl=='Q23') {res_fact = '10'}
+      
+      df_stack <- 
+        eval(
+          parse(
+            text = paste0('mutate(.data=df_stack,', newvar, '=', newvar,'/', res_fact,')')
+          )
+        )
+    }
+    
+    if (check==T) {
+      
+      df_lst <- 
+        list(df_check, df_stack)
+      return(df_lst)
+      
+    } else if (check==F) {
+      
+      return(df_stack)
+      
+    }
+  }
+
 
 
 # Older functions # ====================================================================================
 
-# Additional function for creating stacked variables - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Additional function for creating stacked variables - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # genstackedvar.int.fun <- function(data, depvar, index, refvar) {
 #   
