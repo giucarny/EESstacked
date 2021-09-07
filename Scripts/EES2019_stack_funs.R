@@ -42,7 +42,7 @@ gendic.fun <- function(data, var, stack_var) {
 
 
 gendis.fun <- 
-  function(data,cdbk,vrbl,crit, rescale, check) {
+  function(data, cdbk, vrbl, crit, rescale, check, keep_id) {
     if (vrbl=='Q11') {
       cdbk_vrbl = c('Q7', 'Q13_left_right')
     } else if (vrbl=='Q23') {
@@ -136,16 +136,17 @@ gendis.fun <-
         )
     }
     
+    if (keep_id==F) {
+      df_stack %<>% dplyr::select(-c(respid, party))
+    } 
+    
+    
     if (check==T) {
-      
       df_lst <- 
         list(df_check, df_stack)
       return(df_lst)
-      
     } else if (check==F) {
-      
       return(df_stack)
-      
     }
   }
 
