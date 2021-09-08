@@ -104,6 +104,13 @@ gendis.fun <-
       
     } else if (vrbl=='Q10') {
       
+      cond <- '.>10'  
+      
+      exprss1 <- 
+        paste0('mutate(.data=df, across(c(all_of(trgt_vrbls)),', 
+               '~case_when(', cond, '~ NA_real_, T~.)))')
+      
+      df <- eval(parse(text = exprss1))
       df_check = df
       
     }
@@ -111,9 +118,9 @@ gendis.fun <-
     names(df)[names(df) %in% trgt_vrbls] <- corr_tab[['Q7']]  
     
     if (vrbl=='Q11') {
-      newvar <- 'Q13_gen'
+      newvar <- 'Q11_Q13_gen'
     } else if (vrbl=='Q23') {
-      newvar <- 'Q24_gen'
+      newvar <- 'Q23_Q24_gen'
     } else if (vrbl=='Q10') {
       newvar <- 'Q10_gen'
     }
@@ -122,7 +129,7 @@ gendis.fun <-
       df %>% 
       pivot_longer(cols = names(.)[str_detect(names(.),'^[0-9]')], 
                    names_to = 'party',
-                   values_to = newvar)
+                   values_to = newvar) 
     
     if (rescale) {
       
@@ -135,6 +142,9 @@ gendis.fun <-
           )
         )
     }
+    
+    df_stack %<>%
+      mutate(across(all_of(newvar), ~case_when(is.na(.) ~ as.numeric(98), T~.)))
     
     if (keep_id==F) {
       df_stack %<>% dplyr::select(-c(respid, party))

@@ -140,9 +140,26 @@ first the 'EES2019_stack.R' without the last section ('Estimate the generic vari
 your country-specific 'genvars.R' script, without the last section (that is, without 'tidying' the 
 environment). 
 
-Then, you can develop an additional paragraph just below the one dedicated to the dichotomous 
-variables^[Actually you could also put the `gendis.fun` in the same chunk of code used for estimating 
-the dichotomous variables with the `gendic.fun`. For sake of clarity, I personally prefer to keep the 
+If you want to estimate the generic variable and check the results, you can just run the function, 
+setting to `TRUE` the `check` argument:
+
+```{r, eval=T, echo=T}
+x <- 
+  gendis.fun(data = EES2019_it,
+                   cdbk = EES2019_cdbk_it,
+                   vrbl = 'Q11',
+                   crit = 'average',
+                   rescale = T,
+                   check = T,
+                   keep_id = F) %>% 
+  as_tibble()
+
+print(x, n=20)
+```
+
+Then, if everything works fine, you can develop an additional paragraph just below the one dedicated to 
+the dichotomous variables^[Actually you could also put the `gendis.fun` in the same chunk of code used for estimating 
+the dichotomous variables with the `gendis.fun`. For sake of clarity, I personally prefer to keep the 
 two estimations separated.]. 
 
 ```{r, eval=T, echo=T}
@@ -151,7 +168,7 @@ EES2019_it_stack %<>%
   cbind(.,  
         gendis.fun(data = EES2019_it,
                    cdbk = EES2019_cdbk_it,
-                   vrbl = 'Q10',
+                   vrbl = 'Q11',
                    crit = 'average',
                    rescale = T,
                    check = F,
@@ -161,15 +178,14 @@ EES2019_it_stack %<>%
 
 ```
 
-Of course, we could add more variables to the chunk above, just copy-pasting the `gendic.fun` function 
-and changing the argument `var`, or we could apply such function to a vector containing the 
+Of course, we could add more variables to the chunk above, just copy-pasting the `gendis.fun` function 
+and changing the argument `vrbl`, or we could apply such function to a vector containing the 
 variables of interest, then binding the results, and merging the output with the SDM. 
-The latter is the solution that you will actually find in the exemplary script, as shown just below this 
-paragraph
+The latter is the solution that you will actually find in the exemplary script, as shown below:
 
 ```{r, eval=T, echo=F}
 
-EES2019_it_stack %<>% dplyr::select(-c(Q10_gen)) 
+EES2019_it_stack %<>% dplyr::select(-c(Q11_gen)) 
 
 ```
 
@@ -191,11 +207,24 @@ EES2019_it_stack %<>%
 
 ```
 
+In any case, once computed the variables we just have to tidy up the environment as already specified in 
+the current version of our scripts.
 
+## Codebook development
 
+Once finished the estimation of the variable(s) of interest, then the next step is to insert new entries 
+in the SDM codebook, that you can find as a R Markdown script ('Codebook.Rmd') in the 
+'~/EESstacked/Docs/docs_scripts' subdirectory. 
 
+There's not much to say about '*how to do it*', since you can rely on what has been done previously.
+But I recommend you to be careful about the indentation of the R Markdown script. 
+In particular, when specifying the values of the variables of interest remember to leave 
+*two blank spaces* at the end of the row. This tells to `rmarkdown` to enforce a *line break*. You can 
+find more about this topic (and other R Markdown features concerning text) 
+[on this webpage](https://bookdown.org/hneth/ds4psy/F-3-rmarkdown-minimal.html#rmarkdown:text), 
+in particular in the 'Preventing and enforcing line and paragraph breaks' subsection (Sect. F.3.2). 
 
-
+About the *content* of the paragraphs I suggest you to drop me an email. 
 
 
 ## Which Variables
@@ -210,5 +239,5 @@ following:
 [EES 2019 Master Questionnaire](https://dbk.gesis.org/dbksearch/download.asp?id=67447) reference is made 
 to EU *unification* rather than *integration* process. Nonetheless, the two concepts can be considered 
 almost equivalent.];
-* **`Q24`**: Respondent's perception of a specific party position on the EU integration process.
+* **`Q24`**: Respondent's perception of a specific party position about the EU integration process.
 
