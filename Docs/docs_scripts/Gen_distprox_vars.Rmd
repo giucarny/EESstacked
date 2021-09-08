@@ -39,12 +39,12 @@ distances on a single issue, this implies that we are estimating these distances
 Thus, we can drop the second half of the formula below the radical symbol, rewriting the formula as it 
 follows:
 
-> $d = \sqrt{(x_i - x_k)^2}
+> $d = \sqrt{(x_i - x_k)^2}$
 
 Nonetheless, these values are usually computed using a similar formula, avoiding the radical and simply 
 using the absolute difference of individual and party positions, that is: 
 
-> $d = |x_i - x_k|
+> $d = |x_i - x_k|$
 
 This is the formula that we will use in our scripts. 
 
