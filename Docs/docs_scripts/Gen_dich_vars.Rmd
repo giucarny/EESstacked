@@ -100,8 +100,8 @@ EES2019_it_stack <-
 
 Of course, we can add more variables to the chunk above, just copy-pasting the `gendic.fun` function 
 and changing the argument `var`. Alternatively, we can apply such function to a vector containing the 
-variables of interest, then binding the results, and then the SDM^[In my case, when I will code my 
-scripts I guess that I will resort to the latter solution. But in any case, this is up to you.].  
+variables of interest, then binding the results, and then mergin with the SDM^[In my case, when I will 
+code my scripts I guess that I will resort to the latter solution. But in any case, this is up to you.].  
 
 Returning to our tutorial, once finished the list of variables then we just have to clean the 
 environment. 

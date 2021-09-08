@@ -106,11 +106,11 @@ EES2019_stckd %<>% left_join(., EES2019, by=c('countrycode', 'respid'))
 
 # Estimate the generic variables # =====================================================================
 
-invisible(
-  lapply(paste0(here('Scripts', 'country_spec_scripts'),'/',
-                here('Scripts', 'country_spec_scripts') %>% list.files(pattern = '_genvars')),
-         source)
-)
-
-EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
-rm(list=ls(pattern='_stack'))
+# invisible(
+#   lapply(paste0(here('Scripts', 'country_spec_scripts'),'/',
+#                 here('Scripts', 'country_spec_scripts') %>% list.files(pattern = '_genvars')),
+#          source)
+# )
+# 
+# EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
+# rm(list=ls(pattern='_stack'))

@@ -11,6 +11,28 @@ output:
 urlcolor: RedOrange
 --- 
 
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+library(here)
+source(here('Scripts', 'EES2019_stack.R'))
+
+cntry = 'IT'
+
+EES2019_it <- EES2019 %>% filter(countryshort==cntry)
+EES2019_stckd_it <- EES2019_stckd %>% filter(countryshort==cntry)
+EES2019_cdbk_it <- EES2019_cdbk %>% filter(countryshort==cntry)
+
+rm(cntry)
+
+EES2019_it_stack <- 
+  cbind(EES2019_stckd_it,  
+        gendic.fun(data = EES2019_stckd_it, 
+                   var = 'Q7', 
+                   stack_var = 'party')) %>% 
+  as_tibble()
+
+```
+
 # Introduction 
 
 Our next tasks consist in (1) the estimation of generic **distance/proximity** variables and (2) the 
@@ -25,58 +47,154 @@ As suggested by their name, distance/proximity variables concern the distance or
 voter and the set of relevant parties on some dimensions of interest. Thus, such variables measure 
 whether and to what extent the position of an individual is more or less close to/distant from the 
 position of a party on general dimensions (for istance, the left-right continuum) or on specific issues 
-(such as European integration, immigration policies, minority rights, and so on). As shown below, we 
-will estimate distance rather than proximity variables. Thus, the higher the values of such variables 
-the more distant a specific voter and a specific party are. 
+(such as European integration, immigration policies, minority rights, and so on). 
+
+As shown below, we will estimate distance rather than proximity variables. Thus, the higher the values 
+of such variables the more distant a specific voter and a specific party are. The only exception is the 
+propensity to vote (PTV) variable, that as suggested by the name itself measures an individual 
+propensity to vote for a given party. This variable measures the "proximity" between voters and 
+parties, thus the higher the values of said variable the closer voter and party are. 
 
 ## Distance as Absolute Difference
 
+With the sole exception of the PTV variable, this kind of generic variables needs to be estimated. 
 Theoretically, for estimating distances between voters and parties we could use a geometric distance 
 formula: 
 
 > $d = \sqrt{(x_i - x_k)^2 + (y_i - y_k)^2}$
 
 Where $x_i$ and $y_i$ represent the positions of individual $i$ on issues $x$ and $y$, and $x_k$ and 
-$y_k$ represent the position of party $k$ on the same issues. Since we are computing individual-party 
-distances on a single issue, this implies that we are estimating these distances on a single axis. 
-Thus, we can drop the second half of the formula below the radical symbol, rewriting the formula as it 
-follows:
+$y_k$ represent the position of party $k$ on the same issues. However, since we are computing 
+individual-party distances on a single issue, this implies that we are estimating these distances on a 
+single axis. Thus, we can drop the second half of the formula below the radical symbol, rewriting it as 
+it follows:
 
 > $d = \sqrt{(x_i - x_k)^2}$
 
-Nonetheless, these values are usually computed using a similar formula, avoiding the radical and simply 
-using the absolute difference of individual and party positions, that is: 
+We could use this formula for estimating our variables. Nonetheless, such variables are usually computed 
+exploiting a similar formula, avoiding the radical and using the absolute difference of individual and 
+party positions, that is: 
 
 > $d = |x_i - x_k|$
 
-This is the formula that we will use in our scripts. 
+This is the formula that we will use in our scripts for computing our generic variables, PTV excluded. 
 
 ## The `gendis.fun` function 
 
 As in the case of dichotomous variables, for computing generic distance variables I implemented a 
-function that will make our job much easier. This `gendis.fun` is slightly more elaborated than the one 
-used before. In short, it will take the value of an individual on a given dimension (say, respondents' 
+function that will make our job much easier. This function (`gendis.fun`) is slightly more elaborated 
+than the one used before. 
+
+In short, it will take the value of an individual on a given dimension (say, respondents' 
 self-placement on the left-right ideological axis, variable `Q11`) and the value of a party on the same 
 dimension *as perceived by the same individual* (hence, an idiosyncratic value as specified in the `Q13` 
 variables set) or *as perceived by all the respondents* (thus, an average value of respondents' scores on 
-the same set of variables). These two methods are not the only one for computing such distance variables,
-but for now we will rely on these ones, and more specifically on the second method. 
+the same set of variables). These two methods are only some of those used for computing such distance 
+variables, but for now we will rely on these two, and more specifically on the second method. 
 
-Returning to the function, as you will see it takes several arguments, thus a little presentation is 
-needed. The `gendis.fun` arguments are the following:
+Returning to the function, as you will see it takes several arguments: 
 
 .  `data` = The main data basis for computing our variables. Essentially it takes only one value, 
-that is the 'EES2019' original data frame, thus this argument could be avoided. However, the function 
-might be generalized in the following weeks to allow different data sources, that's why this argument is
-there. 
+that is the 'EES2019' (country-specific) original data frame, thus this argument could be avoided. 
+However, the function might be generalized in the following weeks to allow different data sources, 
+that's why that argument is there; 
 
 .  `cdbk` = The auxiliary data frame for computing our variables. As above, it takes only one value, 
-that is the 'EES2019_cdbk' data frame. However, also this argument has been implement because of 
-possible implementations. The reason why we use the EES codebook is that it allows to automatically 
-select the EES2019 columns referring to party positions. This leaves our hands free from manual coding 
-(that is always a good thing).
+that is the 'EES2019_cdbk' (country-specific) data frame. However, also this argument is there because 
+of possible implementations. In any case, the reason why we use the EES codebook is that it allows to 
+automatically select the EES2019 columns referring to party positions. This leaves our hands free from 
+manual coding (that is always a good thing);
 
-.  `vrbl` = This argument so far takes three values: `Q10`, `Q11`, and `Q23`. The first one is our 
+.  `vrbl` = This argument so far takes three values: `Q10`, `Q11`, and `Q23`. With the sole exception of 
+the PTV variable (`Q10`), when specifying the other two self-placement variables the function 
+automatically identifies the party-specific variables, using the EES2019 codebook correspondence tables; 
+
+.  `crit` = This argument refers to the criterion used for computing the distance variables, namely 
+whether the measure should be computed using an 'idiosyncratic' approach or using the average of party 
+positions (see few lines above). Thus, it just take two values: '`idiosyncratic`' or '`average`'. 
+
+.  `rescale` = All the variables that we are dealing with are measured on a 0 to 10 scale. Nonetheless, 
+such values are often rescaled in order to fit into the `[0,1]` interval. This argument, that is a 
+logical argument (`TRUE` or `FALSE`), simply allows us to specify whether we want to rescale the values 
+or not;
+
+.  `check` = Likely this is the most useful argument for developing your script. It is another logical 
+argument. If `TRUE` then it will return (as a list object) the final output (a data frame) but also an 
+intermediate data frame that will allow you to check the original values used for estimating the 
+distance varialbe. If `FALSE` it will return just the distance variable (however, see also the last 
+argument of the function, a few lines below). I suggest to set the argument as `TRUE` during the 
+development of your scripts and then to `FALSE` when you are sure that everything went fine;
+
+.  `keep_id` = This (logical) argument ask you whether the output should be a data frame containing the 
+estimated distance variable and the `respid` and `party` identification variables (`TRUE` value) or a 
+single column data frame with just the generic variable. This option essentially allows you to use the 
+`gendis.fun` in different workflows. When `TRUE` you can merge the estimated variable with the SDM using 
+a `dplyr` `*join` function (such as `left_join()`). When `FALSE` you can simply bind the new column to 
+the SDM. 
+
+## Procedure for computing generic distance variables
+
+The procedure for computing our distance variables is rather similar (in terms of code) to the one used 
+for estimating the dichotomous generic variables. For implementing your scripts you just have to run 
+first the 'EES2019_stack.R' without the last section ('Estimate the generic variables`), and then run 
+your country-specific 'genvars.R' script, without the last section (that is, without 'tidying' the 
+environment). 
+
+Then, you can develop an additional paragraph just below the one dedicated to the dichotomous 
+variables^[Actually you could also put the `gendis.fun` in the same chunk of code used for estimating 
+the dichotomous variables with the `gendic.fun`. For sake of clarity, I personally prefer to keep the 
+two estimations separated.]. 
+
+```{r, eval=T, echo=T}
+
+EES2019_it_stack %<>% 
+  cbind(.,  
+        gendis.fun(data = EES2019_it,
+                   cdbk = EES2019_cdbk_it,
+                   vrbl = 'Q10',
+                   crit = 'average',
+                   rescale = T,
+                   check = F,
+                   keep_id = F)) %>% 
+  as_tibble()
+
+
+```
+
+Of course, we could add more variables to the chunk above, just copy-pasting the `gendic.fun` function 
+and changing the argument `var`, or we could apply such function to a vector containing the 
+variables of interest, then binding the results, and merging the output with the SDM. 
+The latter is the solution that you will actually find in the exemplary script, as shown just below this 
+paragraph
+
+```{r, eval=T, echo=F}
+
+EES2019_it_stack %<>% dplyr::select(-c(Q10_gen)) 
+
+```
+
+```{r, eval=T, echo=T}
+
+EES2019_it_stack %<>%
+  cbind(.,
+        lapply(data = EES2019_it,
+               cdbk = EES2019_cdbk_it,
+               crit = 'average',
+               rescale = T,
+               check = F,
+               keep_id = F,
+               X = list('Q10','Q11','Q23'),
+               FUN = gendis.fun) %>% 
+          do.call('cbind',.)) %>% 
+  as_tibble()
+
+
+```
+
+
+
+
+
 
 
 
