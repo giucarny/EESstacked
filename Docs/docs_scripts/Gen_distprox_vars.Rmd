@@ -2,7 +2,7 @@
 title: EES2019 Stacking Process 
 subtitle: Generic Distance/Proximity Variables Estimation 
 author: Giuseppe Carteny
-date: 31.08.2021 
+date: 09.09.2021 
 toc: true
 output: 
   bookdown::pdf_document2:
@@ -11,6 +11,42 @@ output:
 urlcolor: RedOrange
 --- 
 
+# Introduction 
+
+Our next tasks consist in (1) the estimation of generic **distance/proximity** variables and (2) the 
+preparation of the SDM codebook.
+
+The workflow follows up the one used for our previous task: we will modify the 'genvars' country-specific 
+scripts developed a few days ago, adding the computation of the distance/proximity variables. 
+
+# Estimating Generic Distance/Proximity Variables and Codebook Preparation
+
+As suggested by their name, distance/proximity variables concern the distance or proximity between the 
+voter and the set of relevant parties on some dimensions of interest. Thus, such variables measure 
+whether and to what extent the position of an individual is more or less close to/distant from the 
+position of a party on general dimensions (for istance, the left-right continuum) or on specific issues 
+(such as European integration, immigration policies, minority rights, and so on). As shown below, we 
+will estimate distance rather than proximity variables. Thus, the higher the values of such variables 
+the more distant a specific voter and a specific party are. 
+
+Basically, for estimating such variables we use a geometric distance formula: 
+
+> $d = \sqrt{(x_i - x_k)^2 + (y_i - y_k)}$
+
+Where $x_i$ and $y_i$ represent the positions of individual $i$ on issues $x$ and $y$, and $x_k$ and 
+$y_k$ represent the position of party $k$ on the same issues. Since we are computing individual-party 
+distances on a single issue, this implies that we are estimating these distances on a single axis. 
+Thus, we can drop the second half of the formula below the radical symbol, rewriting the formula as it 
+follows:
+
+> $d = \sqrt{(x_i - x_k)^2}
+
+Nonetheless, these values are usually computed using a similar formula, avoiding the radical and simply 
+using the absolute difference of individual and party positions, that is: 
+
+> $d = |x_i - x_k|
+
+This is the formula that we will use in our scripts. 
 
 
 ## Which Variables
