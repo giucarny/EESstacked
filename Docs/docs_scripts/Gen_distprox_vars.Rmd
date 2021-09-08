@@ -38,8 +38,9 @@ EES2019_it_stack <-
 Our next tasks consist in (1) the estimation of generic **distance/proximity** variables and (2) the 
 preparation of the SDM codebook.
 
-The workflow follows up the one used for our previous task: we will modify the 'genvars' country-specific 
-scripts developed a few days ago, adding the computation of the distance/proximity variables. 
+The workflow follows up the one used for our previous task: we will modify the 'genvars' 
+country-specific scripts developed a few days ago, adding the computation of the distance/proximity 
+variables. 
 
 # Estimating Generic Distance/Proximity Variables and Codebook Preparation
 
@@ -151,10 +152,8 @@ x <-
                    crit = 'average',
                    rescale = T,
                    check = T,
-                   keep_id = F) %>% 
-  as_tibble()
+                   keep_id = F) 
 
-print(x, n=20)
 ```
 
 Then, if everything works fine, you can develop an additional paragraph just below the one dedicated to 
@@ -185,7 +184,7 @@ The latter is the solution that you will actually find in the exemplary script, 
 
 ```{r, eval=T, echo=F}
 
-EES2019_it_stack %<>% dplyr::select(-c(Q11_gen)) 
+EES2019_it_stack %<>% dplyr::select(-c(Q11_Q13_gen)) 
 
 ```
 
@@ -216,7 +215,7 @@ Once finished the estimation of the variable(s) of interest, then the next step 
 in the SDM codebook, that you can find as a R Markdown script ('Codebook.Rmd') in the 
 '~/EESstacked/Docs/docs_scripts' subdirectory. 
 
-There's not much to say about '*how to do it*', since you can rely on what has been done previously.
+There's not much to say about *how to do it*, since you can rely on what has been done previously.
 But I recommend you to be careful about the indentation of the R Markdown script. 
 In particular, when specifying the values of the variables of interest remember to leave 
 *two blank spaces* at the end of the row. This tells to `rmarkdown` to enforce a *line break*. You can 
@@ -240,4 +239,21 @@ following:
 to EU *unification* rather than *integration* process. Nonetheless, the two concepts can be considered 
 almost equivalent.];
 * **`Q24`**: Respondent's perception of a specific party position about the EU integration process.
+
+# Who Does What 
+
+Like for the last task, I will take care of Belgium, Bulgaria, Cyprus, and Italy, while you will take 
+care of the following countries: 
+
+- **Willie**: Denmark, Estonia, Germany, Luxembourg, Malta, Netherlands, Spain, United Kingdom;
+- **Julian**: Czech Rep., Finland, Greece, Hungary, Lithuania, Slovakia, Poland, Sweden;
+- **Matthias**: Austria, Croatia, France, Ireland, Latvia, Portugal, Romania, Slovenia.
+
+This time **Matthias** will fill the codebook with a set of entries referring to the generic 
+variables generated from the variables mentioned above.
+
+# The Deadline
+
+I believe that also in this case a few days should be enough to finish the tasks listed above 
+(deadline: **13.09.2021**).
 
