@@ -29,6 +29,8 @@ position of a party on general dimensions (for istance, the left-right continuum
 will estimate distance rather than proximity variables. Thus, the higher the values of such variables 
 the more distant a specific voter and a specific party are. 
 
+## Distance as Absolute Difference
+
 Basically, for estimating such variables we use a geometric distance formula: 
 
 > $d = \sqrt{(x_i - x_k)^2 + (y_i - y_k)}$
@@ -48,15 +50,39 @@ using the absolute difference of individual and party positions, that is:
 
 This is the formula that we will use in our scripts. 
 
+## The `gendis.fun` function 
+
+As in the case of dichotomous variables, for computing generic distance variables I implemented a 
+function that will make our job much easier. This `gendis.fun` is slightly more elaborated than the one 
+used before. In short, it will take the value of an individual on a given dimension (say, respondents' 
+self-placement on the left-right ideological axis, variable `Q11`) and the value of a party on the same 
+dimension *as perceived by the same individual* (hence, an idiosyncratic value as specified in the `Q13` 
+variables set) or *as perceived by all the respondents* (thus, an average value of respondents' scores on 
+the same set of variables). These two methods are not the only one for computing such distance variables,
+but for now we will rely on these ones, and more specifically on the second method. 
+
+Returning to the function, as you will see it takes several arguments, thus a little presentation is 
+needed. The `gendis.fun` arguments are the following:
+
+.  `data` = The main data basis for computing our variables. Essentially it takes only one value, 
+that is the 'EES2019' original data frame, thus this argument could be avoided. However, the function 
+might be generalized in the following weeks to allow different data sources, that's why this argument is
+there. 
+
+.  `cdbk` = The auxiliary data frame for computing our variables. As above, it takes only one value, 
+that is the 'EES2019_cdbk' data frame. However, also this argument has been implement because of 
+possible implementations. The reason why we use the EES codebook is that it allows to automatically 
+select the EES2019 columns referring to party positions. This leaves our hands free from manual coding 
+(that is always a good thing).
+
+.  `vrbl` = This argument so far takes three values: `Q10`, `Q11`, and `Q23`. The first one is our 
+
+
 
 ## Which Variables
 
-The sole 'non-proximity' variable that we have to compute is **`Q26`**. This variable measures the 
-extent to which the respondent feels close to the party identified in `Q25_rec`. 
-This var is needed for computing another variable in accordance to the `Q25_rec` values.
-
-
-The list of **proximity/distance** variables is the following: 
+The list of variables that we are going to use for computing our generic distance variables are the 
+following: 
 
 * **`Q10`**: Respondent's propensity to vote for a specific party;
 * **`Q11`**: Respondent's self-placement on the left-right *continuum*;
