@@ -28,6 +28,10 @@ rm(cntry)
 # EES2019_stckd_be %>%
 #   dplyr::select(Q2) %>%
 #   val_labels()
+EES2019_be %<>%
+  mutate(Q25_rec = case_when(is.na(Q25_rec) ~ as.integer(90), T ~ Q25_rec))
+EES2019_stckd_be %<>%
+  mutate(Q25_rec = case_when(is.na(Q25_rec) ~ as.integer(90), T ~ Q25_rec))
 
 
 EES2019_be_stack <- 
@@ -54,6 +58,10 @@ EES2019_be_stack <-
 #   }
 
 # checkdataset.fun('Q25_rec')
+
+# Generic distance/proximity variables estimation # ====================================================
+
+# Check the EES2019_be_genvars_TEMP script
 
 # Clean the environment # ==============================================================================
 
