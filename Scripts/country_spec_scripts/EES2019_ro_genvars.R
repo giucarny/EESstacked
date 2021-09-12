@@ -55,6 +55,29 @@ EES2019_ro_stack <-
 
 # checkdataset.fun('Q25_rec')
 
+# Generic distance/proximity variables estimation # ====================================================
+
+EES2019_ro_stack %<>%
+  cbind(.,
+        lapply(data = EES2019_ro,
+               cdbk = EES2019_cdbk_ro,
+               crit = 'average',
+               rescale = T,
+               check = T,
+               keep_id = F,
+               X = list('Q10','Q11','Q23'),
+               FUN = gendis.fun) %>% 
+          do.call('cbind',.)) %>% 
+  as_tibble()
+
+# error occurs:  Error: Can't subset columns that don't exist.
+# x Column `mean (q10_2, q10_8)` doesn't exist.
+# Run `rlang::last_error()` to see where the error occurred. 
+# Same occurs when run for the other variables run on their own. (q13_2, q13_8, q24_2, q24_8)
+
+# EES2019_ro_stack %>% 
+#   dplyr::select(respid, party, ends_with('gen'))
+
 # Clean the environment # ==============================================================================
 
 rm(list=ls(pattern='_ro$'))  
