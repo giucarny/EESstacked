@@ -77,3 +77,34 @@ Values:
 0 - Respondent does not feel close to the stack party (Feels close to another party or does not feel close to any)  
 1 - Respondent feels close to the stack party  
 98 - Respondent does not know
+
+# Generic distance/proximity variables estimation {-}
+
+## Q10_gen {-}
+Generic distance/proximity variable, measuring the respondent’s propensity to vote for a specific party.
+This variable was created from a recoded version of the original EES 2019 `Q10` variable.
+
+Values:
+
+0.0 - Respondent does not feel close to the stack party
+1.0 - Respondent feels close to the stack party  
+98.0 - Respondent does not know
+
+
+## Q11_Q13_gen {-}
+Generic distance/proximity variable, measuring the distance of the respondents' self-placement on the left-right ideological axis, variable `Q11`, and the respondent’s perception of a specific party position on the same left-right continuum, variable `Q13`.
+This variable was created from the EES2019 `Q11` and `Q13` variable.
+
+Values:
+
+98.000000000 - Respondent does not know
+
+
+## Q23_Q24_gen {-}
+Generic distance/proximity variable, measuring the distance of the respondents' self-placement on the position taken about EU integration, variable `Q23`, and the repondent’s perception of a specific party position about the EU integration process, variable `Q24`.
+This variable was created from the EES2019 `Q23` and `Q24` variable.
+
+Values:
+
+98.000000000 - Respondent does not know
+
