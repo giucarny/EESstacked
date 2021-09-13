@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Estonia Sample) 
 # Author: W. Haeussling
-# last update: 2021-09-05
+# last update: 2021-09-13
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -61,9 +61,26 @@ EES2019_ee_stack <-
 #   }
 # checkdataset.fun('Q25_rec')%>% filter(is.na(Q25_rec), Q25_rec_gen!=0)
 
+# Generic distance/proximity variables estimation # ====================================================
+
+EES2019_ee_stack %<>%
+  cbind(.,
+        lapply(data = EES2019_ee,
+               cdbk = EES2019_cdbk_ee,
+               crit = 'average',
+               rescale = T,
+               check = F,
+               keep_id = F,
+               X = list('Q10','Q11','Q23'),
+               FUN = gendis.fun) %>% 
+          do.call('cbind',.)) %>% 
+  as_tibble()
+
+# EES2019_ee_stack %>% 
+#  dplyr::select(respid, party, ends_with('gen')) %>% 
+#  filter((abs(Q10_gen)>1 & Q10_gen!=98) | (abs(Q11_Q13_gen)>1 & Q11_Q13_gen!=98) |
+#           (abs(Q23_Q24_gen)>1 & Q23_Q24_gen!=98))
+
 # Clean the environment # ==============================================================================
 
 rm(list=ls(pattern='_ee$'))  
-
-
-
