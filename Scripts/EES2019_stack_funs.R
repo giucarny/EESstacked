@@ -151,11 +151,11 @@ gendis.fun <-
     } 
     
     
-    if (check==T) {
+    if (check) {
       df_lst <- 
         list(df_check, df_stack)
       return(df_lst)
-    } else if (check==F) {
+    } else {
       return(df_stack)
     }
   }

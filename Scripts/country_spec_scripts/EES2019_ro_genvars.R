@@ -15,6 +15,13 @@ EES2019_cdbk_ro <- EES2019_cdbk %>% filter(countryshort==cntry)
 
 rm(cntry)
 
+# Change idiosyncratic values of the codebook # ========================================================
+
+EES2019_cdbk_ro %<>%
+  mutate(Q10_PTV        = case_when(Q7==2302 ~ 'Q10_8', T~Q10_PTV),
+         Q13_left_right = case_when(Q7==2302 ~ 'Q13_8', T~Q13_left_right),
+         Q24_EU         = case_when(Q7==2302 ~ 'Q24_8', T~Q24_EU)) 
+
 # Generic dichotomous variables estimation # ===========================================================
 
 # Check first the variable of interest values
@@ -63,7 +70,7 @@ EES2019_ro_stack %<>%
                cdbk = EES2019_cdbk_ro,
                crit = 'average',
                rescale = T,
-               check = T,
+               check = F,
                keep_id = F,
                X = list('Q10','Q11','Q23'),
                FUN = gendis.fun) %>% 
