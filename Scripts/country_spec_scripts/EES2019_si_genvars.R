@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Slovenian Sample) 
 # Author: M.Koernig
-# last update: 2021-09-05
+# last update: 2021-09-12
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -54,6 +54,24 @@ EES2019_si_stack <-
 #   }
 
 # checkdataset.fun('Q25_rec')
+
+# Generic distance/proximity variables estimation # ====================================================
+
+EES2019_si_stack %<>%
+  cbind(.,
+        lapply(data = EES2019_si,
+               cdbk = EES2019_cdbk_si,
+               crit = 'average',
+               rescale = T,
+               check = F,
+               keep_id = F,
+               X = list('Q10','Q11','Q23'),
+               FUN = gendis.fun) %>% 
+          do.call('cbind',.)) %>% 
+  as_tibble()
+
+# EES2019_si_stack %>% 
+#   dplyr::select(respid, party, ends_with('gen'))
 
 # Clean the environment # ==============================================================================
 
