@@ -52,11 +52,11 @@ votes_crit <-
   mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
   dplyr::select(partyname, votesh, seats)
 
-#votes_crit: 8 parties
-#parties: FF, FG, LAB, GP, SF, Ind., SD, I4C
-#The party Solidarity shows a PTV variable, but did not obtain a seat in the EP
-#All other parties with PTV variable obtained at least one seat in the EP
-#Thus, the party Solidarity needs to be filtered out
+# votes_crit: 8 parties
+# parties: FF, FG, LAB, GP, SF, Ind., SD, I4C
+# The party Solidarity shows a PTV variable, but did not obtain a seat in the EP
+# All other parties with PTV variable obtained at least one seat in the EP
+# The party Solidarity should to be filtered out but we still keep it giving priority to the PTV crit
 
 # Select the relevant parties # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -64,10 +64,10 @@ party <-
   EES2019_cdbk_ie %>% 
   dplyr::select(partyname, Q10_PTV, Q7) %>%   
   na.omit() %>%
-  filter(partyname!='Solidarity - People Before Profit/') %>%
+  # filter(partyname!='Solidarity - People Before Profit/') %>%
   .$Q7
 
-#Only 5 parties remain in the selection without Solidarity
+# 6 parties
 
 # Create the Ireland EES 2019 SDM # ====================================================================
 
