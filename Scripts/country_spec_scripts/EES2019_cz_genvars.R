@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Czech Rep. Sample) 
 # Author: J.Leiser
-# last update: 2021-09-03
+# last update: 2021-09-13
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Subset the EES original data frame, the SDM, and the EES codebook # ==================================
@@ -57,6 +57,58 @@ EES2019_cz_stack <-
 # checkdataset.fun('Q7')
 # checkdataset.fun('Q9_rec')
 # checkdataset.fun('Q25_rec')
+
+
+# Generic distance/proximity variables estimation # ====================================================
+
+# checking the variables
+# x <-
+#   gendis.fun(data = EES2019_cz,
+#              cdbk = EES2019_cdbk_cz,
+#              vrbl = 'Q10',
+#              crit = 'average',
+#              rescale = T,
+#              check = T,
+#              keep_id = T)
+# print(x[[1]], n = 100)
+# print(x[[2]], n =100)
+# 
+# x <-
+#   gendis.fun(data = EES2019_cz,
+#              cdbk = EES2019_cdbk_cz,
+#              vrbl = 'Q11',
+#              crit = 'average',
+#              rescale = T,
+#              check = T,
+#              keep_id = T)
+# 
+# print(x[[1]], n = 100)
+# print(x[[2]], n =100)
+# 
+# x <-
+#   gendis.fun(data = EES2019_cz,
+#              cdbk = EES2019_cdbk_cz,
+#              vrbl = 'Q23',
+#              crit = 'average',
+#              rescale = T,
+#              check = T,
+#              keep_id = T)
+# print(x[[1]], n = 100)
+# print(x[[2]], n =100)
+
+EES2019_cz_stack %<>%
+  cbind(.,
+        lapply(data = EES2019_cz,
+               cdbk = EES2019_cdbk_cz,
+               crit = 'average',
+               rescale = T,
+               check = F,
+               keep_id = F,
+               X = list('Q10','Q11','Q23'),
+               FUN = gendis.fun) %>% 
+          do.call('cbind',.)) %>% 
+  as_tibble()
+
 
 # Clean the environment # ==============================================================================
 
