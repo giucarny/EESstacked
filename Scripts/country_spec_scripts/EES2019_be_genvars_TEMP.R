@@ -1,3 +1,17 @@
+# BE Stack # ===========================================================================================
+
+EES2019_be <- 
+  EES2019 %>% 
+  filter(countrycode==1056)
+
+
+EES2019_cdbk_be <- 
+  EES2019_cdbk %>% 
+  filter(countryshort=='BE')
+
+
+
+
 EES2019_be_lst <- 
   EES2019_be %>% 
   mutate(Q7 = as.numeric(Q7),
@@ -6,20 +20,63 @@ EES2019_be_lst <-
                              Q7 %in% 208:214 | Q2 %in% 208:214 | Q25_rec %in% 208:214 |
                                region_NUTS1=='BE3' ~ 'Wallonia',
                              T ~ 'Undefined')) %>% 
-  split(.$el_coll)
+  split(.$el_coll) 
 
-EES2019_be_stack %<>% 
-  mutate(Q7 = as.numeric(Q7),
-         el_coll = case_when(Q7 %in% 201:207 | Q2 %in% 201:207 | Q25_rec %in% 201:207 |
-                               region_NUTS1=='BE2' ~ 'Flanders',
-                             Q7 %in% 208:214 | Q2 %in% 208:214 | Q25_rec %in% 208:214 |
-                               region_NUTS1=='BE3' ~ 'Wallonia',
-                             T ~ 'Undefined'))
+EES2019_be_lst$Undefined <- NULL
 
 
 EES2019_cdbk_be_lst <- 
-  EES2019_cdbk_be %>%
+  EES2019_cdbk_be %>% 
   split(.$Region)
+
+be_regions <- list('Flanders', 'Wallonia')
+
+respid_lst <- lapply(be_regions, 
+                     function(x) {
+                       EES2019_be_lst[[x]] %>%  .$respid %>% as.numeric
+                       })
+
+
+
+ptv_crit_lst <- lapply(be_regions, 
+                       function(x) {
+                         EES2019_cdbk_be_lst[[x]] %>%  dplyr::select(partyname, Q10_PTV)
+                         })
+
+seats_crit_lst <- lapply(be_regions, 
+                       function(x) {
+                         EES2019_cdbk_be_lst[[x]] %>%  
+                           dplyr::select(partyname, seats) %>% 
+                           mutate(seats = case_when(seats==0 ~ NA_integer_, T~seats))
+                         })
+
+
+party_lst <- lapply(be_regions, 
+                  function(x) {
+                    EES2019_cdbk_be_lst[[x]] %>%  
+                      dplyr::select(partyname, Q10_PTV, Q7) %>% 
+                      na.omit() %>% 
+                      .$Q7
+                  })
+
+
+names(respid_lst) <- be_regions
+names(party_lst) <- be_regions
+
+
+EES2019_be_stack_lst <- lapply(be_regions,
+                               function(x) {
+                                   expand_grid(respid_lst[[x]], party_lst[[x]]) %>% 
+                                   mutate(respid = `respid_lst[[x]]`, 
+                                          party = `party_lst[[x]]`) %>% 
+                                   #dplyr::select(-c(ends_with('[[x]]'))) %>% 
+                                   mutate(countrycode = EES2019_be$countrycode %>% unique,
+                                          stack = paste0(respid, '-', party)) %>% 
+                                   dplyr::select(countrycode, respid, party, stack)
+                                    
+                               })
+
+# BE Genvars # =========================================================================================
 
 
 # Wallonia # 
