@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Poland Sample)
 # Author: J.Leiser
-# last update: 2021-09-15
+# last update: 2021-09-19
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Subset the EES original data frame, the SDM, and the EES codebook # ==================================
@@ -65,44 +65,11 @@ EES2019_pl_stack <-
 
 # Generic distance/proximity variables estimation # ====================================================
 
-# checking the variables
-# x <-
-#   gendis.fun(data = EES2019_pl,
-#              cdbk = EES2019_cdbk_pl,
-#              vrbl = 'Q10',
-#              crit = 'average',
-#              rescale = T,
-#              check = T,
-#              keep_id = T)
-# print(x[[1]], n = 100)
-# print(x[[2]], n =100)
-# 
-# x <-
-#   gendis.fun(data = EES2019_pl,
-#              cdbk = EES2019_cdbk_pl,
-#              vrbl = 'Q11',
-#              crit = 'average',
-#              rescale = T,
-#              check = T,
-#              keep_id = T)
-# print(x[[1]], n = 100)
-# print(x[[2]], n =100)
-# 
-# x <-
-#   gendis.fun(data = EES2019_pl,
-#              cdbk = EES2019_cdbk_pl,
-#              vrbl = 'Q23',
-#              crit = 'average',
-#              rescale = T,
-#              check = T,
-#              keep_id = T)
-# print(x[[1]], n = 100)
-# print(x[[2]], n =100)
-
 EES2019_pl_stack %<>%
   cbind(.,
         lapply(data = EES2019_pl,
                cdbk = EES2019_cdbk_pl,
+               stack = EES2019_pl_stack, 
                crit = 'average',
                rescale = T,
                check = F,

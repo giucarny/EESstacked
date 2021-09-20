@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, French Sample) 
 # Author: M.Koernig
-# last update: 2021-09-12
+# last update: 2021-09-19
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -61,6 +61,7 @@ EES2019_fr_stack %<>%
   cbind(.,
         lapply(data = EES2019_fr,
                cdbk = EES2019_cdbk_fr,
+               stack = EES2019_fr_stack, 
                crit = 'average',
                rescale = T,
                check = F,

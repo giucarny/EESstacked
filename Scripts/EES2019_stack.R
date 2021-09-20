@@ -1,12 +1,13 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 Stacking Script 
 # Authors: G.Carteny
-# last update: 2021-09-09
+# last update: 2021-09-19
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
 
-want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr")
+want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr", "rlang", "car",
+         "caret")
 have = want %in% rownames(installed.packages())
 if ( any(!have) ) { install.packages( want[!have] ) }
 junk <- lapply(want, library, character.only = TRUE)
@@ -21,54 +22,9 @@ rm(list = ls())
 
 EES2019 <- read_dta(here('Data', 'EES2019', 'ZA7581_v1-0-0.dta'))
 
-# Create a 'countryname' variable # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Mutate the EES 2019 voter study # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-EES2019 <-
-  EES2019 %>% 
-  left_join(.,
-            data.frame(countrycode = EES2019$countrycode %>% val_labels() %>% as.numeric,
-                       countryname = EES2019$countrycode %>% val_labels() %>% attr(.,'names')),
-            by='countrycode')
-
-# Create a 'countryshort' variable # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-EES2019 %<>% 
-  mutate(countryshort = region_NUTS1 %>% str_extract(pattern = '^.{0,2}')) %>% 
-  mutate(countryshort = case_when(countrycode==1250 ~ 'FR',
-                                  countrycode==1470 ~ 'MT',
-                                  T ~ countryshort))
-
-# Change missing values for Q2, Q7, Q9,... # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-Q2_labs  <- val_labels(EES2019$Q2)
-Q7_labs  <- val_labels(EES2019$Q7)
-Q9_labs  <- val_labels(EES2019$Q9)
-Q26_labs <- val_labels(EES2019$Q26)
-
-EES2019 %<>% 
-  mutate(across(c(Q2, Q7, Q9, Q26), ~as.integer(.)),
-         Q2  = case_when(Q2==10 ~ as.integer(90), 
-                         Q2==11 ~ as.integer(0),
-                         Q2==9999 ~ as.integer(96), 
-                         T ~ Q2),
-         Q7  = case_when(Q7==as.integer(9999) ~ as.integer(0), 
-                         T ~ Q7),
-         Q9  = case_when(Q9==as.integer(97) ~ as.integer(0), 
-                         T ~ Q9),
-         Q26 = case_when(Q26==999 ~ as.integer(0),
-                         T ~ Q26))
-
-Q2_labs[Q2_labs %in% c(10,11,9999)] <- c(90,0,96)
-Q7_labs                             <- Q7_labs[-length(Q7_labs)]
-Q9_labs[Q9_labs %in% c(97)]         <- c(0)
-Q26_labs                            <- Q26_labs[-length(Q26_labs)]
-
-val_labels(EES2019$Q2)  <- Q2_labs
-val_labels(EES2019$Q7)  <- Q7_labs
-val_labels(EES2019$Q9)  <- Q9_labs
-val_labels(EES2019$Q26) <- Q26_labs
-
-rm(list=ls(pattern='labs'))
+source(here('Scripts', 'EES2019_datamut.R'))
 
 
 # Source the auxiliary data set # ======================================================================

@@ -22,7 +22,9 @@ EP2019_cy <-
 EES2019_cdbk_cy %<>% 
   mutate(Q7 = case_when(Q7n==as.integer(9) ~ NA_integer_,
                         Q2==as.integer(505) ~ as.integer(505),
-                        T ~ Q7))
+                        T ~ Q7),
+         Q13_left_right = case_when(Q7n==as.integer(9) ~ NA_character_, T ~ Q13_left_right),
+         Q24_EU         = case_when(Q7n==as.integer(9) ~ NA_character_, T ~ Q24_EU))
 
 # Create a common variable for merging datasets # ======================================================
 

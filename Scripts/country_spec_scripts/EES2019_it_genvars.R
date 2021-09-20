@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Italian Sample) 
 # Author: G.Carteny
-# last update: 2021-09-02
+# last update: 2021-09-20
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -61,6 +61,7 @@ EES2019_it_stack %<>%
   cbind(.,
         lapply(data = EES2019_it,
                cdbk = EES2019_cdbk_it,
+               stack = EES2019_it_stack, 
                crit = 'average',
                rescale = T,
                check = F,
@@ -73,9 +74,37 @@ EES2019_it_stack %<>%
 # EES2019_it_stack %>% 
 #   dplyr::select(respid, party, ends_with('gen'))
 
+# Synthetic variables estimation # =====================================================================
+
+# Check the results # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# fit_lst <-
+#   gensyn.fun(data = EES2019_it_stack,
+#              depvar = 'Q10_gen',
+#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D6_une'), # 'D6_rec', 'D9_rec'
+#              cont.indvar =  c('D4_age', 'D10_rec'),
+#              yhat.name = 'socdem',
+#              regsum = T)
+
+
+# If results are fine # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+EES2019_it_stack %<>%
+  left_join(.,
+        lapply(data = EES2019_it_stack,
+               cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_rec', 'D9_rec'
+               cont.indvar =  c('D4_age', 'D10_rec'),
+               yhat.name = 'socdem_synt',
+               regsum = F,
+               X = list('Q10_gen','Q7_gen'),
+               FUN = gensyn.fun) %>% 
+          do.call('left_join',.),
+        by = c('respid', 'party')) %>% 
+  as_tibble()
+
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_it$'))  
+rm(list=ls(pattern='_it$|yhat|fit'))  
 
 
 

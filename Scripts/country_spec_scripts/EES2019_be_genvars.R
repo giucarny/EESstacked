@@ -1,67 +1,100 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Belgian Sample) 
 # Author: G.Carteny
-# last update: 2021-09-04
+# last update: 2021-09-19
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# N.B: The Belgian sample is splitted according to the two electoral colleges of Belgium, namely the 
+# Dutch and the French electoral college. 
+
+# Belgian electoral colleges # - - -
+
+el_coll_be <- list('DU-el', 'FR-el')
 
 
 # Subset the EES original data frame, the SDM, and the EES codebook # ==================================
 
 cntry = 'BE'
 
-EES2019_be <- EES2019 %>% filter(countryshort==cntry)
-EES2019_stckd_be <- EES2019_stckd %>% filter(countryshort==cntry)
-EES2019_cdbk_be <- EES2019_cdbk %>% filter(countryshort==cntry)
+EES2019_be <- 
+  EES2019 %>% 
+  filter(countryshort==cntry) %>% 
+  mutate(el_coll_be = case_when(meta_lang_be  == 1 ~ 'DU-el',
+                                meta_lang_be  == 2 ~ 'FR-el')) %>%  
+  split(.$el_coll_be) 
+
+EES2019_stckd_be <- 
+  EES2019_stckd %>% 
+  filter(countryshort==cntry) %>% 
+  mutate(el_coll_be = case_when(meta_lang_be  == 1 ~ 'DU-el',
+                                meta_lang_be  == 2 ~ 'FR-el')) %>%  
+  split(.$el_coll_be) 
+
+EES2019_cdbk_be <-
+  EES2019_cdbk %>% 
+  filter(countryshort==cntry) %>% 
+  mutate(el_coll_be = case_when(Region  == 'Flanders' ~ 'DU-el',
+                                Region  == 'Wallonia' ~ 'FR-el')) %>%  
+  split(.$el_coll_be) 
 
 rm(cntry)
 
 # Generic dichotomous variables estimation # ===========================================================
 
-# Check first the variable of interest values
-# lapply(c('Q2', 'Q7', 'Q9_rec', 'Q25_rec'),
-#        function(vrbl) {
-#          EES2019_stckd_be %>%
-#            dplyr::select(all_of(vrbl)) %>%
-#            mutate(across(all_of(vrbl), ~as.numeric(.))) %>%
-#            distinct})
-# 
-# EES2019_stckd_be %>%
-#   dplyr::select(Q2) %>%
-#   val_labels()
-EES2019_be %<>%
-  mutate(Q25_rec = case_when(is.na(Q25_rec) ~ as.integer(90), T ~ Q25_rec))
-EES2019_stckd_be %<>%
-  mutate(Q25_rec = case_when(is.na(Q25_rec) ~ as.integer(90), T ~ Q25_rec))
+EES2019_be <-  
+  lapply(EES2019_be, 
+         function(df) {df %<>% mutate(Q25_rec = case_when(is.na(Q25_rec) ~ as.integer(90), T ~ Q25_rec))})
+
+EES2019_stckd_be <- 
+  lapply(EES2019_stckd_be, 
+         function(df) {df %<>% mutate(Q25_rec = case_when(is.na(Q25_rec) ~ as.integer(90), T ~ Q25_rec))})
 
 
 EES2019_be_stack <- 
-  cbind(EES2019_stckd_be,  
-        lapply(data = EES2019_stckd_be, 
-               X = list('Q2', 'Q7', 'Q9_rec', 'Q25_rec'),
-               stack_var = 'party',
-               FUN = gendic.fun) %>% 
-          do.call('cbind',.)) %>% 
-  as_tibble()
+  lapply(EES2019_stckd_be, 
+         function(df) {
+           df_stack <- 
+             cbind(df,  
+                   lapply(data = df, 
+                          X = list('Q2', 'Q7', 'Q9_rec', 'Q25_rec'),
+                          stack_var = 'party',
+                          FUN = gendic.fun) %>% 
+                     do.call('cbind',.)) %>% 
+             as_tibble()
+         })
 
+  
 # Check the dataset 
 
-# checkdataset.fun <-
-#   function(vrbl) {
-# 
-#     orivar <- vrbl
-#     genvar <- paste0(vrbl, '_gen')
-# 
-#     EES2019_be_stack %>%
-#       dplyr::select(respid, party, all_of(orivar), all_of(genvar)) %>%
-#       print(n=100)
-# 
-#   }
-
-# checkdataset.fun('Q25_rec')
+# EES2019_be_stack %>% 
+#   do.call('rbind',.) %>% 
+#   dplyr::select(party, contains('gen'))
 
 # Generic distance/proximity variables estimation # ====================================================
 
-# Check the EES2019_be_genvars_TEMP script
+
+EES2019_be_stack <- 
+  lapply(el_coll_be, 
+         function(x) {
+           df_stack <- 
+             cbind(EES2019_be_stack[[x]],  
+                   lapply(data = EES2019_be[[x]],
+                          cdbk = EES2019_cdbk_be[[x]],
+                          stack = EES2019_be_stack[[x]],
+                          crit = 'average',
+                          rescale = T,
+                          check = F,
+                          keep_id = F,
+                          X = list('Q10','Q11','Q23'),
+                          FUN = gendis.fun) %>% 
+                     do.call('cbind',.)) %>% 
+             as_tibble()
+         })
+
+
+EES2019_be_stack %<>% 
+  do.call('rbind',.) %>% 
+  dplyr::select(-c(el_coll_be))
 
 # Clean the environment # ==============================================================================
 

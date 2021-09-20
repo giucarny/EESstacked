@@ -18,12 +18,12 @@ rm(cntry)
 # Generic dichotomous variables estimation # ===========================================================
 
 # Check first the variable of interest values
-lapply(c('Q2', 'Q7', 'Q9_rec', 'Q25_rec'),
-       function(vrbl) {
-         EES2019_stckd_cy %>%
-           dplyr::select(all_of(vrbl)) %>%
-           mutate(across(all_of(vrbl), ~as.numeric(.))) %>%
-           distinct})
+# lapply(c('Q2', 'Q7', 'Q9_rec', 'Q25_rec'),
+#        function(vrbl) {
+#          EES2019_stckd_cy %>%
+#            dplyr::select(all_of(vrbl)) %>%
+#            mutate(across(all_of(vrbl), ~as.numeric(.))) %>%
+#            distinct})
 # 
 # EES2019_stckd_cy %>%
 #   dplyr::select(Q2) %>%
@@ -44,6 +44,27 @@ EES2019_cy_stack <-
 # EES2019_cy_stack %>%
 #   dplyr::select(respid, party, Q7, Q7_gen) %>%
 #   print(n=100)
+
+
+# Generic distance/proximity variables estimation # ====================================================
+
+EES2019_cy_stack %<>%
+  cbind(.,
+        lapply(data = EES2019_cy,
+               cdbk = EES2019_cdbk_cy,
+               stack = EES2019_cy_stack,
+               crit = 'average',
+               rescale = T,
+               check = F,
+               keep_id = F,
+               X = list('Q10','Q11','Q23'),
+               FUN = gendis.fun) %>% 
+          do.call('cbind',.)) %>% 
+  as_tibble()
+
+
+# EES2019_at_stack %>% 
+#   dplyr::select(respid, party, ends_with('gen'))
 
 
 # Clean the environment # ==============================================================================

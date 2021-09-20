@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Auxiliary Functions for the Stacking Procedure
 # Author: G.Carteny
-# last update: 2021-09-01
+# last update: 2021-09-20
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Generic dichotomous variables estimation # ===========================================================
@@ -42,7 +42,7 @@ gendic.fun <- function(data, var, stack_var) {
 
 
 gendis.fun <- 
-  function(data, cdbk, vrbl, crit, rescale, check, keep_id) {
+  function(data, cdbk, stack, vrbl, crit, rescale, check, keep_id) {
     if (vrbl=='Q11') {
       cdbk_vrbl = c('Q7', 'Q13_left_right')
     } else if (vrbl=='Q23') {
@@ -51,9 +51,30 @@ gendis.fun <-
       cdbk_vrbl = c('Q7', 'Q10_PTV')
     }
     
+    if (is_missing(stack)) {
+      party <- 
+        get(paste0(deparse(substitute(data)), '_stack')) %>% 
+        as.data.frame() %>% 
+        .[['party']] %>% 
+        unique
+    } else {
+      party <-
+        stack[['party']] %>% 
+        unique
+    }
+    
+    
+    # if (str_detect(deparse(substitute(data)), pattern = '_be')==F) {
+    #     
+    # } else {
+    #   print('ciao')
+    # }
+    
+        
     corr_tab <- 
       cdbk %>% 
-      dplyr::select(all_of(cdbk_vrbl)) %>% 
+      dplyr::select(all_of(cdbk_vrbl)) %>%
+      filter(Q7 %in% party) %>% 
       mutate(across(all_of(cdbk_vrbl), ~tolower(.))) %>% 
       na.omit() 
     
@@ -162,153 +183,114 @@ gendis.fun <-
 
 
 
-# Older functions # ====================================================================================
-
-# Additional function for creating stacked variables - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# genstackedvar.int.fun <- function(data, depvar, index, refvar) {
-#   
-#   newvar = paste0(depvar, '_stack_', index)
-#   
-#   data[[newvar]] <- data[[depvar]]
-#   exprss <- paste0('case_when(', refvar, '==', index, ' ~ ', depvar,',', 
-#                    'is.na(', refvar, ') ~ NA_real_,',
-#                    'T ~ 0)')
-#   q <- quote(mutate(data, !! newvar := exprss))
-#   df2 <- 
-#     eval(parse(text=sub("exprss", exprss, deparse(q)))) %>% 
-#     dplyr::select(all_of(newvar)) %>%
-#     as_tibble()
-#   return(df2)
-# }
-# 
-# genstackedvar <- function(data, indices, stub1, stub2) {
-#   df <- lapply(data=data, X = indices, depvar = stub1, refvar = stub2, FUN = genstackedvar.int.fun) %>% do.call('cbind',.)
-#   return(df)
-# }
+# Synthetic variables estimation # =====================================================================
 
 
-# Y-hat fun - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# genyhats <- function(data, depvar, regtype, indvar, newname) {
-#   
-#   frmla <- as.formula(paste(depvar, paste(indvar, collapse = " + "), sep = " ~ "))
-#   
-#   ics <- data %>% dplyr::select(all_of(depvar), all_of(indvar))
-#   
-#   # for(i in 2:length(ics)) {
-#   #   vec <- ics[[i]]
-#   # 
-#   #   cl <- class(ics[[i]])
-#   # 
-#   #   if(cl=='numeric') {
-#   #     ics[[i]] <- ifelse(is.na(vec), mean(vec, na.rm=T) , vec)
-#   #   } else if (cl=='factor') {
-#   #     ics[[i]] <- ifelse(is.na(vec), median(vec, na.rm=T) , vec)
-#   #   }
-#   # }
-#   
-#   if (regtype=='logit' | regtype=='log') {
-#     x <- glm(frmla, data = ics, family = "binomial")
-#     
-#     outcome <- data.frame(respos = predict(x) %>% attr(., 'names') %>% as.numeric(),
-#                           yhat = predict(x, type='response'))
-#     
-#   } else if (rlang::is_missing(regtype) | regtype=='linear' | regtype=='OLS') {
-#     x <- lm(frmla, data = ics)
-#     
-#     outcome <- data.frame(respos = predict(x) %>% attr(., 'names') %>% as.numeric(),
-#                           yhat = predict(x))
-#   }
-#   
-#   respid <- data.frame(respos = 1:nrow(data),
-#                        respid = data$respid)
-#   
-#   outcomedf <- left_join(respid, outcome, by='respos')
-#   
-#   outcomedf %<>% dplyr::select(respid, yhat)
-#   
-#   names(outcomedf)[names(outcomedf)=='yhat'] <- paste0(newname, '_yhat_', gsub(pattern = '.*\\_', '', depvar))
-#   
-#   df <- left_join(data, outcomedf, by='respid')
-#   
-#   return(df)
-# }
-
-
-# Functions for generating party-voter distances - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-
-# gendist.int.fun <- function(data, index, var1, var2){
-#   exprss <- paste0('abs(', var1, '-', var2, index, ')')
-#   newvar <- paste0(var2, index, "dist")
-#   q <- quote(mutate(data, !! newvar := exprss))
-#   df2 <- eval(parse(text=sub("exprss", exprss, deparse(q)))) %>% dplyr::select(all_of(newvar))
-#   return(df2)
-# }
-# 
-# gendist <- function(data, indices, stub1, stub2) {
-#   df <- lapply(data=data, X = indices, var1 = stub1, var2 = stub2, FUN = gendist.int.fun) %>% do.call('cbind',.)  
-#   return(df)
-# }
-
-
-# Function for generating the stacked data matrix - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# genstacks <- function(idvar, data, stubs, keepvar) {
-#   
-#   df <- data %>% dplyr::select(starts_with(paste0(stubs)))
-#   
-#   id1 <- data %>% dplyr::select(all_of(idvar)) %>% unlist()
-#   id2 <- names(df) %>% gsub('.*\\_', '', ., perl = T) %>% unique %>% as.numeric()
-#   
-#   stack_df <- expand.grid(id1, id2) %>% as_tibble() %>% .[order(.$Var1),]
-#   
-#   for (i in stubs) {
-#     df2 <- data %>% 
-#       dplyr::select(all_of(idvar), starts_with(i)) %>%
-#       pivot_longer(cols = starts_with(paste0(i)),
-#                    names_to = paste0(i, '_n'), 
-#                    values_to = i)
-#     df2[[paste0(i, '_n')]] %<>% gsub('.*\\_', '', ., perl = T) %>% as.numeric()
-#     names(df2)[names(df2)==idvar] <- 'Var1'
-#     names(df2)[names(df2)==paste0(i, '_n')] <- 'Var2'
-#     stack_df <- left_join(stack_df, df2, by = c('Var1', 'Var2'))
-#   }
-#   
-#   if (rlang::is_missing(keepvar)) {
-#     return(stack_df)  
-#   } else {
-#     if (any(is.null(keepvar)) | any(is.na(keepvar))) {
-#       warning("Argument 'keepvar' is invalid")
-#     } else {
-#       
-#       keepvar %<>% as.character()
-#       
-#       if (any(keepvar %in% colnames(data))) {
-#         if(all(keepvar %in% colnames(data))) {
-#           df <- data %>% dplyr::select(all_of(idvar), all_of(keepvar))
-#           names(df)[[1]] <- 'Var1'
-#           stack_df <- left_join(stack_df, df, by = 'Var1')
-#           names(stack_df)[names(stack_df)=='Var1'] <- idvar
-#           names(stack_df)[names(stack_df)=='Var2'] <- 'stack'
-#           return(stack_df)
-#         } else {
-#           x <- which(keepvar %in% colnames(data))
-#           df <- data %>% dplyr::select(all_of(idvar), keepvar[c(x)])
-#           names(df)[[1]] <- 'Var1'
-#           stack_df <- left_join(stack_df, df, by = 'Var1')
-#           names(stack_df)[names(stack_df)=='Var1'] <- idvar
-#           names(stack_df)[names(stack_df)=='Var2'] <- 'stack'
-#           warning("Some elements of 'keepvar' are missing")
-#           return(stack_df)
-#         }
-#       } else {
-#         warning("Argument 'keepvar' is missing in the data")
-#       } 
-#     }
-#   }
-# }
-# 
-# 
-# 
+gensyn.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name) { 
+  
+  if (depvar=='Q7_gen' | depvar=='vote choice' | depvar=='Q7') {
+    depvar <- 'Q7_gen'
+  } else if (depvar=='Q10' | depvar=='PTV' | depvar=='Q10_gen') {
+    depvar <- 'Q10_gen'
+  }
+  
+  if (depvar=='Q7_gen' | depvar=='vote choice' | depvar=='Q7') {
+    yhat.name <- paste0(yhat.name, '_vc')
+  } else if (depvar=='Q10' | depvar=='PTV' | depvar=='Q10_gen') {
+    yhat.name <- paste0(yhat.name, '_ptv')
+  }
+  
+  
+  
+  indep_df <- 
+    data %>% 
+    dplyr::select(respid, all_of(cat.indvar), all_of(cont.indvar)) %>% 
+    distinct() %>% 
+    mutate(across(all_of(cat.indvar), ~as.factor(.))) %>% 
+    mutate(across(all_of(cont.indvar), ~as.numeric(.))) 
+  
+  dep_df <- 
+    data %>% 
+    dplyr::select(respid, party, all_of(depvar)) %>% 
+    pivot_wider(id_cols = c('respid'), 
+                names_from = 'party', names_prefix = 'stack_',
+                values_from = all_of(depvar)) 
+  
+  if (depvar=='Q7_gen' | depvar=='vote choice' | depvar=='Q7') {
+    dep_df %<>% 
+      mutate(across(starts_with('stack_'), ~as.factor(case_when(.>1 ~ NA_integer_, T~.))))
+  } else if (depvar=='Q10' | depvar=='PTV' | depvar=='Q10_gen') {
+    dep_df %<>% 
+      mutate(across(starts_with('stack_'), ~as.numeric(case_when(.>10 ~ NA_real_, T~.)))) 
+  }
+  
+  depvars <- 
+    dep_df %>% dplyr::select(starts_with('stack')) %>% names(.)
+  
+  frmla_lst <- 
+    lapply(depvars, function(y) {
+      formula(paste(y, paste(c(cat.indvar, cont.indvar), collapse = " + "), sep = " ~ "))
+    })
+  
+  
+  df_lst <- 
+    lapply(depvars, function(x) {
+      df <- dep_df %>% dplyr::select(respid, all_of(x)) 
+      df <- left_join(df, indep_df, by='respid')
+    })
+  
+  reg_lst <- list()
+  for (i in 1:length(df_lst)) {
+    reg_lst[[i]] <- list(data = df_lst[[i]],
+                         frml = frmla_lst[[i]])
+  }
+  rm(i)
+  
+  
+  fit_lst <- 
+    lapply(reg_lst, function(x) {
+      if (depvar=='Q7_gen' | depvar=='vote choice' | depvar=='Q7') {
+        fit <- glm(formula = x$frml, data = x$data, family = binomial())
+      } else if (depvar=='Q10' | depvar=='PTV' | depvar=='Q10_gen') {
+        fit <- lm(formula = x$frml, data = x$data)
+      }
+      
+      if (regsum) {
+        return(fit)
+      } else {
+        pred_fit <- predict(fit)
+        return(pred_fit)
+      }
+    })
+  
+  if (regsum==F) {
+    
+    pred_df_lst <- list()
+    for (i in 1:length(fit_lst)) {
+      pred_df1 <- df_lst[[i]] %>%  mutate(id = rownames(.))
+      pred_df2 <- fit_lst[[i]] %>% data.frame(yhat = ., id = attr(., 'names')) %>% as_tibble()
+      pred_df_lst[[i]] <- left_join(pred_df1, pred_df2, by='id')
+      
+    }
+    
+    pred_df_lst <-
+      lapply(pred_df_lst, function(x) {
+        x %<>%
+          mutate(party = names(.)[startsWith(names(.), 'stack_')]
+                 %>% gsub('stack_', '', .) %>%
+                   as.integer) %>%
+          dplyr::select(respid, party, yhat)
+      })
+    
+    pred_df <- do.call('rbind',pred_df_lst) %>% .[order(data$respid),]
+    
+    names(pred_df)[names(pred_df)=='yhat'] <- yhat.name
+    
+    return(pred_df)
+    
+  } else {
+    
+    return(fit_lst)
+    
+  }
+}

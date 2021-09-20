@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Greece Sample) 
 # Author: J.Leiser
-# last update: 2021-09-13
+# last update: 2021-09-19
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Subset the EES original data frame, the SDM, and the EES codebook # ==================================
@@ -98,6 +98,7 @@ EES2019_el_stack %<>%
   cbind(.,
         lapply(data = EES2019_el,
                cdbk = EES2019_cdbk_el,
+               stack = EES2019_el_stack,
                crit = 'average',
                rescale = T,
                check = F,

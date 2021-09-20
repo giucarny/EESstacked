@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Austrian Sample) 
 # Author: M.Koernig
-# last update: 2021-09-12
+# last update: 2021-09-19
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -62,6 +62,7 @@ EES2019_at_stack %<>%
         lapply(data = EES2019_at,
                cdbk = EES2019_cdbk_at,
                crit = 'average',
+               stack = EES2019_at_stack,
                rescale = T,
                check = F,
                keep_id = F,
@@ -69,6 +70,7 @@ EES2019_at_stack %<>%
                FUN = gendis.fun) %>% 
           do.call('cbind',.)) %>% 
   as_tibble()
+
 
 # EES2019_at_stack %>% 
 #   dplyr::select(respid, party, ends_with('gen'))

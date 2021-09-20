@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Luxembourgian Sample) 
 # Author: W. Haeussling
-# last update: 2021-09-13
+# last update: 2021-09-19
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -66,6 +66,7 @@ EES2019_lu_stack %<>%
   cbind(.,
         lapply(data = EES2019_lu,
                cdbk = EES2019_cdbk_lu,
+               stack = EES2019_lu_stack, 
                crit = 'average',
                rescale = T,
                check = F,

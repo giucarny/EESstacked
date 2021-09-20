@@ -58,45 +58,11 @@ EES2019_hu_stack <-
 
 # Generic distance/proximity variables estimation # ====================================================
 
-# checking the variables
-# x <-
-#   gendis.fun(data = EES2019_hu,
-#              cdbk = EES2019_cdbk_hu,
-#              vrbl = 'Q10',
-#              crit = 'average',
-#              rescale = T,
-#              check = T,
-#              keep_id = T)
-# print(x[[1]], n = 100)
-# print(x[[2]], n =100)
-# 
-# x <-
-#   gendis.fun(data = EES2019_hu,
-#              cdbk = EES2019_cdbk_hu,
-#              vrbl = 'Q11',
-#              crit = 'average',
-#              rescale = T,
-#              check = T,
-#              keep_id = T)
-# 
-# print(x[[1]], n = 100)
-# print(x[[2]], n =100)
-# 
-# x <-
-#   gendis.fun(data = EES2019_hu,
-#              cdbk = EES2019_cdbk_hu,
-#              vrbl = 'Q23',
-#              crit = 'average',
-#              rescale = T,
-#              check = T,
-#              keep_id = T)
-# print(x[[1]], n = 100)
-# print(x[[2]], n =100)
-
 EES2019_hu_stack %<>%
   cbind(.,
         lapply(data = EES2019_hu,
                cdbk = EES2019_cdbk_hu,
+               stack = EES2019_hu_stack, 
                crit = 'average',
                rescale = T,
                check = F,

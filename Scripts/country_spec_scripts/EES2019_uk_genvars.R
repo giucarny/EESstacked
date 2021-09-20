@@ -65,6 +65,7 @@ EES2019_uk_stack %<>%
   cbind(.,
         lapply(data = EES2019_uk,
                cdbk = EES2019_cdbk_uk,
+               stack = EES2019_uk_stack,
                crit = 'average',
                rescale = T,
                check = F,
