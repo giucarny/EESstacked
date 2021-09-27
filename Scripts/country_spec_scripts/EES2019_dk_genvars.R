@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Danish Sample) 
 # Author: W. Haeussling
-# last update: 2021-09-13
+# last update: 2021-09-27
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -111,7 +111,7 @@ EES2019_dk_stack %<>%
 # }
  
 #For Q7_gen: residuals have mostly normal distribution, but outliers at the end 
-# of the qqnorm plots. Furthermore, for the fourth party (Radikale Venstre) the 
+# of the qqnorm plots. Furthermore, for the fourth list entry the 
 # coefficient estimate and std. error values for Edu_Rec2 and Edu_Rec3 were 
 # unusually high.
 #For Q10_gen: residuals have mostly normal distribution, but outliers at the 

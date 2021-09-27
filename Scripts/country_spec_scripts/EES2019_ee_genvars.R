@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Estonia Sample) 
 # Author: W. Haeussling
-# last update: 2021-09-19
+# last update: 2021-09-27
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -111,14 +111,12 @@ EES2019_ee_stack %<>%
 #}
 
 #For Q7_gen: residuals have mostly normal distribution, but outliers at the end 
-#   of the qqnorm plots. Furthermore: For the second party (Eesti Keskerakond 
-#   (Kesk)) the coefficient estimate and std. error values for D6_une1 were 
-#   unusually high.
-#   For the sixth party (Erakond Eesti 200 (Eesti 200)) the coefficient estimate 
-#   and std. error values for EDU_rec2 and EDU_rec3 were also unusually high.
-#   For the seventh party (Erakond Eestimaa Rohelised (Rohelised)) the 
-#   coefficient estimate and std. error values for D5_rec1, EDU_rec2, EDU_rec3 
-#   and D6_une1 were also unusually high.
+#   of the qqnorm plots. Furthermore: For the second list entry the coefficient 
+#   estimate and std. error values for D6_une1 were unusually high.
+#   For the sixth list entry the coefficient estimate and std. error values for 
+#   EDU_rec2 and EDU_rec3 were also unusually high.
+#   For the seventh list entry the coefficient estimate and std. error values 
+#   for D5_rec1, EDU_rec2, EDU_rec3 and D6_une1 were also unusually high.
 #For Q10_gen: residuals have mostly normal distribution, but outliers at the 
 #   begining and end of the qqnorm plots.
 
