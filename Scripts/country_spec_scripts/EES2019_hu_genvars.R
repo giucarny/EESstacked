@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Hungary Sample) 
 # Author: J.Leiser
-# last update: 2021-09-13
+# last update: 2021-09-27
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Subset the EES original data frame, the SDM, and the EES codebook # ==================================
@@ -72,7 +72,43 @@ EES2019_hu_stack %<>%
           do.call('cbind',.)) %>% 
   as_tibble()
 
+# Synthetic variables estimation # =====================================================================
+
+# Check the results # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# fit_lst <-
+#   gensyn.fun(data = EES2019_hu_stack,
+#              depvar = 'Q7_gen',
+#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'),
+#              cont.indvar =  c('D4_age', 'D10_rec'),
+#              yhat.name = 'socdem',
+#              regsum = T)
+# fit_lst[[3]] %>% summary # converged
+# fit_lst[[3]] %>% car::vif(.) #ok
+# 
+# fit_lst <-
+#   gensyn.fun(data = EES2019_hu_stack,
+#              depvar = 'Q10_gen',
+#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'),
+#              cont.indvar =  c('D4_age', 'D10_rec'),
+#              yhat.name = 'socdem',
+#              regsum = T)
+# fit_lst[[3]] %>% summary
+# fit_lst[[3]] %>% car::vif(.) #ok
+
+EES2019_hu_stack %<>%
+  left_join(.,
+            lapply(data = EES2019_hu_stack,
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'),
+                   cont.indvar =  c('D4_age', 'D10_rec'),
+                   yhat.name = 'socdem_synt',
+                   regsum = F,
+                   X = list('Q10_gen','Q7_gen'),
+                   FUN = gensyn.fun) %>% 
+              do.call('left_join',.),
+            by = c('respid', 'party')) %>% 
+  as_tibble()
+
 # Clean the environment # ==============================================================================
 
-rm(list=ls(pattern='_hu$'))  
+rm(list=ls(pattern='_hu$|yhat|fit')) 
 
