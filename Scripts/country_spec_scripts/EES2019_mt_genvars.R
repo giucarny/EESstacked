@@ -80,6 +80,62 @@ EES2019_mt_stack %<>%
 #  filter((abs(Q10_gen)>1 & Q10_gen!=98) | (abs(Q11_Q13_gen)>1 & Q11_Q13_gen!=98) |
 #           (abs(Q23_Q24_gen)>1 & Q23_Q24_gen!=98))
 
+# Synthetic variables estimation # =====================================================================
+
+# Check the results # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+#fit_lst <-
+#  gensyn.fun(data = EES2019_mt_stack,
+#             depvar = 'Q7_gen',
+#             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D6_une'), 
+#             cont.indvar =  c('D4_age', 'D10_rec'),
+#             yhat.name = 'socdem',
+#             regsum = T)
+#check_fun1<- function(l) {
+#  l%>%summary
+#}
+#check_fun2<- function(l) {
+#  l%>%car::vif(.)
+#}
+#check1<-lapply(X=fit_lst[],FUN=check_fun1)
+#check2<-lapply(X=fit_lst[],FUN=check_fun2)
+#for (i in 1:length(fit_lst)) {
+#  print('-----------------------------Number---------------------------------')
+#  print(i)
+#  print(check1[[i]])
+#  print(check2[[i]])
+#  qqnorm(fit_lst[[i]]$residuals)
+#  qqline(fit_lst[[i]]$residuals)
+#}
+
+
+#For Q7_gen: residuals have mostly normal distribution, but outliers at the end 
+#   of the qqnorm plots. The plots for list entry 1 has a jump in the middle and 
+#   list entries 1 and 2 have outliers at the start of the qqplot, too.
+#    Furthermore: For the third and fourth list entries the coefficient 
+#   estimate and std. error values for D6_une1, EDU_rec2 and EDU_rec3 were 
+#   unusually high.
+#   For the fifth list entries the coefficient estimate and std. error values 
+#   for EDU_rec3 and D6_une1 were also unusually high.
+#For Q10_gen: residuals have mostly normal distribution, but outliers at the 
+#   begining and end of the qqnorm plots in regard to the qqline. The plots for 
+#   list entries 3,4 and 5 have stronger outliers at the end than 1 and 2.
+
+# If results are fine # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+EES2019_mt_stack %<>%
+  left_join(.,
+            lapply(data = EES2019_mt_stack,
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), 
+                   cont.indvar =  c('D4_age', 'D10_rec'),
+                   yhat.name = 'socdem_synt',
+                   regsum = F,
+                   X = list('Q10_gen','Q7_gen'),
+                   FUN = gensyn.fun) %>% 
+              do.call('left_join',.),
+            by = c('respid', 'party')) %>% 
+  as_tibble()
+
 # Clean the environment # ==============================================================================
 
 rm(list=ls(pattern='_mt$'))  
