@@ -114,8 +114,8 @@ EES2019_de_stack %<>%
 #   of the qqnorm plots. Furthermore: For the third list entry the coefficient 
 #   estimate and std. error values for D6_une1 were unusually high.
 #For Q10_gen: residuals have mostly normal distribution, but outliers at the 
-#   begining and end of the qqnorm plots.The plots for list entry 6
-#   and list entry 7 have a kind of cyclical deviation from the qqline. 
+#   begining and end of the qqnorm plots in regard to the qqline.The plots for 
+#   list entry 6 and list entry 7 have a kind of cyclical deviation from the qqline. 
 
 # If results are fine # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 

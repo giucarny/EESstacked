@@ -118,7 +118,7 @@ EES2019_ee_stack %<>%
 #   For the seventh list entry the coefficient estimate and std. error values 
 #   for D5_rec1, EDU_rec2, EDU_rec3 and D6_une1 were also unusually high.
 #For Q10_gen: residuals have mostly normal distribution, but outliers at the 
-#   begining and end of the qqnorm plots.
+#   begining and end of the qqnorm plots in regard to the qqline.
 
 # If results are fine # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 

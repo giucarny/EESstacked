@@ -138,8 +138,8 @@ EES2019_lu_stack %<>%
 #   D5_rec1, EDU_rec2, EDU_rec3 and D6_une1 were also unusually high with rather 
 #   low residual deviance. 
 #For Q10_gen: residuals have mostly normal distribution, but outliers at the 
-#   begining and end of the qqnorm plots. The plots for list entries 5 ,
-#   6 , 7, 12 and 13 have a kind of cyclical deviation from the qqline. 
+#   begining and end of the qqnorm plots in regard to the qqline. The plots for 
+#   list entries 5, 6, 7, 12 and 13 have a kind of cyclical deviation from the qqline. 
 
 # If results are fine # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
