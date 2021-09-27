@@ -82,6 +82,56 @@ EES2019_dk_stack %<>%
 #   filter((abs(Q10_gen)>1 & Q10_gen!=98) | (abs(Q11_Q13_gen)>1 & Q11_Q13_gen!=98) |
 #          (abs(Q23_Q24_gen)>1 & Q23_Q24_gen!=98))
 
+# Synthetic variables estimation # =====================================================================
+
+# Check the results # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# fit_lst <-
+#   gensyn.fun(data = EES2019_dk_stack,
+#              depvar = 'Q10_gen',
+#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D6_une'), 
+#              cont.indvar =  c('D4_age', 'D10_rec'),
+#              yhat.name = 'socdem',
+#              regsum = T)
+# check_fun1<- function(l) {
+#   l%>%summary
+# }
+# check_fun2<- function(l) {
+#   l%>%car::vif(.)
+# }
+# check1<-lapply(X=fit_lst[],FUN=check_fun1)
+# check2<-lapply(X=fit_lst[],FUN=check_fun2)
+# for (i in 1:length(fit_lst)) {
+#   print('-----------------------------Number---------------------------------')
+#   print(i)
+#   print(check1[[i]])
+#   print(check2[[i]])
+#   qqnorm(fit_lst[[i]]$residuals)
+#   qqline(fit_lst[[i]]$residuals)
+# }
+ 
+#For Q7_gen: residuals have mostly normal distribution, but outliers at the end 
+# of the qqnorm plots. Furthermore, for the fourth party (Radikale Venstre) the 
+# coefficient estimate and std. error values for Edu_Rec2 and Edu_Rec3 were 
+# unusually high.
+#For Q10_gen: residuals have mostly normal distribution, but outliers at the 
+# begining and end of the qqnorm plots.
+ 
+# If results are fine # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+EES2019_dk_stack %<>%
+  left_join(.,
+            lapply(data = EES2019_dk_stack,
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), 
+                   cont.indvar =  c('D4_age', 'D10_rec'),
+                   yhat.name = 'socdem_synt',
+                   regsum = F,
+                   X = list('Q10_gen','Q7_gen'),
+                   FUN = gensyn.fun) %>% 
+              do.call('left_join',.),
+            by = c('respid', 'party')) %>% 
+  as_tibble()
+
 # Clean the environment # ==============================================================================
 
 rm(list=ls(pattern='_dk$'))  
