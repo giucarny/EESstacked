@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Greek sample)
 # Author: G.Carteny
-# last update: 2021-08-30
+# last update: 2021-09-28
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -9,7 +9,11 @@
 
 EES2019_cdbk_el <-
   EES2019_cdbk %>%
-  filter(countryshort=='GR') 
+  filter(countryshort=='GR') %>% 
+  mutate(across(c('Q10_PTV', 'Q13_left_right', 'Q24_EU'), 
+                ~case_when(Q7 %in% c(1206, 1207) ~ NA_character_, T~.))) # *
+
+# * Party scores for such variables are actually not available in the EES2019 data set
 
 EP2019_el <-
   EP2019 %>%

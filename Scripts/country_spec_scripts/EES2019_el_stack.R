@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Stacking Observations (EES 2019 Voter Study, Greek Sample) 
 # Author: G.Carteny
-# last update: 2021-08-18
+# last update: 2021-09-28
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Keep the EES 2019 Greek sample # =====================================================================
@@ -33,7 +33,7 @@ ptv_crit <-
   EES2019_cdbk_el %>% 
   dplyr::select(partyname_eng, Q10_PTV) 
 
-# ptv_crit: 7 parties
+# ptv_crit: 5 parties
 
 # Check the seats obtained by each party - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
