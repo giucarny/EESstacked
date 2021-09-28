@@ -1,5 +1,7 @@
 
-# Functions ####
+# Functions/Operators ####
+
+'%!in%' <- function(x,y)!('%in%'(x,y))
 
 rmse <- function(actual, predicted) {
   sqrt(mean((actual - predicted) ^ 2))
@@ -63,12 +65,13 @@ test.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name) {
     })
   
   return(df_lst)
-  
 }
 
 # Test ####
 
-df_lst <- test.fun(data = EES2019_hr_stack,
+
+stckd_data = EES2019_hr_stack
+df_lst <- test.fun(data = stckd_data,
                    depvar = 'Q7_gen',
                    cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_une', 'D6_rec', 'D9_rec'
                    cont.indvar =  c('D4_age', 'D10_rec'),
@@ -77,16 +80,20 @@ df_lst <- test.fun(data = EES2019_hr_stack,
 
 
 
-df <- df_lst[[6]]
-
-df %<>% dplyr::select(-c(respid))
-y <- df[,1] %>% names() 
-xs <- df[,-1] %>% names()
-# df %<>% na.omit()
+df <- df_lst[[7]]
 
 df %<>% 
-  mutate(D6_une = as.numeric(D6_une),
-         D6_une = case_when(stack_413==1 & D6_une!=0 ~ .5, T ~ D6_une ))
+  dplyr::select(-c(respid)) %>% 
+  mutate(EDU_rec = as.numeric(EDU_rec),
+         EDU_rec2 = case_when(EDU_rec==1 | EDU_rec==2 ~ 0,
+                              EDU_rec==3 ~ 1,
+                              EDU_rec > 1 ~ NA_real_,
+                              T ~ EDU_rec),
+         EDU_rec = as.factor(EDU_rec),
+         EDU_rec2 = as.factor(EDU_rec2))
+
+y <- df[,1] %>% names() 
+xs <- df[,-1] %>% names()
 
 tabs_lst <-
   lapply(xs,
@@ -98,5 +105,32 @@ tabs_lst <-
            # names(tab)[2] <- x
            
            return(tab)
-         }) 
+           }) 
 
+df %<>% na.omit()
+
+
+frml_edu1 <- formula(paste(y, paste(xs[xs!='EDU_rec2'], collapse = " + "), sep = " ~ "))
+frml_edu2 <- formula(paste(y, paste(xs[xs!='EDU_rec'], collapse = " + "), sep = " ~ "))
+frml_noedu <- formula(paste(y, paste(xs[xs %!in% c('EDU_rec', 'EDU_rec2')], collapse = " + "), sep = " ~ "))
+
+
+fit_null   <- glm(data = df, formula = stack_401 ~ 1, family = binomial)
+fit_edu1   <- glm(data = df, formula = frml_edu1, family = binomial)
+fit_edu2   <- glm(data = df, formula = frml_edu2, family = binomial)
+fit_noedu  <- glm(data = df, formula = frml_noedu, family = binomial)
+
+summary(fit_null)
+summary(fit_edu1)
+summary(fit_edu2)
+summary(fit_noedu)
+
+anova(fit_edu1, fit_edu2, fit_noedu)
+anova(fit_edu1, fit_null, test='Chisq')
+
+
+
+anova(fit_edu, fit_noedu, test='Chisq') # LR test
+
+# https://daviddalpiaz.github.io/r4sl/logistic-regression.html
+# For ConfusionMatrix (sensitivity, specificty, etc.)

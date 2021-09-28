@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Croatian Sample) 
 # Author: M.Koernig
-# last update: 2021-09-24
+# last update: 2021-09-28
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -81,7 +81,7 @@ EES2019_hr_stack %<>%
 fit_lst <-
   gensyn.fun(data = EES2019_hr_stack,
              depvar = 'Q10_gen',
-             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D6_une'), # 'D6_rec', 'D9_rec'
+             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #'D6_une', 'D6_rec', 'D9_rec'
              cont.indvar =  c('D4_age', 'D10_rec'),
              yhat.name = 'socdem',
              regsum = T)
