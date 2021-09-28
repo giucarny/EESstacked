@@ -86,9 +86,21 @@ fit_lst <-
              yhat.name = 'socdem',
              regsum = T)
 
-fit_lst[[3]] %>% summary
+#lapply(fit_lst, summary)
+#lapply(fit_lst, car::vif)
 
-fit_lst[[3]] %>% car::vif(.)
+fit_lst <-
+  gensyn.fun(data = EES2019_hr_stack,
+             depvar = 'Q7_gen',
+             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #, 'D6_une' 'D6_rec', 'D9_rec'
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name = 'socdem',
+             regsum = T)
+
+# lapply(fit_lst, summary)
+#lapply(fit_lst, car::vif)
+
+
 
 
 # If results are fine # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
