@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Mutating the original EES2019 voter study
 # Author: G.Carteny
-# last update: 2021-09-19
+# last update: 2021-09-28
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Notes # 
@@ -137,6 +137,12 @@ EES2019 %<>%
 EES2019 %<>%
   mutate(EDU_rec = as.numeric(EDU)) %>% 
   mutate(EDU_rec = case_when(EDU_rec > 3 ~ NA_real_, T ~ EDU_rec))
+
+# %>% 
+#   mutate(EDU_rec = case_when(EDU_rec==1 | EDU_rec==2 ~ 0,
+#                              EDU_rec==3 ~ 1,
+#                              EDU_rec > 1 ~ NA_real_, 
+#                              T ~ EDU_rec))
 
 
 
