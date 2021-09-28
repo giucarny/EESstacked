@@ -108,3 +108,23 @@ Values:
 
 98.000000000 - Respondent does not know
 
+# Synthetic variables estimation {-}
+
+## socdem_synt_ptv {-}
+Synthetic variable, measuring the affinity between the respondents' socio-demographic characteristics and their propensity to vote. This was estimated using a linear prediction of an OLS model. The dependent Variable of this regression analysis was `Q7_gen` (see: Generic Dichotomous Variables) and the independent variables `D3_rec`, `D5_rec`, `D8_rec`, `EDU_rec`, `D4_age` and `D10_rec` (see below).
+
+## socdem_synt_vc {-}
+Synthetic variable, measuring the affinity between the respondents' socio-demographic characteristics and their vote choice. This was estimated using a linear prediction of a logit model. The dependent Variable of this regression analysis was `Q10_gen` (see: Generic distance/proximity variables estimation) and the independent variables `D3_rec`, `D5_rec`, `D8_rec`, `EDU_rec`, `D4_age` and `D10_rec` (see below).
+
+##Independent variables used in regression analysis for socdem_synt_ptv and socdem_synt_vc: {-}
+
+###Categorical independent variables: {-}
+* `D3_rec`: Respondent's gender (0 = Male, 1 = Female), recoded from the original `D3` EES2019 variable (categorical);
+* `D5_rec`: Whether the respondent is married/remarried/single living with a partner (1) or single/divorced/separated/widowed (0), recoded from the original `D5` EES2019 variable (categorical);
+* `D8_rec`: Whether the respondent lives in a rural (0) or urban area (1), recoded from the original `D8` variable (categorical);
+* `EDU_rec`: Respondent's years of formal education (1 = 15 years or less, 2 = 16-19 years, 3 = 20+);
+
+###Continuous independent variables: {-}
+* `D4_age`: Respondent's age, recoded from the original `D4_1` (year of birth) EES2019 variable (ordinal treated as continuous);
+* `D10_rec`: Respondent's religiosity, recoded from the original `D10` EES2019 variable (ordinal treated as continuous). In particular, the values (min = 0, max = 6) are inverted, so that higher values indicate stronger religiosity and lower values indicate low/none religiosity.
+
