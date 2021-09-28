@@ -78,9 +78,7 @@ df_lst <- test.fun(data = stckd_data,
                    yhat.name = 'socdem',
                    regsum = T)
 
-
-
-df <- df_lst[[7]]
+df <- df_lst[[1]]
 
 df %<>% 
   dplyr::select(-c(respid)) %>% 
@@ -100,9 +98,9 @@ tabs_lst <-
          function(x) {
            tab <-    
              table(df[[toString(y)]], df[[toString(x)]], useNA = 'ifany') %>% 
-             as.data.frame.matrix()  
-           # names(tab)[1] <- y
-           # names(tab)[2] <- x
+             as.data.frame()  
+           names(tab)[1] <- y
+           names(tab)[2] <- x
            
            return(tab)
            }) 
@@ -112,25 +110,32 @@ df %<>% na.omit()
 
 frml_edu1 <- formula(paste(y, paste(xs[xs!='EDU_rec2'], collapse = " + "), sep = " ~ "))
 frml_edu2 <- formula(paste(y, paste(xs[xs!='EDU_rec'], collapse = " + "), sep = " ~ "))
-frml_noedu <- formula(paste(y, paste(xs[xs %!in% c('EDU_rec', 'EDU_rec2')], collapse = " + "), sep = " ~ "))
+frml_drop <- formula(paste(y, paste(xs[xs %!in% c('EDU_rec', 'EDU_rec2', 'D5_rec')], collapse = " + "), sep = " ~ "))
 
 
-fit_null   <- glm(data = df, formula = stack_401 ~ 1, family = binomial)
-fit_edu1   <- glm(data = df, formula = frml_edu1, family = binomial)
-fit_edu2   <- glm(data = df, formula = frml_edu2, family = binomial)
-fit_noedu  <- glm(data = df, formula = frml_noedu, family = binomial)
+fit_null <- glm(data = df, formula = stack_412 ~ 1, family = binomial)
+fit_edu1 <- glm(data = df, formula = frml_edu1, family = binomial)
+fit_edu2 <- glm(data = df, formula = frml_edu2, family = binomial)
+fit_drop <- glm(data = df, formula = frml_drop, family = binomial)
 
-summary(fit_null)
-summary(fit_edu1)
-summary(fit_edu2)
-summary(fit_noedu)
+# summary(fit_null)
+# summary(fit_edu1)
+# summary(fit_edu2)
+# summary(fit_drop)
 
-anova(fit_edu1, fit_edu2, fit_noedu)
-anova(fit_edu1, fit_null, test='Chisq')
+anova(fit_null, fit_drop, test='Chisq')
 
-
-
-anova(fit_edu, fit_noedu, test='Chisq') # LR test
 
 # https://daviddalpiaz.github.io/r4sl/logistic-regression.html
 # For ConfusionMatrix (sensitivity, specificty, etc.)
+
+predclass_null <- ifelse(predict(fit_null, type='response') > 0.5, 1, 0)
+predclass_edu1 <- ifelse(predict(fit_edu1, type='response') > 0.5, 1, 0)
+predclass_drop <- ifelse(predict(fit_drop, type='response') > 0.5, 1, 0)
+
+tab_null <- table(predicted = predclass_null, actual = df$stack_412)
+tab_edu1 <- table(predicted = predclass_edu1, actual = df$stack_412)
+tab_drop <- table(predicted = predclass_drop, actual = df$stack_412)
+caret::confusionMatrix(tab_drop, positive='Yes')
+
+

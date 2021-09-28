@@ -86,8 +86,8 @@ fit_lst <-
              yhat.name = 'socdem',
              regsum = T)
 
-#lapply(fit_lst, summary)
-#lapply(fit_lst, car::vif)
+# lapply(fit_lst, summary)
+# lapply(fit_lst, car::vif)
 
 fit_lst <-
   gensyn.fun(data = EES2019_hr_stack,
@@ -98,7 +98,7 @@ fit_lst <-
              regsum = T)
 
 # lapply(fit_lst, summary)
-#lapply(fit_lst, car::vif)
+# lapply(fit_lst, car::vif)
 
 
 
