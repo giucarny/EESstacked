@@ -1,7 +1,18 @@
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Title: Synthetic variables evaluation Script 
+# Authors: G.Carteny
+# last update: 2021-09-29
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Functions/Operators ####
+
+# Additional functions/operators # =====================================================================
+
+
+# Inverse %in% operator # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 '%!in%' <- function(x,y)!('%in%'(x,y))
+
+# Functions for estimating rmse values for OLS models # - - - - - - - - - - - - - - - - - - - - - - - -
 
 rmse <- function(actual, predicted) {
   sqrt(mean((actual - predicted) ^ 2))
@@ -11,7 +22,10 @@ get_complexity <- function(model) {
   length(coef(model)) - 1
 }
 
-test.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name) { 
+
+# Function for creating the syntvars regression models data frames # - - - - - - - - - - - - - - - - - -
+
+regdf.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name) { 
   
   if (depvar=='Q7_gen' | depvar=='vote choice' | depvar=='Q7') {
     depvar <- 'Q7_gen'
@@ -24,8 +38,6 @@ test.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name) {
   } else if (depvar=='Q10' | depvar=='PTV' | depvar=='Q10_gen') {
     yhat.name <- paste0(yhat.name, '_ptv')
   }
-  
-  
   
   indep_df <- 
     data %>% 
@@ -67,31 +79,79 @@ test.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name) {
   return(df_lst)
 }
 
-# Test ####
+# Check the full models' results # =====================================================================
+
+# (1) run the EES2019_stack.R script until the 'Stack the original EES2019 variables' section and 
+# (2) run the the countryspecific script until the 'Generic distance/proximity variables' estimation
+
+# Check the results # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+stckd_data <- EES2019_hr_stack
+
+fit_lst <-
+  gensyn.fun(data = stckd_data,
+             depvar = 'Q10_gen',
+             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #'D6_une', 'D6_rec', 'D9_rec'
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name = 'socdem',
+             regsum = T)
+
+# lapply(fit_lst, summary)
+# lapply(fit_lst, car::vif)
+
+fit_lst <-
+  gensyn.fun(data = stckd_data,
+             depvar = 'Q7_gen',
+             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #, 'D6_une' 'D6_rec', 'D9_rec'
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name = 'socdem',
+             regsum = T)
+
+# lapply(fit_lst, summary)
+# lapply(fit_lst, car::vif)
 
 
-stckd_data = EES2019_hr_stack
-df_lst <- test.fun(data = stckd_data,
-                   depvar = 'Q7_gen',
-                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_une', 'D6_rec', 'D9_rec'
-                   cont.indvar =  c('D4_age', 'D10_rec'),
-                   yhat.name = 'socdem',
-                   regsum = T)
+# Get the regression models dataframes # ===============================================================
+
+
+df_lst <- regdf.fun(data = stckd_data,
+                    depvar = 'Q7_gen',
+                    cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_une', 'D6_rec', 'D9_rec'
+                    cont.indvar =  c('D4_age', 'D10_rec'),
+                    yhat.name = 'socdem',
+                    regsum = T)
+
+
+# Evaluate problematic models # ========================================================================
+
+
+# Get y-xi contingency tables for possible empty cells # - - - - - - - - - - - - - - - - - - - - - - - -
+
+tabs_lst <-
+  lapply(df_lst, function(df) {
+    df %<>% 
+      dplyr::select(-c(respid)) 
+    
+    y <- df[,1] %>% names() 
+    xs <- df[,-1] %>% names()
+    
+  })
+
 
 df <- df_lst[[1]]
 
-df %<>% 
-  dplyr::select(-c(respid)) %>% 
-  mutate(EDU_rec = as.numeric(EDU_rec),
-         EDU_rec2 = case_when(EDU_rec==1 | EDU_rec==2 ~ 0,
-                              EDU_rec==3 ~ 1,
-                              EDU_rec > 1 ~ NA_real_,
-                              T ~ EDU_rec),
-         EDU_rec = as.factor(EDU_rec),
-         EDU_rec2 = as.factor(EDU_rec2))
 
-y <- df[,1] %>% names() 
-xs <- df[,-1] %>% names()
+
+# %>% 
+#   mutate(EDU_rec = as.numeric(EDU_rec),
+#          EDU_rec2 = case_when(EDU_rec==1 | EDU_rec==2 ~ 0,
+#                               EDU_rec==3 ~ 1,
+#                               EDU_rec > 1 ~ NA_real_,
+#                               T ~ EDU_rec),
+#          EDU_rec = as.factor(EDU_rec),
+#          EDU_rec2 = as.factor(EDU_rec2))
+
+
 
 tabs_lst <-
   lapply(xs,
