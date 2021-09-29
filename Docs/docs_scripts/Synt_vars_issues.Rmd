@@ -1,0 +1,22 @@
+---
+title: EES2019 Stacking Process 
+subtitle: Issues in computation of Synthetic variables 
+author: Giuseppe Carteny
+date: 29.09.2021 
+toc: true
+output: 
+  bookdown::pdf_document2:
+    includes:
+      in_header: First_steps_header.tex
+urlcolor: RedOrange
+---
+
+
+# Synthetic variables models 
+
+**Dependent variables**: 
+* Q10 for OLS models;
+* Q7 for logit models.
+
+**Independent variables**: 
+
