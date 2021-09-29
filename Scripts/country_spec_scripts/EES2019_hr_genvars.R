@@ -101,8 +101,6 @@ EES2019_hr_stack %<>%
 # lapply(fit_lst, car::vif)
 
 
-
-
 # If results are fine # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 EES2019_hr_stack %<>%
