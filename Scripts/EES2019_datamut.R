@@ -79,8 +79,8 @@ EES2019 %<>%
 
 EES2019 %<>%
   mutate(D8_rec = as.numeric(D8),
-         D8_rec = case_when(D8_rec==1 | D8_rec==2 ~ 0,
-                            D8_rec==3             ~ 1, 
+         D8_rec = case_when(D8_rec==1 ~ 0,
+                            D8_rec==2 | D8_rec==3 ~ 1, 
                             T ~ D8_rec))  
 
 # Mutate religious denomination and invert religiosity # ===============================================
@@ -135,8 +135,21 @@ EES2019 %<>%
 #                          edctn_lab = EES2019$EDU %>% val_labels %>% attr(., 'names'))
 
 EES2019 %<>%
-  mutate(EDU_rec = as.numeric(EDU)) %>% 
-  mutate(EDU_rec = case_when(EDU_rec > 3 ~ NA_real_, T ~ EDU_rec))
+  mutate(EDU_rec = as.numeric(EDU)) %>%
+  # mutate(EDU_rec = case_when(EDU_rec > 3 ~ NA_real_, T ~ EDU_rec))
+  mutate(EDU_rec = case_when(EDU_rec==97 ~ 0, EDU_rec %in% c(4,99) ~ NA_real_, T ~ EDU_rec),
+         EDU_0_rec = case_when(EDU_rec==0 ~ D4_age-6, T~NA_real_),
+         EDU_rec = case_when(EDU_0_rec <= 15 ~ 1,
+                             EDU_0_rec > 15 &  EDU_0_rec <= 19 ~ 2,
+                             EDU_0_rec > 19 ~ 3,
+                             T ~ EDU_rec)) %>%
+  dplyr::select(-c(EDU_0_rec))
+
+  
+
+
+
+
 
 # %>% 
 #   mutate(EDU_rec = case_when(EDU_rec==1 | EDU_rec==2 ~ 0,
