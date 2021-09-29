@@ -12,11 +12,31 @@ urlcolor: RedOrange
 ---
 
 
-# Synthetic variables models 
+# Synthetic variables estimation models {-}
 
-**Dependent variables**: 
+## Dependent variables {-}
+
 * Q10 for OLS models;
 * Q7 for logit models.
 
-**Independent variables**: 
+## Independent variables  {-}
+
+* D3_rec: R gender variable (male = 1, female = 2); 
+* D4_age: R age variable; 
+* D5_rec: R marital status variable (0 = single/notmarried/divorced; 1 = married);
+* EDU_rec: Education variable (0 = low edu; 1 = middle edu; 2 = high edu).
+
+## Regression models {-}
+
+In their standard form, PTV or vote choice for the stack party is regressed all the selected independent 
+variables. 
+
+# Issues  {-}
+
+In a set of countries some regression models (especially logistic ones) return or excessively high 
+standard errors values or do not properly converge. In most cases such problem is derived by empty 
+categories in some predictors.
+
+## Croatian sample  {-}
+
 
