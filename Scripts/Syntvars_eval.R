@@ -26,14 +26,47 @@ logit2prob.auxfun <- function(logit){
 
 '%!in%' <- function(x,y)!('%in%'(x,y))
 
-# Functions for estimating rmse values for OLS models # - - - - - - - - - - - - - - - - - - - - - - - -
+# Functions for estimating rmse of OLS models # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-rmse.auxfun <- function(actual, predicted) {
-  sqrt(mean((actual - predicted) ^ 2))
+
+rmse.auxfun = function(actual, predicted) {
+  sqrt(mean((actual - predicted)^2, na.rm=T))
 }
+
+
+get_rmse.auxfun = function(model, data, regmod) {
+  
+  if (regmod=='OLS') {
+    prdctd <- predict(model, data)
+  } else if (regmod=='logit') {
+    prdctd <- predict(model, data,type='response') %>% rbinom(length(.),1,.)
+  }
+  
+  response = names(data)[2]
+  rmse.auxfun(actual = subset(data, select = response, drop = TRUE) %>% as.numeric,
+              predicted = prdctd)
+  
+}
+
 
 get_complexity.auxfun <- function(model) {
   length(coef(model)) - 1
+}
+
+
+# Function for estimating the null model # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+null_mod.auxfun <- function(df, regmod) {
+  y <- names(df)[2]
+  frml <- as.formula(paste0(y, ' ~ ', '1'))
+  
+  if (regmod=='OLS') {
+    fit <- lm(data = df, formula = frml)
+  } else if (regmod=='logit') {
+    fit <- glm(data = df, formula = frml, family = binomial)
+  }
+  
+  return(fit)
 }
 
 
@@ -154,14 +187,76 @@ yxcontab.auxfun <- function(df, contab) {
 # lapply(fit_lst, car::vif)
 
 
-# Get the regression models dataframes # ===============================================================
+# Get rmse for OLS models # ============================================================================
 
-df_lst <- regdf.auxfun(data = stckd_data,
-                       depvar = 'Q7_gen',
-                       cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_une', 'D6_rec', 'D9_rec'
-                       cont.indvar =  c('D4_age', 'D10_rec'),
-                       yhat.name = 'socdem',
-                       regsum = T)
+df_lst <- 
+  regdf.auxfun(data = stckd_data,
+               depvar = 'Q10_gen',
+               cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_une', 'D6_rec', 'D9_rec'
+               cont.indvar =  c('D4_age', 'D10_rec'),
+               yhat.name = 'socdem',
+               regsum = T)
+
+fit_lst <-
+  gensyn.fun(data = stckd_data,
+             depvar = 'Q10_gen',
+             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #'D6_une', 'D6_rec', 'D9_rec'
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name = 'socdem',
+             regsum = T)
+
+
+
+null_fit_lst <- 
+  lapply(X = df_lst, regmod = 'OLS', null_mod.auxfun)
+
+rmse_df <- 
+  lapply(1:length(fit_lst), function(i) {
+  tibble(full = get_rmse.auxfun(fit_lst[[i]], df_lst[[i]], regmod = 'OLS'),
+         null = get_rmse.auxfun(null_fit_lst[[i]], df_lst[[i]], regmod = 'OLS'))
+  }) %>% 
+  do.call('rbind',.)
+
+
+
+# Get rmse for logit models # ============================================================================
+
+df_lst <- 
+  regdf.auxfun(data = stckd_data,
+               depvar = 'Q7_gen',
+               cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_une', 'D6_rec', 'D9_rec'
+               cont.indvar =  c('D4_age', 'D10_rec'),
+               yhat.name = 'socdem',
+               regsum = T)
+
+fit_lst <-
+  gensyn.fun(data = stckd_data,
+             depvar = 'Q7_gen',
+             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #'D6_une', 'D6_rec', 'D9_rec'
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name = 'socdem',
+             regsum = T)
+
+
+
+null_fit_lst <- 
+  lapply(X = df_lst, regmod = 'logit', null_mod.auxfun)
+
+
+rmse(actual = df_lst[[1]]$stack_412 %>% as.numeric-1,
+     predicted = predict(fit_lst[[1]], newdata = df_lst[[1]], type='response') %>% rbinom(length(.),1,.))
+
+get_rmse(fit_lst[[1]], data=df_lst[[1]])
+
+rmse_df <- 
+  lapply(1:length(fit_lst), function(i) {
+  tibble(full = get_rmse.auxfun(fit_lst[[i]], df_lst[[i]], regmod = 'logit'),
+         null = get_rmse.auxfun(null_fit_lst[[i]], df_lst[[i]], regmod = 'logit'))
+  }) %>% 
+  do.call('rbind',.)
+
+
+
 
 
 # Evaluate problematic models # ========================================================================
@@ -180,7 +275,6 @@ tabs_lst[[7]][[4]] %>% .[order(.[,1]),]
 df_lst %<>% lapply(., na.omit)
 
 xs <- names(df_lst[[1]])[-c(1,2)]
-y1 <- names(df_lst[[1]])[c(2)]
 y6 <- names(df_lst[[6]])[c(2)]
 y7 <- names(df_lst[[7]])[c(2)]
 
@@ -216,6 +310,11 @@ tab_mod7 <- table(predicted = df_lst[[7]]$cat, actual = df_lst[[7]]$stack_401)
 
 
 # Eval a '''''good''''' model # ========================================================================
+
+df_lst[[1]] %<>% na.omit()
+
+xs <- names(df_lst[[1]])[-c(1,2)]
+y1 <- names(df_lst[[1]])[c(2)]
 
 mod1_full_frml <- formula(paste(y1, paste(xs, collapse = " + "), sep = " ~ "))
 mod1_full_fit  <- glm(data = df_lst[[1]], formula = mod1_full_frml, family = binomial)
