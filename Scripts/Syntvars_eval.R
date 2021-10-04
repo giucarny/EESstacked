@@ -1,190 +1,16 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Synthetic variables evaluation Script 
 # Authors: G.Carteny
-# last update: 2021-09-29
+# last update: 2021-10-03
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # (1) run the EES2019_stack.R script until the 'Stack the original EES2019 variables' section and 
-# (2) run the the country-specific script until the 'Generic distance/proximity variables' estimation
+# (2) run the whole country-specific genvars script 
 
 # Select the country-specific SDM # 
 
 stckd_data <- EES2019_hr_stack
 
-
-# Additional functions/operators # =====================================================================
-
-# Logit to probs # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-logit2prob.auxfun <- function(logit){
-  odds <- exp(logit)
-  prob <- odds / (1 + odds)
-  return(prob)
-}
-
-# Inverse %in% operator # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-'%!in%' <- function(x,y)!('%in%'(x,y))
-
-# Functions for estimating rmse of OLS models # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-rmse.auxfun = function(actual, predicted) {
-  sqrt(mean((actual - predicted)^2, na.rm=T))
-}
-
-
-get_rmse.auxfun = function(model, data, regmod) {
-  
-  if (regmod=='OLS') {
-    prdctd <- predict(model, data)
-  } else if (regmod=='logit') {
-    prdctd <- predict(model, data,type='response') %>% rbinom(length(.),1,.)
-  }
-  
-  response = names(data)[2]
-  rmse.auxfun(actual = subset(data, select = response, drop = TRUE) %>% as.numeric,
-              predicted = prdctd)
-  
-}
-
-
-get_complexity.auxfun <- function(model) {
-  length(coef(model)) - 1
-}
-
-
-# Function for estimating the null model # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-null_mod.auxfun <- function(df, regmod) {
-  y <- names(df)[2]
-  frml <- as.formula(paste0(y, ' ~ ', '1'))
-  
-  if (regmod=='OLS') {
-    fit <- lm(data = df, formula = frml)
-  } else if (regmod=='logit') {
-    fit <- glm(data = df, formula = frml, family = binomial)
-  }
-  
-  return(fit)
-}
-
-
-# Function for creating the syntvars regression models data frames # - - - - - - - - - - - - - - - - - -
-
-regdf.auxfun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name) { 
-  
-  if (depvar=='Q7_gen' | depvar=='vote choice' | depvar=='Q7') {
-    depvar <- 'Q7_gen'
-  } else if (depvar=='Q10' | depvar=='PTV' | depvar=='Q10_gen') {
-    depvar <- 'Q10_gen'
-  }
-  
-  if (depvar=='Q7_gen' | depvar=='vote choice' | depvar=='Q7') {
-    yhat.name <- paste0(yhat.name, '_vc')
-  } else if (depvar=='Q10' | depvar=='PTV' | depvar=='Q10_gen') {
-    yhat.name <- paste0(yhat.name, '_ptv')
-  }
-  
-  indep_df <- 
-    data %>% 
-    dplyr::select(respid, all_of(cat.indvar), all_of(cont.indvar)) %>% 
-    distinct() %>% 
-    mutate(across(all_of(cat.indvar), ~as.factor(.))) %>% 
-    mutate(across(all_of(cont.indvar), ~as.numeric(.))) 
-  
-  dep_df <- 
-    data %>% 
-    dplyr::select(respid, party, all_of(depvar)) %>% 
-    pivot_wider(id_cols = c('respid'), 
-                names_from = 'party', names_prefix = 'stack_',
-                values_from = all_of(depvar)) 
-  
-  if (depvar=='Q7_gen' | depvar=='vote choice' | depvar=='Q7') {
-    dep_df %<>% 
-      mutate(across(starts_with('stack_'), ~as.factor(case_when(.>1 ~ NA_integer_, T~.))))
-  } else if (depvar=='Q10' | depvar=='PTV' | depvar=='Q10_gen') {
-    dep_df %<>% 
-      mutate(across(starts_with('stack_'), ~as.numeric(case_when(.>10 ~ NA_real_, T~.)))) 
-  }
-  
-  depvars <- 
-    dep_df %>% dplyr::select(starts_with('stack')) %>% names(.)
-  
-  frmla_lst <- 
-    lapply(depvars, function(y) {
-      formula(paste(y, paste(c(cat.indvar, cont.indvar), collapse = " + "), sep = " ~ "))
-    })
-  
-  
-  df_lst <- 
-    lapply(depvars, function(x) {
-      df <- dep_df %>% dplyr::select(respid, all_of(x)) 
-      df <- left_join(df, indep_df, by='respid')
-    })
-  
-  return(df_lst)
-}
-
-
-# y - xi contingency tables # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-yxcontab.auxfun <- function(df, contab) {
-  
-  df %<>% 
-    dplyr::select(-c(respid)) 
-  
-  y <- df[,1] %>% names() 
-  xs <- df[,-1] %>% names()
-  
-  tabs <-
-    lapply(xs,
-           function(x) {
-             tab <-    
-               table(df[[toString(y)]], df[[toString(x)]])  # , useNA = 'ifany'
-             
-             if (contab) {
-               tab %<>%
-                 as.data.frame.matrix() 
-             } else {
-               tab %<>% 
-                 as.data.frame()  
-               names(tab)[1] <- y
-               names(tab)[2] <- x
-             }
-             
-             return(tab)
-           }) 
-  return(tabs)
-}
-
-
-
-# Check the full models' results # =====================================================================
-
-# Check the results # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# fit_lst <-
-#   gensyn.fun(data = stckd_data,
-#              depvar = 'Q10_gen',
-#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #'D6_une', 'D6_rec', 'D9_rec'
-#              cont.indvar =  c('D4_age', 'D10_rec'),
-#              yhat.name = 'socdem',
-#              regsum = T)
-
-# lapply(fit_lst, summary)
-# lapply(fit_lst, car::vif)
-
-# fit_lst <-
-#   gensyn.fun(data = stckd_data,
-#              depvar = 'Q7_gen',
-#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #, 'D6_une' 'D6_rec', 'D9_rec'
-#              cont.indvar =  c('D4_age', 'D10_rec'),
-#              yhat.name = 'socdem',
-#              regsum = T)
-
-# lapply(fit_lst, summary)
-# lapply(fit_lst, car::vif)
 
 
 # Get rmse for OLS models # ============================================================================
@@ -192,7 +18,7 @@ yxcontab.auxfun <- function(df, contab) {
 df_lst <- 
   regdf.auxfun(data = stckd_data,
                depvar = 'Q10_gen',
-               cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_une', 'D6_rec', 'D9_rec'
+               cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), 
                cont.indvar =  c('D4_age', 'D10_rec'),
                yhat.name = 'socdem',
                regsum = T)
@@ -200,7 +26,7 @@ df_lst <-
 fit_lst <-
   gensyn.fun(data = stckd_data,
              depvar = 'Q10_gen',
-             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #'D6_une', 'D6_rec', 'D9_rec'
+             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), 
              cont.indvar =  c('D4_age', 'D10_rec'),
              yhat.name = 'socdem',
              regsum = T)

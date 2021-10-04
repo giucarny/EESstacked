@@ -91,14 +91,60 @@ EES2019_be_stack <-
              as_tibble()
          })
 
+names(EES2019_be_stack) <- unlist(el_coll_be)
+
+
+# Synthetic variables estimation # =====================================================================
+
+gensyn.fun_be <- function(x, depvar, regsum) {
+  lst <- gensyn.fun(data = EES2019_be_stack[[x]],
+             depvar = depvar,
+             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #'D6_une', 'D6_rec', 'D9_rec'
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name = 'socdem_synt',
+             regsum = regsum)
+  
+  return(lst)
+}
+
+
+
+# Check the results # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+# fit_lst <- lapply(el_coll_be, depvar = 'Q10_gen', regsum = T, gensyn.fun_be)
+
+# for(i in 1:length(fit_lst)) {lapply(fit_lst[[i]], summary) %>% print}; rm(i)
+# for(i in 1:length(fit_lst)) {lapply(fit_lst[[i]], car::vif) %>% print}; rm(i)
+
+# fit_lst <- lapply(el_coll_be, depvar = 'Q7_gen', regsum = T, gensyn.fun_be)
+
+# for(i in 1:length(fit_lst)) {lapply(fit_lst[[i]], summary) %>% print}; rm(i)
+# for(i in 1:length(fit_lst)) {lapply(fit_lst[[i]], car::vif) %>% print}; rm(i)
+
+
+# If results are fine # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+EES2019_be_stack <- 
+  lapply(el_coll_be,
+         function(x){
+           left_join(EES2019_be_stack[[x]],
+                     gensyn.fun_be(x,depvar='Q10_gen',regsum=F)) %>% 
+             left_join(.,
+                       gensyn.fun_be(x,depvar='Q7_gen',regsum=F))
+         })
+
+names(EES2019_be_stack) <- unlist(el_coll_be)
+  
+
+# Clean the environment # ==============================================================================
+
 
 EES2019_be_stack %<>% 
   do.call('rbind',.) %>% 
   dplyr::select(-c(el_coll_be))
 
-# Clean the environment # ==============================================================================
-
-rm(list=ls(pattern='_be$'))  
+rm(list=ls(pattern='_be$|fit'))  
 
 
 

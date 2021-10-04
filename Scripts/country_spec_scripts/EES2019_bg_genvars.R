@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Bulgarian Sample) 
 # Author: G.Carteny
-# last update: 2021-09-19
+# last update: 2021-10-03
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -74,6 +74,49 @@ EES2019_bg_stack %<>%
 
 # EES2019_bg_stack %>% 
 #   dplyr::select(respid, party, ends_with('gen'))
+
+# Synthetic variables estimation # =====================================================================
+
+# Check the results # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# fit_lst <-
+#   gensyn.fun(data = EES2019_bg_stack,
+#              depvar = 'Q10_gen',
+#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #'D6_une', 'D6_rec', 'D9_rec'
+#              cont.indvar =  c('D4_age', 'D10_rec'),
+#              yhat.name = 'socdem',
+#              regsum = T)
+
+# lapply(fit_lst, summary)
+# lapply(fit_lst, car::vif)
+
+# fit_lst <-
+#   gensyn.fun(data = EES2019_bg_stack,
+#              depvar = 'Q7_gen',
+#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #, 'D6_une' 'D6_rec', 'D9_rec'
+#              cont.indvar =  c('D4_age', 'D10_rec'),
+#              yhat.name = 'socdem',
+#              regsum = T)
+
+# lapply(fit_lst, summary)
+# lapply(fit_lst, car::vif)
+
+
+# If results are fine # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+EES2019_bg_stack %<>%
+  left_join(.,
+            lapply(data = EES2019_bg_stack,
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_rec', 'D9_rec'
+                   cont.indvar =  c('D4_age', 'D10_rec'),
+                   yhat.name = 'socdem_synt',
+                   regsum = F,
+                   X = list('Q10_gen','Q7_gen'),
+                   FUN = gensyn.fun) %>% 
+              do.call('left_join',.),
+            by = c('respid', 'party')) %>% 
+  as_tibble()
+
 
 # Clean the environment # ==============================================================================
 

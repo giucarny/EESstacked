@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Italian Sample) 
 # Author: G.Carteny
-# last update: 2021-09-20
+# last update: 2021-10-03
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -79,12 +79,26 @@ EES2019_it_stack %<>%
 # Check the results # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # fit_lst <-
-#   gensyn.fun(data = EES2019_it_stack,
+#   gensyn.fun(data = EES2019_cy_stack,
 #              depvar = 'Q10_gen',
-#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D6_une'), # 'D6_rec', 'D9_rec'
+#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #'D6_une', 'D6_rec', 'D9_rec'
 #              cont.indvar =  c('D4_age', 'D10_rec'),
 #              yhat.name = 'socdem',
 #              regsum = T)
+
+# lapply(fit_lst, summary)
+# lapply(fit_lst, car::vif)
+# 
+# fit_lst <-
+#   gensyn.fun(data = EES2019_cy_stack,
+#              depvar = 'Q7_gen',
+#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #, 'D6_une' 'D6_rec', 'D9_rec'
+#              cont.indvar =  c('D4_age', 'D10_rec'),
+#              yhat.name = 'socdem',
+#              regsum = T)
+
+# lapply(fit_lst, summary)
+# lapply(fit_lst, car::vif)
 
 
 # If results are fine # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -92,7 +106,7 @@ EES2019_it_stack %<>%
 EES2019_it_stack %<>%
   left_join(.,
         lapply(data = EES2019_it_stack,
-               cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_rec', 'D9_rec'
+               cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), 
                cont.indvar =  c('D4_age', 'D10_rec'),
                yhat.name = 'socdem_synt',
                regsum = F,
