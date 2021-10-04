@@ -50,6 +50,8 @@ null_mod.auxfun <- function(df, regmod) {
   y <- names(df)[2]
   frml <- as.formula(paste0(y, ' ~ ', '1'))
   
+  df %<>% na.omit()
+  
   if (regmod=='OLS') {
     fit <- lm(data = df, formula = frml)
   } else if (regmod=='logit') {
