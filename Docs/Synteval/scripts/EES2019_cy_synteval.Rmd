@@ -185,6 +185,10 @@ nullmod_lst <- list('OLS'   = lapply(X = regdf_lst$OLS,   regmod = 'OLS',   null
 
 ```
 
+# Regression models results {-}
+
+OLS models estimating synthetic variables for 
+
 # Regression tables {-}
 
 ```{r, results='asis', echo=F}

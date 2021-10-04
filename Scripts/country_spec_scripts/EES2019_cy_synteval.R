@@ -101,7 +101,7 @@ EES2019_cy_stack %<>%
 
 
 
-# Syntvars evaluation: Variables and data frames# ======================================================
+# Syntvars evaluation: Functions, variables and data frames # ==========================================
 
 # Source auxiliary functions # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
