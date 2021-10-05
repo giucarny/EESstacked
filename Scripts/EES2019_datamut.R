@@ -151,8 +151,10 @@ EES2019 %<>%
 
 EES2019 %<>% 
   mutate(D1_rec = case_when(as.numeric(D1) <= 3 ~ 1, 
-                            as.numeric(D1) == 4 ~ 0, 
-                            T ~ as.numeric(D1)))
+                            as.numeric(D1) == 4 ~ 0,
+                            as.numeric(D1) >  4 ~ NA_real_)) %>% 
+  mutate(D1_rec = as.factor(D1_rec))
+#                            T ~ as.numeric(D1)))
 
 
 # Mutate subjective social class # =====================================================================
@@ -161,8 +163,11 @@ EES2019 %<>%
   mutate(D7_rec = case_when(as.numeric(D7) <= 2 ~ 0, 
                             as.numeric(D7) == 3 ~ 1,
                             as.numeric(D7) == 4 | as.numeric(D7) == 5 ~ 2,
-                            as.numeric(D7) == 6 | as.numeric(D7) == 7 ~ 97,
-                            T ~ as.numeric(D7)))
+                            as.numeric(D7) >  5 ~ NA_real_)) %>%
+  mutate(D7_rec = as.factor(D7_rec))
+ 
+#                             as.numeric(D7) == 6 | as.numeric(D7) == 7 ~ 97,
+#                             T ~ as.numeric(D7)))
 
 
 

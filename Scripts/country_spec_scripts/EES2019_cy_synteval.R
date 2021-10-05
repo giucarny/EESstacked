@@ -8,7 +8,7 @@
 # Admin # ==============================================================================================
 
 want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr", "rlang", "car",
-         "caret", "DescTools")
+         "caret", "DescTools", "stargazer", "kableExtra")
 have = want %in% rownames(installed.packages())
 if ( any(!have) ) { install.packages( want[!have] ) }
 junk <- lapply(want, library, character.only = TRUE)
@@ -118,7 +118,8 @@ csdf_lst <- list('std'  = EES2019_cy,
 
 syntvars_vrbls <- list('dep'   = list('OLS'     = 'Q10_gen', 
                                       'logit'   = 'Q7_gen'),
-                       'indep' = list('ctgrcl' = c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'),
+                       'indep' = list('ctgrcl' = c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 
+                                                   'D1_rec', 'D7_rec'),
                                       'cntns'  =  c('D4_age', 'D10_rec')))
 
 
@@ -182,7 +183,7 @@ nullmod_lst <- list('OLS'   = lapply(X = regdf_lst$OLS,   regmod = 'OLS',   null
 
 # Syntvars evaluation: OLS models summary # ============================================================
 
-# stargazer::stargazer(fullmod_lst$OLS, type = 'text', 
+# stargazer::stargazer(fullmod_lst$OLS, type = 'text',
 #                      column.labels = as.character(relprty_df$Q7),
 #                      dep.var.labels = 'PTV',
 #                      star.cutoffs = c(0.05, 0.01, 0.001),
@@ -192,7 +193,7 @@ nullmod_lst <- list('OLS'   = lapply(X = regdf_lst$OLS,   regmod = 'OLS',   null
 
 # Syntvars evaluation: logit models summary # ==========================================================
 
-# stargazer::stargazer(fullmod_lst$logit, type = 'text', 
+# stargazer::stargazer(fullmod_lst$logit, type = 'text',
 #                      column.labels = as.character(relprty_df$Q7),
 #                      dep.var.labels = 'Vote choice',
 #                      star.cutoffs = c(0.05, 0.01, 0.001),
@@ -311,7 +312,7 @@ nulllogit_df<-
 
 regdf_lst_part <- 
   regdf_lst$logit %>% 
-  lapply(., function(x){ x %<>% na.omit() %>% dplyr::select(-c(D5_rec, D8_rec, EDU_rec))})
+  lapply(., function(x){ x %<>% na.omit() %>% dplyr::select(-c(D5_rec, D8_rec, EDU_rec, D1_rec, D7_rec))})
 
 partmod_lst <- 
   lapply(regdf_lst_part, function(x){
@@ -327,14 +328,9 @@ partmod_lst <-
 # LR test (Chisq) # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 anova_lst <- 
-  lapply(1:length(fullmod_lst$logit), 
-       function(x) {
-         anova(partmod_lst[[x]], fullmod_lst$logit[[x]], test='Chisq') %>% 
-           as_tibble() %>% 
-           mutate('Depvar' = partmod_lst[[x]]$terms %>% attr(.,'variables') %>% as.character() %>% .[2]) %>% 
-           mutate('Model'  = c('Partial', 'Full')) %>% 
-           dplyr::select(Depvar, Model, `Resid. Df`, `Resid. Dev`, Df, Deviance, `Pr(>Chi)`)
-       })
+  anova.auxfun(mdl_lst1 = partmod_lst,
+               mdl_lst2 = fullmod_lst$logit,
+               table = T)
 
 
 

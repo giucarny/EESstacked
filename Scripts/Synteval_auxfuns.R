@@ -145,3 +145,39 @@ yxcontab.auxfun <- function(df, contab) {
 }
 
 
+
+# Anova tables # =======================================================================================
+
+anova.auxfun <- 
+  function(mdl_lst1, mdl_lst2, table = F) {
+    
+    if(length(mdl_lst1)!=length(mdl_lst2)) {
+      stop("Model lists have different length.")
+    } else {
+      
+      anova_lst <- lapply(1:length(mdl_lst1), 
+                          function(x){
+                            anova(mdl_lst1[[x]], 
+                                  mdl_lst2[[x]], 
+                                  test='Chisq')
+                          })
+      if (table==T) {
+        anova_lst %<>% 
+          lapply(., function(x) {
+            x %<>% 
+              as_tibble %>% 
+              mutate('Model' = c('Partial', 'Full')) %>% 
+              dplyr::select(length(.), 1:(length(.)-1))
+            })
+      }
+      
+      return(anova_lst)
+      }
+  }
+
+
+# %>% 
+#   as_tibble() %>% 
+#   mutate('Depvar' = partmod_lst[[x]]$terms %>% attr(.,'variables') %>% as.character() %>% .[2]) %>% 
+#   mutate('Model'  = c('Partial', 'Full')) %>% 
+#   dplyr::select(Depvar, Model, `Resid. Df`, `Resid. Dev`, Df, Deviance, `Pr(>Chi)`)
