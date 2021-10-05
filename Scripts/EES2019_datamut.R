@@ -143,20 +143,26 @@ EES2019 %<>%
                              EDU_0_rec > 15 &  EDU_0_rec <= 19 ~ 2,
                              EDU_0_rec > 19 ~ 3,
                              T ~ EDU_rec)) %>%
-  dplyr::select(-c(EDU_0_rec))
-
-  
-
+  dplyr::select(-c(EDU_0_rec)) %>% 
+  mutate(EDU = case_when(D2_1==97 ~ 0))
 
 
+# Mutate trade union membership # ======================================================================
+
+EES2019 %<>% 
+  mutate(D1_rec = case_when(as.numeric(D1) <= 3 ~ 1, 
+                            as.numeric(D1) == 4 ~ 0, 
+                            T ~ as.numeric(D1)))
 
 
-# %>% 
-#   mutate(EDU_rec = case_when(EDU_rec==1 | EDU_rec==2 ~ 0,
-#                              EDU_rec==3 ~ 1,
-#                              EDU_rec > 1 ~ NA_real_, 
-#                              T ~ EDU_rec))
+# Mutate subjective social class # =====================================================================
 
+EES2019 %<>%
+  mutate(D7_rec = case_when(as.numeric(D7) <= 2 ~ 0, 
+                            as.numeric(D7) == 3 ~ 1,
+                            as.numeric(D7) == 4 | as.numeric(D7) == 5 ~ 2,
+                            as.numeric(D7) == 6 | as.numeric(D7) == 7 ~ 97,
+                            T ~ as.numeric(D7)))
 
 
 
