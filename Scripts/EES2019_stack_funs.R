@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Auxiliary Functions for the Stacking Procedure
 # Author: G.Carteny
-# last update: 2021-09-20
+# last update: 2021-10-09
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Generic dichotomous variables estimation # ===========================================================
@@ -185,8 +185,7 @@ gendis.fun <-
 
 # Synthetic variables estimation # =====================================================================
 
-
-gensyn.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name) { 
+gensyn.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name, stack_party) { 
   
   if (depvar=='Q7_gen' | depvar=='vote choice' | depvar=='Q7') {
     depvar <- 'Q7_gen'
@@ -200,8 +199,6 @@ gensyn.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name)
     yhat.name <- paste0(yhat.name, '_ptv')
   }
   
-  
-  
   indep_df <- 
     data %>% 
     dplyr::select(respid, all_of(cat.indvar), all_of(cont.indvar)) %>% 
@@ -209,33 +206,42 @@ gensyn.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name)
     mutate(across(all_of(cat.indvar), ~as.factor(.))) %>% 
     mutate(across(all_of(cont.indvar), ~as.numeric(.))) 
   
-  dep_df <- 
-    data %>% 
-    dplyr::select(respid, party, all_of(depvar)) %>% 
-    pivot_wider(id_cols = c('respid'), 
-                names_from = 'party', names_prefix = 'stack_',
-                values_from = all_of(depvar)) 
   
-  if (depvar=='Q7_gen' | depvar=='vote choice' | depvar=='Q7') {
-    dep_df %<>% 
-      mutate(across(starts_with('stack_'), ~as.factor(case_when(.>1 ~ NA_integer_, T~.))))
-  } else if (depvar=='Q10' | depvar=='PTV' | depvar=='Q10_gen') {
-    dep_df %<>% 
-      mutate(across(starts_with('stack_'), ~as.numeric(case_when(.>10 ~ NA_real_, T~.)))) 
+  dep_df <-
+    data %>%
+    dplyr::select(respid, party, all_of(depvar)) %>%
+    pivot_wider(id_cols = c('respid'),
+                names_from = 'party', names_prefix = 'stack_',
+                values_from = all_of(depvar))
+  
+  
+  if (!is_missing(stack_party)) {
+    stackparties <- paste0('stack_', stack_party)
+    dep_df %<>% dplyr::select(respid, all_of(stackparties))
   }
   
-  depvars <- 
+  
+  if (depvar=='Q7_gen' | depvar=='vote choice' | depvar=='Q7') {
+    dep_df %<>%
+      mutate(across(starts_with('stack_'), ~as.factor(case_when(.>1 ~ NA_integer_, T~.))))
+  } else if (depvar=='Q10' | depvar=='PTV' | depvar=='Q10_gen') {
+    dep_df %<>%
+      mutate(across(starts_with('stack_'), ~as.numeric(case_when(.>10 ~ NA_real_, T~.))))
+  }
+  
+  
+  
+  depvars <-
     dep_df %>% dplyr::select(starts_with('stack')) %>% names(.)
   
-  frmla_lst <- 
+  frmla_lst <-
     lapply(depvars, function(y) {
       formula(paste(y, paste(c(cat.indvar, cont.indvar), collapse = " + "), sep = " ~ "))
     })
   
-  
-  df_lst <- 
+  df_lst <-
     lapply(depvars, function(x) {
-      df <- dep_df %>% dplyr::select(respid, all_of(x)) 
+      df <- dep_df %>% dplyr::select(respid, all_of(x))
       df <- left_join(df, indep_df, by='respid')
     })
   
@@ -247,7 +253,8 @@ gensyn.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name)
   rm(i)
   
   
-  fit_lst <- 
+  
+  fit_lst <-
     lapply(reg_lst, function(x) {
       if (depvar=='Q7_gen' | depvar=='vote choice' | depvar=='Q7') {
         fit <- glm(formula = x$frml, data = x$data, family = binomial())
@@ -262,6 +269,8 @@ gensyn.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name)
         return(pred_fit)
       }
     })
+  
+  
   
   if (regsum==F) {
     
@@ -285,6 +294,11 @@ gensyn.fun <- function(data, depvar, cat.indvar, cont.indvar, regsum, yhat.name)
     pred_df <- do.call('rbind',pred_df_lst) %>% .[order(data$respid),]
     
     names(pred_df)[names(pred_df)=='yhat'] <- yhat.name
+    
+    # Convenient line for solving obs repetition and undesired NAs. 
+    # Nonetheless, a more refined solution must be implemented. GC 2021.10.09
+    
+    pred_df %<>% distinct() %>% .[!is.na(.$respid),]  
     
     return(pred_df)
     

@@ -1,0 +1,421 @@
+---
+title: EES2019 Stacking Process 
+subtitle: Synthetic Variables Evaluation (Pt.1)
+author: Giuseppe Carteny
+date: 20.09.2021 
+toc: true
+output: 
+  bookdown::pdf_document2:
+    includes:
+      in_header: First_steps_header.tex
+urlcolor: RedOrange
+--- 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+# Admin # ==============================================================================================
+
+want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr", "rlang", "car",
+         "caret", "DescTools", "stargazer", "kableExtra")
+have = want %in% rownames(installed.packages())
+if ( any(!have) ) { install.packages( want[!have] ) }
+junk <- lapply(want, library, character.only = TRUE)
+options(scipen = 99)
+
+rm(list = ls())
+
+# General workflow # ===================================================================================
+
+# Load the full version of the EES 2019 voter study # - - - - - - - - - - - - - - - - - - - - - - - - -
+
+EES2019 <- read_dta(here('Data', 'EES2019', 'ZA7581_v1-0-0.dta'))
+
+# Mutate the EES 2019 voter study # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+source(here('Scripts', 'EES2019_datamut.R'))
+
+
+# Source the auxiliary data set # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+source(here('Scripts', 'aux_data_scripts', 'EES2019_cdbk_enh.R'))
+
+
+# Harmonize Q25 and Q9 values # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+source(here('Scripts', 'aux_data_scripts', 'EES2019_Q25_rec.R'))
+
+source(here('Scripts', 'aux_data_scripts', 'EES2019_Q9_rec.R'))
+
+
+# Load auxiliary functions # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+source(here('Scripts', 'EES2019_stack_funs.R'))
+
+
+# Stack observations # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+invisible(
+  lapply(paste0(here('Scripts', 'country_spec_scripts'),'/', 
+                here('Scripts', 'country_spec_scripts') %>% list.files(pattern = '_stack')),
+         source)  
+)
+
+EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
+rm(list=ls(pattern='_stack'))
+
+
+# Stack the original EES2019 variables # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+EES2019_stckd %<>% left_join(., EES2019, by=c('countrycode', 'respid'))
+
+
+# Country-spec workflow # ==============================================================================
+
+cntry = 'CY'
+
+EES2019_cy <- EES2019 %>% filter(countryshort==cntry)
+EES2019_stckd_cy <- EES2019_stckd %>% filter(countryshort==cntry)
+EES2019_cdbk_cy <- EES2019_cdbk %>% filter(countryshort==cntry)
+
+rm(cntry)
+
+# Generic dichotomous variables estimation # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+EES2019_cy_stack <- 
+  cbind(EES2019_stckd_cy,  
+        lapply(data = EES2019_stckd_cy, 
+               X = list('Q2', 'Q7', 'Q9_rec', 'Q25_rec'),
+               stack_var = 'party',
+               FUN = gendic.fun) %>% 
+          do.call('cbind',.)) %>% 
+  as_tibble()
+
+# Generic distance/proximity variables estimation # - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+EES2019_cy_stack %<>%
+  cbind(.,
+        lapply(data = EES2019_cy,
+               cdbk = EES2019_cdbk_cy,
+               stack = EES2019_cy_stack, 
+               crit = 'average',
+               rescale = T,
+               check = F,
+               keep_id = F,
+               X = list('Q10','Q11','Q23'),
+               FUN = gendis.fun) %>% 
+          do.call('cbind',.)) %>% 
+  as_tibble()
+
+
+# Syntvars evaluation: Functions, variables and data frames # ==========================================
+
+# Source auxiliary functions # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+source(here('Scripts', 'synteval_scripts', 'Synteval_auxfuns.R'))
+
+# Country-specific data frames # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+csdf_lst <- list('std'  = EES2019_cy,
+                 'cdbk' = EES2019_cdbk_cy,
+                 'SDM'  = EES2019_cy_stack)
+
+
+# Synthetic variables estimation variables # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+syntvars_vrbls <- list('dep'   = list('OLS'     = 'Q10_gen', 
+                                      'logit'   = 'Q7_gen'),
+                       'indep' = list('ctgrcl' = c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 
+                                                   'D1_rec', 'D7_rec'),
+                                      'cntns'  =  c('D4_age', 'D10_rec')))
+
+
+# Synthetic variables estimation data frames # - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+regdf_lst  <- list('OLS'   = regdf.auxfun(data        = csdf_lst$SDM,
+                                          depvar      = syntvars_vrbls$dep$OLS,
+                                          cat.indvar  = syntvars_vrbls$indep$ctgrcl, 
+                                          cont.indvar = syntvars_vrbls$indep$cntns),
+                   'logit' = regdf.auxfun(data        = csdf_lst$SDM,
+                                          depvar      = syntvars_vrbls$dep$logit,
+                                          cat.indvar  = syntvars_vrbls$indep$ctgrcl, 
+                                          cont.indvar = syntvars_vrbls$indep$cntns))
+
+
+# Relevant parties data frame # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+relprty_df <- 
+  tibble('depvar'    = 
+           lapply(1:length(regdf_lst$OLS), function(x){names(regdf_lst$OLS[[x]]) %>% .[2]}) %>% 
+           unlist,
+         'partycode' =
+           lapply(1:length(regdf_lst$OLS), function(x){names(regdf_lst$OLS[[x]]) %>% .[2]}) %>% 
+           unlist %>% 
+           gsub('stack_','',.) %>% 
+           as.numeric)  
+
+relprty_df %<>% 
+  mutate('partyname_eng' = 
+           csdf_lst$cdbk %>% 
+           dplyr::select(partyname_eng, Q7) %>% 
+           filter(Q7 %in% relprty_df[['partycode']]) %>% 
+           .[['partyname_eng']])
+
+
+
+# Syntvars evaluation: Null and full regression models # ===============================================
+
+set.seed(123)
+
+fullmod_lst <- list('OLS'   = gensyn.fun(data        = csdf_lst$SDM,
+                                         depvar      = syntvars_vrbls$dep$OLS,
+                                         cat.indvar  = syntvars_vrbls$indep$ctgrcl, 
+                                         cont.indvar = syntvars_vrbls$indep$cntns,
+                                         yhat.name   = 'socdem_synt',
+                                         regsum      = T),
+                    'logit' = gensyn.fun(data        = csdf_lst$SDM,
+                                         depvar      = syntvars_vrbls$dep$logit,
+                                         cat.indvar  = syntvars_vrbls$indep$ctgrcl, 
+                                         cont.indvar = syntvars_vrbls$indep$cntns,
+                                         yhat.name   = 'socdem_synt',
+                                         regsum      = T))
+
+nullmod_lst <- list('OLS'   = lapply(X = regdf_lst$OLS,   regmod = 'OLS',   null_mod.auxfun),
+                    'logit' = lapply(X = regdf_lst$logit, regmod = 'logit', null_mod.auxfun))
+
+
+# fullmod_lst$OLS %>% lapply(.,summary)
+# fullmod_lst$logit %>% lapply(.,summary)  
+
+```
+
+# Introduction 
+
+Our next tasks consist in the *evaluation* of the synthetic variables estimated during the last weeks 
+and the creation of workarounds for dealing with problematic estimates. 
+
+This task will be based on the existing workflow, but it will require the creation of (1) a new 
+set of scripts for evaluating synthetic variables estimation, (2) eventual changes in the scripts 
+dedicated to said estimations, and (3) a set of R `markdown` scripts summarizing these steps. 
+
+This tutorial addresses points (1) and (2). Point (3) will be the topic of a second tutorial.
+
+
+# Evaluation of synthetic variable estimations and workarounds implementation
+
+Evaluating and summarizing synthetic variables estimation is needed since, differently from other 
+SDM variables, synthetic ones are not created with simple transformations of existing variables but 
+through estimation procedures (regression models) that the reader cannot evaluate without additional 
+information. 
+
+We already evaluated the synthetic variables regression models, but we did it without a common 
+framework. Moreover, we did not address the possible workarounds for dealing with problematic models. 
+
+Consequently, during the last days I have been working for implementing a standardized workflow for both 
+evaluations and workarounds, that is presented below, using as an exemplary case the synthetic variables 
+estimation for the Cypriot EES 2019 voter study (`EES2019_cy_synteval.R`). The new scripts for said 
+tasks are going to be stored in a new subdirectory (`~/Scripts/synteval_scripts/country_spec_scripts/`). 
+
+From a general point o view, both OLS and logistic models are going to be evaluated using essentially 
+two sets of information:
+
+1. Regression tables;
+2. Model fit statistics.
+
+We might be interested in providing additional information, (such as model diagnostics, or statistics 
+concerning the predictions, like RMSE for OLS models and accuracy, specificity, and sensitivity for the 
+logit models) but I would prefer to reporting them without providing tables or figures^[Also because in 
+more than a few models, especially ligistic ones dedicated to small parties, we might not be even able 
+to estimate the confusion matrix in a proper way.]. 
+
+
+## Evaluation procedure 
+
+The workflow for extracting relevant Information about synthetic variables estimation is presented in 
+the exemplary script mentioned a few lines above. First, *in each script*, we run all the steps 
+of the main and country-specific workflows until the estimation of the distance/proximity generic 
+variables (lines 1-99 of the exemplary script). 
+
+Then, in the following section of the script 
+("*Syntvars evaluation: Functions, variables and data frames*"), a set of auxiliary functions are loaded
+, and some auxiliary data frames and vectors are created, in particular: 
+a list^[Essentially all the relevant data for fitting and evaluating the regression models, investigate 
+the source of the eventual issues, are organized using lists for avoiding manual coding errors in the 
+following steps in which said data frames or vectors will be used repeatedly.] containing the 
+country-specific data frames, a list that includes regression models' data frames, another list 
+containing dependent variables and predictors of our regression models, and a data frame summarising the 
+relevant party codes and names.  
+All said datasets and vectors can be used for evaluating the regression models, but only a few of these 
+will be included in the summary documents created with R `markdown` (as explained in the next tutorial).
+
+The following five sections of the script, then, represent the first evaluations of the models. 
+First (in the "*Syntvars evaluation: Null and full regression models*" section) the full regression 
+models (as estimated in the country-specific scripts developed last week) and the null models are 
+estimated.  
+The following two sections ("*Syntvars evaluation: OLS models summary*" and 
+"*Syntvars evaluation: logit models summary*"), then, using the `stargazer` package, allow to print the 
+regression tables (and, as we will see in the following tutorial, to format them in a pdf document 
+created with R `markdown`).  
+Finally, in the next two sections ("*Syntvars evaluation: OLS models fit stats*" and 
+"*Syntvars evaluation: logit models fit stats*") some model fit statistics from both full and null 
+models are estimated and summarised in R data frames.  
+
+If the regression models converge, and the results summarised above do not show any anomalous behaviour,  
+then we can move to the following country-specific script in our list. If not, then we need to identify 
+the source of non-convergence or misfit and deal with them. 
+In the Cypriot case we have at least two logit regression models characterized by coefficients with huge 
+standard errors (see Table \ref{fulllogit_tab}). 
+
+```{r, results='asis', echo=F}
+stargazer::stargazer(title = 'Logit regression models for the 2019 EES Cypriot voter study y-hats',
+                     label = "fulllogit_tab",
+                     fullmod_lst$logit, 
+                     type = 'latex',
+                     column.labels = as.character(relprty_df$Q7),
+                     dep.var.labels = 'Vote choice',
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     header = F,
+                     style = 'ajps')
+```
+
+Model 3 shows a very high standard error on one coefficient (`D7_rec2`). This fact, however, seems to do  
+not affect the remaining ones. In cases like this one, we might keep the regression model as it is. 
+Model 5, on the contrary, shows six problematic coefficients with huge standard errors (`D8_rec1`, 
+`D5_rec1`, `EDU_rec2`, `EDU_rec3`, `D1_rec1`, `D7_rec2`) that in the end affect also the constant term. 
+In this case we must, first, identify the possible sources of misfit and then develop a workaround. 
+
+About the possible sources of misfit, 99.9999% of times, such problems can be identified using 
+cross-tabulations between the dependent variable and the independent variables whose coefficients show 
+very high standard errors in the regression tables. As you can see below, for 
+instance, the huge SE of the `D8_rec` variable coefficient in Model 5 is likely determined by the fact that among the very 
+few respondents (5) who recall to have voted for the party coded 505, namely the 
+*`r relprty_df %>% filter(depvar=='stack_505') %>% .[,3] %>% as.character`*, none of them live in rural 
+areas. As a consequence we have an empty cell that brings havoc on the maximum likelihood estimator. 
+
+```{r, results='asis', echo=F}
+
+df <- regdf_lst$logit[[5]] 
+
+x <- table(df$stack_505, df$D8_rec) %>% as.data.frame()
+names(x)[1:2] <- c('stack_505', 'D8_rec')
+
+kbl(x, caption = 'Cross-tab: Recalled vote for 505 by respondent area of residency', label= 'conttab')
+# 
+# print(as.data.frame.matrix(x))
+
+```
+
+In the exemplary script such cross-tabulations can 
+be easily obtained by picking the data frame of the model under examination (data frames that we 
+obtained in the earlier chunks of our script with the `regdf.auxfun` function) and examining them with 
+the `table` base function^[If you want to obtain all the $y / x_{i}$ of a regression model you might use 
+the `yxconttab.auxfun` function that takes as arguments the data frame of interest and a logical 
+argument in which you can specify whether you want a standard cross tab (set as 'TRUE') or a cross tab 
+in long format (set as 'FALSE').]. 
+
+Once identified the source of misfit, then we can move to the evaluation of the **workarounds**. In the 
+exemplary script I first tried a sharper approach, dropping the problematic variables for Model 5 in 
+*all* the models (section "*Syntvars evaluation: partial logit models*"). Then I evaluated whether the 
+partial models' and the full models' fit are significantly different using a set of likelihood-ratio 
+chi-squared tests (with the `anova` base function). In two cases (Models 3 and 4) the null hypothesis $H_{0}$ 
+(namely, the nested/constrained model fits better than the full/unconstrained one) cannot be rejected. 
+In one case (Model 5, the model of interest) the null hypothesis can be only rejected at $p < 0.1$, in 
+other two cases (Models 2 and 6) the null hypothesis can be rejected at $p < 0.05$, and in one case 
+(Model 1) the null hypothesis can be rejected at $p < 0.001$. 
+
+With such results, dropping all the problematic variables for Model 5 across all the models might be 
+represent a rather disruptive solution. Thus, since for Model 5 we can accept the alternative hypothesis
+$H_{a}$ only at $p < 0.1$, then I decided to drop the problematic variables just for this model and 
+implement this solution in the synthetic variable estimation script. 
+
+Overall, I would prefer that you apply a similar strategy when dealing with problematic models, namely: 
+
+1. Create constrained models for all those showing unusual coefficients/parameters;
+2. Test whether the unconstrained models fit better than the constrained ones at least at $p < 0.05$; 
+3. Drop the problematic variables in the models under investigation;
+4. Modify the synthetic variables estimation accordingly. 
+
+## Modifying the synthetic variables estimation procedure
+
+Once concluded our evaluation then we can implement the workaround in the country-specific script 
+dedicated to the generic variables estimation, that in our case is the one dedicated to the Cypriot 2019 
+EES voter study (`EES2019_cy_genvars.R` in the `~/Scripts/country_spec_scripts/` subdirectory). 
+For applying the workaround chosen above I slightly modified the `gensyn.fun` function that we use for 
+estimating the synthetic variables in order to let it handle estimations dedicated to a limited set of 
+values of our dependent variables (PTV or vote choice). 
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Which Variables
+
+The list of variables that we are going to use for computing our synthetic variables is shown below. 
+Note that the list of predictors is, first, temporary (since more predictors will be included in the 
+following weeks) and, second, refer only to socio-demographic characteristic of the EES2019 voter stud 
+respondents. 
+
+Dependent variables:
+
+* **`Q7_gen`**: A variable measuring whether the respondent voted or not for the stack party;
+* **`Q10_gen`**: Respondent's propensity to vote for the stack party;
+
+Independent variables: 
+
+* **`'D3_rec'`**: Respondent's gender (0 = Male, 1 = Female), recoded from the original `D3` EES2019 
+variable (categorical);
+* **`'D5_rec'`**: Whether the respondent is married/remarried/single living with a partner (1) or 
+single/divorced/separated/widowed (0), recoded from the original `D5` EES2019 variable (categorical);
+* **`'D8_rec'`**: Whether the respondent lives in a rural (0) or urban area (1), recoded from the original `D8` 
+variable (categorical);
+* **`EDU_rec`**: Respondent's years of formal education (1 = 15 years or less, 2 = 16-19 years, 3 = 20+);
+* **`D4_age`**: Respondent's age, recoded from the original `D4_1` (year of birth) EES2019 variable 
+(ordinal treated as continuous);
+* **`D10_rec`**: Respondent's religiosity, recoded from the original `D10` EES2019 variable (ordinal 
+treated as continuous). In particular, the values (min = 0, max = 6) are inverted, so that higher values 
+indicate stronger religiosity and lower values indicate low/none religiosity.
+
+
+
+
+<!-- # Summarizing evaluation and workarounds  -->
+
+<!-- The creation of documents summarizing synthetic variables estimation is needed, first and foremost,  -->
+<!-- because synthetic variables are the only variables of the SDM created with regression models. Hence, we  -->
+<!-- must provide a summary of the estimation process to the prospective SDM users. Second, as already noted,  -->
+<!-- part of said regression models (especially logistic models) return problematic coefficients and some of  -->
+<!-- them do not convergence. Consequently, for transparency and reproducibility sake, we must provide an  -->
+<!-- explanation of how we dealt with said issues.  -->
+
+
+# Who Does What 
+
+Like for the last task, I will take care of Belgium, Bulgaria, Cyprus, and Italy, while you will take 
+care of the following countries: 
+
+- **Willie**: Denmark, Estonia, Germany, Luxembourg, Malta, Netherlands, Spain, United Kingdom;
+- **Julian**: Czech Rep., Finland, Greece, Hungary, Lithuania, Slovakia, Poland, Sweden;
+- **Matthias**: Austria, Croatia, France, Ireland, Latvia, Portugal, Romania, Slovenia.
+
+This time **Willie** will fill the codebook with a set of entries referring to the synthetic variables 
+generated from the routine described in the previous pages.
+
+# The Deadline
+
+I believe that also in this case a few days should be enough to finish the tasks listed above 
+(deadline: **27.09.2021**).
+
+
+
+
+
+
+

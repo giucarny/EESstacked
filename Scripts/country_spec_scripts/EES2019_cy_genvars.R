@@ -112,6 +112,25 @@ EES2019_cy_stack %<>%
 # Warning message:
 # glm.fit: fitted probabilities numerically 0 or 1 occurred 
 
+# prediction for party 505 created w/ a different model
+
+pred_505_cy <- 
+  gensyn.fun(data        = EES2019_cy_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  = c('D3_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '505'
+             )
+
+EES2019_cy_stack <-   
+  left_join(EES2019_cy_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_cy_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=505) %>% 
+              rbind(pred_505_cy),
+            by = c('respid','party'))
 
 
 
