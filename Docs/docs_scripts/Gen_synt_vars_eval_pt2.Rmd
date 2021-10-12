@@ -1,0 +1,28 @@
+---
+title: EES2019 Stacking Process 
+subtitle: Synthetic Variables Evaluation (Pt.1)
+author: Giuseppe Carteny
+date: 20.09.2021 
+toc: true
+output: 
+  bookdown::pdf_document2:
+    includes:
+      in_header: First_steps_header.tex
+urlcolor: RedOrange
+--- 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+
+```
+
+
+<!-- # Summarizing evaluation and workarounds  -->
+  
+  <!-- The creation of documents summarizing synthetic variables estimation is needed, first and foremost,  -->
+  <!-- because synthetic variables are the only variables of the SDM created with regression models. Hence, we  -->
+  <!-- must provide a summary of the estimation process to the prospective SDM users. Second, as already noted,  -->
+  <!-- part of said regression models (especially logistic models) return problematic coefficients and some of  -->
+  <!-- them do not convergence. Consequently, for transparency and reproducibility sake, we must provide an  -->
+  <!-- explanation of how we dealt with said issues.  -->

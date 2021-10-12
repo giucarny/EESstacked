@@ -2,7 +2,7 @@
 title: EES2019 Stacking Process 
 subtitle: Synthetic Variables Evaluation (Pt.1)
 author: Giuseppe Carteny
-date: 20.09.2021 
+date: 12.10.2021 
 toc: true
 output: 
   bookdown::pdf_document2:
@@ -195,7 +195,7 @@ Our next tasks consist in the *evaluation* of the synthetic variables estimated 
 and the creation of workarounds for dealing with problematic estimates. 
 
 This task will be based on the existing workflow, but it will require the creation of (1) a new 
-set of scripts for evaluating synthetic variables estimation, (2) eventual changes in the scripts 
+set of scripts for evaluating synthetic variables estimation, (2) changes in the scripts 
 dedicated to said estimations, and (3) a set of R `markdown` scripts summarizing these steps. 
 
 This tutorial addresses points (1) and (2). Point (3) will be the topic of a second tutorial.
@@ -261,10 +261,14 @@ Finally, in the next two sections ("*Syntvars evaluation: OLS models fit stats*"
 models are estimated and summarised in R data frames.  
 
 If the regression models converge, and the results summarised above do not show any anomalous behaviour,  
-then we can move to the following country-specific script in our list. If not, then we need to identify 
-the source of non-convergence or misfit and deal with them. 
-In the Cypriot case we have at least two logit regression models characterized by coefficients with huge 
-standard errors (see Table \ref{fulllogit_tab}). 
+then we have just to modify the country-specific 'genvars' script including the *new variables* that 
+are listed few pages below ('Which variables' section of this document) and then move to the following 
+country-specific script in our list. 
+
+If (some of) the regression models do show anomalous results/parameters, then we need to identify the 
+source of non-convergence or misfit and deal with them. In the Cypriot case we have at least two logit 
+regression models characterized by coefficients with huge standard errors (see Table 
+\ref{fulllogit_tab}). 
 
 ```{r, results='asis', echo=F}
 stargazer::stargazer(title = 'Logit regression models for the 2019 EES Cypriot voter study y-hats',
@@ -285,10 +289,10 @@ Model 5, on the contrary, shows six problematic coefficients with huge standard 
 In this case we must, first, identify the possible sources of misfit and then develop a workaround. 
 
 About the possible sources of misfit, 99.9999% of times, such problems can be identified using 
-cross-tabulations between the dependent variable and the independent variables whose coefficients show 
+cross-tabulations between the dependent variable and those independent variables whose coefficients show 
 very high standard errors in the regression tables. As you can see below, for 
-instance, the huge SE of the `D8_rec` variable coefficient in Model 5 is likely determined by the fact that among the very 
-few respondents (5) who recall to have voted for the party coded 505, namely the 
+instance, the huge SE of the `D8_rec` variable coefficient in Model 5 is likely determined by the fact 
+that among the few respondents who recall to have voted for the party coded 505, namely the 
 *`r relprty_df %>% filter(depvar=='stack_505') %>% .[,3] %>% as.character`*, none of them live in rural 
 areas. As a consequence we have an empty cell that brings havoc on the maximum likelihood estimator. 
 
@@ -299,19 +303,19 @@ df <- regdf_lst$logit[[5]]
 x <- table(df$stack_505, df$D8_rec) %>% as.data.frame()
 names(x)[1:2] <- c('stack_505', 'D8_rec')
 
-kbl(x, caption = 'Cross-tab: Recalled vote for 505 by respondent area of residency', label= 'conttab')
+kbl(x, caption = "Long format cross-tabulation: Recalled vote for party 505 by respondents' area of 
+    residency", label= 'conttab')
 # 
 # print(as.data.frame.matrix(x))
 
 ```
 
-In the exemplary script such cross-tabulations can 
-be easily obtained by picking the data frame of the model under examination (data frames that we 
-obtained in the earlier chunks of our script with the `regdf.auxfun` function) and examining them with 
-the `table` base function^[If you want to obtain all the $y / x_{i}$ of a regression model you might use 
-the `yxconttab.auxfun` function that takes as arguments the data frame of interest and a logical 
-argument in which you can specify whether you want a standard cross tab (set as 'TRUE') or a cross tab 
-in long format (set as 'FALSE').]. 
+In the exemplary script such cross-tabulations can be easily obtained by picking the data frame of the 
+model under examination (data frames that we obtained in the earlier chunks of our script with the 
+`regdf.auxfun` function) and examining them with the `table` base function^[If you want to obtain all 
+the $y / x_{i}$ of a regression model you might use the `yxconttab.auxfun` function that takes as 
+arguments the data frame of interest and a logical argument in which you can specify whether you want a 
+standard cross tab (set as 'TRUE') or a cross tab in long format (set as 'FALSE').]. 
 
 Once identified the source of misfit, then we can move to the evaluation of the **workarounds**. In the 
 exemplary script I first tried a sharper approach, dropping the problematic variables for Model 5 in 
@@ -332,7 +336,6 @@ Overall, I would prefer that you apply a similar strategy when dealing with prob
 
 1. Create constrained models for all those showing unusual coefficients/parameters;
 2. Test whether the unconstrained models fit better than the constrained ones at least at $p < 0.05$; 
-
 
 If the full/unconstrained models do not fit better than the partial/constrained ones then we can modify 
 the synthetic variables estimation dropping the problematic variables. 
@@ -355,7 +358,7 @@ environment.
 
 At this point you should have a code that looks more or less like the following one: 
 
-```{r, eval=T, echo=T}
+```{r, eval=T, echo=T, warning=F, results='hide'}
 
 EES2019_cy_stack %<>%
   left_join(.,
@@ -382,33 +385,43 @@ pred_505_cy <-
              cont.indvar =  c('D4_age', 'D10_rec'),
              yhat.name   = 'socdem_synt',
              regsum      = F,
-             stack_party = '505'
+             stack_party = c('505')
              )
 ```
 
-As you can see now the `gensyn.fun` function has an additional argument, `stack_party`, in which you can 
-insert the party codes (as a *character* vector)
+As you can see now the `gensyn.fun` function has an additional argument (by default set as missing), 
+`stack_party`, in which you can insert the specific party codes (as a *character* vector) for which you 
+want to estimate the y-hats with a constrained model. 
+
+After you can then filter the previously estimated y-hats and bind the newly estimated ones with the 
+SDM, as shown below:
 
 
+```{r, eval=T, echo=T}
 
-
-
-
+EES2019_cy_stack <-   
+  left_join(EES2019_cy_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_cy_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=505) %>% 
+              rbind(pred_505_cy),
+            by = c('respid','party'))
+```
 
 
 ## Which Variables
 
 The list of variables that we are going to use for computing our synthetic variables is shown below. 
-Note that the list of predictors is, first, temporary (since more predictors will be included in the 
-following weeks) and, second, refer only to socio-demographic characteristic of the EES2019 voter stud 
-respondents. 
 
-Dependent variables:
+**Note** that the list of predictors is changed, thus we must insert additional variables (`D1_rec`, and 
+`D7_rec`) in the regression models for estimating our y-hats. 
+
+Dependent variables already included in previous models:
 
 * **`Q7_gen`**: A variable measuring whether the respondent voted or not for the stack party;
 * **`Q10_gen`**: Respondent's propensity to vote for the stack party;
 
-Independent variables: 
+Independent variables already included in previous models: 
 
 * **`'D3_rec'`**: Respondent's gender (0 = Male, 1 = Female), recoded from the original `D3` EES2019 
 variable (categorical);
@@ -423,35 +436,31 @@ variable (categorical);
 treated as continuous). In particular, the values (min = 0, max = 6) are inverted, so that higher values 
 indicate stronger religiosity and lower values indicate low/none religiosity.
 
+Independent variables **not included** in previous models: 
 
+* **`'D1_rec'`**: Trade union membership (0 = not a member, 1 = member), recoded from the original `D1` 
+EES2019 variable (categorical);
+* **`'D7_rec'`**: Subjective social class (0 = working class or lower middle, 1 = middle class, 
+2 = upper middle or higher class), recoded from the original `D7` EES2019 variable (categorical).
 
-
-<!-- # Summarizing evaluation and workarounds  -->
-
-<!-- The creation of documents summarizing synthetic variables estimation is needed, first and foremost,  -->
-<!-- because synthetic variables are the only variables of the SDM created with regression models. Hence, we  -->
-<!-- must provide a summary of the estimation process to the prospective SDM users. Second, as already noted,  -->
-<!-- part of said regression models (especially logistic models) return problematic coefficients and some of  -->
-<!-- them do not convergence. Consequently, for transparency and reproducibility sake, we must provide an  -->
-<!-- explanation of how we dealt with said issues.  -->
 
 
 # Who Does What 
 
-Like for the last task, I will take care of Belgium, Bulgaria, Cyprus, and Italy, while you will take 
-care of the following countries: 
+The list of countries on which we will work is not changed. I will take care of Belgium, Bulgaria, 
+Cyprus, and Italy, while you will take care of the following countries: 
 
 - **Willie**: Denmark, Estonia, Germany, Luxembourg, Malta, Netherlands, Spain, United Kingdom;
 - **Julian**: Czech Rep., Finland, Greece, Hungary, Lithuania, Slovakia, Poland, Sweden;
 - **Matthias**: Austria, Croatia, France, Ireland, Latvia, Portugal, Romania, Slovenia.
 
-This time **Willie** will fill the codebook with a set of entries referring to the synthetic variables 
-generated from the routine described in the previous pages.
+From now on I will take care of the codebook. Thanks all of you for your contribution!
 
 # The Deadline
 
-I believe that also in this case a few days should be enough to finish the tasks listed above 
-(deadline: **27.09.2021**).
+The work is not particularly heavy but requires patience and precision. Moreover, I know that this 
+period you are busy with your courses, so I believe that we will need a bit more than one week of work. 
+So the next deadline is **22.10.2021**.
 
 
 
