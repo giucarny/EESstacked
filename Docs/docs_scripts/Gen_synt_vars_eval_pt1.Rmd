@@ -332,22 +332,62 @@ Overall, I would prefer that you apply a similar strategy when dealing with prob
 
 1. Create constrained models for all those showing unusual coefficients/parameters;
 2. Test whether the unconstrained models fit better than the constrained ones at least at $p < 0.05$; 
-3. Drop the problematic variables in the models under investigation;
-4. Modify the synthetic variables estimation accordingly. 
+
+
+If the full/unconstrained models do not fit better than the partial/constrained ones then we can modify 
+the synthetic variables estimation dropping the problematic variables. 
+
 
 ## Modifying the synthetic variables estimation procedure
 
 Once concluded our evaluation then we can implement the workaround in the country-specific script 
 dedicated to the generic variables estimation, that in our case is the one dedicated to the Cypriot 2019 
 EES voter study (`EES2019_cy_genvars.R` in the `~/Scripts/country_spec_scripts/` subdirectory). 
-For applying the workaround chosen above I slightly modified the `gensyn.fun` function that we use for 
-estimating the synthetic variables in order to let it handle estimations dedicated to a limited set of 
-values of our dependent variables (PTV or vote choice). 
+For applying the workaround chosen above I slightly modified the `gensyn.fun` function that we already 
+used for estimating the synthetic variables last weeks. Now the function handles estimations dedicated 
+to a limited set of values of our dependent variables (PTV or vote choice). 
 
+For modifying our country-specific script:
 
+1. We run the main script (`EES2019_stack.R`) until line 62;
+2. We run the country-specific script until until the second last section, that is w/o cleaning the 
+environment. 
 
+At this point you should have a code that looks more or less like the following one: 
 
+```{r, eval=T, echo=T}
 
+EES2019_cy_stack %<>%
+  left_join(.,
+            lapply(data = EES2019_cy_stack,
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), 
+                   cont.indvar =  c('D4_age', 'D10_rec'),
+                   yhat.name = 'socdem_synt',
+                   regsum = F,
+                   X = list('Q10_gen','Q7_gen'),
+                   FUN = gensyn.fun) %>% 
+              do.call('left_join',.),
+            by = c('respid', 'party')) %>% 
+  as_tibble()
+
+```
+
+At this point then you can insert an additional subsection like the following: 
+
+```{r, eval=T, echo=T}
+pred_505_cy <- 
+  gensyn.fun(data        = EES2019_cy_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  = c('D3_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '505'
+             )
+```
+
+As you can see now the `gensyn.fun` function has an additional argument, `stack_party`, in which you can 
+insert the party codes (as a *character* vector)
 
 
 
