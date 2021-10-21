@@ -305,16 +305,20 @@ nulllogit_df<-
                 Ps_Rsq, Adj_Ps_Rsq, AIC)
 
 # Summary of Evaluation Results ---------------------------------------------------------
+# ols_df
+# fulllogit_df
+# nulllogit_df
 
 # No issues with OLS estimation discovered
 
 # Logit estimation Problems:
 # Models 1, 3, 4, 5, 6, 7, 8: no problem
-# Model 2: large SEs for EDU_rec2, EDU_rec3, and D7_rec2
+# Model 2: large SEs for EDU_rec2, EDU_rec3, and D7_rec2 + constant term is affected
 # from fulllogit_df and nulllogit_df
-# stack_603, stack_604: fullmodel is worse in AIC & R2 than nullmodel!
+# stack_603, stack_604: full model is worse in AIC & R2 than nullmodel!
 # stack_607 and stack_608: full and null models perform roughly the same in R2 and AIC
 
+# model 2 = stack_603
 
 # Identifying Logit Misfit Source ----------------------------------------
 
@@ -411,7 +415,8 @@ logit_df <-
   rbind(., nulllogit_df)
 
 # filter(logit_df, model == "full" | model == "partial")
-# full models have slightly better AIC fit.
+# full models have slightly better AIC fit. Also for stack_603 but full model does only fit slightly better.
+# removing the  problematic variables should thus be appropriate.
 
 
 # Conclusion --------------------------------------------------------------

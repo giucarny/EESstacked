@@ -322,7 +322,7 @@ nulllogit_df<-
 # model 9: problems with EDU_rec and D1_rec
 # comparing Adj_PS_Rsq and AIC for full and null model reveals, that full models do not seem to 
 # fit significantly better
-# need to determine sourceo of misfit for model 9, i.e. stack_2507
+# need to determine source of misfit for model 9, i.e. stack_2507
 
 # Identifying Logit Misfit Source ----------------------------------------
 
@@ -425,8 +425,7 @@ logit_df <-
 
 # Conclusion --------------------------------------------------------------
 
-# Removing D1_rec and EDU_rec from all models removes problematic parameter estimates + seems to improve
-# overall model fit for most if not all models
+# Remove D1_rec and EDU_rec from model 9, i.e. stack_party 2507
 
 # Clean the environment # ==============================================================================
 

@@ -314,7 +314,7 @@ nulllogit_df<-
 # No issues with OLS estimation discovered
 
 # Logit
-# model 3,6, 7: SE problems in the constant + very large estiamte for constant
+# model 3,6, 7: SE problems in the constant + very large estimate for constant
 # model 6: also problem with D7
 # Problematic Variables: EDU_rec and D7_rec
 # otherwise, no issues.
@@ -348,7 +348,7 @@ df <- regdf_lst$logit[[7]]
 table(df$stack_1702, df$D7_rec) # no empty cell
 
 # Conclusion: estimate partial logits omitting D7_rec and EDU_rec, then maybe check if D7_rec
-# can be inculded again.
+# can be included again.
 
 
 # Estimate Partial Logit Model --------------------------------------------
@@ -398,7 +398,7 @@ anova_lst <-
 #                      header = F,
 #                      style = 'ajps')
 
-# constant for model 6 is still quite large but otherwise no unusual estimates.
+
 
 # Partial models fit summary # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -484,9 +484,9 @@ anova_lst <-
 #                      header = F,
 #                      style = 'ajps')
 
-# only D7_rec2 for model 6 has very large SEs and parameter estimates
-# the SE for the constant is also rather large but not extremely so
-# overall just removing EDU_rec seems to be a prudent option to remove most of the issues.
+# Only D7_rec2 for model 6 has very large SEs and parameter estimates
+# Overall just removing EDU_rec seems to remove most of the issue,
+# but removing D7_rec as well might be more prudent
 
 # Adjusted Partial models fit summary # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -522,13 +522,14 @@ logit_df <-
   rbind(., partlogit_df) %>% 
   rbind(., nulllogit_df)
 
-# filter(logit_df, model == "full" | model == "partial")
+filter(logit_df, model == "full" | model == "partial")
 # again no large differences in terms of fit between full and partial models
 
 
 # Conclusion --------------------------------------------------------------
 
-#  removing EDU_rec alone for all models might be most prudent
+# Remove EDU_rec for models 3, & 7, i.e. stack parties: 1706, 1702 
+# Remove EDU_rec and D7_rec for model 6, i.e. party 1707 in the logit regressions.
 
 # Clean the environment # ==============================================================================
 

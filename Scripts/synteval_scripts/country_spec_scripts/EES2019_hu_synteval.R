@@ -198,7 +198,7 @@ nullmod_lst <- list('OLS'   = lapply(X = regdf_lst$OLS,   regmod = 'OLS',   null
 #                      omit.stat=c("f", "ser"),
 #                      header = F,
 #                      style = 'ajps')
-# Model 4, 6: D7, especially in model 4 it causes other parameter estimates and SEs to be large
+# Model 4, 6: D7, especially in model 4 
 # all other models are fine
 
 # Syntvars evaluation: OLS models fit stats # ==========================================================
@@ -315,7 +315,7 @@ nulllogit_df<-
 # though: differences in sample sizes are not too large
 
 # Logit
-# D7_rec again causes problems for models 4 and 6( i.e. stack_1304 and stack_1307 paries)
+# D7_rec again causes problems for models 4 and 6( i.e. stack_1304 and stack_1307 parties)
 # no problems in the other models
 # fulllogit has slightly worse model fit for models 2 and 3 than nulllogit based on
 # AIC and R2, but this difference is not substantial
@@ -413,13 +413,14 @@ logit_df <-
   rbind(., partlogit_df) %>% 
   rbind(., nulllogit_df)
 
-# filter(logit_df, model == "full" | model == "partial")
+filter(logit_df, model == "full" | model == "partial")
 # full models have slightly better AIC fit.
 # still some models with neg. Adj_Ps_Rsq remain
 # removal of D7 has not made any model significantly worse, improved some others and
 # gets rid of extremely high SEs.
 
-# Conclusion: Remove D7 from all logit models
+# Conclusion --------------------------------------------------------
+# Remove D7 for logit models 4 and 6, i.e. stack_1304 and stack_1307
 
 # Clean the environment # ==============================================================================
 

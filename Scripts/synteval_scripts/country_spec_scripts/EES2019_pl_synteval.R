@@ -324,8 +324,8 @@ nulllogit_df<-
 
 # Logit
 # problems in model 4: unusual estimates/SEs for EDU_red and D7 and constant
-# also: when loocking at fit statistics: only model 4 (stack_2105) has lower fit in the full than in
-# the null model. FOr all others the full model fits better than the null model.
+# also: when looking at fit statistics: only model 4 (stack_2105) has lower fit in the full than in
+# the null model. For all others the full model fits better than the null model.
 # look at model 4 in more detail
 
 # Identifying Logit Misfit Source ----------------------------------------
@@ -423,7 +423,7 @@ logit_df <-
 
 # filter(logit_df, model == "full" | model == "partial")
 # overall fit between partial and full model is rather similar, many partial models actually fit better
-# as indicated by te test results except model 5 & 4 (but in 4 the partial model does not exhibit the 
+# as indicated by the test results except model 5 & 4 (but in 4 the partial model does not exhibit the 
 # parameter misfit problem).
 
 # Conclusion --------------------------------------------------------------
