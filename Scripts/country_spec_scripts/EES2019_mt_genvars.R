@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Malta Sample) 
 # Author: W. Haeussling
-# last update: 2021-09-19
+# last update: 2021-10-21
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Subset the EES original data frame, the SDM, and the EES codebook # ==================================
@@ -126,7 +126,7 @@ EES2019_mt_stack %<>%
 EES2019_mt_stack %<>%
   left_join(.,
             lapply(data = EES2019_mt_stack,
-                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), 
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec'), 
                    cont.indvar =  c('D4_age', 'D10_rec'),
                    yhat.name = 'socdem_synt',
                    regsum = F,
@@ -135,6 +135,44 @@ EES2019_mt_stack %<>%
               do.call('left_join',.),
             by = c('respid', 'party')) %>% 
   as_tibble()
+
+# prediction for party 1903 and 1904 created w/ a different model
+
+pred_1903_mt <- 
+  gensyn.fun(data        = EES2019_mt_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  = c('D3_rec', 'D5_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '1903'
+  )
+
+EES2019_mt_stack <-   
+  left_join(EES2019_mt_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_mt_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=1903) %>% 
+              rbind(pred_1903_mt),
+            by = c('respid','party'))
+
+pred_1904_mt <- 
+  gensyn.fun(data        = EES2019_mt_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  = c('D3_rec', 'D5_rec', 'EDU_rec', 'D1_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '1904'
+  )
+
+EES2019_mt_stack <-   
+  left_join(EES2019_mt_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_mt_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=1904) %>% 
+              rbind(pred_1904_mt),
+            by = c('respid','party'))
 
 # Clean the environment # ==============================================================================
 
