@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Slovenian Sample) 
 # Author: M.Koernig
-# last update: 2021-09-24
+# last update: 2021-10-21
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -105,6 +105,36 @@ EES2019_si_stack %<>%
               do.call('left_join',.),
             by = c('respid', 'party')) %>% 
   as_tibble()
+
+
+# prediction for party 2405, 2408 created w/ a different model
+
+pred_2405_2408_si <- 
+  gensyn.fun(data        = EES2019_si_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  = c('D3_rec', 'D8_rec', 'D5_rec', 'D1_rec', 'D7_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = c('2405', '2408')
+  )
+
+EES2019_si_stack <-   
+  left_join(EES2019_si_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_si_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=c(2405, 2408)) %>% 
+              rbind(pred_2405_2408_si),
+            by = c('respid','party'))
+
+# Note to party 2405
+# Next to EDU_rec another disruptive element in party 2405 with high std. error is: D7_rec
+# However, a Chi-Squared test between the full/unconstrained one and partial/constrained, excluding both 
+# EDU_rec and D7_rec, rejects the H0, that the constrained model fits better at p<001.
+# When just excluding EDU_rec, H0 can only be rejected at p<0.1. 
+# Resulting in the choice to just exclude EDU_rec to get rid of at least a part of the disruptive elements
+
+
 
 # Clean the environment # ==============================================================================
 

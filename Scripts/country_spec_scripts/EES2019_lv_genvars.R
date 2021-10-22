@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Latvian Sample) 
 # Author: M.Koernig
-# last update: 2021-09-24
+# last update: 2021-10-21
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Subset the EES original data frame, the SDM, and the EES codebook # ==================================
@@ -105,8 +105,36 @@ EES2019_lv_stack %<>%
             by = c('respid', 'party')) %>% 
   as_tibble()
 
-# Warning message:
-# glm.fit: fitted probabilities numerically 0 or 1 occurred 
+
+# prediction for party 1611, 1610, 1604, 1616 created w/ a different model
+
+pred_1611_1610_1604_1616_lv <- 
+  gensyn.fun(data        = EES2019_lv_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  = c('D3_rec', 'D8_rec', 'D5_rec', 'D1_rec', 'D7_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = c('1611', '1610', '1604', '1616')
+  )
+
+EES2019_lv_stack <-   
+  left_join(EES2019_lv_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_lv_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=c(1611, 1610, 1604, 1616)) %>% 
+              rbind(pred_1611_1610_1604_1616_lv),
+            by = c('respid','party'))
+
+
+# prediction for party 1605 created w/ a different model
+
+# Found disruptive elements in Model7, party 1605, with high std. errors in variables: EDU_rec, D5_rec
+# Excluding those two variables in a partial model got rid of the above probelem. However, a Chi-Squared 
+# test between the full/unconstrained one and partial/constrained one rejected the H0, that the constrained 
+# model fits better at p<0001.
+# Resulting in the choice to keep the full/unconstrained model7 with high std. errors
+
 
 # Clean the environment # ==============================================================================
 

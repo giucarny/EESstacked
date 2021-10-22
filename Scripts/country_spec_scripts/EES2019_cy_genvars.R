@@ -63,7 +63,7 @@ EES2019_cy_stack %<>%
   as_tibble()
 
 
-# EES2019_at_stack %>% 
+# EES2019_cy_stack %>% 
 #   dplyr::select(respid, party, ends_with('gen'))
 
 
@@ -109,8 +109,6 @@ EES2019_cy_stack %<>%
             by = c('respid', 'party')) %>% 
   as_tibble()
 
-# Warning message:
-# glm.fit: fitted probabilities numerically 0 or 1 occurred 
 
 # prediction for party 505 created w/ a different model
 
