@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Greece Sample)
 # Author: J.Leiser
-# last update: 2021-09-27
+# last update: 2021-10-22
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Subset the EES original data frame, the SDM, and the EES codebook # ==================================
@@ -140,7 +140,7 @@ EES2019_el_stack %<>%
 EES2019_el_stack %<>%
   left_join(.,
             lapply(data = EES2019_el_stack,
-                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_rec', 'D9_rec'
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec'),
                    cont.indvar =  c('D4_age', 'D10_rec'),
                    yhat.name = 'socdem_synt',
                    regsum = F,
@@ -153,7 +153,37 @@ EES2019_el_stack %<>%
 # Warning message:
 # glm.fit: fitted probabilities numerically 0 or 1 occurred 
 
+# prediction for parties 1203 and 1204 with different models
 
+# 1203
+pred_1203_el <- 
+  gensyn.fun(data        = EES2019_el_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'D7_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '1203'
+  )
+
+# 1204
+pred_1204_el <- 
+  gensyn.fun(data        = EES2019_el_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '1204'
+  )
+
+EES2019_el_stack <-   
+  left_join(EES2019_el_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_el_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=1203, party!=1204) %>% 
+              rbind(pred_1203_el, pred_1204_el),
+            by = c('respid','party'))
 # Clean the environment # ==============================================================================
 
 rm(list=ls(pattern='_el$'))

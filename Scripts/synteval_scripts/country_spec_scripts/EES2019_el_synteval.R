@@ -200,7 +200,7 @@ nullmod_lst <- list('OLS'   = lapply(X = regdf_lst$OLS,   regmod = 'OLS',   null
 # Models 1, 2, 5: no issues
 # Model 3: parameter estimates of EDU_rec2, EDU_rec3. D1_rec1 and constant
 # unusually high
-# Model 4: Estimates + SE of D7_rec2  unusually high, estimate of constant very high.
+# Model 4: Estimates + SE of D7_rec2  unusually high, estimate of constant relatively high.
 
 
 # Syntvars evaluation: OLS models fit stats # ==========================================================
@@ -319,7 +319,7 @@ nulllogit_df<-
 # Models 1, 2, 5: no issues
 # Model 3: parameter estimates of EDU_rec2, EDU_rec3. D1_rec1 and constant
 # unusually high
-# Model 4: Estimates + SE of D7_rec2  unusually high, estimate of constant very high.
+# Model 4: Estimates + SE of D7_rec2  unusually high, estimate of constant relatively high.
 # not all full logit models fit better than the null models
 
 
@@ -345,7 +345,7 @@ table(df$stack_1204, df$D7_rec) #empty cell
 # 1st estimate models without EDU_rec and D1_rec to see if this fixes the issue in model 3
 # 2nd estimate models without D7_rec to see if thsi fixes the issue in model 4
 
-# 1st estimate Partial Logit Model for model 3 --------------------------------------------
+# 1. estimate Partial Logit Model for model 3 --------------------------------------------
 # remove EDU_rec and D1_rec
 regdf_lst_part <- 
   regdf_lst$logit %>% 
@@ -428,14 +428,14 @@ logit_df <-
 # for model 3: full model does indeed fit better than partial model
 
 
-# Conclusion --------------------------------------------------------------
+# Conclusion for model 3 --------------------------------------------------------------
 
 #stack_1203 poses some unusual problem as the model with the problematic variables fits better than the
 # one without them.
 
 # maybe just removing EDU_rec suffices to solve the problem and increase fit.
 
-# 1st estimate Adjusted Partial Logit Model for model 3 --------------------------------------------
+# 1.1 estimate Adjusted Partial Logit Model for model 3 --------------------------------------------
 # remove EDU_rec
 regdf_lst_part <- 
   regdf_lst$logit %>% 
@@ -523,7 +523,8 @@ logit_df <-
 # but D1_rec still shows very large SEs, removing it might still be prudent
 # the significant test result seen previously could be type-I error
 
-# 2st estimate Partial Logit Model for model 4 --------------------------------------------
+
+# 2. estimate Partial Logit Model for model 4 --------------------------------------------
 # remove D7_rec
 regdf_lst_part <- 
   regdf_lst$logit %>% 
@@ -567,10 +568,52 @@ anova_lst <-
 # no unusual parameter estimates, but tests indicate that the full model fits better than the constraint one 
 # for stack_1204
 
-# could the source of misfit be something else than the empty cells for the problematic variables?
+# Partial models fit summary # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-# Investigating problematic models ----------------------------------------
+partlogit_df <-  
+  tibble(
+    'depvar'     = lapply(1:length(partmod_lst), 
+                          function(x){
+                            names(regdf_lst_part[[x]]) %>% .[2]
+                          }) %>% unlist,
+    'model'      = rep('partial',length(regdf_lst_part)),
+    'Ps_Rsq'     = lapply(1:length(partmod_lst),
+                          function(x){
+                            DescTools::PseudoR2(partmod_lst[[x]], which = 'McFadden')
+                          }) %>% unlist,
+    'Adj_Ps_Rsq' = lapply(1:length(partmod_lst),
+                          function(x){
+                            DescTools::PseudoR2(partmod_lst[[x]], which = 'McFaddenAdj')
+                          }) %>% unlist,
+    'AIC'        = lapply(1:length(partmod_lst),
+                          function(x) {
+                            partmod_lst[[x]] %>% AIC
+                          }) %>% unlist
+  ) %>% 
+  left_join(., relprty_df, by='depvar') %>% 
+  dplyr::select(depvar, partycode, partyname_eng, model,
+                Ps_Rsq, Adj_Ps_Rsq, AIC)
 
 
+# Syntvars evaluation: New logit models fit stats # ====================================================
 
+logit_df <-  
+  fulllogit_df %>% 
+  rbind(., partlogit_df) %>% 
+  rbind(., nulllogit_df)
+
+
+# filter(logit_df, model == "full" | model == "partial")
+# for model 4: full model does fit better than partial model.
+# but removing the problematic variable might be prudent.
+
+
+# Overall Conclusion ------------------------------------------------------
+
+# Model 3, i.e. stack_1203: remove EDU_rec and D1_rec to be prudent
+# Model 4, i.e. stack_1204: remove D7_rec
+
+# Clean the environment # ==============================================================================
+
+rm(list=ls(pattern='auxfun|regdf|partlogit|fulllogit|nulllogit'))
