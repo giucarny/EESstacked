@@ -24,6 +24,8 @@ EES2019 <-
 EES2019 %<>% 
   mutate(countryshort = region_NUTS1 %>% str_extract(pattern = '^.{0,2}')) %>% 
   mutate(countryshort = case_when(countrycode==1250 ~ 'FR',
+                                  countrycode==1428 ~ 'LV',
+                                  countrycode==1442 ~ 'LU',
                                   countrycode==1470 ~ 'MT',
                                   T ~ countryshort))
 
