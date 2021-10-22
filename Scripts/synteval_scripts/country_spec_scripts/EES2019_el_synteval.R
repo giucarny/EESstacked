@@ -611,7 +611,9 @@ logit_df <-
 
 # Overall Conclusion ------------------------------------------------------
 
-# Model 3, i.e. stack_1203: remove EDU_rec and D1_rec to be prudent
+# We remove the problematic variables in the affected models to be prudent,
+# overruling contradictory signals from the LR tests.
+# Model 3, i.e. stack_1203: remove EDU_rec and D1_rec.
 # Model 4, i.e. stack_1204: remove D7_rec
 
 # Clean the environment # ==============================================================================
