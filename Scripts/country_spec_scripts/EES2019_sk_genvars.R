@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Slovakia Sample) 
 # Author: J.Leiser
-# last update: 2021-09-27
+# last update: 2021-10-21
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Subset the EES original data frame, the SDM, and the EES codebook # ==================================
@@ -99,7 +99,7 @@ EES2019_sk_stack %<>%
 EES2019_sk_stack %<>%
   left_join(.,
             lapply(data = EES2019_sk_stack,
-                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'),
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec'),
                    cont.indvar =  c('D4_age', 'D10_rec'),
                    yhat.name = 'socdem_synt',
                    regsum = F,
@@ -108,6 +108,29 @@ EES2019_sk_stack %<>%
               do.call('left_join',.),
             by = c('respid', 'party')) %>% 
   as_tibble()
+
+# Warning message:
+#   glm.fit: fitted probabilities numerically 0 or 1 occurred 
+
+# prediction for party 2507 with different model
+
+pred_2507_sk <- 
+  gensyn.fun(data        = EES2019_sk_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'D7_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '2507'
+  )
+
+EES2019_sk_stack <-   
+  left_join(EES2019_sk_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_sk_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=2507) %>% 
+              rbind(pred_2507_sk),
+            by = c('respid','party'))
 
 # Clean the environment # ==============================================================================
 
