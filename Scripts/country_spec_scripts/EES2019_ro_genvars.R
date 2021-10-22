@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Romanian Sample) 
 # Author: M.Koernig
-# last update: 2021-09-24
+# last update: 2021-10-21
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -112,6 +112,27 @@ EES2019_ro_stack %<>%
               do.call('left_join',.),
             by = c('respid', 'party')) %>% 
   as_tibble()
+
+
+# prediction for party 2307 created w/ a different model
+
+pred_2307_ro <- 
+  gensyn.fun(data        = EES2019_ro_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  = c('D3_rec', 'D8_rec', 'D5_rec', 'D1_rec', 'D7_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '2307'
+  )
+
+EES2019_ro_stack <-   
+  left_join(EES2019_ro_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_ro_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=2307) %>% 
+              rbind(pred_2307_ro),
+            by = c('respid','party'))
 
 
 # Clean the environment # ==============================================================================

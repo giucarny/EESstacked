@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Austrian Sample) 
 # Author: M.Koernig
-# last update: 2021-09-24
+# last update: 2021-10-21
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -106,6 +106,15 @@ EES2019_at_stack %<>%
               do.call('left_join',.),
             by = c('respid', 'party')) %>% 
   as_tibble()
+
+
+# prediction for party 105 created w/ a different model
+
+# Found disruptive elements for party 105, with high std. errors in variables: D8_rec, D1_rec
+# Excluding those two variables in a partial model got rid of the above probelem. However, a Chi-Squared 
+# test between the full/unconstrained one and partial/constrained one rejected the H0, that the constrained 
+# model fits better at p<0.
+# Resulting in the choice to keep the full/unconstrained model6 with high std. errors
 
 
 # Clean the environment # ==============================================================================

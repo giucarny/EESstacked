@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Croatian Sample) 
 # Author: M.Koernig
-# last update: 2021-09-28
+# last update: 2021-10-21
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -115,9 +115,50 @@ EES2019_hr_stack %<>%
               do.call('left_join',.),
             by = c('respid', 'party')) %>% 
   as_tibble()
-
 # Warning message:
 # glm.fit: fitted probabilities numerically 0 or 1 occurred 
+
+
+# prediction for party 413 created w/ a different model
+
+pred_413_hr <- 
+  gensyn.fun(data        = EES2019_hr_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  = c('D3_rec', 'D8_rec', 'D5_rec', 'D1_rec', 'D7_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '413'
+  )
+
+EES2019_hr_stack <-   
+  left_join(EES2019_hr_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_hr_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=413) %>% 
+              rbind(pred_413_hr),
+            by = c('respid','party'))
+
+# prediction for party 401 created w/ a different model
+
+pred_401_hr <- 
+  gensyn.fun(data        = EES2019_hr_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  = c('D3_rec', 'D1_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '401'
+  )
+
+EES2019_hr_stack <-   
+  left_join(EES2019_hr_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_hr_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=401) %>% 
+              rbind(pred_401_hr),
+            by = c('respid','party'))
+
 
 
 # Clean the environment # ==============================================================================

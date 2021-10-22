@@ -107,6 +107,9 @@ EES2019_fr_stack %<>%
   as_tibble()
 
 
+# prediction for party created w/ a different model
+# No anomalous behaviour detected for the logit and OLS model
+
 # Clean the environment # ==============================================================================
 
 rm(list=ls(pattern='_fr$'))  

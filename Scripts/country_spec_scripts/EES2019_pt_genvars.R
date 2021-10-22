@@ -107,6 +107,9 @@ EES2019_pt_stack %<>%
   as_tibble()
 
 
+# prediction for party created w/ a different model
+# No anomalous behaviour detected for the logit and OLS model
+
 
 # Clean the environment # ==============================================================================
 
