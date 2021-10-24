@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Belgian Sample) 
 # Author: G.Carteny
-# last update: 2021-10-23
+# last update: 2021-10-24
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -295,13 +295,43 @@ names(fullmod_lst) <- unlist(el_coll_be)
 
 # Full models evaluation # =============================================================================
 
-# logit model 5 for the Dutch electoral college shows inflated SE for the following variables
+# logit model 5 for the French electoral college shows inflated SE for the following variables
 # D8_rec
 # EDU_rec
 # D7_rec
 
+# Syntvars evaluation: evaluating the source of misfit # ===============================================
+
+# Model 5
+tabs <- yxcontab.auxfun(regdf_lst$`FR-el`$logit[[5]], contab = F)[[2]]
+# No respondents living in rural areas, of high social class, and highly educated voted for party 212
 
 
+
+# Syntvars evaluation: partial logit models # ==========================================================
+
+# In order to avoid repetitions I creat an ad hoc workflow - - - - - - - - - - - - - - - - - - - - - - -
+
+# Model 5 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+el_coll <- 'FR-el'
+mdl <- 5
+x <- regdf_lst[[el_coll]]$logit[[mdl]] %>% na.omit %>% dplyr::select(-c(D7_rec, D8_rec, EDU_rec))
+y    <- names(x)[startsWith(names(x), 'stack')]
+xs   <- names(x)[3:length(x)]
+frml <- paste(y, paste0(xs, collapse = ' + '), sep = " ~ ") %>% as.formula
+part_fit <- glm(data = x, formula = frml, family = binomial)
+
+anova(part_fit, fullmod_lst[[el_coll]]$logit[[mdl]], test='Chisq')
+
+# H0 cannot be rejected at p<.05
+
+
+# LR test evaluation # =================================================================================
+
+# For model 5 (French electoral college) H0 cannot be rejected with p<.05. 
+
+# The following variables are going to be excluded 
+# D7_rec, D8_rec, and EDU_rec
 
 
  

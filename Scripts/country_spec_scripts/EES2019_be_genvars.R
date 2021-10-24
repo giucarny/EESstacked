@@ -135,7 +135,27 @@ EES2019_be_stack <-
          })
 
 names(EES2019_be_stack) <- unlist(el_coll_be)
+
+# Warning message:
+# glm.fit: fitted probabilities numerically 0 or 1 occurred 
+
+pred_212_be <- 
+  gensyn.fun(data        = EES2019_be_stack[['FR-el']],
+             depvar      = 'Q7_gen',
+             cat.indvar  =  c('D3_rec', 'D5_rec',  'D1_rec'), # 'EDU_rec','D8_rec', 'D7_rec'
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '212'
+  )
   
+EES2019_be_stack[['FR-el']] <-   
+  left_join(EES2019_be_stack[['FR-el']] %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_be_stack[['FR-el']] %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=212) %>% 
+              rbind(pred_212_be),
+            by = c('respid','party'))
 
 # Clean the environment # ==============================================================================
 

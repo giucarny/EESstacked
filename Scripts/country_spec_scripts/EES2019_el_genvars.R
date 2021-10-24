@@ -184,6 +184,8 @@ EES2019_el_stack <-
               filter(party!=1203, party!=1204) %>% 
               rbind(pred_1203_el, pred_1204_el),
             by = c('respid','party'))
+
+
 # Clean the environment # ==============================================================================
 
 rm(list=ls(pattern='_el$'))
