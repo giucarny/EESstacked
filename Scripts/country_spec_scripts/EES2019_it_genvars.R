@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Italian Sample) 
 # Author: G.Carteny
-# last update: 2021-10-03
+# last update: 2021-10-23
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -106,7 +106,7 @@ EES2019_it_stack %<>%
 EES2019_it_stack %<>%
   left_join(.,
         lapply(data = EES2019_it_stack,
-               cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), 
+               cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec'), 
                cont.indvar =  c('D4_age', 'D10_rec'),
                yhat.name = 'socdem_synt',
                regsum = F,

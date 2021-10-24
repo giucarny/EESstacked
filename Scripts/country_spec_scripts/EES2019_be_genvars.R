@@ -99,7 +99,7 @@ names(EES2019_be_stack) <- unlist(el_coll_be)
 gensyn.fun_be <- function(x, depvar, regsum) {
   lst <- gensyn.fun(data = EES2019_be_stack[[x]],
              depvar = depvar,
-             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), #'D6_une', 'D6_rec', 'D9_rec'
+             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec'),
              cont.indvar =  c('D4_age', 'D10_rec'),
              yhat.name = 'socdem_synt',
              regsum = regsum)

@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Bulgarian Sample) 
 # Author: G.Carteny
-# last update: 2021-10-03
+# last update: 2021-10-23
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -107,7 +107,7 @@ EES2019_bg_stack %<>%
 EES2019_bg_stack %<>%
   left_join(.,
             lapply(data = EES2019_bg_stack,
-                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_rec', 'D9_rec'
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec'),
                    cont.indvar =  c('D4_age', 'D10_rec'),
                    yhat.name = 'socdem_synt',
                    regsum = F,
@@ -117,6 +117,64 @@ EES2019_bg_stack %<>%
             by = c('respid', 'party')) %>% 
   as_tibble()
 
+# Warning message:
+# glm.fit: fitted probabilities numerically 0 or 1 occurred 
+
+# 302
+pred_302_bg <- 
+  gensyn.fun(data        = EES2019_bg_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  =  c('D3_rec', 'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec'), # 'D8_rec'
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '302'
+  )
+
+# 303
+pred_303_bg <- 
+  gensyn.fun(data        = EES2019_bg_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  =  c('D3_rec', 'D5_rec', 'EDU_rec', 'D1_rec', 'D8_rec'), # 'D7_rec'
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '303'
+  )
+
+# 306
+pred_306_bg <- 
+  gensyn.fun(data        = EES2019_bg_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  =  c('D3_rec', 'D5_rec', 'D7_rec', 'D1_rec', 'D8_rec'), # 'EDU_rec'
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '306'
+  )
+
+# 307
+pred_307_bg <- 
+  gensyn.fun(data        = EES2019_bg_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  =  c('D3_rec', 'D5_rec', 'EDU_rec', 'D1_rec'), # 'D7_rec' , 'D8_rec'
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '307'
+  )
+
+'%!in%' <- function(x,y) !('%in%'(x,y))
+
+EES2019_bg_stack <-   
+  left_join(EES2019_bg_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_bg_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party %!in% c(302, 303, 306, 307)) %>% 
+              rbind(pred_302_bg, pred_303_bg, pred_306_bg, pred_307_bg),
+            by = c('respid','party'))
+
+rm('%!in%')
 
 # Clean the environment # ==============================================================================
 
