@@ -1,8 +1,8 @@
 ---
 title: EES2019 Stacking Process 
-subtitle: Synthetic Variables Evaluation (Pt.1)
+subtitle: Synthetic Variables Evaluation (Pt.2)
 author: Giuseppe Carteny
-date: 20.09.2021 
+date: 24.10.2021 
 toc: true
 output: 
   bookdown::pdf_document2:
@@ -16,6 +16,37 @@ urlcolor: RedOrange
 
 
 ```
+
+
+# Introduction 
+
+The second part of the evaluation of synthetic variables estimation consists in creating a set of 
+summary documents that will part of an appendix to the SDM codebook. These documents will be created 
+with `r markdown` and related packages (e.g. `bookdown`, `knitr`, `kableExtra`) using the information 
+collected in our previous step. 
+Nonetheless, before explanaining of the structure and content of the documents that we are going to 
+create, we must deal with an issue raised during the evaluation procedures and that we did not address 
+earlier. 
+
+# Separation, likelihood-ratio tests, and type-I errors
+
+As you saw estimating the synthetic variables, more than a few of our logit models tend to be affected 
+by [separation](https://academic.oup.com/aje/article/187/4/864/4084405). Fortunately, in most cases, 
+when comparing our full-logit models with the partial ones created dropping some predictors, the 
+likelihood-ratio tests (constraint model *vs* unconstrained model) ended up to be not significant, 
+not rejecting the null hypothesis ($H_0$, namely: partial model fits better than the full one), or 
+significant but with p-values considered as not sufficient for rejecting $H_0$.  
+
+*Unfortunately* in some cases the models characterized by inflated standard errors of some variables (
+due to separation issues) resulted to fit better than the partial model ($H_0$ rejected at p<0.01 or 
+lower). In such cases each of us adopted a different strategy, and this is mostly because I was not able 
+to predict such an issue. 
+
+How to deal with said situations, then? My take on this is to 
+
+Overall, I suggest to *drop* in any case the variables with 
+
+
 
 
 <!-- # Summarizing evaluation and workarounds  -->
