@@ -24,36 +24,24 @@ The second part of the evaluation of synthetic variables estimation consists in 
 summary documents that will part of an appendix to the SDM codebook. These documents will be created 
 with `r markdown` and related packages (e.g. `bookdown`, `knitr`, `kableExtra`) using the information 
 collected in our previous step. 
-Nonetheless, before explanaining of the structure and content of the documents that we are going to 
-create, we must deal with an issue raised during the evaluation procedures and that we did not address 
-earlier. 
 
-# Separation, likelihood-ratio tests, and type-I errors
+The creation of documents summarizing synthetic variables estimation is needed for transparency and 
+reproducibility sake. Synthetic variables are the only variables of the SDM created with procedures that 
+bo beyond basic transformations of existing variables. Hence, we must provide a summary of the 
+statistical models to the prospective SDM users, including workarounds for solving some issues faced in 
+estimating our synthetic variables. 
 
-As you saw estimating the synthetic variables, more than a few of our logit models tend to be affected 
-by [separation](https://academic.oup.com/aje/article/187/4/864/4084405). Fortunately, in most cases, 
-when comparing our full-logit models with the partial ones created dropping some predictors, the 
-likelihood-ratio tests (constraint model *vs* unconstrained model) ended up to be not significant, 
-not rejecting the null hypothesis ($H_0$, namely: partial model fits better than the full one), or 
-significant but with p-values considered as not sufficient for rejecting $H_0$.  
+# Reviewing and summarizing our evaluation scripts, selecting relevant information
 
-*Unfortunately* in some cases the models characterized by inflated standard errors of some variables (
-due to separation issues) resulted to fit better than the partial model ($H_0$ rejected at p<0.01 or 
-lower). In such cases each of us adopted a different strategy, and this is mostly because I was not able 
-to predict such an issue. 
-
-How to deal with said situations, then? My take on this is to 
-
-Overall, I suggest to *drop* in any case the variables with 
+The first step for creating our summary documents consists in determining which information should be 
+included. As you saw during the last two weeks, the existing evaluation scripts provide a lot of 
+information that we actually might not need. The workflow used for evaluating the synthetic variables 
+can (and should) be improved in order to become less redundant, more clear and concise. Thus,
 
 
 
 
-<!-- # Summarizing evaluation and workarounds  -->
-  
-  <!-- The creation of documents summarizing synthetic variables estimation is needed, first and foremost,  -->
-  <!-- because synthetic variables are the only variables of the SDM created with regression models. Hence, we  -->
-  <!-- must provide a summary of the estimation process to the prospective SDM users. Second, as already noted,  -->
-  <!-- part of said regression models (especially logistic models) return problematic coefficients and some of  -->
-  <!-- them do not convergence. Consequently, for transparency and reproducibility sake, we must provide an  -->
-  <!-- explanation of how we dealt with said issues.  -->
+
+# Summarizing evaluation and workarounds
+
+

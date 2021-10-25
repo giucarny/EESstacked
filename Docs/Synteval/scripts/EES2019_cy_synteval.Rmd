@@ -69,6 +69,15 @@ rm(list=ls(pattern='_stack'))
 EES2019_stckd %<>% left_join(., EES2019, by=c('countrycode', 'respid'))
 
 
+```
+
+
+
+\newpage
+# Cyprus
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
 # Country-spec workflow # ==============================================================================
 
 cntry = 'CY'
@@ -393,13 +402,12 @@ logit_df <-
 
 ```
 
-
-# Cyprus
-
-Synthetic variable have been estimated for the full set of Cypriot parties available in the original 
+Synthetic variables have been estimated for the full set of Cypriot parties available in the original 
 2019 EES Cypriot voter study (see Table \ref{table:tab_4_8}) <!-- table made with relprty_df-->. 
+
+
 Full OLS models converge and coefficients do not show any particular issue. On the contrary, two out of 
-six full logit models do present unusually high standard errors for some of the coefficients of 
+six full logit models do present inflated standard errors for some of the coefficients of 
 interest. The solutions found for dealing with the latter models are presented below. 
 
 ## Models fit 
