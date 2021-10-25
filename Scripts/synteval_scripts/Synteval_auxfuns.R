@@ -115,33 +115,32 @@ regdf.auxfun <- function(data, depvar, cat.indvar, cont.indvar) {
 
 # y - xi contingency tables # ==========================================================================
 
-yxcontab.auxfun <- function(df, contab) {
+tab.auxfun <- function(data, y, x, na = T, perc = F, which_perc = 'all') {
+  df %<>% dplyr::select(all_of(y), all_of(x)) 
   
-  df %<>% 
-    dplyr::select(-c(respid)) 
+  if (na==F) {
+    df %<>% na.omit
+  }
   
-  y <- df[,1] %>% names() 
-  xs <- df[,-1] %>% names()
+  tab <- table(df[[toString(y)]], df[[toString(x)]], useNA = 'ifany') %>% as.data.frame()
+  names(tab) <- c(y, x, 'Freq')
+  tab %<>% pivot_wider(id_cols = y, names_from = c(x), values_from = 'Freq')
+  names(tab)[[1]] <- paste0(y,'/',x)
   
-  tabs <-
-    lapply(xs,
-           function(x) {
-             tab <-    
-               table(df[[toString(y)]], df[[toString(x)]])  # , useNA = 'ifany'
-             
-             if (contab) {
-               tab %<>%
-                 as.data.frame.matrix() 
-             } else {
-               tab %<>% 
-                 as.data.frame()  
-               names(tab)[1] <- y
-               names(tab)[2] <- x
-             }
-             
-             return(tab)
-           }) 
-  return(tabs)
+  if (perc) {
+    tab %<>% 
+      adorn_totals(where = c('row','col')) %>%
+      adorn_percentages(which_perc) %>%
+      adorn_pct_formatting() %>%
+      adorn_ns(position = 'front')
+  } else {
+    tab %<>% 
+      adorn_totals(where = c('row','col')) 
+  }
+  
+  tab %<>% as_tibble
+  
+  return(tab)
 }
 
 

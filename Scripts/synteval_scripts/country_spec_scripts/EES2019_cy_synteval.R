@@ -8,7 +8,7 @@
 # Admin # ==============================================================================================
 
 want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr", "rlang", "car",
-         "caret", "DescTools", "stargazer", "kableExtra")
+         "caret", "DescTools", "stargazer", "kableExtra", "janitor")
 have = want %in% rownames(installed.packages())
 if ( any(!have) ) { install.packages( want[!have] ) }
 junk <- lapply(want, library, character.only = TRUE)
@@ -264,27 +264,39 @@ nulllogit_df<-
                 Ps_Rsq, Adj_Ps_Rsq, AIC)
 
 
+# Full models evaluation # =============================================================================
+
+# logit models 3, and 5 show inflated SE on some predictors, more specifically: 
+# Model 3: D7_rec (only for category 2)
+# Model 5: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2)
+
+# Model 3 constant term is not affected by D7_rec inflated SE, whereas Model 5 constant is affected 
+# showing unusual values. In the end we deal only with model 5 affected by separation issue.
+
+
 # Syntvars evaluation: evaluating the source of misfit # ===============================================
 
+# Model 5 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-# One contingency table # 
+mdl  <- 5
+df   <- regdf_lst$logit[[mdl]]
+cols <- c('D8_rec', 'D5_rec', 'EDU_rec', 'D7_rec', 'D1_rec')
 
-df <- regdf_lst$logit[[5]] 
-tab <- table(df$stack_505, df$D8_rec) %>% as.data.frame()
-names(tab)[1:2] <- c('stack_505', 'D8_rec')
+tabs <- lapply(data=df, y='stack_505', na=F, X = cols, FUN = tab.auxfun)
 
 
-# All the contingency tables # 
-
-tabs <- yxcontab.auxfun(regdf_lst$logit[[5]], contab = F)
 
 # Syntvars evaluation: partial logit models # ==========================================================
 
 # Get the df for and estimate the partial models # - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+vrbls_2_drop <- c('D5_rec', 'D8_rec', 'EDU_rec', 'D1_rec', 'D7_rec')
+
 regdf_lst_part <- 
   regdf_lst$logit %>% 
-  lapply(., function(x){ x %<>% na.omit() %>% dplyr::select(-c(D5_rec, D8_rec, EDU_rec, D1_rec, D7_rec))})
+  lapply(., function(x){
+    x %<>% na.omit() %>% dplyr::select(-c(all_of(vrbls_2_drop)))
+    }) 
 
 partmod_lst <- 
   lapply(regdf_lst_part, function(x){
@@ -298,50 +310,17 @@ partmod_lst <-
   })
 
 # LR test (Chisq) # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+mdls <- c(5)
 
 anova_lst <- 
-  anova.auxfun(mdl_lst1 = partmod_lst,
-               mdl_lst2 = fullmod_lst$logit,
+  anova.auxfun(mdl_lst1 = partmod_lst[c(mdls)],
+               mdl_lst2 = fullmod_lst$logit[c(mdls)],
                table = F)
 
 
+# Partial models evaluation # ==========================================================================
 
-# Partial models fit summary # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-partlogit_df <-  
-  tibble(
-    'depvar'     = lapply(1:length(partmod_lst), 
-                          function(x){
-                            names(regdf_lst_part[[x]]) %>% .[2]
-                          }) %>% unlist,
-    'model'      = rep('partial',length(regdf_lst_part)),
-    'Ps_Rsq'     = lapply(1:length(partmod_lst),
-                          function(x){
-                            DescTools::PseudoR2(partmod_lst[[x]], which = 'McFadden')
-                          }) %>% unlist,
-    'Adj_Ps_Rsq' = lapply(1:length(partmod_lst),
-                          function(x){
-                            DescTools::PseudoR2(partmod_lst[[x]], which = 'McFaddenAdj')
-                          }) %>% unlist,
-    'AIC'        = lapply(1:length(partmod_lst),
-                          function(x) {
-                            partmod_lst[[x]] %>% AIC
-                          }) %>% unlist
-  ) %>% 
-  left_join(., relprty_df, by='depvar') %>% 
-  dplyr::select(depvar, partycode, partyname_eng, model,
-                Ps_Rsq, Adj_Ps_Rsq, AIC)
-
-
-# Syntvars evaluation: New logit models fit stats # ====================================================
-
-logit_df <-  
-  fulllogit_df %>% 
-  rbind(., partlogit_df) %>% 
-  rbind(., nulllogit_df)
-
-
+# The LR test between constrained and unconstrained Model 5 rejects H0 at p<0.1. 
 
 # Clean the environment # ==============================================================================
 
