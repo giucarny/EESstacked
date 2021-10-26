@@ -470,31 +470,26 @@ you can find the exemplary script `EES2019_synteval_gc.Rmd`, with '`gc`' referri
 surname first letters. This script *is not* country specific, but rather is conceived for including a 
 summary of the evaluation of synthetic variables estimation of all the countries that each of us 
 analysed during the last few weeks. This will allow us, later on, to create a single `r-markdown` script
-formatted as a pdf document. 
-
-Let's turn to the script. First the `YAML` header. You can copy-paste it from the exemplary script, and 
-then modify the `title`, `subtitle`, `author`, and `date` arguments. 
-
-```
----
-title: EES2019 Stacking Process 
-subtitle: Synthetic Variables Evaluation (Pt.2)
-author: Giuseppe Carteny
-date: 24.10.2021 
-toc: true
-output: 
-  bookdown::pdf_document2:
-    includes:
-      in_header: First_steps_header.tex
-urlcolor: RedOrange
---- 
-```
+formatted as a pdf document. Now let's turn to the script.  
 
 
-Second, there's the first chunk of 
-code that can be plainly copy-pasted from the exemplary script, since it just load (and eventually 
-install) the packages that are needed, then sourcing the (partial) general workflow needed for our 
-evaluations. 
+First, the `YAML` header. You can copy-paste it from the exemplary script, and then modify the `title`, 
+`subtitle`, `author`, and `date` arguments.  
+
+Second, there's the first chunk of code that can be plainly copy-pasted from the exemplary script, 
+since it just load (and eventually install) the packages that are needed, then sourcing the (partial) 
+general workflow needed for our evaluations. 
+
+After these two chunks then we have the paragraphs dedicated to our country-specific evaluations. After 
+the title (that can be simply the name of the country of interest) we include a second chunk of `R` code 
+that runs *all the sections* of our 'synteval' scripts except the first two (that we already included 
+in the first code chunk of the `r-markdown` script) and the last one (otherwise it would remove our 
+results from the environment). 
+
+At this point we are ready to start typing and formatting the info of interest in our script. For 
+formatting tables we use the functions provided by `knitr` and `kableExtra` packages, whereas 
+for formatting our regression tables we use `stargazer`. 
+
 
 
 
