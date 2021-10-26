@@ -1,0 +1,102 @@
+---
+title: Summary of Synthetic Variables Estimation 
+subtitle: EES 2019 Voter Study (Belgian, Bulgarian, Cypriot, and Italian samples)
+author: Giuseppe Carteny
+date: 26.10.2021 
+toc: false
+output: 
+  bookdown::pdf_document2:
+    includes:
+      in_header: eval_header.tex
+urlcolor: RedOrange
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, }
+
+# Admin # ==============================================================================================
+
+want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr", "rlang", "car",
+         "caret", "DescTools", "stargazer", "kableExtra", "janitor")
+have = want %in% rownames(installed.packages())
+if ( any(!have) ) { install.packages( want[!have] ) }
+junk <- lapply(want, library, character.only = TRUE)
+options(scipen = 99)
+
+rm(list = ls())
+
+# Source the general workflow # ========================================================================
+
+source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
+
+
+
+
+```
+
+
+
+\newpage
+# Cyprus
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+```
+
+Synthetic variables have been estimated for the full set of Cypriot parties available in the original 
+2019 EES Cypriot voter study (see Table \ref{table:tab_4_8}) <!-- table made with relprty_df-->. 
+
+
+Full OLS models converge and coefficients do not show any particular issue. On the contrary, three out 
+of six logit models do present inflated standard errors for some of the coefficients of interest, in 
+particular: 
+
+
+## Models fit 
+
+In terms of model fit, OLS regression models vary in a range of the coefficient of determination ($R^2$)
+values between `r ...` for party `r ...` (`r ...`) and `r ...` for party `r ...` (`r ...`). Contrasting 
+Akaike information criterion (AIC) full model values with null model values it is possible to see how in 
+3 cases out of 6 null models do show an equivalent or better fit than full models <!-- Re-check this line and insert proper R code -->
+
+## Regression models results {-}
+
+OLS full models estimating synthetic variables for 
+
+## Anova tables {-}
+
+```{r, results='asis', echo=F}
+
+# options(xtable.comment = FALSE)
+# xtable::xtable(anova_lst[[1]])
+anova_df <- anova_lst %>% do.call('rbind',.) %>% .[c(1:4),]
+
+kableExtra::kable(anova_df) %>% 
+   kableExtra::kable_paper() %>% 
+  kableExtra::pack_rows('G1',1,2) %>% 
+  kableExtra::pack_rows('G1',3,4) 
+
+```
+
+# Regression tables {-}
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(fullmod_lst$OLS, type = 'latex', 
+                     column.labels = as.character(relprty_df$Q7),
+                     dep.var.labels = 'PTV',
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+```
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(fullmod_lst$logit, type = 'latex', 
+                     column.labels = as.character(relprty_df$Q7),
+                     dep.var.labels = 'Vote choice',
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     header = F,
+                     style = 'ajps')
+```
