@@ -282,8 +282,11 @@ mdl  <- 5
 df   <- regdf_lst$logit[[mdl]]
 cols <- c('D8_rec', 'D5_rec', 'EDU_rec', 'D7_rec', 'D1_rec')
 
-tabs <- lapply(data=df, y='stack_505', na=F, X = cols, FUN = tab.auxfun)
+tabs <- lapply(data=df, y='stack_505', na=T, X = cols, FUN = tab.auxfun)
 
+# No respondents from rural areas, not married or in partnership, with low education, with high 
+# subjective social status, and members of trade unions did vote for party 505 (voted by only 5 
+# respondents of the Cypriot sample).
 
 
 # Syntvars evaluation: partial logit models # ==========================================================
@@ -318,9 +321,33 @@ anova_lst <-
                table = F)
 
 
-# Partial models evaluation # ==========================================================================
-
 # The LR test between constrained and unconstrained Model 5 rejects H0 at p<0.1. 
+
+# Syntvars evaluation: logit models summary # ==========================================================
+
+# fullmod_lst$logit[c(mdls)] <- partmod_lst[c(mdls)]
+
+finalmod_lst <- list()
+finalmod_lst[['OLS']] <- fullmod_lst[['OLS']]
+for(i in 1:length(fullmod_lst[['logit']])) {
+  finalmod_lst[['logit']][[i]] <- fullmod_lst[['logit']][[i]]
+  
+  if (i %in% mdls) {
+    finalmod_lst[['logit']][[i]] <- partmod_lst[[mdls]]
+  }
+}
+rm(i)
+
+# stargazer::stargazer(finalmod_lst$logit, type = 'text',
+#                      column.labels = as.character(relprty_df$partycode),
+#                      dep.var.labels = c('', '', ''),
+#                      star.cutoffs = c(0.05, 0.01, 0.001),
+#                      omit.stat=c("f", "ser"),
+#                      header = F,
+#                      style = 'ajps')
+
+
+
 
 # Clean the environment # ==============================================================================
 

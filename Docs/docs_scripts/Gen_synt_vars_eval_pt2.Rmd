@@ -325,8 +325,8 @@ These steps already create more information than what we might actually need in 
 instance what is definitely needed is the data frame with information concerning the relevant parties (
 the `relprty_df` object) and the `stargazer` regression tables. What we do not really need for our 
 documents, are the data frames with the fit statistics about the full and null models. Nonetheless, it 
-would be wise to leave them there if we decide, later on, to include them in our scripts or at least 
-include some of the information included in those data frames. 
+would be wise to leave them in our scripts if we decide, later on, to include them in our scripts or at 
+least include some of the information included in those data frames. 
 
 What must be changed is the **estimation and evaluation of the partial models** used for dealing with 
 our full models showing inflated standar errors. During the last weeks I realised that we definitely do 
@@ -335,8 +335,9 @@ reliable estimates. Thus we can implement said sections of our 'synteval' script
 and changing others. 
 
 First, after the last section dedicated to full and null models fit statistics 
-('*Syntvars evaluation: logit models fit stats*') I would insert a brief comment section like the 
-following one:
+('*Syntvars evaluation: logit models fit stats*') I would insert a brief comment section. All of us put 
+comments on our scripts, and this is very good, but I would like to 'standardize' them. 
+My idea is that the first comment section should be like the following one:
 
 ```{r, eval=F, echo=T}
 
@@ -347,8 +348,108 @@ following one:
 # Model 5: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2)
 
 # Model 3 constant term is not affected by D7_rec inflated SE, whereas Model 6 constant is affected 
-# showing unusual values. In the end we deal only with model 6 affected by separation issue.
+# showing unusual values. We deal only with model 6 affected by separation issue.
 
 ```
 
-The we cross tab the dependent variable with the problematic predictors. I have been 
+The we crosstab the dependent variable with the problematic predictors. I realized that the former 
+ad hoc function that I created for this purpose was neither appropriate for our tasks nor proper for 
+being, then, included in our documents. Thus I created another one^[The function is called `tab.auxfun` 
+and takes the following arguments: `data` that should be one of our standard data frames for the 
+regression models; `y` that is our dependent variable (character); `x` the predictor of interest 
+(character); `na` whether the function should include also missing values (logical, default `TRUE`); 
+`perc` whether you want also the percentages values for the cells along with the absolute frequencies 
+(logical, default `FALSE`); `which_perc` if included, whether the percentages should be computed 
+considering `all` the cells, `rows` or `columns` (character, default `all`).] that is more specific and 
+creates tables that, later, can be easily included in our `r markdown` docs. 
+
+This is the exemplary routine for creating our crosstabs, plus comments about them :
+
+```{r, eval=F, echo=T}
+
+# Syntvars evaluation: evaluating the source of misfit # 
+
+# Model 5 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+mdl  <- 5
+df   <- regdf_lst$logit[[mdl]]
+cols <- c('D8_rec', 'D5_rec', 'EDU_rec', 'D7_rec', 'D1_rec')
+
+tabs <- lapply(data=df, y='stack_505', na=F, X = cols, FUN = tab.auxfun)
+
+# No respondents from rural areas, not married or in partnership, with low education, with high 
+# subjective social status, and members of trade unions did vote for party 505 (voted by only 5 
+# respondents of the Cypriot sample).
+
+
+```
+
+After this step, then, we implement our constrained model and we evaluate them against our full models 
+using the LR test strategy, performed using the `anova` base function, then commenting the results: 
+
+```{r, eval=F, echo=T}
+
+# Syntvars evaluation: partial logit models # ============ #
+
+# Get the df for and estimate the partial models # - - - - #
+
+vrbls_2_drop <- c('D5_rec', 'D8_rec', 'EDU_rec', 'D1_rec', 'D7_rec')
+
+regdf_lst_part <- 
+  regdf_lst$logit %>% 
+  lapply(., function(x){
+    x %<>% na.omit() %>% dplyr::select(-c(all_of(vrbls_2_drop)))
+    }) 
+
+partmod_lst <- 
+  lapply(regdf_lst_part, function(x){
+    y    <- names(x)[startsWith(names(x), 'stack')]
+    xs   <- names(x)[3:length(x)]
+    frml <- paste(y, paste0(xs, collapse = ' + '), sep = " ~ ") %>% as.formula
+    
+    fit <- glm(data = x, formula = frml, family = binomial)
+    
+    return(fit)
+  })
+
+# LR test (Chisq) # - - - - - - - - - - - - - - - - - - - - #
+
+mdls <- c(5)
+
+anova_lst <- 
+  anova.auxfun(mdl_lst1 = partmod_lst[c(mdls)],
+               mdl_lst2 = fullmod_lst$logit[c(mdls)],
+               table = F)
+
+# The LR test between constrained and unconstrained Model 5 rejects H0 at p<0.1. 
+
+```
+
+After this passage we include the partial model in a final list of models of interest, with a new 
+summary of regression estimates using the `stargazer` package: 
+
+```{r, eval=F, echo=T}
+# Syntvars evaluation: logit models summary # ==== # 
+
+# fullmod_lst$logit[c(mdls)] <- partmod_lst[c(mdls)]
+
+finalmod_lst <- list()
+finalmod_lst[['OLS']] <- fullmod_lst[['OLS']]
+for(i in 1:length(fullmod_lst[['logit']])) {
+  finalmod_lst[['logit']][[i]] <- fullmod_lst[['logit']][[i]]
+  
+  if (i %in% mdls) {
+    finalmod_lst[['logit']][[i]] <- partmod_lst[[mdls]]
+  }
+}
+rm(i)
+
+# stargazer::stargazer(finalmod_lst$logit, type = 'text',
+#                      column.labels = as.character(relprty_df$partycode),
+#                      dep.var.labels = c('', '', ''),
+#                      star.cutoffs = c(0.05, 0.01, 0.001),
+#                      omit.stat=c("f", "ser"),
+#                      header = F,
+#                      style = 'ajps')
+
+```
