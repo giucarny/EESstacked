@@ -13,11 +13,10 @@ urlcolor: RedOrange
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
-
 # Admin # ==============================================================================================
 
 want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr", "rlang", "car",
-         "caret", "DescTools", "stargazer", "kableExtra")
+         "caret", "DescTools", "stargazer", "kableExtra", "janitor")
 have = want %in% rownames(installed.packages())
 if ( any(!have) ) { install.packages( want[!have] ) }
 junk <- lapply(want, library, character.only = TRUE)
@@ -86,7 +85,7 @@ csdf_lst <- list('std'  = EES2019_cy,
 syntvars_vrbls <- list('dep'   = list('OLS'     = 'Q10_gen', 
                                       'logit'   = 'Q7_gen'),
                        'indep' = list('ctgrcl' = c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 
-                                                   'D1_rec', 'D7_rec'),
+                                                   'D1_rec', 'D7_rec', 'D6_une'),
                                       'cntns'  =  c('D4_age', 'D10_rec')))
 
 
@@ -307,10 +306,10 @@ clearer and more concise^[I already reviewed our 'synteval' scrit this issue, by
 country-specific 'synteval' script the general workflow used for creating the SDM (namely, a partial 
 version of `EES2019_stack.R`). This will return to be very useful for processing our `r-markdown` files 
 since they are meant to include more than one country.]. After these improvements, we will include the 
-scripts in our `r-markdown` documents and this will allow us to simply *remove* the evaluation scripts, 
-and tidy up a bit our repositories.
+scripts in our `r-markdown` documents and this will allow us to *remove* the evaluation scripts, and 
+tidy up our repositories.
 
-To exemplify how we should tidy up our scripts I will make again  reference to the one dedicated to the 
+To exemplify how we should review our scripts I will make again reference to the one dedicated to the 
 Cypriot sample (`EES2019_cy_synteval.R` in the `~/Scripts/synt_eval_scripts/country_spec_scripts/` 
 subdirectory). 
 
@@ -319,7 +318,10 @@ subdirectory).
 Overall, the scripts are fine until the sections dedicated to the model fit stats. Thus we run the 
 country-specific workflow for creating the other generic variables, then we source the functions, create 
 the variables and data frames needed for our evaluations, fit the full and null models, and finally 
-summarize them with regression tables and data frames dedicated to model fit statistics.  
+summarize them with regression tables and data frames dedicated to model fit statistics. However note 
+that an **additional variable** has to be included in our regression models, that is the `D6_une` 
+variable (a dichotomous variable that has value 0 for respondents having an employment and 1 for 
+unemployed respondents). 
 
 These steps already create more information than what we might actually need in our documents. For 
 instance what is definitely needed is the data frame with information concerning the relevant parties (
@@ -343,12 +345,14 @@ My idea is that the first comment section should be like the following one:
 
 # Full models evaluation # ============================================================= #
 
-# logit models 3, and 5 show inflated SE on some predictors, more specifically: 
+# logit models 3, 5, and 6 show inflated SE on some predictors, more specifically: 
 # Model 3: D7_rec (only for category 2)
-# Model 5: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2)
+# Model 5: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2), D6_une
+# Model 6: D6_une
 
-# Model 3 constant term is not affected by D7_rec inflated SE, whereas Model 6 constant is 
-# affected showing unusual values. We deal only with model 6 affected by separation issue.
+# Model 3 and 6 constant terms are not affected by D7_rec and D6_une inflated SE, whereas 
+# Model 6  constant is affected showing unusual values. We deal only with model 6 affected 
+# by separation issue.
 
 ```
 
@@ -373,13 +377,13 @@ This is the exemplary routine for creating our crosstabs, plus comments about th
 
 mdl  <- 5
 df   <- regdf_lst$logit[[mdl]]
-cols <- c('D8_rec', 'D5_rec', 'EDU_rec', 'D7_rec', 'D1_rec')
+cols <- c('D8_rec', 'D5_rec', 'EDU_rec', 'D7_rec', 'D1_rec', 'D6_une')
 
 tabs <- lapply(data=df, y='stack_505', na=F, X = cols, FUN = tab.auxfun)
 
 # No respondents from rural areas, not married or in partnership, with low education, 
-# with high subjective social status, and members of trade unions did vote for party 
-# 505 (voted by only 5 respondents of the Cypriot sample).
+# with high subjective social status, members of trade unions, and unemployed did vote 
+# for party 505 (voted by only 5 respondents of the Cypriot sample).
 
 
 ```
@@ -393,7 +397,7 @@ using the LR test strategy, performed using the `anova` base function, then comm
 
 # Get the df for and estimate the partial models # - - - - - - - - - - - - - - - - - - - #
 
-vrbls_2_drop <- c('D5_rec', 'D8_rec', 'EDU_rec', 'D1_rec', 'D7_rec')
+vrbls_2_drop <- c('D5_rec', 'D8_rec', 'EDU_rec', 'D1_rec', 'D7_rec', 'D6_une')
 
 regdf_lst_part <- 
   regdf_lst$logit %>% 
@@ -421,7 +425,7 @@ anova_lst <-
                mdl_lst2 = fullmod_lst$logit[c(mdls)],
                table = F)
 
-# The LR test between constrained and unconstrained Model 5 rejects H0 at p<0.1. 
+# According to the LR test for Model 5 we cannot reject H0. 
 
 ```
 
@@ -429,6 +433,7 @@ After this passage we include the partial model in a final list of models of int
 summary of regression estimates using the `stargazer` package: 
 
 ```{r, eval=F, echo=T}
+
 # Syntvars evaluation: logit models summary # ========================================== # 
 
 # fullmod_lst$logit[c(mdls)] <- partmod_lst[c(mdls)]
@@ -453,3 +458,48 @@ rm(i)
 #                      style = 'ajps')
 
 ```
+
+Again, once finished the evaluation, we must modify our 'genvars' country-specific scripts accordingly. 
+Remember that we have a new variable to be included, thus we need to modify such scripts even if no 
+issues are found. The following step, then, is dedicated to the creation of the `r-markdown` scripts. 
+
+## Summarizing evaluations with an `r-markdown` script
+
+For creating our `r-markdown` scripts we move then to the `~/Docs/Synteval/scripts` subdirectory. Here 
+you can find the exemplary script `EES2019_synteval_gc.Rmd`, with '`gc`' referring to my name and 
+surname first letters. This script *is not* country specific, but rather is conceived for including a 
+summary of the evaluation of synthetic variables estimation of all the countries that each of us 
+analysed during the last few weeks. This will allow us, later on, to create a single `r-markdown` script
+formatted as a pdf document. 
+
+Let's turn to the script. First the `YAML` header. You can copy-paste it from the exemplary script, and 
+then modify the `title`, `subtitle`, `author`, and `date` arguments. 
+
+```
+---
+title: EES2019 Stacking Process 
+subtitle: Synthetic Variables Evaluation (Pt.2)
+author: Giuseppe Carteny
+date: 24.10.2021 
+toc: true
+output: 
+  bookdown::pdf_document2:
+    includes:
+      in_header: First_steps_header.tex
+urlcolor: RedOrange
+--- 
+```
+
+
+Second, there's the first chunk of 
+code that can be plainly copy-pasted from the exemplary script, since it just load (and eventually 
+install) the packages that are needed, then sourcing the (partial) general workflow needed for our 
+evaluations. 
+
+
+
+
+
+
+
+

@@ -77,7 +77,7 @@ csdf_lst <- list('std'  = EES2019_cy,
 syntvars_vrbls <- list('dep'   = list('OLS'     = 'Q10_gen', 
                                       'logit'   = 'Q7_gen'),
                        'indep' = list('ctgrcl' = c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 
-                                                   'D1_rec', 'D7_rec'),
+                                                   'D1_rec', 'D7_rec', 'D6_une'),
                                       'cntns'  =  c('D4_age', 'D10_rec')))
 
 
@@ -266,12 +266,14 @@ nulllogit_df<-
 
 # Full models evaluation # =============================================================================
 
-# logit models 3, and 5 show inflated SE on some predictors, more specifically: 
+# logit models 3, 5, and 6 show inflated SE on some predictors, more specifically: 
 # Model 3: D7_rec (only for category 2)
-# Model 5: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2)
+# Model 5: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2), D6_une
+# Model 6: D6_une
 
-# Model 3 constant term is not affected by D7_rec inflated SE, whereas Model 5 constant is affected 
-# showing unusual values. In the end we deal only with model 5 affected by separation issue.
+# Model 3 and 6 constant terms are not affected by D7_rec and D6_une inflated SE, whereas 
+# Model 6  constant is affected showing unusual values. We deal only with model 6 affected 
+# by separation issue.
 
 
 # Syntvars evaluation: evaluating the source of misfit # ===============================================
@@ -280,20 +282,20 @@ nulllogit_df<-
 
 mdl  <- 5
 df   <- regdf_lst$logit[[mdl]]
-cols <- c('D8_rec', 'D5_rec', 'EDU_rec', 'D7_rec', 'D1_rec')
+cols <- c('D8_rec', 'D5_rec', 'EDU_rec', 'D7_rec', 'D1_rec', 'D6_une')
 
-tabs <- lapply(data=df, y='stack_505', na=T, X = cols, FUN = tab.auxfun)
+tabs <- lapply(data=df, y='stack_505', na=F, X = cols, FUN = tab.auxfun)
 
-# No respondents from rural areas, not married or in partnership, with low education, with high 
-# subjective social status, and members of trade unions did vote for party 505 (voted by only 5 
-# respondents of the Cypriot sample).
+# No respondents from rural areas, not married or in partnership, with low education, 
+# with high subjective social status, members of trade unions, and unemployed did vote 
+# for party 505 (voted by only 5 respondents of the Cypriot sample).
 
 
 # Syntvars evaluation: partial logit models # ==========================================================
 
 # Get the df for and estimate the partial models # - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-vrbls_2_drop <- c('D5_rec', 'D8_rec', 'EDU_rec', 'D1_rec', 'D7_rec')
+vrbls_2_drop <- c('D5_rec', 'D8_rec', 'EDU_rec', 'D1_rec', 'D7_rec', 'D6_une')
 
 regdf_lst_part <- 
   regdf_lst$logit %>% 
@@ -321,7 +323,7 @@ anova_lst <-
                table = F)
 
 
-# The LR test between constrained and unconstrained Model 5 rejects H0 at p<0.1. 
+# According to the LR test for Model 5 we cannot reject H0. 
 
 # Syntvars evaluation: logit models summary # ==========================================================
 
