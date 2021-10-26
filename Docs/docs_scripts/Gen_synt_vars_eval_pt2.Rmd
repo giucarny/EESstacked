@@ -281,7 +281,7 @@ nulllogit_df<-
 
 The second part of the evaluation of synthetic variables estimation consists in creating a set of 
 summary documents that will part of an appendix to the SDM codebook. These documents will be created 
-with `r markdown` and related packages (e.g. `bookdown`, `knitr`, `kableExtra`) using the information 
+with `r-markdown` and related packages (e.g. `bookdown`, `knitr`, `kableExtra`) using the information 
 collected in our previous step. 
 
 The creation of documents summarizing synthetic variables estimation is needed for transparency and 
@@ -305,9 +305,9 @@ Thus, now that the structure of the summary documents reached an almost definiti
 used for evaluating synthetic variables estimation must be improved in order to become less redundant, 
 clearer and more concise^[I already reviewed our 'synteval' scrit this issue, by removing from each
 country-specific 'synteval' script the general workflow used for creating the SDM (namely, a partial 
-version of `EES2019_stack.R`). This will return to be very useful for processing our `r markdown` files 
+version of `EES2019_stack.R`). This will return to be very useful for processing our `r-markdown` files 
 since they are meant to include more than one country.]. After these improvements, we will include the 
-scripts in our `r markdown` documents and this will allow us to simply *remove* the evaluation scripts, 
+scripts in our `r-markdown` documents and this will allow us to simply *remove* the evaluation scripts, 
 and tidy up a bit our repositories.
 
 To exemplify how we should tidy up our scripts I will make again  reference to the one dedicated to the 
@@ -341,14 +341,14 @@ My idea is that the first comment section should be like the following one:
 
 ```{r, eval=F, echo=T}
 
-# Full models evaluation # =================
+# Full models evaluation # ============================================================= #
 
 # logit models 3, and 5 show inflated SE on some predictors, more specifically: 
 # Model 3: D7_rec (only for category 2)
 # Model 5: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2)
 
-# Model 3 constant term is not affected by D7_rec inflated SE, whereas Model 6 constant is affected 
-# showing unusual values. We deal only with model 6 affected by separation issue.
+# Model 3 constant term is not affected by D7_rec inflated SE, whereas Model 6 constant is 
+# affected showing unusual values. We deal only with model 6 affected by separation issue.
 
 ```
 
@@ -361,15 +361,15 @@ regression models; `y` that is our dependent variable (character); `x` the predi
 `perc` whether you want also the percentages values for the cells along with the absolute frequencies 
 (logical, default `FALSE`); `which_perc` if included, whether the percentages should be computed 
 considering `all` the cells, `rows` or `columns` (character, default `all`).] that is more specific and 
-creates tables that, later, can be easily included in our `r markdown` docs. 
+creates tables that, later, can be easily included in our `r-markdown` docs. 
 
 This is the exemplary routine for creating our crosstabs, plus comments about them :
 
 ```{r, eval=F, echo=T}
 
-# Syntvars evaluation: evaluating the source of misfit # 
+# Syntvars evaluation: evaluating the source of misfit # =============================== #
 
-# Model 5 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# Model 5 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
 
 mdl  <- 5
 df   <- regdf_lst$logit[[mdl]]
@@ -377,9 +377,9 @@ cols <- c('D8_rec', 'D5_rec', 'EDU_rec', 'D7_rec', 'D1_rec')
 
 tabs <- lapply(data=df, y='stack_505', na=F, X = cols, FUN = tab.auxfun)
 
-# No respondents from rural areas, not married or in partnership, with low education, with high 
-# subjective social status, and members of trade unions did vote for party 505 (voted by only 5 
-# respondents of the Cypriot sample).
+# No respondents from rural areas, not married or in partnership, with low education, 
+# with high subjective social status, and members of trade unions did vote for party 
+# 505 (voted by only 5 respondents of the Cypriot sample).
 
 
 ```
@@ -389,9 +389,9 @@ using the LR test strategy, performed using the `anova` base function, then comm
 
 ```{r, eval=F, echo=T}
 
-# Syntvars evaluation: partial logit models # ============ #
+# Syntvars evaluation: partial logit models # ========================================== #
 
-# Get the df for and estimate the partial models # - - - - #
+# Get the df for and estimate the partial models # - - - - - - - - - - - - - - - - - - - #
 
 vrbls_2_drop <- c('D5_rec', 'D8_rec', 'EDU_rec', 'D1_rec', 'D7_rec')
 
@@ -412,7 +412,7 @@ partmod_lst <-
     return(fit)
   })
 
-# LR test (Chisq) # - - - - - - - - - - - - - - - - - - - - #
+# LR test (Chisq) # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
 
 mdls <- c(5)
 
@@ -429,7 +429,7 @@ After this passage we include the partial model in a final list of models of int
 summary of regression estimates using the `stargazer` package: 
 
 ```{r, eval=F, echo=T}
-# Syntvars evaluation: logit models summary # ==== # 
+# Syntvars evaluation: logit models summary # ========================================== # 
 
 # fullmod_lst$logit[c(mdls)] <- partmod_lst[c(mdls)]
 
