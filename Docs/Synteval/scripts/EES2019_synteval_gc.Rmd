@@ -33,8 +33,6 @@ source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
 
 ```
 
-
-
 \newpage
 # Cyprus
 
@@ -369,38 +367,90 @@ rm(i)
 
 
 
-
-
 ```
 
 Synthetic variables have been estimated for the full set of Cypriot parties available in the original 
-2019 EES Cypriot voter study (see Table \ref{table:cy_relparty}) <!-- table made with relprty_df-->. 
+2019 EES Cypriot voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_cy}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = '')
 options(knitr.table.format = "latex")
 
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
 relprty_df %>% 
-  kable(label = "tab_2_1")
+  kable(caption = "Cypriot relevant parties \\label{table:relprty_tab_cy}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table \ref{table:full_ols_cy}). 
+In terms of model fit, the 
+coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Rsq==min(Rsq)) %>% .[['Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Rsq==min(Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Rsq==min(Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Rsq==max(Rsq)) %>% .[['Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Rsq==max(Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Rsq==max(Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 4 cases out of 6, null models perform better than full ones (see Table 
+\ref{table:ols_aic_cy}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+ols_aic <- 
+  ols_df %>%
+  pivot_wider(id_cols = c('depvar', 'partycode', 'partyname_eng'), values_from = 'AIC',
+              names_from = 'model') %>%
+  mutate(diff = full - null) %>%
+  mutate(across(c('full', 'null', 'diff'), ~round(.,3))) %>%
+  dplyr::select(-c(partyname_eng))
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models \\label{table:ols_aic_cy}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(fullmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_cy',
+                     type = 'latex',
+                     column.labels = c('501', '502', '503', '504','505', '507'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+stargazer::stargazer(fullmod_lst$logit, 
+                     title = "Vote choice for a relevant party according to respondents' 
+                     socio-demographic characteristics (Logistic regression models)",
+                     label = 'table:full_logit_cy',
+                     type = 'latex',
+                     column.labels = c('501', '502', '503', '504','505', '507'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
 
 ```
 
 
-Full OLS models converge and coefficients do not show any particular issue. On the contrary, three out 
-of six logit models do present inflated standard errors for some of the coefficients of interest, in 
-particular: 
+On the contrary, three out of six logistic regression models (see Table \ref{table:full_logit_cy}) show 
+inflated standard errors for some of the coefficients of interest, in particular: 
 
 
-## Models fit 
-
-In terms of model fit, OLS regression models vary in a range of the coefficient of determination ($R^2$)
-values between `r ...` for party `r ...` (`r ...`) and `r ...` for party `r ...` (`r ...`). Contrasting 
-Akaike information criterion (AIC) full model values with null model values it is possible to see how in 
-3 cases out of 6 null models do show an equivalent or better fit than full models <!-- Re-check this line and insert proper R code -->
-
-## Regression models results {-}
-
-OLS full models estimating synthetic variables for 
 
 ## Anova tables {-}
 
@@ -417,26 +467,31 @@ kableExtra::kable(anova_df) %>%
 
 ```
 
-# Regression tables {-}
 
 
-```{r, results='asis', echo=F}
 
-stargazer::stargazer(fullmod_lst$OLS, type = 'latex', 
-                     column.labels = as.character(relprty_df$Q7),
-                     dep.var.labels = 'PTV',
-                     star.cutoffs = c(0.05, 0.01, 0.001),
-                     omit.stat=c("f", "ser"),
-                     header = F,
-                     style = 'ajps')
-```
+<!-- # Regression tables {-} -->
 
-```{r, results='asis', echo=F}
 
-stargazer::stargazer(fullmod_lst$logit, type = 'latex', 
-                     column.labels = as.character(relprty_df$Q7),
-                     dep.var.labels = 'Vote choice',
-                     star.cutoffs = c(0.05, 0.01, 0.001),
-                     header = F,
-                     style = 'ajps')
-```
+<!-- ```{r, results='asis', echo=F} -->
+
+<!-- stargazer::stargazer(fullmod_lst$OLS, type = 'latex',  -->
+<!--                      column.labels = as.character(relprty_df$Q7), -->
+<!--                      dep.var.labels = 'PTV', -->
+<!--                      star.cutoffs = c(0.05, 0.01, 0.001), -->
+<!--                      omit.stat=c("f", "ser"), -->
+<!--                      header = F, -->
+<!--                      style = 'ajps') -->
+<!-- ``` -->
+
+<!-- ```{r, results='asis', echo=F} -->
+
+<!-- stargazer::stargazer(fullmod_lst$logit, type = 'latex',  -->
+<!--                      column.labels = as.character(relprty_df$Q7), -->
+<!--                      dep.var.labels = 'Vote choice', -->
+<!--                      star.cutoffs = c(0.05, 0.01, 0.001), -->
+<!--                      header = F, -->
+<!--                      style = 'ajps') -->
+<!-- ``` -->
+
+
