@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Greece Sample) 
 # Author: J.Leiser
-# last update: 2021-10-15
+# last update: 2021-10-26
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -438,6 +438,7 @@ anova_lst <-
 #                      style = 'ajps')
 
 #model 3: constant is no longer unusually high, but D1_rec still shows very large SEs
+# constant increases from ca. -19 to -3
 
 # Partial models fit summary # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -481,8 +482,9 @@ logit_df <-
 # Conclusion for model 3 --------------------------------------------------------------
 
 # just removing EDU_rec results in better fit and removes the problematic effect on the constant
-# but D1_rec still shows very large SEs, removing it might still be prudent
-# the significant test result seen previously could be type-I error
+# but D1_rec still shows very large SEs
+
+
 
 
 # 2. estimate Partial Logit Model for model 4 --------------------------------------------
@@ -572,10 +574,9 @@ logit_df <-
 
 # Overall Conclusion ------------------------------------------------------
 
-# We remove the problematic variables in the affected models to be prudent,
-# overruling contradictory signals from the LR tests.
-# Model 3, i.e. stack_1203: remove EDU_rec and D1_rec.
-# Model 4, i.e. stack_1204: remove D7_rec
+# We remove the problematic variables for which LR tests indicate better fit if we remove them
+# Model 3, i.e. stack_1203: remove EDU_rec
+# Model 4, i.e. stack_1204: change nothing
 
 # Clean the environment # ==============================================================================
 
