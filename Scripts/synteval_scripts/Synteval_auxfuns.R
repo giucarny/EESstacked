@@ -165,7 +165,7 @@ anova.auxfun <-
           lapply(., function(x) {
             x %<>% 
               as_tibble %>% 
-              mutate('Model' = c('Partial', 'Full')) %>% 
+              mutate('Model' = c('Constrained', 'Unconstrained')) %>% 
               dplyr::select(length(.), 1:(length(.)-1))
             })
       }

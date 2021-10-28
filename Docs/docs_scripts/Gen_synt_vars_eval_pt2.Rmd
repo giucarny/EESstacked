@@ -13,265 +13,12 @@ urlcolor: RedOrange
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
-# Admin # ==============================================================================================
 
-want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr", "rlang", "car",
-         "caret", "DescTools", "stargazer", "kableExtra", "janitor")
-have = want %in% rownames(installed.packages())
-if ( any(!have) ) { install.packages( want[!have] ) }
-junk <- lapply(want, library, character.only = TRUE)
-options(scipen = 99)
+# Load 'here' for sourcing # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+library('here')
 
-rm(list = ls())
-
-# Source the general workflow # ========================================================================
-
+# Source the general workflow # - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
 source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
-
-
-# Country-spec workflow # ==============================================================================
-
-cntry = 'CY'
-
-EES2019_cy <- EES2019 %>% filter(countryshort==cntry)
-EES2019_stckd_cy <- EES2019_stckd %>% filter(countryshort==cntry)
-EES2019_cdbk_cy <- EES2019_cdbk %>% filter(countryshort==cntry)
-
-rm(cntry)
-
-# Generic dichotomous variables estimation # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-EES2019_cy_stack <- 
-  cbind(EES2019_stckd_cy,  
-        lapply(data = EES2019_stckd_cy, 
-               X = list('Q2', 'Q7', 'Q9_rec', 'Q25_rec'),
-               stack_var = 'party',
-               FUN = gendic.fun) %>% 
-          do.call('cbind',.)) %>% 
-  as_tibble()
-
-# Generic distance/proximity variables estimation # - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-EES2019_cy_stack %<>%
-  cbind(.,
-        lapply(data = EES2019_cy,
-               cdbk = EES2019_cdbk_cy,
-               stack = EES2019_cy_stack, 
-               crit = 'average',
-               rescale = T,
-               check = F,
-               keep_id = F,
-               X = list('Q10','Q11','Q23'),
-               FUN = gendis.fun) %>% 
-          do.call('cbind',.)) %>% 
-  as_tibble()
-
-
-# Syntvars evaluation: Functions, variables and data frames # ==========================================
-
-# Source auxiliary functions # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-source(here('Scripts', 'synteval_scripts', 'Synteval_auxfuns.R'))
-
-# Country-specific data frames # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-csdf_lst <- list('std'  = EES2019_cy,
-                 'cdbk' = EES2019_cdbk_cy,
-                 'SDM'  = EES2019_cy_stack)
-
-
-# Synthetic variables estimation variables # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-syntvars_vrbls <- list('dep'   = list('OLS'     = 'Q10_gen', 
-                                      'logit'   = 'Q7_gen'),
-                       'indep' = list('ctgrcl' = c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 
-                                                   'D1_rec', 'D7_rec', 'D6_une'),
-                                      'cntns'  =  c('D4_age', 'D10_rec')))
-
-
-# Synthetic variables estimation data frames # - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-regdf_lst  <- list('OLS'   = regdf.auxfun(data        = csdf_lst$SDM,
-                                          depvar      = syntvars_vrbls$dep$OLS,
-                                          cat.indvar  = syntvars_vrbls$indep$ctgrcl, 
-                                          cont.indvar = syntvars_vrbls$indep$cntns),
-                   'logit' = regdf.auxfun(data        = csdf_lst$SDM,
-                                          depvar      = syntvars_vrbls$dep$logit,
-                                          cat.indvar  = syntvars_vrbls$indep$ctgrcl, 
-                                          cont.indvar = syntvars_vrbls$indep$cntns))
-
-
-# Relevant parties data frame # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-relprty_df <- 
-  tibble('depvar'    = 
-           lapply(1:length(regdf_lst$OLS), function(x){names(regdf_lst$OLS[[x]]) %>% .[2]}) %>% 
-           unlist,
-         'partycode' =
-           lapply(1:length(regdf_lst$OLS), function(x){names(regdf_lst$OLS[[x]]) %>% .[2]}) %>% 
-           unlist %>% 
-           gsub('stack_','',.) %>% 
-           as.numeric)  
-
-relprty_df %<>% 
-  mutate('partyname_eng' = 
-           csdf_lst$cdbk %>% 
-           dplyr::select(partyname_eng, Q7) %>% 
-           filter(Q7 %in% relprty_df[['partycode']]) %>% 
-           .[['partyname_eng']])
-
-
-
-# Syntvars evaluation: Null and full regression models # ===============================================
-
-set.seed(123)
-
-fullmod_lst <- list('OLS'   = gensyn.fun(data        = csdf_lst$SDM,
-                                         depvar      = syntvars_vrbls$dep$OLS,
-                                         cat.indvar  = syntvars_vrbls$indep$ctgrcl, 
-                                         cont.indvar = syntvars_vrbls$indep$cntns,
-                                         yhat.name   = 'socdem_synt',
-                                         regsum      = T),
-                    'logit' = gensyn.fun(data        = csdf_lst$SDM,
-                                         depvar      = syntvars_vrbls$dep$logit,
-                                         cat.indvar  = syntvars_vrbls$indep$ctgrcl, 
-                                         cont.indvar = syntvars_vrbls$indep$cntns,
-                                         yhat.name   = 'socdem_synt',
-                                         regsum      = T))
-
-nullmod_lst <- list('OLS'   = lapply(X = regdf_lst$OLS,   regmod = 'OLS',   null_mod.auxfun),
-                    'logit' = lapply(X = regdf_lst$logit, regmod = 'logit', null_mod.auxfun))
-
-
-# fullmod_lst$OLS %>% lapply(.,summary)
-# fullmod_lst$logit %>% lapply(.,summary)  
-
-# Syntvars evaluation: OLS models summary # ============================================================
-
-# stargazer::stargazer(fullmod_lst$OLS, type = 'text',
-#                      column.labels = as.character(relprty_df$Q7),
-#                      dep.var.labels = 'PTV',
-#                      star.cutoffs = c(0.05, 0.01, 0.001),
-#                      omit.stat=c("f", "ser"),
-#                      header = F,
-#                      style = 'ajps')
-
-# Syntvars evaluation: logit models summary # ==========================================================
-
-# stargazer::stargazer(fullmod_lst$logit, type = 'text',
-#                      column.labels = as.character(relprty_df$Q7),
-#                      dep.var.labels = 'Vote choice',
-#                      star.cutoffs = c(0.05, 0.01, 0.001),
-#                      omit.stat=c("f", "ser"),
-#                      header = F,
-#                      style = 'ajps')
-
-# Syntvars evaluation: OLS models fit stats # ==========================================================
-
-# RMSE and Rsq # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-ols_df <- 
-  tibble(
-    'depvar'  = lapply(1:length(regdf_lst$OLS), 
-                       function(x){
-                         names(regdf_lst$OLS[[x]]) %>% .[2]
-                       }) %>% unlist,
-    'model'   = rep('full',length(regdf_lst$OLS)),
-    'Rsq'     = lapply(1:length(fullmod_lst$OLS),
-                       function(x) {
-                         fullmod_lst$OLS[[x]] %>% summary %>% .$r.squared %>% round(., 3)
-                       }) %>% unlist,
-    'Adj_Rsq' = lapply(1:length(fullmod_lst$OLS),
-                       function(x) {
-                         fullmod_lst$OLS[[x]] %>% summary %>% .$adj.r.squared %>% round(., 3)
-                       }) %>% unlist,
-    'AIC'     = lapply(1:length(fullmod_lst$OLS),
-                       function(x) {
-                         fullmod_lst$OLS[[x]] %>% AIC
-                       }) %>% unlist) %>% 
-  rbind(.,
-        tibble(
-          'depvar'  = lapply(1:length(regdf_lst$OLS), 
-                             function(x){
-                               names(regdf_lst$OLS[[x]]) %>% .[2]
-                             }) %>% unlist,
-          'model'   = rep('null',length(regdf_lst$OLS)),
-          'Rsq'     = lapply(1:length(nullmod_lst$OLS),
-                             function(x) {
-                               nullmod_lst$OLS[[x]] %>% summary %>% .$r.squared %>% round(., 3)
-                             }) %>% unlist,
-          'Adj_Rsq' = lapply(1:length(nullmod_lst$OLS),
-                             function(x) {
-                               nullmod_lst$OLS[[x]] %>% summary %>% .$adj.r.squared %>% round(., 3)
-                             }) %>% unlist,
-          'AIC'     = lapply(1:length(fullmod_lst$OLS),
-                             function(x) {
-                               nullmod_lst$OLS[[x]] %>% AIC
-                             }) %>% unlist))
-
-ols_df %<>% 
-  left_join(., relprty_df, by='depvar') %>% 
-  dplyr::select(depvar, partycode, partyname_eng, model,
-                Rsq, Adj_Rsq, AIC)
-
-
-
-# Syntvars evaluation: logit models fit stats # ========================================================
-
-
-fulllogit_df <- 
-  tibble(
-    'depvar'     = lapply(1:length(regdf_lst$logit), 
-                          function(x){
-                            names(regdf_lst$OLS[[x]]) %>% .[2]
-                          }) %>% unlist,
-    'model'      = rep('full',length(regdf_lst$logit)),
-    'Ps_Rsq'     = lapply(1:length(fullmod_lst$logit),
-                          function(x){
-                            DescTools::PseudoR2(fullmod_lst$logit[[x]], which = 'McFadden')
-                          }) %>% unlist,
-    'Adj_Ps_Rsq' = lapply(1:length(fullmod_lst$logit),
-                          function(x){
-                            DescTools::PseudoR2(fullmod_lst$logit[[x]], which = 'McFaddenAdj')
-                          }) %>% unlist,
-    'AIC'        = lapply(1:length(fullmod_lst$logit),
-                          function(x) {
-                            fullmod_lst$logit[[x]] %>% AIC
-                          }) %>% unlist
-  ) %>% 
-  left_join(., relprty_df, by='depvar') %>% 
-  dplyr::select(depvar, partycode, partyname_eng, model,
-                Ps_Rsq, Adj_Ps_Rsq, AIC)
-
-
-
-nulllogit_df<- 
-  tibble(
-    'depvar'     = lapply(1:length(regdf_lst$logit), 
-                          function(x){
-                            names(regdf_lst$OLS[[x]]) %>% .[2]
-                          }) %>% unlist,
-    'model'      = rep('null',length(regdf_lst$logit)),
-    'Ps_Rsq'     = lapply(1:length(nullmod_lst$logit),
-                          function(x){
-                            DescTools::PseudoR2(nullmod_lst$logit[[x]], which = 'McFadden')
-                          }) %>% unlist,
-    'Adj_Ps_Rsq' = lapply(1:length(nullmod_lst$logit),
-                          function(x){
-                            DescTools::PseudoR2(nullmod_lst$logit[[x]], which = 'McFaddenAdj')
-                          }) %>% unlist,
-    'AIC'        = lapply(1:length(fullmod_lst$logit),
-                          function(x) {
-                            nullmod_lst$logit[[x]] %>% AIC
-                          }) %>% unlist
-  ) %>% 
-  left_join(., relprty_df, by='depvar') %>% 
-  dplyr::select(depvar, partycode, partyname_eng, model,
-                Ps_Rsq, Adj_Ps_Rsq, AIC)
-
-
 
 ```
 
@@ -281,7 +28,7 @@ nulllogit_df<-
 The second part of the evaluation of synthetic variables estimation consists in creating a set of 
 summary documents that will part of an appendix to the SDM codebook. These documents will be created 
 with `r-markdown` and related packages (e.g. `bookdown`, `knitr`, `kableExtra`) using the information 
-collected in our previous step. 
+collected in our previous step. For 
 
 The creation of documents summarizing synthetic variables estimation is needed for transparency and 
 reproducibility sake. Synthetic variables are the only variables of the SDM created with procedures that 
@@ -289,52 +36,101 @@ bo beyond basic transformations of existing variables. Hence, we must provide a 
 statistical models to the prospective SDM users, including workarounds for solving some issues faced in 
 estimating our synthetic variables. 
 
-# Reviewing and summarizing our evaluation scripts, selecting relevant information
+# Reviewing our evaluation scripts, and creating our `r-markdown` scripts
 
-The first step for creating our summary documents consists in determining which information should be 
-included. As you saw during the last two weeks, the existing evaluation scripts provide a lot of 
+The first goal of our new step is to improve our `synteval` scripts in order make them less redundant, 
+clearer and more concise. The second goal, then, is to include them in our `r-markdown` scripts, 
+creating a set of summary documents. The next section explains how to achieve the first goal, and the 
+following one explains how to achieve the second one. 
+
+Before starting, however, a **cautionary note**: the workflow of our evaluation of synthetic variables 
+estimation has been changed, and it has been changed exactly because the plan is to integrate them in 
+our `r-markdown` scripts. For running the evaluation scripts now you'll have to run the `Synteval_gen` 
+script in the `~/Scripts/synteval_scripts/` subdirectory. After that you'll be able to work on your 
+country-specific scripts. 
+ 
+
+## Review and changes of the country-specific `synteval` scripts
+
+Our new task on the evaluation scripts consists in determining which information should be included and 
+shape them in a way that will allow us to include them straighforwardly in our `r-markdown` scripts.  
+As you saw during the last two weeks, the existing evaluation scripts provide a lot of 
 information. However, some of them are actually not needed for our documents. For instance, if partial 
 models are needed just to deal with 'problematic' models, then creating partial models for *all* the 
 regression models that have been estimated, and moreover adding their fit statistics to our summary data
-frames, is a useless exercise. This situation was created primarily because the 
-evaluation procedure was conceived when the structure of the summary was still under-development (and, 
-actually, the evaluation procedure needed also some improvements). 
-
-Thus, now that the structure of the summary documents reached an almost definitive form, the workflow 
-used for evaluating synthetic variables estimation must be improved in order to become less redundant, 
-clearer and more concise^[I already reviewed our 'synteval' scrit this issue, by removing from each
-country-specific 'synteval' script the general workflow used for creating the SDM (namely, a partial 
-version of `EES2019_stack.R`). This will return to be very useful for processing our `r-markdown` files 
-since they are meant to include more than one country.]. After these improvements, we will include the 
-scripts in our `r-markdown` documents and this will allow us to *remove* the evaluation scripts, and 
-tidy up our repositories.
-
+frames is a useless exercise. This situation was created because the evaluation procedure was conceived 
+when the structure of the summary was still under development.  
 To exemplify how we should review our scripts I will make again reference to the one dedicated to the 
 Cypriot sample (`EES2019_cy_synteval.R` in the `~/Scripts/synt_eval_scripts/country_spec_scripts/` 
 subdirectory). 
 
-## What has to be changed
+We start by running our country-specific script until the '*Syntvars evaluation: logit models fit stats*'. 
+By doing so, we organize our country-specific data frames, compute the dichotomous and 
+proximity/distance generic variables, source the functions, select the variables of interest, organize 
+the variables and data frames in lists, fit the full and null models, and finally create data frames 
+dedicated to model fit statistics. 
 
-Overall, the scripts are fine until the sections dedicated to the model fit stats. Thus we run the 
-country-specific workflow for creating the other generic variables, then we source the functions, create 
-the variables and data frames needed for our evaluations, fit the full and null models, and finally 
-summarize them with regression tables and data frames dedicated to model fit statistics. However note 
-that an **additional variable** has to be included in our regression models, that is the `D6_une` 
-variable (a dichotomous variable that has value 0 for respondents having an employment and 1 for 
-unemployed respondents). 
+The few differences of the current version of the script compared to the previous one are that (1) the 
+'*Syntvars evaluation: ... models summary*' sections have been removed since the `stargazer` tables are 
+going to be used in the `r-markdown` scripts and that (2) the '*Syntvars evaluation: logit models fit stats*' 
+section is slightly changed, because differently from before a single data frame including fit 
+statistics for both our full and null logit models is created.  
 
-These steps already create more information than what we might actually need in our documents. For 
-instance what is definitely needed is the data frame with information concerning the relevant parties (
-the `relprty_df` object) and the `stargazer` regression tables. What we do not really need for our 
-documents, are the data frames with the fit statistics about the full and null models. Nonetheless, it 
-would be wise to leave them in our scripts if we decide, later on, to include them in our scripts or at 
-least include some of the information included in those data frames. 
+Moreover, notice that an **additional variable** has to be included in our regression models, that is 
+the `D6_une` variable (a dichotomous variable that has value 0 for respondents having an employment and 
+1 for unemployed ones). Obviously, once concluded our evaluation, this variable must be specified also 
+in the related country-specific `genvars` script. 
 
-What must be changed is the **estimation and evaluation of the partial models** used for dealing with 
-our full models showing inflated standar errors. During the last weeks I realised that we definitely do 
-not need to create said constrained models (and, thus, a summary of them) for those full models showing 
-reliable estimates. Thus we can implement said sections of our 'synteval' scripts removing some steps, 
-and changing others. 
+These steps are more or less the same that we used in our previous task and already create more 
+information than what we might actually need in our documents. However, at this stage I would not drop 
+anything from the environment. Even if some of said information won't be actually used in our 
+`r-markdown` scripts, these might return useful in any case. What we will definitely include in our 
+summary documents (at least cccording to the current version of them) is: 
+
+1. A data frame with information concerning the relevant parties (the `relprty_df` object);
+2. A set of two tables for our regression models (OLS and logistic);
+2. A data frame summarizing the Akaike Information Criterion scores for the full and null models; 
+
+
+The relevant parties frame (1) is already formatted in a way allowing us to include it in our 
+`r-markdown` script. As stated few lines above, the regression tables (2) can be created directly in the
+`r-markdown` file. What needs to be created is a data frame for the AIC scores (3) in a way that 
+will allow `r-markdown` to format it, and we can do it just selecting the AIC scores for the full and 
+null models and reshaping it in a wide format. 
+
+```{r, eval=F, echo=T}
+
+# OLS AIC df 
+
+ols_aic <- 
+  ols_df %>%
+  pivot_wider(id_cols = c('depvar', 'partycode', 'partyname_eng'), 
+              values_from = 'AIC',
+              names_from = 'model') %>%
+  mutate(diff = full - null) %>%
+  mutate(across(c('full', 'null', 'diff'), ~round(.,3))) %>%
+  dplyr::select(-c(partyname_eng))
+
+# OLS AIC df 
+
+logit_aic <- 
+  logit_df %>%
+  pivot_wider(id_cols = c('depvar', 'partycode', 'partyname_eng'), 
+              values_from = 'AIC',
+              names_from = 'model') %>%
+  mutate(diff = full - null) %>%
+  mutate(across(c('full', 'null', 'diff'), ~round(.,3))) %>%
+  dplyr::select(-c(partyname_eng))
+
+
+
+```
+
+Once created said data frames, we move to the sections that need to be reviewed the most, namely 
+those dedicated to the **estimation and evaluation of the partial models**. As mentioned earlier, during 
+the last weeks I realised that we definitely do not need to create said constrained models (and, thus, 
+a summary of them) for those full models showing reliable estimates. Thus we can implement said sections 
+of our 'synteval' scripts removing some steps, and changing others. 
 
 First, after the last section dedicated to full and null models fit statistics 
 ('*Syntvars evaluation: logit models fit stats*') I would insert a brief comment section. All of us put 
@@ -356,16 +152,16 @@ My idea is that the first comment section should be like the following one:
 
 ```
 
-The we crosstab the dependent variable with the problematic predictors. I realized that the former 
-ad hoc function that I created for this purpose was neither appropriate for our tasks nor proper for 
-being, then, included in our documents. Thus I created another one^[The function is called `tab.auxfun` 
-and takes the following arguments: `data` that should be one of our standard data frames for the 
-regression models; `y` that is our dependent variable (character); `x` the predictor of interest 
-(character); `na` whether the function should include also missing values (logical, default `TRUE`); 
-`perc` whether you want also the percentages values for the cells along with the absolute frequencies 
-(logical, default `FALSE`); `which_perc` if included, whether the percentages should be computed 
-considering `all` the cells, `rows` or `columns` (character, default `all`).] that is more specific and 
-creates tables that, later, can be easily included in our `r-markdown` docs. 
+Then we crosstab the dependent variable with the problematic predictors. I realized that the former 
+ad hoc function developed for this purpose was neither appropriate for our tasks nor proper for 
+creating tables to be included in our `r-markdown` scripts. Thus I created another one, called 
+`tab.auxfun`^[The function takes the following arguments: `data` that should be one of our standard data 
+frames for the regression models; `y` that is our dependent variable (character); `x` the predictor of 
+interest (character); `na` whether the function should include also missing values (logical, default 
+`TRUE`); `perc` whether you want also the percentages values for the cells along with the absolute 
+frequencies (logical, default `FALSE`); `which_perc` if included, whether the percentages should be 
+computed considering `all` the cells, `rows` or `columns` (character, default `all`).], that is more 
+specific and creates tables that can be easily included in our `r-markdown` scripts. 
 
 This is the exemplary routine for creating our crosstabs, plus comments about them :
 
@@ -429,8 +225,7 @@ anova_lst <-
 
 ```
 
-After this passage we include the partial model in a final list of models of interest, with a new 
-summary of regression estimates using the `stargazer` package: 
+After this passage we include the partial model in a final list of models of interest: 
 
 ```{r, eval=F, echo=T}
 
@@ -449,14 +244,6 @@ for(i in 1:length(fullmod_lst[['logit']])) {
 }
 rm(i)
 
-# stargazer::stargazer(finalmod_lst$logit, type = 'text',
-#                      column.labels = as.character(relprty_df$partycode),
-#                      dep.var.labels = c('', '', ''),
-#                      star.cutoffs = c(0.05, 0.01, 0.001),
-#                      omit.stat=c("f", "ser"),
-#                      header = F,
-#                      style = 'ajps')
-
 ```
 
 Again, once finished the evaluation, we must modify our 'genvars' country-specific scripts accordingly. 
@@ -472,23 +259,84 @@ summary of the evaluation of synthetic variables estimation of all the countries
 analysed during the last few weeks. This will allow us, later on, to create a single `r-markdown` script
 formatted as a pdf document. Now let's turn to the script.  
 
-
 First, the `YAML` header. You can copy-paste it from the exemplary script, and then modify the `title`, 
 `subtitle`, `author`, and `date` arguments.  
 
-Second, there's the first chunk of code that can be plainly copy-pasted from the exemplary script, 
-since it just load (and eventually install) the packages that are needed, then sourcing the (partial) 
-general workflow needed for our evaluations. 
+Second, there's the first chunk of code that will source the `Synteval_gen` script, after loading the 
+only package required for doing so (that is `here`)^[We load this package because, as you might now, 
+everytime we knit a document with `r-markdown` we launch an `R` session.]. 
+
+````fortran
+```{r echo=FALSE, warning=FALSE, message=FALSE}`r ''`
+
+# Load 'here' for sourcing # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+library('here')
+
+# Source the general workflow # - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
+
+```
+````
+
 
 After these two chunks then we have the paragraphs dedicated to our country-specific evaluations. After 
 the title (that can be simply the name of the country of interest) we include a second chunk of `R` code 
-that runs *all the sections* of our 'synteval' scripts except the first two (that we already included 
-in the first code chunk of the `r-markdown` script) and the last one (otherwise it would remove our 
-results from the environment). 
+that sources the country-specific `synteval` script.
 
-At this point we are ready to start typing and formatting the info of interest in our script. For 
-formatting tables we use the functions provided by `knitr` and `kableExtra` packages, whereas 
-for formatting our regression tables we use `stargazer`. 
+````fortran
+```{r echo=FALSE, warning=FALSE, message=FALSE}`r ''`
+# Source the Cypriot synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_cy_synteval.R'))
+
+```
+````
+
+At this point we are ready to start typing and formatting the info of interest in our script. 
+
+In terms of content, I would like to maintain the documents as concise and clear as possible. Thus 
+after a first introductory paragraph, and after printing the relevant parties table, I would simply 
+mention whether the regression models did produce unusual results, the min and max $R^2$ (or pseudo 
+$R^2$) values^[As you will notice, in the script I use `r` inline chunks for reporting such values. I 
+think that this is a convenient way to do it because reporting manually such values is prone to human 
+error, but this is up to you.], and then comment differences in the AIC scores between full and null 
+models, printing then the related table. 
+Of course, if we encountered problems with our models, then we need to mention them first when 
+summarising the regression output information, and then dedicating some lines and tables to show how we 
+dealt with such issues. Overall, I would rely on the comments that we already put in the `synteval` 
+scripts. We don't need to explain the strategy everytime. I will explain it when I will write down the 
+introductory section of the appendix.
+
+
+For formatting tables we can use the functions provided by `knitr` and `kableExtra` packages, whereas 
+for formatting our regression tables we can use `stargazer`.  
+This is an example of the code for formatting a table:
+
+````fortran
+```{r echo=FALSE, warning=FALSE, message=FALSE}`r ''`
+options(knitr.kable.NA = '')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Cypriot relevant parties \\label{table:relprty_tab_cy}", 
+        booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+````
+
+The first two lines of the chunk are general options for knitr (namely, to print blank cells when we 
+have `NA` values, and that the tables needs to be formatted for a pdf document). Then we rename the 
+columns of our data frames and finally we print them. 
+Notice the `caption` argument of the `kable` function: we label the table by adding `\\label{...}` in 
+the string vector. This will allow us to reference the table in directly into the document. Notice that 
+the labels **must** be country-specific (e.g. `table:full_logit_cy`) while the related `R` objects not.    
+The remaining options allow us to style a bit our table. 
+
+
 
 
 
