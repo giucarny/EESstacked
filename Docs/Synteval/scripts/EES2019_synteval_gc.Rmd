@@ -2,7 +2,7 @@
 title: Summary of Synthetic Variables Estimation 
 subtitle: EES 2019 Voter Study (Belgian, Bulgarian, Cypriot, and Italian samples)
 author: Giuseppe Carteny
-date: 26.10.2021 
+date: 29.10.2021 
 toc: false
 output: 
   bookdown::pdf_document2:
@@ -22,7 +22,7 @@ source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
 ```
 
 \newpage
-# Cyprus {-}
+# Cyprus
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Cypriot synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
@@ -50,13 +50,13 @@ relprty_df %>%
 
 Full OLS models converge and coefficients do not show any particular issue (see Table 
 \ref{table:full_ols_cy}). 
-In terms of model fit, the coefficient of determination ($R^2$) values vary between 
-a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Rsq==min(Rsq)) %>% .[['Rsq']]` 
-for party `r ols_df %>% filter(model=='full') %>% filter(Rsq==min(Rsq)) %>% .[['partycode']]` 
-(`r ols_df %>% filter(model=='full') %>% filter(Rsq==min(Rsq)) %>% .[['partyname_eng']]`) 
-and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Rsq==max(Rsq)) %>% .[['Rsq']]`
-for party `r ols_df %>% filter(model=='full') %>% filter(Rsq==max(Rsq)) %>% .[['partycode']]`
-(`r ols_df %>% filter(model=='full') %>% filter(Rsq==max(Rsq)) %>% .[['partyname_eng']]`). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
 Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
 models shows that in 4 cases out of 6 null models perform better than full ones (see Table 
 \ref{table:ols_aic_cy}).
@@ -72,16 +72,17 @@ ols_aic %>%
         align = c('l', 'c', rep('r',3))) %>% 
   kable_styling(latex_options = c('striped', 'hold_position'))
 
+
 ```
 
 On the contrary, three out of six logistic regression models (see Table \ref{table:full_logit_cy}) show 
 inflated standard errors for some of the coefficients of interest, in particular: 
 
-* Model 3: D7_rec (only for category 2);
-* Model 5a: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2), D6_une;
-* Model 6: D6_une.
+* Model 9: D7_rec (only for category 2);
+* Model 11a: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2), D6_une;
+* Model 12: D6_une.
 
-Nevertheless, models 3 and 6 constant terms and other regression coefficients are not affected by said 
+Nevertheless, models 9 and 12 constant terms and other regression coefficients are not affected by said 
 inflated standard errors, whereas model 5a presents a more problematic profile. 
 
 Model 5a inflated standard errors are due to separation issues. In short, no respondents from rural areas
@@ -90,11 +91,11 @@ unions, and unemployed did vote for party 505 (see Tables \ref{table:crosstab_1_
 \ref{table:crosstab_2_cy}, \ref{table:crosstab_3_cy}, \ref{table:crosstab_4_cy}, 
 \ref{table:crosstab_5_cy}, \ref{table:crosstab_6_cy}). 
 
-As a consequence, a constrained model 5 (namely, Model 5b) without said variables has been estimated and 
-contrasted with the original (Model 5a), full model. Likelihood-ratio test results show that $H_0$ 
-(namely, that the constrained model fits better than the full model) cannot be rejected (see Table 
-\ref{table:lrtest_1_cy}). Consequently, synthetic variables for respondents' vote choice for party 505 
-have been predicted relying on the constrained model. 
+As a consequence, a constrained version of model 11 (namely, Model 11b) without said variables was 
+estimated and contrasted with the original (Model 11a), full model. Likelihood-ratio test results show 
+that $H_0$ (namely, that the constrained model fits better than the full model) cannot be rejected 
+(see Table \ref{table:lrtest_1_cy}). Consequently, synthetic variables for respondents' vote choice for 
+party 505 have been predicted relying on the constrained model (Model 11b). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -105,6 +106,36 @@ anova_lst[[1]] %>%
                   \\label{table:lrtest_1_cy}", booktabs = F, ) %>% 
   kable_styling(latex_options = c('striped', 'hold_position'))
 
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 3 cases out of 6 null models perform better than full ones. According to AIC 
+values the related null model appears to have a better fit than Model 11b (see Table
+\ref{table:logit_aic_cy}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[6,1] <- 'stack_505*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_cy}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 11b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
 ```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -173,9 +204,13 @@ logit_regtab <-
   capture.output() 
 
 logit_regtab[9] %<>%
-  gsub('Model 5', 'Model 5a',.) %>% 
-  gsub('Model 6', 'Model 5b',.) %>% 
-  gsub('Model 7', 'Model 6',.) 
+  gsub('Model 7', 'Model 12',.) %>% 
+  gsub('Model 1$', 'Model 7',.) %>% 
+  gsub('Model 6', 'Model 11b',.) %>% 
+  gsub('Model 5', 'Model 11a',.) %>% 
+  gsub('Model 4', 'Model 10',.) %>% 
+  gsub('Model 3', 'Model 9',.) %>% 
+  gsub('Model 2', 'Model 8',.) 
 
 cat(logit_regtab, sep = "\n")
   

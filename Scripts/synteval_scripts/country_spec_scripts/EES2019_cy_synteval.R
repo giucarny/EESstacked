@@ -253,7 +253,7 @@ ols_aic <-
   mutate(across(c('full', 'null', 'diff'), ~round(.,3))) %>%
   dplyr::select(-c(partyname_eng))
 
-# logit AIC df 
+# Logit AIC df 
 
 logit_aic <- 
   logit_df %>%
@@ -336,7 +336,7 @@ finalmod_lst[['OLS']] <- fullmod_lst[['OLS']]
 finalmod_lst[['logit']] <- fullmod_lst[['logit']]
 
 finalmod_lst[['logit']][[7]] <- finalmod_lst[['logit']][[6]]
-finalmod_lst[['logit']][[6]] <- partmod_lst[[mdls]] # that is '5'
+finalmod_lst[['logit']][[6]] <- partmod_lst[[mdls]] 
 
 
 
@@ -356,5 +356,4 @@ logit_aic %<>%
           mutate(diff = full-null)) %>% 
   .[order(.$depvar, .$partycode),] 
 
-names(logit_aic)[names(logit_aic)=='full'] <- 'full*'
 

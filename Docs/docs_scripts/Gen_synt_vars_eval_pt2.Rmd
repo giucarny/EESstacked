@@ -2,7 +2,7 @@
 title: EES2019 Stacking Process 
 subtitle: Synthetic Variables Evaluation (Pt.2)
 author: Giuseppe Carteny
-date: 24.10.2021 
+date: 29.10.2021 
 toc: true
 output: 
   bookdown::pdf_document2:
@@ -111,7 +111,7 @@ ols_aic <-
   mutate(across(c('full', 'null', 'diff'), ~round(.,3))) %>%
   dplyr::select(-c(partyname_eng))
 
-# OLS AIC df 
+# Logit AIC df 
 
 logit_aic <- 
   logit_df %>%
@@ -225,24 +225,34 @@ anova_lst <-
 
 ```
 
-After this passage we include the partial model in a final list of models of interest: 
+After this passage we include the partial model in a final list of models of interest, updating also the 
+AIC data frame referring to our logit models : 
 
 ```{r, eval=F, echo=T}
 
 # Syntvars evaluation: logit models summary # ========================================== # 
 
-# fullmod_lst$logit[c(mdls)] <- partmod_lst[c(mdls)]
 
 finalmod_lst <- list()
 finalmod_lst[['OLS']] <- fullmod_lst[['OLS']]
-for(i in 1:length(fullmod_lst[['logit']])) {
-  finalmod_lst[['logit']][[i]] <- fullmod_lst[['logit']][[i]]
-  
-  if (i %in% mdls) {
-    finalmod_lst[['logit']][[i]] <- partmod_lst[[mdls]]
-  }
-}
-rm(i)
+finalmod_lst[['logit']] <- fullmod_lst[['logit']]
+
+finalmod_lst[['logit']][[7]] <- finalmod_lst[['logit']][[6]]
+finalmod_lst[['logit']][[6]] <- partmod_lst[[mdls]] 
+
+# Syntvars evaluation: Updating AIC data frames (logit only) # ========================= #
+
+# logit AIC df 
+
+logit_aic %<>% 
+  rbind(.,
+        tibble('depvar'    = 'stack_505',
+               'partycode' = 505, 
+               'full'      = partmod_lst[[mdls]] %>% AIC,
+               'null'      = nullmod_lst$logit[[mdls]] %>% AIC,
+               ) %>% 
+          mutate(diff = full-null)) %>% 
+  .[order(.$depvar, .$partycode),] 
 
 ```
 
@@ -253,7 +263,7 @@ issues are found. The following step, then, is dedicated to the creation of the 
 ## Summarizing evaluations with an `r-markdown` script
 
 For creating our `r-markdown` scripts we move then to the `~/Docs/Synteval/scripts` subdirectory. Here 
-you can find the exemplary script `EES2019_synteval_gc.Rmd`, with '`gc`' referring to my name and 
+we can find the exemplary script `EES2019_synteval_gc.Rmd`, with '`gc`' referring to my name and 
 surname first letters. This script *is not* country specific, but rather is conceived for including a 
 summary of the evaluation of synthetic variables estimation of all the countries that each of us 
 analysed during the last few weeks. This will allow us, later on, to create a single `r-markdown` script
@@ -278,10 +288,10 @@ source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
 ```
 ````
 
-
-After these two chunks then we have the paragraphs dedicated to our country-specific evaluations. After 
+After these two chunks then we have the sections dedicated to our country-specific evaluations. After 
 the title (that can be simply the name of the country of interest) we include a second chunk of `R` code 
 that sources the country-specific `synteval` script.
+
 
 ````fortran
 ```{r echo=FALSE, warning=FALSE, message=FALSE}`r ''`
@@ -328,13 +338,106 @@ relprty_df %>%
 ```
 ````
 
-The first two lines of the chunk are general options for knitr (namely, to print blank cells when we 
-have `NA` values, and that the tables needs to be formatted for a pdf document). Then we rename the 
-columns of our data frames and finally we print them. 
+
+The first two lines of the chunk are general options for knitr (namely, what to print in the table cells 
+when we have `NA` values, and that the tables needs to be formatted for a pdf document). Then we rename 
+the columns of our data frames and finally we print them. 
 Notice the `caption` argument of the `kable` function: we label the table by adding `\\label{...}` in 
-the string vector. This will allow us to reference the table in directly into the document. Notice that 
-the labels **must** be country-specific (e.g. `table:full_logit_cy`) while the related `R` objects not.    
-The remaining options allow us to style a bit our table. 
+the string vector. This will allow us to reference the table in directly into the document. Moreover, be 
+aware that the labels *must* be country-specific (e.g. `table:full_logit_cy`) while the related `R` 
+objects do not need to. Then, the remaining options allow us to style a bit our table. 
+
+All the tables are formatted in a similar fashion. Nonetheless, if we dealt with 'problematic' 
+regression models, then we must insert extra information in our tables. For instance, in the Cypriot 
+case the AIC values table for the logistic regression models now includes also the AIC values of the 
+partial model. Hence, we must specify in our table that the column referring to full models' AIC values 
+includes one value that actually referes to a constrained model. 
+This can be easily achieved adjusting the AIC data frame and adding a footnote to our table, as shown 
+below:
+
+````fortran
+```{r echo=FALSE, warning=FALSE, message=FALSE}`r ''`
+
+logit_aic[6,1] <- 'stack_505*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_cy}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 11b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+````
+
+
+Turning to the regression tables formatted with `stargazer`, the logit models tables require some 
+adjustements.`stargazer` auomatically assigns model names that are simply based on the list of model 
+results that we process with the function (that is, if we supply a list of 3 model results, `stargazer` 
+will label them 'Model 1', 'Model 2', and 'Model 3'). This is very convenient for our OLS models, but 
+when we turn to the logistic ones we need to rename them. Unfortunately, despite its flexibility, 
+`stargazer` does not allow us to modify such names with a function argument. So we need a workaround. 
+First we assign our `stargazer` table to an object. This will create a character vector, whose entries 
+refer to the LaTeX strings created by `stargazer`. Then you can modify it, changing the names of the 
+model with the `gsub` function. After doing so you can finally "print" the table using the `cat`
+function. 
+
+
+````fortran
+```{r, results='asis', echo=F}`r ''`
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_cy',
+                       type = 'latex',
+                       column.labels = c('501', '502', '503', '504','505','505', '507'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 7', 'Model 12',.) %>% 
+  gsub('Model 1$', 'Model 7',.) %>% 
+  gsub('Model 6', 'Model 11b',.) %>% 
+  gsub('Model 5', 'Model 11a',.) %>% 
+  gsub('Model 4', 'Model 10',.) %>% 
+  gsub('Model 3', 'Model 9',.) %>% 
+  gsub('Model 2', 'Model 8',.) 
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+````
+
+This is it. If you spot any error, typo, or if you have any additional idea please just drop me an email 
+as usual!
+
+# Who Does What 
+
+The list of countries on which we will work is not changed. I will take care of Belgium, Bulgaria, 
+Cyprus, and Italy, while you will take care of the following countries: 
+
+- **Willie**: Denmark, Estonia, Germany, Luxembourg, Malta, Netherlands, Spain, United Kingdom;
+- **Julian**: Czech Rep., Finland, Greece, Hungary, Lithuania, Slovakia, Poland, Sweden;
+- **Matthias**: Austria, Croatia, France, Ireland, Latvia, Portugal, Romania, Slovenia.
+
+# The Deadline
+
+I believe that we will need a bit more than one week of work, especially because you'll need to fight 
+with R Markdown and all its dependencies. So the next deadline is **12.11.2021**.
+
+
+
+
 
 
 
