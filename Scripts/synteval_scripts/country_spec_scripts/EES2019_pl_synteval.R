@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Poland Sample) 
 # Author: J.Leiser
-# last update: 2021-10-28
+# last update: 2021-11-05
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Country-spec workflow # ==============================================================================
@@ -67,7 +67,7 @@ csdf_lst <- list('std'  = EES2019_pl,
 syntvars_vrbls <- list('dep'   = list('OLS'     = 'Q10_gen', 
                                       'logit'   = 'Q7_gen'),
                        'indep' = list('ctgrcl' = c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 
-                                                   'D1_rec', 'D7_rec'),
+                                                   'D1_rec', 'D7_rec', 'D6_une'),
                                       'cntns'  =  c('D4_age', 'D10_rec')))
 
 
@@ -139,7 +139,7 @@ nullmod_lst <- list('OLS'   = lapply(X = regdf_lst$OLS,   regmod = 'OLS',   null
 #                      omit.stat=c("f", "ser"),
 #                      header = F,
 #                      style = 'ajps')
-# no problems
+
 
 # Syntvars evaluation: logit models summary # ==========================================================
 
@@ -151,7 +151,7 @@ nullmod_lst <- list('OLS'   = lapply(X = regdf_lst$OLS,   regmod = 'OLS',   null
 #                      header = F,
 #                      style = 'ajps')
 
-# problems in model 4: unusual estimates/SEs for EDU_red and D7 and constant
+
 
 
 # Syntvars evaluation: OLS models fit stats # ==========================================================
@@ -208,7 +208,7 @@ ols_df %<>%
 # Syntvars evaluation: logit models fit stats # ========================================================
 
 
-fulllogit_df <- 
+logit_df <- 
   tibble(
     'depvar'     = lapply(1:length(regdf_lst$logit), 
                           function(x){
@@ -228,67 +228,92 @@ fulllogit_df <-
                             fullmod_lst$logit[[x]] %>% AIC
                           }) %>% unlist
   ) %>% 
+  rbind(.,
+        tibble(
+          'depvar'     = lapply(1:length(regdf_lst$logit), 
+                                function(x){
+                                  names(regdf_lst$OLS[[x]]) %>% .[2]
+                                }) %>% unlist,
+          'model'      = rep('null',length(regdf_lst$logit)),
+          'Ps_Rsq'     = lapply(1:length(nullmod_lst$logit),
+                                function(x){
+                                  DescTools::PseudoR2(nullmod_lst$logit[[x]], which = 'McFadden')
+                                }) %>% unlist,
+          'Adj_Ps_Rsq' = lapply(1:length(nullmod_lst$logit),
+                                function(x){
+                                  DescTools::PseudoR2(nullmod_lst$logit[[x]], which = 'McFaddenAdj')
+                                }) %>% unlist,
+          'AIC'        = lapply(1:length(fullmod_lst$logit),
+                                function(x) {
+                                  nullmod_lst$logit[[x]] %>% AIC
+                                }) %>% unlist
+        ))
+
+
+logit_df %<>% 
   left_join(., relprty_df, by='depvar') %>% 
   dplyr::select(depvar, partycode, partyname_eng, model,
                 Ps_Rsq, Adj_Ps_Rsq, AIC)
 
 
+# AIC data frames # ====================================================================================
 
-nulllogit_df<- 
-  tibble(
-    'depvar'     = lapply(1:length(regdf_lst$logit), 
-                          function(x){
-                            names(regdf_lst$OLS[[x]]) %>% .[2]
-                          }) %>% unlist,
-    'model'      = rep('null',length(regdf_lst$logit)),
-    'Ps_Rsq'     = lapply(1:length(nullmod_lst$logit),
-                          function(x){
-                            DescTools::PseudoR2(nullmod_lst$logit[[x]], which = 'McFadden')
-                          }) %>% unlist,
-    'Adj_Ps_Rsq' = lapply(1:length(nullmod_lst$logit),
-                          function(x){
-                            DescTools::PseudoR2(nullmod_lst$logit[[x]], which = 'McFaddenAdj')
-                          }) %>% unlist,
-    'AIC'        = lapply(1:length(fullmod_lst$logit),
-                          function(x) {
-                            nullmod_lst$logit[[x]] %>% AIC
-                          }) %>% unlist
-  ) %>% 
-  left_join(., relprty_df, by='depvar') %>% 
-  dplyr::select(depvar, partycode, partyname_eng, model,
-                Ps_Rsq, Adj_Ps_Rsq, AIC)
+# OLS AIC df 
 
-# Summary of Evaluation Results ---------------------------------------------------------
+ols_aic <- 
+  ols_df %>%
+  pivot_wider(id_cols = c('depvar', 'partycode', 'partyname_eng'), values_from = 'AIC',
+              names_from = 'model') %>%
+  mutate(diff = full - null) %>%
+  mutate(across(c('full', 'null', 'diff'), ~round(.,3))) %>%
+  dplyr::select(-c(partyname_eng))
 
-# ols_df
-# fulllogit_df
-# nulllogit_df
+# Logit AIC df 
 
-# No issues with OLS estimation discovered
-
-# Logit
-# problems in model 4: unusual estimates/SEs for EDU_red and D7 and constant
-# also: when looking at fit statistics: only model 4 (stack_2105) has lower fit in the full than in
-# the null model. For all others the full model fits better than the null model.
-# look at model 4 in more detail
-
-# Identifying Logit Misfit Source ----------------------------------------
-
-#looking at EDU_rec
-df <- regdf_lst$logit[[4]]
-table(df$stack_2105, df$EDU_rec) #almost empty cells
-
-# looking at D7
-table(df$stack_2105, df$D7_rec) # empty cell
-
-# remove EDU_rec and D7_rec and see if fit improves for model 4
+logit_aic <- 
+  logit_df %>%
+  pivot_wider(id_cols = c('depvar', 'partycode', 'partyname_eng'), values_from = 'AIC',
+              names_from = 'model') %>%
+  mutate(diff = full - null) %>%
+  mutate(across(c('full', 'null', 'diff'), ~round(.,3))) %>%
+  dplyr::select(-c(partyname_eng))
 
 
-# Estimate Partial Logit Model --------------------------------------------
-# remove EDU_rec and D7_rec
+# Full models evaluation # =============================================================================
+
+# Logti model 4 shows inflated SE on some predictors, more specifically: 
+# Model 4: EDU_rec (both categories), D7_rec (second category), D6_une 
+
+# Model 4 constant term is affected showing unusual values. We deal with model 4 as it is affected 
+# by separation issue.
+
+
+
+# Syntvars evaluation: evaluating the source of misfit # ===============================================
+
+# Model 4 #-----------------------------------------------------------------
+
+mdl  <- 4
+df   <- regdf_lst$logit[[mdl]]
+cols <- c('EDU_rec', 'D7_rec', 'D6_une')
+
+tabs <- lapply(data=df, y='stack_2105', na=T, X = cols, FUN = tab.auxfun)
+
+# no respondent who voted for party 2105 is unemployed.
+# no respondent who voted for party 2105 has a high subjective social class.
+# only 1 respondent who voted for party 2105 has low education.
+# overall: only 19 respondents voted for party 2105.
+
+# Syntvars evaluation: partial logit models # ==========================================================
+
+# Get the df for and estimate the partial models # - - - - - - - - - - - - - - - - - - - - - - - - - - -
+vrbls_2_drop <- c('EDU_rec', 'D7_rec', 'D6_une')
+
 regdf_lst_part <- 
   regdf_lst$logit %>% 
-  lapply(., function(x){ x %<>% na.omit() %>% dplyr::select(-c( EDU_rec, D7_rec))})
+  lapply(., function(x){
+    x %<>% na.omit() %>% dplyr::select(-c(all_of(vrbls_2_drop)))
+  }) 
 
 partmod_lst <- 
   lapply(regdf_lst_part, function(x){
@@ -303,76 +328,42 @@ partmod_lst <-
 
 # LR test (Chisq) # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
+mdls <- c(4)
+
 anova_lst <- 
-  anova.auxfun(mdl_lst1 = partmod_lst,
-               mdl_lst2 = fullmod_lst$logit,
-               table = F)
+  anova.auxfun(mdl_lst1 = partmod_lst[c(mdls)],
+               mdl_lst2 = fullmod_lst$logit[c(mdls)],
+               table = T)
 
-# Results
-# Model 1: Do not reject H0
-# Model 2: Do not reject H0
-# Model 3: Do not reject H0
-# Model 4: Do not reject H0 (only for p < 0.1) (!)
-# Model 5: Reject H0
+# LR test for model 4: p-value = 0.0736 > 0.05, so we cannot reject H0.
+# Conclusion: remove EDU_rec, D7_rec and D6_une for party 2105
 
-# Model 5 would improve by including the variables
-# the problematic model 4 does not
-# hence: only removing the variables for model 4 might be prudent
+# Syntvars evaluation: Updating logit models (and related data frames) lists # ===============================
 
-# look at new parameter estimates
-# stargazer::stargazer(partmod_lst, type = 'text',
-#                      column.labels = as.character(relprty_df$Q7),
-#                      dep.var.labels = 'Vote choice',
-#                      star.cutoffs = c(0.05, 0.01, 0.001),
-#                      omit.stat=c("f", "ser"),
-#                      header = F,
-#                      style = 'ajps')
+# fullmod_lst$logit[c(mdls)] <- partmod_lst[c(mdls)]
 
-# no 'unusual' parameter estimates
+finalmod_lst <- list()
+finalmod_lst[['OLS']] <- fullmod_lst[['OLS']]
+finalmod_lst[['logit']] <- fullmod_lst[['logit']]
 
-# Partial models fit summary # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+finalmod_lst[['logit']][[6]] <- finalmod_lst[['logit']][[5]]
+finalmod_lst[['logit']][[5]] <- partmod_lst[[mdls]] 
 
 
-partlogit_df <-  
-  tibble(
-    'depvar'     = lapply(1:length(partmod_lst), 
-                          function(x){
-                            names(regdf_lst_part[[x]]) %>% .[2]
-                          }) %>% unlist,
-    'model'      = rep('partial',length(regdf_lst_part)),
-    'Ps_Rsq'     = lapply(1:length(partmod_lst),
-                          function(x){
-                            DescTools::PseudoR2(partmod_lst[[x]], which = 'McFadden')
-                          }) %>% unlist,
-    'Adj_Ps_Rsq' = lapply(1:length(partmod_lst),
-                          function(x){
-                            DescTools::PseudoR2(partmod_lst[[x]], which = 'McFaddenAdj')
-                          }) %>% unlist,
-    'AIC'        = lapply(1:length(partmod_lst),
-                          function(x) {
-                            partmod_lst[[x]] %>% AIC
-                          }) %>% unlist
-  ) %>% 
-  left_join(., relprty_df, by='depvar') %>% 
-  dplyr::select(depvar, partycode, partyname_eng, model,
-                Ps_Rsq, Adj_Ps_Rsq, AIC)
+# Syntvars evaluation: Updating AIC data frames (logit only) # =========================================
 
+# logit AIC df 
 
-# Syntvars evaluation: New logit models fit stats # ====================================================
+logit_aic %<>% 
+  rbind(.,
+        tibble('depvar'    = 'stack_2105',
+               'partycode' = 2105, 
+               'full'      = partmod_lst[[mdls]] %>% AIC,
+               'null'      = nullmod_lst$logit[[mdls]] %>% AIC,
+        ) %>% 
+          mutate(diff = full-null)) %>% 
+  .[order(.$depvar, .$partycode),] 
 
-logit_df <-  
-  fulllogit_df %>% 
-  rbind(., partlogit_df) %>% 
-  rbind(., nulllogit_df)
-
-# filter(logit_df, model == "full" | model == "partial")
-# overall fit between partial and full model is rather similar, many partial models actually fit better
-# as indicated by the test results except model 5 & 4 (but in 4 the partial model does not exhibit the 
-# parameter misfit problem).
-
-# Conclusion --------------------------------------------------------------
-
-# Remove EDU_rec and D7_rec for model 4 only i.e. stack_2105
 
 # Clean the environment # ==============================================================================
 

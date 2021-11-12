@@ -272,7 +272,7 @@ logit_aic <-
 
 # Full models evaluation # =============================================================================
 
-# logit models 1 show inflated SE on some predictors, more specifically: 
+# some logit models show inflated SE on some predictors, more specifically: 
 # Model 1: D6_une
 # Model 2: EDU_rec (both categories), D7_rec (second category), D6_une
 # Model 3: D6_une
@@ -280,7 +280,7 @@ logit_aic <-
 # Model 8: D6_une
 
 
-# Constant terms in models 1, 3, 7 and 8 are not affected by inflated SEs of predcitors. 
+# Constant terms in models 1, 3, 7 and 8 are not affected by inflated SEs of predictors 
 # Model 2  constant is affected showing unusual values. We deal with model 2 as it is affected 
 # by separation issue.
 

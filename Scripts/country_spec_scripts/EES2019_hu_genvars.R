@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Hungary Sample) 
 # Author: J.Leiser
-# last update: 2021-10-21
+# last update: 2021-11-08
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Subset the EES original data frame, the SDM, and the EES codebook # ==================================
@@ -98,7 +98,7 @@ EES2019_hu_stack %<>%
 EES2019_hu_stack %<>%
   left_join(.,
             lapply(data = EES2019_hu_stack,
-                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec'),
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec', 'D6_une'),
                    cont.indvar =  c('D4_age', 'D10_rec'),
                    yhat.name = 'socdem_synt',
                    regsum = F,
@@ -108,35 +108,42 @@ EES2019_hu_stack %<>%
             by = c('respid', 'party')) %>% 
   as_tibble()
 
+# Joining, by = c("respid", "party")
+# Warning message:
+#   glm.fit: fitted probabilities numerically 0 or 1 occurred 
+
+
+# code below is obsolete with new workflow
+
 # prediction for party 1304 and 1306 with different model
-
-pred_1304_hu <- 
-  gensyn.fun(data        = EES2019_hu_stack,
-             depvar      = 'Q7_gen',
-             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec'),
-             cont.indvar =  c('D4_age', 'D10_rec'),
-             yhat.name   = 'socdem_synt',
-             regsum      = F,
-             stack_party = '1304'
-  )
-
-pred_1307_hu <- 
-  gensyn.fun(data        = EES2019_hu_stack,
-             depvar      = 'Q7_gen',
-             cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec'),
-             cont.indvar =  c('D4_age', 'D10_rec'),
-             yhat.name   = 'socdem_synt',
-             regsum      = F,
-             stack_party = '1307'
-  )
-
-EES2019_hu_stack <-   
-  left_join(EES2019_hu_stack %>% dplyr::select(-c(socdem_synt_vc)),
-            EES2019_hu_stack %>% 
-              dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party!=1304, party!=1307) %>% 
-              rbind(pred_1304_hu, pred_1307_hu),
-            by = c('respid','party'))
+# 
+# pred_1304_hu <- 
+#   gensyn.fun(data        = EES2019_hu_stack,
+#              depvar      = 'Q7_gen',
+#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec'),
+#              cont.indvar =  c('D4_age', 'D10_rec'),
+#              yhat.name   = 'socdem_synt',
+#              regsum      = F,
+#              stack_party = '1304'
+#   )
+# 
+# pred_1307_hu <- 
+#   gensyn.fun(data        = EES2019_hu_stack,
+#              depvar      = 'Q7_gen',
+#              cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec'),
+#              cont.indvar =  c('D4_age', 'D10_rec'),
+#              yhat.name   = 'socdem_synt',
+#              regsum      = F,
+#              stack_party = '1307'
+#   )
+# 
+# EES2019_hu_stack <-   
+#   left_join(EES2019_hu_stack %>% dplyr::select(-c(socdem_synt_vc)),
+#             EES2019_hu_stack %>% 
+#               dplyr::select(respid, party, socdem_synt_vc) %>% 
+#               filter(party!=1304, party!=1307) %>% 
+#               rbind(pred_1304_hu, pred_1307_hu),
+#             by = c('respid','party'))
 
 # Clean the environment # ==============================================================================
 
