@@ -1,6 +1,6 @@
 ---
 title: Summary of Synthetic Variables Estimation 
-subtitle: EES 2019 Voter Study (Czech, Finnish, Greek, Hungarian, Lithuanian, Slovakian, Polish, Swedish Samples)
+subtitle: EES 2019 Voter Study (Czech, Finnish, Greek, Hungarian, Lithuanian, Slovakian, Polish and Swedish Samples)
 author: Julian Leiser
 date: 12.11.2021 
 toc: false
@@ -710,9 +710,9 @@ inflated standard errors for some of the coefficients of interest, in particular
 
 Models 10a, 13a and 14a are all problematic as the constant terms seem to be affected by the inflated standard errors issue. These inflated standard errors are due to separation issues which are explored below.
 
-For Model 10a we see that no respondent with low education voted for party 1706 (see Table \ref{table:crosstab_1_lt}).
-For Model 13a we have that again no respondent with low education and no respondent who is unemployed voted for party 1707 (see Tables \ref{table:crosstab_2_lt}, \ref{table:crosstab_4_lt}). Furthermore, only one respondent with high subjective social class voted for party 1707 (see Table \ref{table:crosstab_3_lt}).
-Finally for Model 14a Table \ref{table:crosstab_5_lt} shows that no respondent with low education voted for party 1702.
+For Model 10a, we see that no respondent with low education voted for party 1706 (see Table \ref{table:crosstab_1_lt}).
+For Model 13a, we have that again no respondent with low education and no respondent who is unemployed voted for party 1707 (see Tables \ref{table:crosstab_2_lt}, \ref{table:crosstab_4_lt}). Furthermore, only one respondent with high subjective social class voted for party 1707 (see Table \ref{table:crosstab_3_lt}).
+Finally, for Model 14a Table \ref{table:crosstab_5_lt} shows that no respondent with low education voted for party 1702.
 
 As a consequence constrained versions of Models  10, 13 and 14 (namely 10b, 13b and 14b) were estimated. In Models 10b and 14b the EDU_rec variables were removed, while in Model 13b the EDU_rec variables, the D7_rec variables and the D6_une variable were removed. These constrained models were then contrasted with their respective (original) full models (i.e. 10a, 13a, 14a). Likelihood-ratio test results show that $H_0$ (constrained model fits better than the full model) cannot be rejected for any of the models (see Tables \ref{table:lrtest_1_lt}, \ref{table:lrtest_2_lt}, \ref{table:lrtest_3_lt}). Following these results, synthetic variables for respondents' vote choice for parties 1706, 1707 and 1702 have been predicted relying on the constrained models (Model 10b, 13b, 14b).
 
@@ -1111,7 +1111,7 @@ inflated standard errors for some of the coefficients of interest, in particular
 
 Model 9a appears to be problematic as the constant term seems to be affected by the inflated standard errors issue.
 
-The inflated standard errors in Model 9a are due to separation issues. In short, no respondents who are unemployed or of high subjective social status voted for party 2105. Only one respondent with low education voted for party 2105 (See tables \ref{table:crosstab_1_pl}, \ref{table:crosstab_2_pl}, \ref{table:crosstab_3_pl})
+The inflated standard errors in Model 9a are due to separation issues. In short, no respondents who are unemployed or of high subjective social status voted for party 2105. Only one respondent with low education voted for party 2105. (See tables \ref{table:crosstab_1_pl}, \ref{table:crosstab_2_pl}, \ref{table:crosstab_3_pl})
 
 As a consequence, a constrained version of model 9 (namely, Model 9b) without said variables was 
 estimated and contrasted with the original (Model 9a), full model. Likelihood-ratio test results show 
@@ -1283,11 +1283,11 @@ ols_aic %>%
 ```
 
 On the contrary, one out of the eight logistic regression models (see Table \ref{table:full_logit_se}) shows 
-inflated standard errors for some of the coefficients of interest, in particular: 
+inflated standard errors for one of the coefficients of interest, in particular: 
 
 * Model 10: D6_une
 
-However, the constant term and the other regressors of Model 10 are not affected by the inflated standard errors. Therefore, no additional adjustments are made and Model 10 is kept as is.
+However, the constant term and the other regressors of Model 10 are not affected by the inflated standard errors issue. Therefore, no additional adjustments are made and Model 10 is kept as is.
 
 In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
 a minimum value of 
