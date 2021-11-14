@@ -136,43 +136,26 @@ EES2019_mt_stack %<>%
             by = c('respid', 'party')) %>% 
   as_tibble()
 
-# prediction for party 1903 and 1904 created w/ a different model
+# prediction for party 1905 created w/ a different model
 
-pred_1903_mt <- 
+pred_1905_mt <- 
   gensyn.fun(data        = EES2019_mt_stack,
              depvar      = 'Q7_gen',
              cat.indvar  = c('D3_rec', 'D5_rec'),
              cont.indvar =  c('D4_age', 'D10_rec'),
              yhat.name   = 'socdem_synt',
              regsum      = F,
-             stack_party = '1903'
+             stack_party = '1905'
   )
 
 EES2019_mt_stack <-   
   left_join(EES2019_mt_stack %>% dplyr::select(-c(socdem_synt_vc)),
             EES2019_mt_stack %>% 
               dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party!=1903) %>% 
-              rbind(pred_1903_mt),
+              filter(party!=1905) %>% 
+              rbind(pred_1905_mt),
             by = c('respid','party'))
 
-pred_1904_mt <- 
-  gensyn.fun(data        = EES2019_mt_stack,
-             depvar      = 'Q7_gen',
-             cat.indvar  = c('D3_rec', 'D5_rec', 'EDU_rec', 'D1_rec'),
-             cont.indvar =  c('D4_age', 'D10_rec'),
-             yhat.name   = 'socdem_synt',
-             regsum      = F,
-             stack_party = '1904'
-  )
-
-EES2019_mt_stack <-   
-  left_join(EES2019_mt_stack %>% dplyr::select(-c(socdem_synt_vc)),
-            EES2019_mt_stack %>% 
-              dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party!=1904) %>% 
-              rbind(pred_1904_mt),
-            by = c('respid','party'))
 
 # Clean the environment # ==============================================================================
 

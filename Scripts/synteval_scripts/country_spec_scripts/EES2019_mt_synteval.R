@@ -341,26 +341,84 @@ partmod_lst5 <-
     return(fit)
   })
 
+# ======================================================================= # Evaluation of ANOVA results ####
 
 # LR test (Chisq) # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 #Model 3
+
+#LR test:
+partmod_loglik <- partmod_lst3[[3]] %>% logLik() %>% as.numeric # k = 5
+fullmod_loglik <- fullmod_lst$logit[[3]] %>% logLik() %>% as.numeric # k = 11
+degfre         <- 11-5
+
+LR = 2*(fullmod_loglik-partmod_loglik)
+p <- pchisq(LR, df=degfre, lower.tail = F)
+# p<.05 
+# We reject the null hypothesis (partial model fits better than full model). Hence the full model fits 
+# significantly better than the constrained one. In this we case we cannot implement the partial model. 
+
+#Anova test:
 anova_lst3 <- 
   anova.auxfun(mdl_lst1 = partmod_lst3,
                mdl_lst2 = fullmod_lst$logit,
                table = F)
+#p<.05
+#Model 3: The null hypothesis (the partial/constrained model fits better than 
+#the full/unconstrained model) can be rejected for models 1, 2 and 3 at p<0.05, 
+#for Model 4 at p<0.1 and for model 5 only at p<0.25.
+#Dropping the problematic variables in all Models thus represents a rather 
+#disruptive solution. Therefore the constrained model will not be implemented.
 
 #Model 4
+
+#LR test:
+partmod_loglik <- partmod_lst4[[4]] %>% logLik() %>% as.numeric # k = 8
+fullmod_loglik <- fullmod_lst$logit[[4]] %>% logLik() %>% as.numeric # k = 11
+degfre         <- 11-8
+
+LR = 2*(fullmod_loglik-partmod_loglik)
+p <- pchisq(LR, df=degfre, lower.tail = F)
+# p<.05 
+# We reject the null hypothesis (partial model fits better than full model). Hence the full model fits 
+# significantly better than the constrained one. In this case we cannot implement the partial model. 
+
+#Anova test:
 anova_lst4 <- 
   anova.auxfun(mdl_lst1 = partmod_lst4,
                mdl_lst2 = fullmod_lst$logit,
                table = F)
+#p<.05
+#Anova: The null hypothesis can be rejected for models 1,2 and 4 at p<0.05 and not
+#for Model 3 (p<0.4) and 5 (p<0.25).
+#Dropping the problematic variables in all Models thus represents a rather 
+#disruptive solution. Therefore the constrained model will not be implemented.
 
 #Model 5
+
+#LR test:
+partmod_loglik <- partmod_lst5[[5]] %>% logLik() %>% as.numeric # k = 6
+fullmod_loglik <- fullmod_lst$logit[[5]] %>% logLik() %>% as.numeric # k = 11
+degfre         <- 11-6
+
+LR = 2*(fullmod_loglik-partmod_loglik)
+p <- pchisq(LR, df=degfre, lower.tail = F)
+# p>0.05 
+# We reject the alternativ hypothesis (partial model does not fit better than full model). Hence the partial model fits 
+# significantly better than the constrained one. In this case we implement the partial model. 
+
+#Anova test:
 anova_lst5 <- 
   anova.auxfun(mdl_lst1 = partmod_lst5,
                mdl_lst2 = fullmod_lst$logit,
                table = F)
+
+#Anova: 
+#Models 1 and 2 reject H0 at p<0.001 and model 3 rejects H0 at p<0.05 and Model 4 at 
+#p<0.1, but not model 5 (p< 0.15).
+#Constrained model 5 fits better than the unconstrained one (H0 rejected at p>0.05). 
+#Thus the constrained model will be implemented for Model 5.   
+
 
 # Partial models fit summary # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -439,20 +497,9 @@ partlogit_df5 <-
   dplyr::select(depvar, partycode, partyname_eng, model,
                 Ps_Rsq, Adj_Ps_Rsq, AIC)
 
-#Model 3: Except for Model 4 and 5 the null hypothesis can be rejected for models
-#1,2 and 3 at p<0.05. Dropping the problematic variables in all Models thus 
-#represents a rather disruptive solution. Therefore the constrained model will 
-#only be implemented for Model 3.
 
-#Model 4: Except for Model 3 and 5 the null hypothesis can be rejected for models
-#1,2 and 4 at p<0.05. Dropping the problematic variables in all Models thus 
-#represents a rather disruptive solution. Therefore the constrained model will 
-#only be implemented for Model 4.
 
-#Model 5: 
-#Unconstrained model 5 fits better than the constrained one at p>0.05. This does 
-#not meet the required p<0.05. Thus the constrained model will not be implemented 
-#for Model 5.   
+
 
 # Syntvars evaluation: New logit models fit stats # ====================================================
 
