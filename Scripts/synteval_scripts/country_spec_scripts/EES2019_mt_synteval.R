@@ -1,11 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Maltese Sample) 
 # Author: w.Haeussling
-<<<<<<< HEAD
 # last update: 2021-11-15
-=======
-# last update: 2021-10-28
->>>>>>> main
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Country-spec workflow # ==============================================================================
@@ -322,7 +318,7 @@ tabs5 <- lapply(data=df, y='stack_1905', na=T, X = cols, FUN = tab.auxfun)
 # with high subjective social status, members of trade unions, and unemployed 
 # or NA in employment information did vote for party 1905 
 # (voted by only 9 respondents of the Maltese sample).
- 
+
 
 # Syntvars evaluation: partial logit models # ==========================================================
 

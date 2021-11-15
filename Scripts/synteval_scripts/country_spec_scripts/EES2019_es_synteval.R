@@ -1,11 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Spanish Sample) 
 # Author: w.Haeussling
-<<<<<<< HEAD
 # last update: 2021-11-15
-=======
-# last update: 2021-10-28
->>>>>>> main
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Country-spec workflow # ==============================================================================
