@@ -103,12 +103,12 @@ For model 10 Likelihood-ratio test results show that $H_0$ (namely, that the con
 options(knitr.kable.NA = '')
 
 anova_lst3[[1]] %>%
-  kable(caption = "Likelihood-ratio Test between Model 8a (Unconstrained) and Model 8b                               (Constrained)
+  kable(caption = "Likelihood-ratio Test between Model 8a (Unconstrained) and Model 8b (Constrained)
                   \\label{table:lrtest_1_mt}", booktabs = F, ) %>% 
   kable_styling(latex_options = c('striped', 'hold_position'))
 
 anova_lst4[[1]] %>%
-  kable(caption = "Likelihood-ratio Test between Model 9a (Unconstrained) and Model 9b                               (Constrained)
+  kable(caption = "Likelihood-ratio Test between Model 9a (Unconstrained) and Model 9b (Constrained)
                   \\label{table:lrtest_2_mt}", booktabs = F, ) %>% 
   kable_styling(latex_options = c('striped', 'hold_position'))
 

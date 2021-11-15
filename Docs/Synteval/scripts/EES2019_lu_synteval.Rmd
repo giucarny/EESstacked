@@ -77,7 +77,7 @@ ols_aic %>%
 
 On the contrary, four out of seven logistic regression models (see Table \ref{table:full_logit_lu}) show inflated standard errors for one of the coefficients of interest, in particular: 
 
-* Model 8, 9, 10 and 12: D6_une
+* Model 8, 9, 10 and 12: D6_une.
 
 Nevertheless, models 8, 9, 10 and 12 constant term and other regression coefficients are not affected by said inflated standard error. Therefore, we do not adapt the model.
 
