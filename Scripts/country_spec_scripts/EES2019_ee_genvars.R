@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Estonia Sample) 
 # Author: W. Haeussling
-# last update: 2021-10-20
+# last update: 2021-11-14
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -135,112 +135,14 @@ EES2019_ee_stack %<>%
             by = c('respid', 'party')) %>% 
   as_tibble()
 
-# predictions for Q7_gen for all parties created w/ a different model
-#Model 1
-pred_901_ee <- 
-  gensyn.fun(data        = EES2019_ee_stack,
-             depvar      = 'Q7_gen',
-             cat.indvar  = c('D3_rec', 'D8_rec',  'D5_rec', 'D1_rec', 'D7_rec'),
-             cont.indvar =  c('D4_age', 'D10_rec'),
-             yhat.name   = 'socdem_synt',
-             regsum      = F,
-             stack_party = '901'
-  )
+# predictions for parties 906 and 907 created w/ a different model
 
-EES2019_ee_stack <-   
-  left_join(EES2019_ee_stack %>% dplyr::select(-c(socdem_synt_vc)),
-            EES2019_ee_stack %>% 
-              dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party!=901) %>% 
-              rbind(pred_901_ee),
-            by = c('respid','party'))
-
-
-# Model 2
-pred_902_ee <- 
-  gensyn.fun(data        = EES2019_ee_stack,
-             depvar      = 'Q7_gen',
-             cat.indvar  = c('D3_rec', 'D8_rec',  'D5_rec', 'D1_rec', 'D7_rec'),
-             cont.indvar =  c('D4_age', 'D10_rec'),
-             yhat.name   = 'socdem_synt',
-             regsum      = F,
-             stack_party = '902'
-  )
-
-
-EES2019_ee_stack <-   
-  left_join(EES2019_ee_stack %>% dplyr::select(-c(socdem_synt_vc)),
-            EES2019_ee_stack %>% 
-              dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party!=902) %>% 
-              rbind(pred_902_ee),
-            by = c('respid','party'))
-
-#Model 3
-pred_903_ee <- 
-  gensyn.fun(data        = EES2019_ee_stack,
-             depvar      = 'Q7_gen',
-             cat.indvar  = c('D3_rec', 'D8_rec',  'D5_rec', 'D1_rec', 'D7_rec'),
-             cont.indvar =  c('D4_age', 'D10_rec'),
-             yhat.name   = 'socdem_synt',
-             regsum      = F,
-             stack_party = '903'
-  )
-
-
-EES2019_ee_stack <-   
-  left_join(EES2019_ee_stack %>% dplyr::select(-c(socdem_synt_vc)),
-            EES2019_ee_stack %>% 
-              dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party!=903) %>% 
-              rbind(pred_903_ee),
-            by = c('respid','party'))
-
-#Model 4
-pred_904_ee <- 
-  gensyn.fun(data        = EES2019_ee_stack,
-             depvar      = 'Q7_gen',
-             cat.indvar  = c('D3_rec', 'D8_rec',  'D5_rec', 'D1_rec', 'D7_rec'),
-             cont.indvar =  c('D4_age', 'D10_rec'),
-             yhat.name   = 'socdem_synt',
-             regsum      = F,
-             stack_party = '904'
-  )
-
-
-EES2019_ee_stack <-   
-  left_join(EES2019_ee_stack %>% dplyr::select(-c(socdem_synt_vc)),
-            EES2019_ee_stack %>% 
-              dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party!=904) %>% 
-              rbind(pred_904_ee),
-            by = c('respid','party'))
-
-#Model 5
-pred_905_ee <- 
-  gensyn.fun(data        = EES2019_ee_stack,
-             depvar      = 'Q7_gen',
-             cat.indvar  = c('D3_rec', 'D8_rec',  'D5_rec', 'D1_rec', 'D7_rec'),
-             cont.indvar =  c('D4_age', 'D10_rec'),
-             yhat.name   = 'socdem_synt',
-             regsum      = F,
-             stack_party = '905'
-  )
-
-
-EES2019_ee_stack <-   
-  left_join(EES2019_ee_stack %>% dplyr::select(-c(socdem_synt_vc)),
-            EES2019_ee_stack %>% 
-              dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party!=905) %>% 
-              rbind(pred_905_ee),
-            by = c('respid','party'))
 
 #Model 6
 pred_906_ee <- 
   gensyn.fun(data        = EES2019_ee_stack,
              depvar      = 'Q7_gen',
-             cat.indvar  = c('D3_rec', 'D8_rec',  'D5_rec', 'D1_rec', 'D7_rec'),
+             cat.indvar  = c('D3_rec', 'D8_rec',  'D5_rec', 'D1_rec', 'D7_rec','D6_une'),
              cont.indvar =  c('D4_age', 'D10_rec'),
              yhat.name   = 'socdem_synt',
              regsum      = F,
@@ -260,7 +162,7 @@ EES2019_ee_stack <-
 pred_907_ee <- 
   gensyn.fun(data        = EES2019_ee_stack,
              depvar      = 'Q7_gen',
-             cat.indvar  = c('D3_rec', 'D8_rec',  'D5_rec', 'D1_rec', 'D7_rec'),
+             cat.indvar  = c('D3_rec', 'D8_rec',  'D5_rec', 'D7_rec'),
              cont.indvar =  c('D4_age', 'D10_rec'),
              yhat.name   = 'socdem_synt',
              regsum      = F,
