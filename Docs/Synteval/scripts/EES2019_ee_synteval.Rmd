@@ -153,8 +153,8 @@ values the related null model appears to have a better fit than Model 13b and 14
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
-logit_aic[6,1] <- 'stack_906*'
-logit_aic[7,1] <- 'stack_907*'
+logit_aic[7,1] <- 'stack_906*'
+logit_aic[9,1] <- 'stack_907*'
 
 names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
 
@@ -163,7 +163,7 @@ logit_aic %>%
         \\label{table:logit_aic_ee}", booktabs = T, 
         align = c('l', 'c', rep('r',3))) %>% 
   kable_styling(latex_options = c('striped', 'hold_position')) %>% 
-  footnote(symbol = 'AIC value refers to Model 13b (constrained) and 14b_2 (constrained and with D5_rec.',
+  footnote(symbol = 'AIC value refers to Model 13b for 906* (constrained) and 14b_2 for 907* (constrained and with D5_rec).',
            threeparttable = T,
            footnote_as_chunk = T)
 ```

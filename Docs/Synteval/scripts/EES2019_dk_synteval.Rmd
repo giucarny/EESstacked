@@ -58,7 +58,7 @@ and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj
 for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
 (`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
 Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
-models shows that in 1 cases out of 7 null models perform better than full ones (see Table 
+models shows that in 1 case out of 7 null models perform better than full ones (see Table 
 \ref{table:ols_aic_dk}).
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -75,8 +75,32 @@ ols_aic %>%
 
 ```
 
-Furthermore, there were no unusual standard errors for any coefficients. (see Table below \ref{table:full_logit_dk}) 
+Furthermore, there were no unusual standard errors for any coefficients in the logistic regression models. (see Table \ref{table:full_logit_dk}) 
 
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 3 cases out of 7 null models perform better than full ones (see Table
+\ref{table:logit_aic_dk}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_dk}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) 
+
+```
 
 ```{r, results='asis', echo=F}
 
