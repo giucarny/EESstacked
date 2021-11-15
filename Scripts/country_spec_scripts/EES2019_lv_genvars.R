@@ -95,7 +95,7 @@ EES2019_lv_stack %<>%
 EES2019_lv_stack %<>%
   left_join(.,
             lapply(data = EES2019_lv_stack,
-                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_rec', 'D9_rec'
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec', 'D6_une'), 
                    cont.indvar =  c('D4_age', 'D10_rec'),
                    yhat.name = 'socdem_synt',
                    regsum = F,
@@ -106,34 +106,44 @@ EES2019_lv_stack %<>%
   as_tibble()
 
 
-# prediction for party 1611, 1610, 1604, 1616 created w/ a different model
+# prediction for party 1611, 1610, 1604 created w/ a different model
 
-pred_1611_1610_1604_1616_lv <- 
+pred_1611_1610_1604_lv <- 
   gensyn.fun(data        = EES2019_lv_stack,
              depvar      = 'Q7_gen',
-             cat.indvar  = c('D3_rec', 'D8_rec', 'D5_rec', 'D1_rec', 'D7_rec'),
+             cat.indvar  = c('D3_rec', 'D8_rec', 'D5_rec', 'D1_rec', 'D7_rec', 'D6_une'),
              cont.indvar =  c('D4_age', 'D10_rec'),
              yhat.name   = 'socdem_synt',
              regsum      = F,
-             stack_party = c('1611', '1610', '1604', '1616')
+             stack_party = c('1611', '1610', '1604')
   )
 
 EES2019_lv_stack <-   
   left_join(EES2019_lv_stack %>% dplyr::select(-c(socdem_synt_vc)),
             EES2019_lv_stack %>% 
               dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party!=c(1611, 1610, 1604, 1616)) %>% 
-              rbind(pred_1611_1610_1604_1616_lv),
+              filter(party!=c(1611, 1610, 1604)) %>% 
+              rbind(pred_1611_1610_1604_lv),
             by = c('respid','party'))
+
+
+# prediction for party 1608 created w/ a different model
+
+# Found disruptive element in party 1605, with high std. errors in variable D6_une
+# However the didnt inc´fluence the constant
 
 
 # prediction for party 1605 created w/ a different model
 
-# Found disruptive elements in Model7, party 1605, with high std. errors in variables: EDU_rec, D5_rec
-# Excluding those two variables in a partial model got rid of the above probelem. However, a Chi-Squared 
-# test between the full/unconstrained one and partial/constrained one rejected the H0, that the constrained 
-# model fits better at p<0001.
-# Resulting in the choice to keep the full/unconstrained model7 with high std. errors
+# Found disruptive element in party 1605, with high std. errors in variable D5_rec
+# However the didnt inc´fluence the constant
+
+
+# prediction for party 1616 created w/ a different model
+
+# Party 1616 also shows inflated SE at the constant through EDU_rec and D6_rec. However, here we step 
+# back to implement a partial model because a constrained model without those variables was rejected at 
+# p<0.001 by a Chi-squared test in favor of the unconstrained model
 
 
 # Clean the environment # ==============================================================================

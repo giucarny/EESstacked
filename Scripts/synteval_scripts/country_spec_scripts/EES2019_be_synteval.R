@@ -1,9 +1,8 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Belgian Sample) 
 # Author: G.Carteny
-# last update: 2021-10-25
+# last update: 2021-10-28
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 
 # Admin # ==============================================================================================
 

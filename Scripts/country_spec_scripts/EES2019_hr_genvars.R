@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Croatian Sample) 
 # Author: M.Koernig
-# last update: 2021-10-21
+# last update: 2021-11-07
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -106,7 +106,7 @@ EES2019_hr_stack %<>%
 EES2019_hr_stack %<>%
   left_join(.,
             lapply(data = EES2019_hr_stack,
-                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_rec', 'D9_rec'
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec', 'D6_une'),
                    cont.indvar =  c('D4_age', 'D10_rec'),
                    yhat.name = 'socdem_synt',
                    regsum = F,

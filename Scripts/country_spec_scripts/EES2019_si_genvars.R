@@ -96,7 +96,7 @@ EES2019_si_stack %<>%
 EES2019_si_stack %<>%
   left_join(.,
             lapply(data = EES2019_si_stack,
-                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec'), # 'D6_rec', 'D9_rec'
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec', 'D6_une'), 
                    cont.indvar =  c('D4_age', 'D10_rec'),
                    yhat.name = 'socdem_synt',
                    regsum = F,
@@ -112,7 +112,7 @@ EES2019_si_stack %<>%
 pred_2405_2408_si <- 
   gensyn.fun(data        = EES2019_si_stack,
              depvar      = 'Q7_gen',
-             cat.indvar  = c('D3_rec', 'D8_rec', 'D5_rec', 'D1_rec', 'D7_rec'),
+             cat.indvar  = c('D3_rec', 'D8_rec', 'D5_rec', 'D1_rec', 'D7_rec', 'D6_une'),
              cont.indvar =  c('D4_age', 'D10_rec'),
              yhat.name   = 'socdem_synt',
              regsum      = F,

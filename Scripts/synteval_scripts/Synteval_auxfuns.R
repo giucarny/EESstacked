@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Auxiliary functions (Synthetic variables evaluation)
 # Authors: G.Carteny
-# last update: 2021-10-04
+# last update: 2021-10-26
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Inverse %in% operator # ==============================================================================
@@ -113,7 +113,7 @@ regdf.auxfun <- function(data, depvar, cat.indvar, cont.indvar) {
 }
 
 
-# y - xi contingency tables # ==========================================================================
+# y - xi cross-tabs # ==================================================================================
 
 tab.auxfun <- function(data, y, x, na = T, perc = F, which_perc = 'all') {
   df %<>% dplyr::select(all_of(y), all_of(x)) 
@@ -124,7 +124,7 @@ tab.auxfun <- function(data, y, x, na = T, perc = F, which_perc = 'all') {
   
   tab <- table(df[[toString(y)]], df[[toString(x)]], useNA = 'ifany') %>% as.data.frame()
   names(tab) <- c(y, x, 'Freq')
-  tab %<>% pivot_wider(id_cols = y, names_from = c(x), values_from = 'Freq')
+  tab %<>% pivot_wider(id_cols = all_of(y), names_from = c(all_of(x)), values_from = 'Freq')
   names(tab)[[1]] <- paste0(y,'/',x)
   
   if (perc) {
@@ -165,7 +165,7 @@ anova.auxfun <-
           lapply(., function(x) {
             x %<>% 
               as_tibble %>% 
-              mutate('Model' = c('Partial', 'Full')) %>% 
+              mutate('Model' = c('Constrained', 'Unconstrained')) %>% 
               dplyr::select(length(.), 1:(length(.)-1))
             })
       }

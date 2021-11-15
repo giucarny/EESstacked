@@ -4,23 +4,6 @@
 # last update: 2021-11-14
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-
-# Admin # ==============================================================================================
-
-want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr", "rlang", "car",
-         "caret", "DescTools", "stargazer", "kableExtra")
-have = want %in% rownames(installed.packages())
-if ( any(!have) ) { install.packages( want[!have] ) }
-junk <- lapply(want, library, character.only = TRUE)
-options(scipen = 99)
-
-rm(list = ls())
-
-# Source the general workflow # ========================================================================
-
-source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
-
-
 # Country-spec workflow # ==============================================================================
 
 cntry = 'EE'

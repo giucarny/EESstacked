@@ -1,33 +1,16 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Cypriot Sample) 
 # Author: G.Carteny
-# last update: 2021-10-25
+# last update: 2021-10-28
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-
-# Admin # ==============================================================================================
-
-want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr", "rlang", "car",
-         "caret", "DescTools", "stargazer", "kableExtra", "janitor")
-have = want %in% rownames(installed.packages())
-if ( any(!have) ) { install.packages( want[!have] ) }
-junk <- lapply(want, library, character.only = TRUE)
-options(scipen = 99)
-
-rm(list = ls())
-
-# Source the general workflow # ========================================================================
-
-source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
-
-
-# Country-spec workflow # ==============================================================================
+# Country-spec data frames # ===========================================================================
 
 cntry = 'CY'
 
-EES2019_cy <- EES2019 %>% filter(countryshort==cntry)
+EES2019_cy       <- EES2019 %>% filter(countryshort==cntry)
 EES2019_stckd_cy <- EES2019_stckd %>% filter(countryshort==cntry)
-EES2019_cdbk_cy <- EES2019_cdbk %>% filter(countryshort==cntry)
+EES2019_cdbk_cy  <- EES2019_cdbk %>% filter(countryshort==cntry)
 
 rm(cntry)
 
@@ -77,7 +60,7 @@ csdf_lst <- list('std'  = EES2019_cy,
 syntvars_vrbls <- list('dep'   = list('OLS'     = 'Q10_gen', 
                                       'logit'   = 'Q7_gen'),
                        'indep' = list('ctgrcl' = c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 
-                                                   'D1_rec', 'D7_rec'),
+                                                   'D1_rec', 'D7_rec', 'D6_une'),
                                       'cntns'  =  c('D4_age', 'D10_rec')))
 
 
@@ -161,9 +144,6 @@ nullmod_lst <- list('OLS'   = lapply(X = regdf_lst$OLS,   regmod = 'OLS',   null
 
 # Syntvars evaluation: OLS models fit stats # ==========================================================
 
-# RMSE and Rsq # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
 ols_df <- 
   tibble(
     'depvar'  = lapply(1:length(regdf_lst$OLS), 
@@ -213,7 +193,7 @@ ols_df %<>%
 # Syntvars evaluation: logit models fit stats # ========================================================
 
 
-fulllogit_df <- 
+logit_df <- 
   tibble(
     'depvar'     = lapply(1:length(regdf_lst$logit), 
                           function(x){
@@ -233,45 +213,68 @@ fulllogit_df <-
                             fullmod_lst$logit[[x]] %>% AIC
                           }) %>% unlist
   ) %>% 
+  rbind(.,
+        tibble(
+          'depvar'     = lapply(1:length(regdf_lst$logit), 
+                                function(x){
+                                  names(regdf_lst$OLS[[x]]) %>% .[2]
+                                }) %>% unlist,
+          'model'      = rep('null',length(regdf_lst$logit)),
+          'Ps_Rsq'     = lapply(1:length(nullmod_lst$logit),
+                                function(x){
+                                  DescTools::PseudoR2(nullmod_lst$logit[[x]], which = 'McFadden')
+                                }) %>% unlist,
+          'Adj_Ps_Rsq' = lapply(1:length(nullmod_lst$logit),
+                                function(x){
+                                  DescTools::PseudoR2(nullmod_lst$logit[[x]], which = 'McFaddenAdj')
+                                }) %>% unlist,
+          'AIC'        = lapply(1:length(fullmod_lst$logit),
+                                function(x) {
+                                  nullmod_lst$logit[[x]] %>% AIC
+                                }) %>% unlist
+        ))
+  
+  
+logit_df %<>% 
   left_join(., relprty_df, by='depvar') %>% 
   dplyr::select(depvar, partycode, partyname_eng, model,
                 Ps_Rsq, Adj_Ps_Rsq, AIC)
 
 
+# AIC data frames # ====================================================================================
 
-nulllogit_df<- 
-  tibble(
-    'depvar'     = lapply(1:length(regdf_lst$logit), 
-                          function(x){
-                            names(regdf_lst$OLS[[x]]) %>% .[2]
-                          }) %>% unlist,
-    'model'      = rep('null',length(regdf_lst$logit)),
-    'Ps_Rsq'     = lapply(1:length(nullmod_lst$logit),
-                          function(x){
-                            DescTools::PseudoR2(nullmod_lst$logit[[x]], which = 'McFadden')
-                          }) %>% unlist,
-    'Adj_Ps_Rsq' = lapply(1:length(nullmod_lst$logit),
-                          function(x){
-                            DescTools::PseudoR2(nullmod_lst$logit[[x]], which = 'McFaddenAdj')
-                          }) %>% unlist,
-    'AIC'        = lapply(1:length(fullmod_lst$logit),
-                          function(x) {
-                            nullmod_lst$logit[[x]] %>% AIC
-                          }) %>% unlist
-  ) %>% 
-  left_join(., relprty_df, by='depvar') %>% 
-  dplyr::select(depvar, partycode, partyname_eng, model,
-                Ps_Rsq, Adj_Ps_Rsq, AIC)
+# OLS AIC df 
+
+ols_aic <- 
+  ols_df %>%
+  pivot_wider(id_cols = c('depvar', 'partycode', 'partyname_eng'), values_from = 'AIC',
+              names_from = 'model') %>%
+  mutate(diff = full - null) %>%
+  mutate(across(c('full', 'null', 'diff'), ~round(.,3))) %>%
+  dplyr::select(-c(partyname_eng))
+
+# Logit AIC df 
+
+logit_aic <- 
+  logit_df %>%
+  pivot_wider(id_cols = c('depvar', 'partycode', 'partyname_eng'), values_from = 'AIC',
+              names_from = 'model') %>%
+  mutate(diff = full - null) %>%
+  mutate(across(c('full', 'null', 'diff'), ~round(.,3))) %>%
+  dplyr::select(-c(partyname_eng))
+
 
 
 # Full models evaluation # =============================================================================
 
-# logit models 3, and 5 show inflated SE on some predictors, more specifically: 
+# logit models 3, 5, and 6 show inflated SE on some predictors, more specifically: 
 # Model 3: D7_rec (only for category 2)
-# Model 5: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2)
+# Model 5: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2), D6_une
+# Model 6: D6_une
 
-# Model 3 constant term is not affected by D7_rec inflated SE, whereas Model 5 constant is affected 
-# showing unusual values. In the end we deal only with model 5 affected by separation issue.
+# Model 3 and 6 constant terms are not affected by D7_rec and D6_une inflated SE, whereas 
+# Model 6  constant is affected showing unusual values. We deal only with model 6 affected 
+# by separation issue.
 
 
 # Syntvars evaluation: evaluating the source of misfit # ===============================================
@@ -280,17 +283,20 @@ nulllogit_df<-
 
 mdl  <- 5
 df   <- regdf_lst$logit[[mdl]]
-cols <- c('D8_rec', 'D5_rec', 'EDU_rec', 'D7_rec', 'D1_rec')
+cols <- c('D8_rec', 'D5_rec', 'EDU_rec', 'D7_rec', 'D1_rec', 'D6_une')
 
-tabs <- lapply(data=df, y='stack_505', na=F, X = cols, FUN = tab.auxfun)
+tabs <- lapply(data=df, y='stack_505', na=T, X = cols, FUN = tab.auxfun)
 
+# No respondents from rural areas, not married or in partnership, with low education, 
+# with high subjective social status, members of trade unions, and unemployed did vote 
+# for party 505 (voted by only 5 respondents of the Cypriot sample).
 
 
 # Syntvars evaluation: partial logit models # ==========================================================
 
 # Get the df for and estimate the partial models # - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-vrbls_2_drop <- c('D5_rec', 'D8_rec', 'EDU_rec', 'D1_rec', 'D7_rec')
+vrbls_2_drop <- c('D5_rec', 'D8_rec', 'EDU_rec', 'D1_rec', 'D7_rec', 'D6_une')
 
 regdf_lst_part <- 
   regdf_lst$logit %>% 
@@ -310,20 +316,44 @@ partmod_lst <-
   })
 
 # LR test (Chisq) # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 mdls <- c(5)
 
 anova_lst <- 
   anova.auxfun(mdl_lst1 = partmod_lst[c(mdls)],
                mdl_lst2 = fullmod_lst$logit[c(mdls)],
-               table = F)
+               table = T)
 
 
-# Partial models evaluation # ==========================================================================
+# According to the LR test for Model 5 we cannot reject H0. 
 
-# The LR test between constrained and unconstrained Model 5 rejects H0 at p<0.1. 
+# Syntvars evaluation: Updating logit models (and related data frames) lists # ===============================
 
-# Clean the environment # ==============================================================================
+# fullmod_lst$logit[c(mdls)] <- partmod_lst[c(mdls)]
 
-rm(list=ls(pattern='auxfun|regdf|partlogit|fulllogit|nulllogit'))
+finalmod_lst <- list()
+finalmod_lst[['OLS']] <- fullmod_lst[['OLS']]
+finalmod_lst[['logit']] <- fullmod_lst[['logit']]
+
+finalmod_lst[['logit']][[7]] <- finalmod_lst[['logit']][[6]]
+finalmod_lst[['logit']][[6]] <- partmod_lst[[mdls]] 
+
+
+
+
+
+# Syntvars evaluation: Updating AIC data frames (logit only) # =========================================
+
+# logit AIC df 
+
+logit_aic %<>% 
+  rbind(.,
+        tibble('depvar'    = 'stack_505',
+               'partycode' = 505, 
+               'full'      = partmod_lst[[mdls]] %>% AIC,
+               'null'      = nullmod_lst$logit[[mdls]] %>% AIC,
+               ) %>% 
+          mutate(diff = full-null)) %>% 
+  .[order(.$depvar, .$partycode),] 
 
 

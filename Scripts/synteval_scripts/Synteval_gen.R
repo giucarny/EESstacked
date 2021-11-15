@@ -1,9 +1,19 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Synthetic Variables Estimation (Partial general workflow)
 # Author: G.Carteny
-# last update: 2021-10-21
+# last update: 2021-10-28
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Admin # ==============================================================================================
+
+want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr", "rlang", "car",
+         "caret", "DescTools", "stargazer", "kableExtra", "janitor")
+have = want %in% rownames(installed.packages())
+if ( any(!have) ) { install.packages( want[!have] ) }
+junk <- lapply(want, library, character.only = TRUE)
+options(scipen = 99)
+
+rm(list = ls())
 
 # General workflow # ===================================================================================
 
