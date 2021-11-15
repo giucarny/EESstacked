@@ -105,7 +105,7 @@ EES2019_pl_stack %<>%
 EES2019_pl_stack %<>%
   left_join(.,
             lapply(data = EES2019_pl_stack,
-                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec'),
+                   cat.indvar =  c('D3_rec', 'D8_rec',  'D5_rec', 'EDU_rec', 'D1_rec', 'D7_rec', 'D6_une'),
                    cont.indvar =  c('D4_age', 'D10_rec'),
                    yhat.name = 'socdem_synt',
                    regsum = F,
@@ -119,6 +119,7 @@ EES2019_pl_stack %<>%
 #   glm.fit: fitted probabilities numerically 0 or 1 occurred
 
 # prediction for party 2105 with different model
+# remove: EDU_rec, D7_rec, D6_une
 
 pred_2105_pl <- 
   gensyn.fun(data        = EES2019_pl_stack,
