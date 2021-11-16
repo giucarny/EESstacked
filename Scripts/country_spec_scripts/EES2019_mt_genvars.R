@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Malta Sample) 
 # Author: W. Haeussling
-# last update: 2021-10-21
+# last update: 2021-11-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Subset the EES original data frame, the SDM, and the EES codebook # ==================================
@@ -136,26 +136,9 @@ EES2019_mt_stack %<>%
             by = c('respid', 'party')) %>% 
   as_tibble()
 
-# prediction for party 1903 and 1904 created w/ a different model
+# prediction for party 1904 and 1905 created w/ a different model
 
-pred_1903_mt <- 
-  gensyn.fun(data        = EES2019_mt_stack,
-             depvar      = 'Q7_gen',
-             cat.indvar  = c('D3_rec', 'D5_rec'),
-             cont.indvar =  c('D4_age', 'D10_rec'),
-             yhat.name   = 'socdem_synt',
-             regsum      = F,
-             stack_party = '1903'
-  )
-
-EES2019_mt_stack <-   
-  left_join(EES2019_mt_stack %>% dplyr::select(-c(socdem_synt_vc)),
-            EES2019_mt_stack %>% 
-              dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party!=1903) %>% 
-              rbind(pred_1903_mt),
-            by = c('respid','party'))
-
+#Party 1904
 pred_1904_mt <- 
   gensyn.fun(data        = EES2019_mt_stack,
              depvar      = 'Q7_gen',
@@ -163,7 +146,7 @@ pred_1904_mt <-
              cont.indvar =  c('D4_age', 'D10_rec'),
              yhat.name   = 'socdem_synt',
              regsum      = F,
-             stack_party = '1904'
+             stack_party = '19045'
   )
 
 EES2019_mt_stack <-   
@@ -173,6 +156,26 @@ EES2019_mt_stack <-
               filter(party!=1904) %>% 
               rbind(pred_1904_mt),
             by = c('respid','party'))
+
+#Party 1905
+pred_1905_mt <- 
+  gensyn.fun(data        = EES2019_mt_stack,
+             depvar      = 'Q7_gen',
+             cat.indvar  = c('D3_rec', 'D5_rec', 'D1_rec'),
+             cont.indvar =  c('D4_age', 'D10_rec'),
+             yhat.name   = 'socdem_synt',
+             regsum      = F,
+             stack_party = '1905'
+  )
+
+EES2019_mt_stack <-   
+  left_join(EES2019_mt_stack %>% dplyr::select(-c(socdem_synt_vc)),
+            EES2019_mt_stack %>% 
+              dplyr::select(respid, party, socdem_synt_vc) %>% 
+              filter(party!=1905) %>% 
+              rbind(pred_1905_mt),
+            by = c('respid','party'))
+
 
 # Clean the environment # ==============================================================================
 

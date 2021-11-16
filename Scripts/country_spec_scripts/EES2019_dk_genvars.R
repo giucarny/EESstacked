@@ -109,14 +109,14 @@ EES2019_dk_stack %<>%
 #   qqnorm(fit_lst[[i]]$residuals)
 #   qqline(fit_lst[[i]]$residuals)
 # }
- 
+
 #For Q7_gen: residuals have mostly normal distribution, but outliers at the end 
 # of the qqnorm plots. Furthermore, for the fourth list entry the 
 # coefficient estimate and std. error values for Edu_Rec2 and Edu_Rec3 were 
 # unusually high.
 #For Q10_gen: residuals have mostly normal distribution, but outliers at the 
 # begining and end of the qqnorm plots in regard to the qqline.
- 
+
 # If results are fine # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 EES2019_dk_stack %<>%
