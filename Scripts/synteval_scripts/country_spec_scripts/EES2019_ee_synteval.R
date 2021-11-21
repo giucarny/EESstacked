@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Estonian Sample) 
 # Author: w.Haeussling
-# last update: 2021-11-14
+# last update: 2021-11-21
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Country-spec workflow # ==============================================================================
@@ -419,7 +419,7 @@ anova_lst7_1vs2 <-
                table = T)
 
 # According to the LR test for partial model 7 without D5_rec against 
-# partial model 7 with D5_rec H0 can not be rejected (p<0.05). Hence the partial model 
+# partial model 7 with D5_rec H0 is rejected (p<0.05). Hence the partial model 
 # with D5_rec has a better fit than the one without D5_rec.  
 
 
