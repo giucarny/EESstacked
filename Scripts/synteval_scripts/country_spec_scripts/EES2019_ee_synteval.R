@@ -339,7 +339,7 @@ partmod_lst6 <-
 mdls <- c(6)
 
 anova_lst6 <- 
-  anova.auxfun(mdl_lst1 = partmod_lst[c(mdls)],
+  anova.auxfun(mdl_lst1 = partmod_lst6[c(mdls)],
                mdl_lst2 = fullmod_lst$logit[c(mdls)],
                table = T)
 
