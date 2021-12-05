@@ -172,7 +172,7 @@ logit_aic %>%
 
 options(knitr.kable.NA = 'NA')
 
-tabs6[[3]] %>% 
+tabs6[[1]] %>% 
   kable(caption = "Cross tabulation between vote choice for party 906 and respondents' education 
                    \\label{table:crosstab_1_ee}", booktabs = F) %>% 
   kable_styling(latex_options = c('striped'))

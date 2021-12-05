@@ -137,13 +137,13 @@ logit_regtab <-
   capture.output() 
 
 logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 8',.) %>% 
   gsub('Model 7', 'Model 14',.) %>% 
   gsub('Model 6', 'Model 13',.) %>% 
   gsub('Model 5', 'Model 12',.) %>% 
   gsub('Model 4', 'Model 11',.) %>% 
   gsub('Model 3', 'Model 10',.) %>% 
-  gsub('Model 2', 'Model 9',.) %>% 
-  gsub('Model 1', 'Model 8',.)
+  gsub('Model 2', 'Model 9',.) 
 
 cat(logit_regtab, sep = "\n")
   

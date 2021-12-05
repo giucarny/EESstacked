@@ -131,13 +131,14 @@ logit_regtab <-
   capture.output() 
 
 logit_regtab[9] %<>% 
+    gsub('Model 1', 'Model 8',.) %>% 
   gsub('Model 7', 'Model 14',.) %>% 
   gsub('Model 6', 'Model 13',.) %>% 
   gsub('Model 5', 'Model 12',.) %>% 
   gsub('Model 4', 'Model 11',.) %>% 
   gsub('Model 3', 'Model 10',.) %>% 
-  gsub('Model 2', 'Model 9',.) %>% 
-  gsub('Model 1', 'Model 8',.)
+  gsub('Model 2', 'Model 9',.) 
+
 
 cat(logit_regtab, sep = "\n")
   
@@ -354,7 +355,8 @@ logit_regtab <-
   capture.output() 
 
 logit_regtab[9] %<>%
-  gsub('Model 9', 'Model 14b_2',.) %>% 
+  gsub('Model 1', 'Model 8x',.) %>% 
+  gsub('Model 9', 'Model 14b2',.) %>% 
   gsub('Model 8', 'Model 14a',.) %>% 
   gsub('Model 7', 'Model 13b',.)%>% 
   gsub('Model 6', 'Model 13a',.) %>% 
@@ -362,13 +364,12 @@ logit_regtab[9] %<>%
   gsub('Model 4', 'Model 11',.) %>% 
   gsub('Model 3', 'Model 10',.) %>% 
   gsub('Model 2', 'Model 9',.)  %>% 
-  gsub('Model 1', 'Model 8',.)
+  gsub('Model 8x', 'Model 8',.) 
 
 cat(logit_regtab, sep = "\n")
   
 
 ```
-
 
 
 \newpage
@@ -487,13 +488,13 @@ logit_regtab <-
   capture.output() 
 
 logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 8',.) %>% 
   gsub('Model 7', 'Model 14',.) %>% 
   gsub('Model 6', 'Model 13',.) %>% 
   gsub('Model 5', 'Model 12',.) %>% 
   gsub('Model 4', 'Model 11',.) %>% 
   gsub('Model 3', 'Model 10',.) %>% 
-  gsub('Model 2', 'Model 9',.) %>% 
-  gsub('Model 1', 'Model 8',.)
+  gsub('Model 2', 'Model 9',.) 
 
 cat(logit_regtab, sep = "\n")
   
@@ -617,19 +618,18 @@ logit_regtab <-
   capture.output() 
 
 logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 8',.) %>% 
   gsub('Model 7', 'Model 14',.) %>% 
   gsub('Model 6', 'Model 13',.) %>% 
   gsub('Model 5', 'Model 12',.) %>% 
   gsub('Model 4', 'Model 11',.) %>% 
   gsub('Model 3', 'Model 10',.) %>% 
-  gsub('Model 2', 'Model 9',.) %>% 
-  gsub('Model 1', 'Model 8',.)
+  gsub('Model 2', 'Model 9',.) 
 
 cat(logit_regtab, sep = "\n")
   
 
 ```
-
 
 
 \newpage
@@ -857,14 +857,14 @@ logit_regtab <-
                        style = 'ajps') %>% 
   capture.output() 
 
-logit_regtab[9] %<>%
+logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 6x',.) %>% 
   gsub('Model 7', 'Model 10b',.) %>% 
   gsub('Model 6', 'Model 10a',.) %>% 
   gsub('Model 5', 'Model 9b',.) %>% 
   gsub('Model 4', 'Model 9a',.) %>% 
   gsub('Model 3', 'Model 8',.) %>% 
-  gsub('Model 2', 'Model 7',.)  %>% 
-  gsub('Model 1', 'Model 6',.)
+  gsub('Model 6x', 'Model 7',.)  
 
 cat(logit_regtab, sep = "\n")
   
@@ -986,6 +986,7 @@ logit_regtab <-
   capture.output() 
 
 logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 10',.) %>%
   gsub('Model 9', 'Model 18',.) %>% 
   gsub('Model 8', 'Model 17',.) %>%
   gsub('Model 7', 'Model 16',.) %>% 
@@ -993,8 +994,7 @@ logit_regtab[9] %<>%
   gsub('Model 5', 'Model 14',.) %>% 
   gsub('Model 4', 'Model 13',.) %>% 
   gsub('Model 3', 'Model 12',.) %>% 
-  gsub('Model 2', 'Model 11',.) %>% 
-  gsub('Model 1', 'Model 10',.)
+  gsub('Model 2', 'Model 11',.) 
 
 cat(logit_regtab, sep = "\n")
   
@@ -1116,13 +1116,13 @@ logit_regtab <-
   capture.output() 
 
 logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 8',.) %>% 
   gsub('Model 7', 'Model 14',.) %>% 
   gsub('Model 6', 'Model 13',.) %>% 
   gsub('Model 5', 'Model 12',.) %>% 
   gsub('Model 4', 'Model 11',.) %>% 
   gsub('Model 3', 'Model 10',.) %>% 
-  gsub('Model 2', 'Model 9',.) %>% 
-  gsub('Model 1', 'Model 8',.)
+  gsub('Model 2', 'Model 9',.) 
 
 cat(logit_regtab, sep = "\n")
   
@@ -1245,16 +1245,18 @@ logit_regtab <-
   capture.output() 
 
 logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 8',.) %>% 
   gsub('Model 7', 'Model 14',.) %>% 
   gsub('Model 6', 'Model 13',.) %>% 
   gsub('Model 5', 'Model 12',.) %>% 
   gsub('Model 4', 'Model 11',.) %>% 
   gsub('Model 3', 'Model 10',.) %>% 
-  gsub('Model 2', 'Model 9',.) %>% 
-  gsub('Model 1', 'Model 8',.)
+  gsub('Model 2', 'Model 9',.) 
 
 cat(logit_regtab, sep = "\n")
   
 
 ```
+
+
 
