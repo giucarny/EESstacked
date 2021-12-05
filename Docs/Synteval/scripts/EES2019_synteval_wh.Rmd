@@ -238,7 +238,7 @@ Furthermore, another constrained version of model 14 (namely, Model 14b_2) witho
 Model 14b_2 is therefore less constrained than 14b_1 (by D5_rec).
 Likelihood-ratio test results show that $H_0$ (namely, that the constrained model fits better than the full model) cannot be rejected (see Table \ref{table:lrtest_3_ee}). 
 
-Then we compared the fit of 14b_1 and 14b_2. Likelihood-ratio test results show that $H_0$ (namely, that the constrained model without D5_rec fits better than the fuller constrained model with D5_rec) cannot be rejected (see Table \ref{table:lrtest_3_ee}). Consequently, synthetic variables for respondents' vote choice for party 907 have been predicted relying on the more constrained model without D5_rec (Model 14b_2).
+Then we compared the fit of 14b_1 and 14b_2. Likelihood-ratio test results show that $H_0$ (namely, that the 'fuller' constrained model with D5_rec fits better than the constrained model without D5_rec) cannot be rejected (see Table \ref{table:lrtest_3_ee}). Consequently, synthetic variables for respondents' vote choice for party 907 have been predicted relying on the less constrained model with D5_rec (Model 14b_2).
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -297,7 +297,7 @@ logit_aic %>%
 
 options(knitr.kable.NA = 'NA')
 
-tabs6[[3]] %>% 
+tabs6[[1]] %>% 
   kable(caption = "Cross tabulation between vote choice for party 906 and respondents' education 
                    \\label{table:crosstab_1_ee}", booktabs = F) %>% 
   kable_styling(latex_options = c('striped'))

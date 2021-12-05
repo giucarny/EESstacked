@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Maltese Sample) 
 # Author: w.Haeussling
-# last update: 2021-11-15
+# last update: 2021-11-21
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Country-spec workflow # ==============================================================================
@@ -510,11 +510,17 @@ finalmod_lst[['OLS']] <- fullmod_lst[['OLS']]
 finalmod_lst[['logit']] <- fullmod_lst[['logit']]
 
 finalmod_lst[['logit']][[6]] <- finalmod_lst[['logit']][[5]]
-finalmod_lst[['logit']][[5]] <- partmod_lst[[4]] 
+finalmod_lst[['logit']][[5]] <- partmod_lst4[[4]] 
 
-finalmod_lst[['logit']][[7]] <- partmod_lst[[5]] 
+finalmod_lst[['logit']][[7]] <- partmod_lst5[[5]] 
 
-
+# stargazer::stargazer(finalmod_lst$logit, type = 'text',
+#                      column.labels = as.character(relprty_df$Q7),
+#                      dep.var.labels = 'Vote choice',
+#                      star.cutoffs = c(0.05, 0.01, 0.001),
+#                      omit.stat=c("f", "ser"),
+#                      header = F,
+#                      style = 'ajps')
 
 # Syntvars evaluation: Updating AIC data frames (logit only) # =========================================
 

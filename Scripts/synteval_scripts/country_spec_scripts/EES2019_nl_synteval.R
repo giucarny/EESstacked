@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Netherlands Sample) 
 # Author: w.Haeussling
-# last update: 2021-11-15
+# last update: 2021-11-21
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Country-spec workflow # ==============================================================================
@@ -272,11 +272,22 @@ logit_aic <-
 
 # No models show any inflated SE on predictors. Therefore, we do not adapt the models.
 
+# Syntvars evaluation: Updating logit models (and related data frames) lists # ===============================
 
-# Syntvars evaluation: evaluating the source of misfit # ===============================================
+# fullmod_lst$logit[c(mdls)] <- partmod_lst[c(mdls)]
+
+finalmod_lst <- list()
+finalmod_lst[['OLS']] <- fullmod_lst[['OLS']]
+finalmod_lst[['logit']] <- fullmod_lst[['logit']]
 
 
-#No misfit detected.
+# stargazer::stargazer(finalmod_lst$logit, type = 'text',
+#                      column.labels = as.character(relprty_df$Q7),
+#                      dep.var.labels = 'Vote choice',
+#                      star.cutoffs = c(0.05, 0.01, 0.001),
+#                      omit.stat=c("f", "ser"),
+#                      header = F,
+#                      style = 'ajps')
 
 
 
