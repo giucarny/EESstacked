@@ -147,7 +147,8 @@ cat(logit_regtab, sep = "\n")
 
 
 
-\newpage
+
+\pagebreak
 # Estonia
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -225,8 +226,7 @@ party 906 have been predicted relying on the constrained model (Model 13b).
 options(knitr.kable.NA = '')
 
 anova_lst6[[1]] %>%
-  kable(caption = "Likelihood-ratio Test between Model 13a (Unconstrained) and Model 13b (Constrained)
-                  \\label{table:lrtest_1_ee}", booktabs = F, ) %>% 
+  kable(caption = "Likelihood-ratio Test between Model 13a (Unconstrained) and Model 13b (Constrained) \\label{table:lrtest_1_ee}", booktabs = F, ) %>% 
   kable_styling(latex_options = c('striped', 'hold_position'))
 
 ```
@@ -239,25 +239,32 @@ Furthermore, another constrained version of model 14 (namely, Model 14b_2) witho
 Model 14b_2 is therefore less constrained than 14b_1 (by D5_rec).
 Likelihood-ratio test results show that $H_0$ (namely, that the constrained model fits better than the full model) cannot be rejected (see Table \ref{table:lrtest_3_ee}). 
 
-Then we compared the fit of 14b_1 and 14b_2. Likelihood-ratio test results show that $H_0$ (namely, that the 'fuller' constrained model with D5_rec fits better than the constrained model without D5_rec) cannot be rejected (see Table \ref{table:lrtest_3_ee}). Consequently, synthetic variables for respondents' vote choice for party 907 have been predicted relying on the less constrained model with D5_rec (Model 14b_2).
+Then we compared the fit of 14b_1 and 14b_2. Likelihood-ratio test results show that $H_0$ (namely, that the 'fuller' constrained model with D5_rec fits better than the constrained model without D5_rec) cannot be rejected (see Table \ref{table:lrtest_3_ee}). Consequently, synthetic variables for respondents' vote choice for party 907 have been predicted relying on the less constrained model with D5_rec (Model 14b_2).  
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+anova_lst7_1[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 14b_1 (Constrained and without D5_rec) \\label{table:lrtest_2_ee}", booktabs = F, ) %>%
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+
+```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
-options(knitr.kable.NA = '')
-
-anova_lst7_1[[1]] %>%
-  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 14b_1 (Constrained and without D5_rec)
-                  \\label{table:lrtest_2_ee}", booktabs = F, ) %>% 
-  kable_styling(latex_options = c('striped', 'hold_position'))
-
 anova_lst7_2[[1]] %>%
-  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 14b_2 (Constrained and with D5_rec)
-                  \\label{table:lrtest_3_ee}", booktabs = F, ) %>% 
+  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 14b_2 (Constrained and with D5_rec) \\label{table:lrtest_3_ee}", booktabs = F, ) %>%
   kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 anova_lst7_1vs2[[1]] %>%
-  kable(caption = "Likelihood-ratio Test between Model 14b_1 (Constrained and without D5_rec, here: Constrained) and Model 14b_2 (Constrained and with D5_rec, here Unconstrained)
-                  \\label{table:lrtest_4_ee}", booktabs = F, ) %>% 
+  kable(caption = "Likelihood-ratio Test between Model 14b_1 (Constrained and without D5_rec, here Constrained) and Model 14b_2 (Constrained and with D5_rec, here Unconstrained) \\label{table:lrtest_4_ee}", booktabs = F) %>%
   kable_styling(latex_options = c('striped', 'hold_position'))
 
 ```
@@ -1257,6 +1264,7 @@ cat(logit_regtab, sep = "\n")
   
 
 ```
+
 
 
 
