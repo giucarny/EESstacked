@@ -245,7 +245,7 @@ Then we compared the fit of 14b_1 and 14b_2. Likelihood-ratio test results show 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 anova_lst7_1[[1]] %>%
-  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 14b_1 (Constrained and without D5_rec) \\label{table:lrtest_2_ee}", booktabs = F, ) %>%
+  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 14b1 (Constrained and without D5rec) \\label{table:lrtest_2_ee}", booktabs = F, ) %>%
   kable_styling(latex_options = c('striped', 'hold_position'))
 
 
@@ -255,7 +255,7 @@ anova_lst7_1[[1]] %>%
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 anova_lst7_2[[1]] %>%
-  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 14b_2 (Constrained and with D5_rec) \\label{table:lrtest_3_ee}", booktabs = F, ) %>%
+  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 14b2 (Constrained and with D5rec) \\label{table:lrtest_3_ee}", booktabs = F, ) %>%
   kable_styling(latex_options = c('striped', 'hold_position'))
 
 
@@ -264,7 +264,7 @@ anova_lst7_2[[1]] %>%
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 anova_lst7_1vs2[[1]] %>%
-  kable(caption = "Likelihood-ratio Test between Model 14b_1 (Constrained and without D5_rec, here Constrained) and Model 14b_2 (Constrained and with D5_rec, here Unconstrained) \\label{table:lrtest_4_ee}", booktabs = F) %>%
+  kable(caption = "Likelihood-ratio Test between Model 14b1 (Constrained and without D5rec, here Constrained) and Model 14b2 (Constrained and with D5rec, here Unconstrained) \\label{table:lrtest_4_ee}", booktabs = F) %>%
   kable_styling(latex_options = c('striped', 'hold_position'))
 
 ```
@@ -332,7 +332,6 @@ tabs7[[4]] %>%
 
 ```
 
-
 ```{r, results='asis', echo=F}
 
 stargazer::stargazer(finalmod_lst$OLS, 
@@ -346,7 +345,11 @@ stargazer::stargazer(finalmod_lst$OLS,
                      omit.stat=c("f", "ser"),
                      header = F,
                      style = 'ajps')
+```
 
+\newpage
+\blandscape
+```{r, results='asis', echo=F}
 logit_regtab <- 
   stargazer::stargazer(finalmod_lst$logit, 
                        title = "Vote choice for a relevant party according to respondents' 
@@ -377,7 +380,7 @@ cat(logit_regtab, sep = "\n")
   
 
 ```
-
+\elandscape
 
 \newpage
 # Germany
@@ -835,7 +838,8 @@ tabs5[[4]] %>%
 
 ```
 
-
+\newpage
+\blandscape
 ```{r, results='asis', echo=F}
 
 stargazer::stargazer(finalmod_lst$OLS, 
@@ -849,7 +853,12 @@ stargazer::stargazer(finalmod_lst$OLS,
                      omit.stat=c("f", "ser"),
                      header = F,
                      style = 'ajps')
+```
+\elandscape
 
+\newpage
+\blandscape
+```{r, results='asis', echo=F}
 logit_regtab <- 
   stargazer::stargazer(finalmod_lst$logit, 
                        title = "Vote choice for a relevant party according to respondents' 
@@ -877,7 +886,7 @@ cat(logit_regtab, sep = "\n")
   
 
 ```
-
+\elandscape
 
 
 \newpage
@@ -961,7 +970,8 @@ logit_aic %>%
 
 ```
 
-
+\newpage
+\blandscape
 ```{r, results='asis', echo=F}
 
 stargazer::stargazer(finalmod_lst$OLS, 
@@ -977,6 +987,12 @@ stargazer::stargazer(finalmod_lst$OLS,
                      header = F,
                      style = 'ajps')
 
+``` 
+\elandscape
+
+\newpage
+\blandscape
+```{r, results='asis', echo=F}
 logit_regtab <- 
   stargazer::stargazer(finalmod_lst$logit, 
                        title = "Vote choice for a relevant party according to respondents' 
@@ -1007,7 +1023,7 @@ cat(logit_regtab, sep = "\n")
   
 
 ```
-
+\elandscape
 
 
 \newpage
