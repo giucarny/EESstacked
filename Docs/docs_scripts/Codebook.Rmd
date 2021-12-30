@@ -1,20 +1,30 @@
 ---
 title: EES2019 Stacked Data 
 subtitle: Codebook 
-date: 30.08.2021 
+date: 29.12.2021 
 toc: true
 output: 
   bookdown::pdf_document2:
     includes:
       in_header: Codebook_header.tex
-urlcolor: RedOrange
+urlcolor: NavyBlue
 ---
 
 
+\newpage
 # Overview of the data file {-}
 
-The stacked version of the 2019 voter study of the European Election Studies (EES) was realised by the 
-ProConEU team. ...
+The stacked version of the 2019 voter study of the European Election Studies (EES) was realised within 
+the 
+[ProConEU project](https://www.mzes.uni-mannheim.de/proconeu/)^[ProConEU is a research project that aims to analyse the enlarging gaps between proponents and opponents of the European Integration in terms of party politics, citizen politics and 
+social media communication. The project is funded by the German Federal Ministry of Education and 
+Research, and it involves MZES Mannheim, LMU Munich, University of Thessaloniki, University of 
+Newcastle.]. 
+ 
+
+
+
+
 
 The variables available in the dataset are grouped as it follows: ...
 
@@ -114,7 +124,7 @@ Values:
 Synthetic variable, measuring the affinity between the respondents' socio-demographic characteristics and their propensity to vote. This was estimated using a linear prediction of an OLS model. The dependent Variable of this regression analysis was `Q7_gen` (see: Generic Dichotomous Variables) and the independent variables `D3_rec`, `D5_rec`, `D8_rec`, `EDU_rec`, `D4_age` and `D10_rec` (see below).
 
 ## socdem_synt_vc {-}
-Synthetic variable, measuring the affinity between the respondents' socio-demographic characteristics and their vote choice. This was estimated using a linear prediction of a logit model. The dependent Variable of this regression analysis was `Q10_gen` (see: Generic distance/proximity variables estimation) and the independent variables `D3_rec`, `D5_rec`, `D8_rec`, `EDU_rec`, `D4_age` and `D10_rec` (see below).
+Synthetic variable, measuring the affinity between the respondents' socio-demographic characteristics and their vote choice. This was estimated using linear predictions of a set of logit model. The dependent Variable of these regression analyses was `Q10_gen` (see: Generic distance/proximity variables estimation) and the independent variables `D3_rec`, `D5_rec`, `D8_rec`, `EDU_rec`, `D4_age` and `D10_rec` (see below).
 
 ##Independent variables used in regression analysis for socdem_synt_ptv and socdem_synt_vc: {-}
 

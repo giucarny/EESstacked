@@ -1,0 +1,4167 @@
+---
+title: Appendix A 
+subtitle: Summary of Synthetic Variables Estimation 
+author: Giuseppe Carteny, Wilhelmine Haeussling, Matthias Körnig, Julian Leiser
+date: 29.10.2021 
+toc: false
+output: 
+  bookdown::pdf_document2:
+    includes:
+      in_header: eval_header.tex
+urlcolor: RedOrange
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+# Load 'here' for sourcing # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+library('here')
+
+# Source the general workflow # - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
+
+```
+
+
+\newpage
+# Austria
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Austrain synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_at_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Austrain parties available in the original 
+2019 EES Austrian voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_at}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Austrian relevant parties \\label{table:relprty_tab_at}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_at}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in all 6 cases out of 6 null models perform better than full ones (see Table 
+\ref{table:ols_aic_at}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_at}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, one out of six logistic regression models (see Table \ref{table:full_logit_at}) show 
+inflated standard errors for some of the coefficients of interest: 
+
+* Model 12: D8_rec, D1_rec;
+
+Model 12 presents more problematic profile, since it affects the models constant terms with its inflated standard errors
+
+Model 12 inflated standard errors are due to separation issues. In short, no respondents from rural areas
+or small cities and members of trade unions did vote for party 505 (see Tables \ref{table:crosstab_1_at}, 
+\ref{table:crosstab_2_at}). 
+
+As a consequence, a constrained version of model 6 without said variables was 
+estimated and contrasted with the original, full model. Likelihood-ratio test results show 
+that $H_0$ (namely, that the constrained model does not fit better than the full model) can be rejected at p<0.001
+(see Table \ref{table:lrtest_1_at}). Consequently, synthetic variables for respondents' vote choice for 
+party 105 have been predicted relying on the unconstrained model. 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 6a (Unconstrained) and Model 6b (Constrained)
+                  \\label{table:lrtest_1_at}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 5 cases out of 6 null models perform better than full ones.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[6,1] <- 'stack_105*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_cy}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 6b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 105 and respondents' area of residency 
+                   \\label{table:crosstab_1_at}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 105 and respondents' marital status
+                   \\label{table:crosstab_2_at}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+
+```
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_at',
+                     type = 'latex',
+                     column.labels = c('101', '102', '104', '106','103', '105'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_at',
+                       type = 'latex',
+                       column.labels = c('101', '102', '104', '106','103', '105'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 1', 'Model 7',.) %>%
+  gsub('Model 6', 'Model 12',.) %>% 
+  gsub('Model 5', 'Model 11',.) %>% 
+  gsub('Model 4', 'Model 10',.) %>% 
+  gsub('Model 3', 'Model 9',.) %>% 
+  gsub('Model 2', 'Model 8',.) 
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+
+
+
+\newpage
+# Czech Republic
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Czech Rep. synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_cz_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Czech parties available in the original 
+2019 EES Czech Republic voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_cz}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Czech Republic relevant parties \\label{table:relprty_tab_cz}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_cz}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that the full models perform better in all cases (see Table \ref{table:ols_aic_cz}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_cz}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, five out of eight logistic regression models (see Table \ref{table:full_logit_cz}) show 
+inflated standard errors for some of the coefficients of interest, in particular: 
+
+* Model 9: D6_une
+* Model 10a: EDU_rec (both categories), D7_rec (second category), D6_une
+* Model 11: D6_une
+* Model 15: D6_une
+* Model 16: D6_une
+
+However, for models 9, 11, 15 and 16 the constant terms and other regressors are not affected by the inflated standard errors. Model 10a appears more problematic.
+
+The inflated standard errors in Model 10a are due to separation issues. In short, no respondents who are unemployed or of high subjective social status did vote for party 603. Only one respondent with low education voted for party 603. (See tables \ref{table:crosstab_1_cz}, \ref{table:crosstab_2_cz}, \ref{table:crosstab_3_cz})
+
+As a consequence, a constrained version of model 10 (namely, Model 10b) without said variables was 
+estimated and contrasted with the original (Model 10a), full model. Likelihood-ratio test results show 
+that $H_0$ (namely, that the constrained model fits better than the full model) cannot be rejected 
+(see Table \ref{table:lrtest_1_cz}). Consequently, synthetic variables for respondents' vote choice for 
+party 603 have been predicted relying on the constrained model (Model 10b).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 10a (Unconstrained) and Model 10b (Constrained)
+                  \\label{table:lrtest_1_cz}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in four cases out of eight null models perform better than full ones. According to AIC 
+values the related null model appears to have a better fit than Model 10b (see Table \ref{table:logit_aic_cz}). 
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[4,1] <- 'stack_603*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_cz}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 10b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 603 and respondents' education 
+                   \\label{table:crosstab_1_cz}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 603 and respondents' subjective social class
+                   \\label{table:crosstab_2_cz}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs[[3]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 603 and respondents' employment status 
+                   \\label{table:crosstab_3_cz}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+
+
+```
+
+```{r, results='asis', echo=F}
+
+ols_regtab <-
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_cz',
+                     type = 'latex',
+                     column.labels = c('601', '603', '604', '605','606', '607', '608', '602'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps') %>%
+capture.output() 
+cat("\\blandscape", ols_regtab, "\\elandscape", sep = "\n")
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_cz',
+                       type = 'latex',
+                       column.labels = c('601', '603', '603', '604', '605','606', '607', '608', '602'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 2', 'Model 10a',.) %>% 
+  gsub('Model 3', 'Model 10b',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 5', 'Model 12',.) %>% 
+  gsub('Model 6', 'Model 13',.) %>% 
+  gsub('Model 7', 'Model 14',.) %>% 
+  gsub('Model 8', 'Model 15',.) %>% 
+  gsub('Model 9', 'Model 16',.) %>%
+  sub('Model 1', 'Model 9',.) 
+
+
+
+cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
+  
+
+```
+
+\newpage
+# Croatia
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Croatian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_hr_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Croatian parties available in the original 
+2019 EES Croatian voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_hr}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Croatian relevant parties \\label{table:relprty_tab_hr}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_hr}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in all 7 cases out of 7 null models perform better than full ones (see Table 
+\ref{table:ols_aic_hr}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_hr}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, two out of seven logistic regression models (see Table \ref{table:full_logit_hr}) show 
+inflated standard errors for some of the coefficients of interest, in particular: 
+
+* Model 8a: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2), D6_une;
+* Model 13a: EDU_rec, D6_une;
+
+Those models 14a and 13a present more problematic profiles, since they affect its models constant terms through their inflated standard errors.
+
+Model 8a and 13a inflated standard errors are due to separation issues. In short, no respondents with low education and in unemployment 
+did vote for party 413 (see Tables \ref{table:crosstab_1_hr}, \ref{table:crosstab_2_hr}). As well as no respondents from rural areas
+or small cities, single, low educated, with high subjective socioeconomic status (SES) and unemployed did vote for party 401 (see Tables \ref{table:crosstab_3_hr}, \ref{table:crosstab_4_hr}, \ref{table:crosstab_5_hr}, \ref{table:crosstab_6_hr}, \ref{table:crosstab_7_hr}). 
+
+As a consequence, a constrained version of model 8 and 13 (namely, Model 14b, 13b) without said variables was 
+estimated and contrasted with the original (Model 14a, 13a), full model. Likelihood-ratio test results show 
+that $H_0$ (namely, that the constrained model fits better than the full model)  can be rejected at p<0.1 for 
+party 401 (see Table \ref{table:lrtest_1_hr}). For party 413 $H_0$ cannot be rejected (see Table \ref{table:lrtest_2_hr}) Consequently, synthetic variables 
+for respondents' vote choice for party 401 and 413 have been predicted relying on the constrained model (Model 14b, 13b). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst[[2]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 8b (Constrained)
+                  \\label{table:lrtest_1_hr}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+anova_lst[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 13a (Unconstrained) and Model 13b (Constrained)
+                  \\label{table:lrtest_2_hr}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 3 cases out of 7 null models perform better than full ones. According to AIC 
+values the related null models appear to have a better fit than Model 13b and 14b (see Table
+\ref{table:logit_aic_hr}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[2,1] <- 'stack_401*'
+logit_aic[8,1] <- 'stack_413*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_hr}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 13b and 14b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 413 and respondents' education 
+                   \\label{table:crosstab_1_hr}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 413 and respondents' employment status
+                   \\label{table:crosstab_2_hr}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs2[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 401 and respondents' education
+                   \\label{table:crosstab_3_hr}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs2[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 401 and respondents' employment status 
+                   \\label{table:crosstab_4_hr}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs2[[3]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 401 and respondents' subjective SES
+                   membership \\label{table:crosstab_5_hr}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs2[[4]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 401 and respondents' marital status
+                  \\label{table:crosstab_6_hr}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs2[[5]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 401 and respondents' area of residency 
+                  \\label{table:crosstab_7_hr}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+```
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_hr',
+                     type = 'latex',
+                     column.labels = c('412', '404', '414', '405','406', '413', '401'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_hr',
+                       type = 'latex',
+                       no.space = T, # to remove the spaces after each line of coefficients
+                       column.sep.width = '0.5pt', # to reduce column width
+                       font.size = 'footnotesize', # to make font size smaller
+                       column.labels = c('412', '404', '414', '405','406', '413',  '413', '401', '401'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 9', 'Model 14b',.) %>%
+  gsub('Model 8', 'Model 14a',.) %>%
+  gsub('Model 7', 'Model 13b',.) %>% 
+  gsub('Model 1$', 'Model 8',.) %>% 
+  gsub('Model 6', 'Model 13a',.) %>% 
+  gsub('Model 5', 'Model 12',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 3', 'Model 10',.) %>% 
+  gsub('Model 2', 'Model 9',.) 
+  
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+
+
+
+\newpage
+# Cyprus
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Cypriot synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_cy_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Cypriot parties available in the original 
+2019 EES Cypriot voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_cy}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Cypriot relevant parties \\label{table:relprty_tab_cy}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_cy}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 4 cases out of 6 null models perform better than full ones (see Table 
+\ref{table:ols_aic_cy}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_cy}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, three out of six logistic regression models (see Table \ref{table:full_logit_cy}) show 
+inflated standard errors for some of the coefficients of interest, in particular: 
+
+* Model 9: D7_rec (only for category 2);
+* Model 11a: D8_rec, D5_rec, EDU_rec, D7_rec (only for category 2), D6_une;
+* Model 12: D6_une.
+
+Nevertheless, models 9 and 12 constant terms and other regression coefficients are not affected by said 
+inflated standard errors, whereas model 5a presents a more problematic profile. 
+
+Model 5a inflated standard errors are due to separation issues. In short, no respondents from rural areas
+or small cities, single, low educated, with high subjective socioeconomic status (SES), members of trade 
+unions, and unemployed did vote for party 505 (see Tables \ref{table:crosstab_1_cy}, 
+\ref{table:crosstab_2_cy}, \ref{table:crosstab_3_cy}, \ref{table:crosstab_4_cy}, 
+\ref{table:crosstab_5_cy}, \ref{table:crosstab_6_cy}). 
+
+As a consequence, a constrained version of model 11 (namely, Model 11b) without said variables was 
+estimated and contrasted with the original (Model 11a), full model. Likelihood-ratio test results show 
+that $H_0$ (namely, that the constrained model fits better than the full model) cannot be rejected 
+(see Table \ref{table:lrtest_1_cy}). Consequently, synthetic variables for respondents' vote choice for 
+party 505 have been predicted relying on the constrained model (Model 11b). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 5a (Unconstrained) and Model 5b (Constrained)
+                  \\label{table:lrtest_1_cy}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 3 cases out of 6 null models perform better than full ones. According to AIC 
+values the related null model appears to have a better fit than Model 11b (see Table
+\ref{table:logit_aic_cy}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[6,1] <- 'stack_505*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_cy}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 11b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 505 and respondents' area of residency 
+                   \\label{table:crosstab_1_cy}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 505 and respondents' marital status
+                   \\label{table:crosstab_2_cy}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs[[3]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 505 and respondents' education 
+                   \\label{table:crosstab_3_cy}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs[[4]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 505 and respondents' subjective SES 
+                   \\label{table:crosstab_4_cy}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs[[5]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 505 and respondents' trade union 
+                   membership \\label{table:crosstab_5_cy}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs[[6]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 505 and respondents' employment status 
+                  \\label{table:crosstab_6_cy}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+```
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_cy',
+                     type = 'latex',
+                     column.labels = c('501', '502', '503', '504','505', '507'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_cy',
+                       type = 'latex',
+                       column.labels = c('501', '502', '503', '504','505','505', '507'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 7', 'Model 12',.) %>% 
+  gsub('Model 1$', 'Model 7',.) %>% 
+  gsub('Model 6', 'Model 11b',.) %>% 
+  gsub('Model 5', 'Model 11a',.) %>% 
+  gsub('Model 4', 'Model 10',.) %>% 
+  gsub('Model 3', 'Model 9',.) %>% 
+  gsub('Model 2', 'Model 8',.) 
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+
+
+
+# Denmark
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Danish synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_dk_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for seven of ten of Danish parties available in the original 
+2019 EES Danish voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_dk}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Danish relevant parties \\label{table:relprty_tab_dk}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_dk}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 1 case out of 7 null models perform better than full ones (see Table 
+\ref{table:ols_aic_dk}).
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_dk}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+Furthermore, there were no unusual standard errors for any coefficients in the logistic regression models. (see Table \ref{table:full_logit_dk}) 
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 3 cases out of 7 null models perform better than full ones (see Table
+\ref{table:logit_aic_dk}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_dk}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) 
+
+```
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_dk',
+                     type = 'latex',
+                     column.labels = c('701', '702', '703', '704','705', '706', '707'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_dk',
+                       type = 'latex',
+                       column.labels = c('701', '702', '703', '704','705', '706', '707'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>% 
+    gsub('Model 1', 'Model 8',.) %>% 
+  gsub('Model 7', 'Model 14',.) %>% 
+  gsub('Model 6', 'Model 13',.) %>% 
+  gsub('Model 5', 'Model 12',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 3', 'Model 10',.) %>% 
+  gsub('Model 2', 'Model 9',.) 
+
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+
+
+
+
+\pagebreak
+# Estonia
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Estonian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_ee_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for seven of twelve Estonian parties available in the original 
+2019 EES Estonian voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_ee}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Estonian relevant parties \\label{table:relprty_tab_ee}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_ee}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 0 cases out of 7 null models perform better than full ones (see Table 
+\ref{table:ols_aic_ee}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_ee}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, three out of seven logistic regression models (see Table \ref{table:full_logit_ee}) show 
+inflated standard errors for some of the coefficients of interest, in particular: 
+
+* Model 9: D6_une;
+* Model 13a: EDU_rec;
+* Model 14a: D5_rec, EDU_rec, D1_rec, D6_une.
+ 
+Nevertheless, model's 9 constant terms and other regression coefficients are not affected by said inflated standard errors, whereas model 13a and 14a present a more problematic profile. 
+
+Model 13a's and 14a's inflated standard errors are due to separation issues. In short, no respondents from respondents with low education did vote for party 906 (see Table \ref{table:crosstab_1_ee}) and no respondents with low education, with high subjective social status, no members of trade unions, and unemployed and only very few respondents married or in partnership as well as married or in a partnership (2 and 9) did vote for party 907 
+(see Tables \ref{table:crosstab_2_ee}, \ref{table:crosstab_3_ee}, \ref{table:crosstab_4_ee}, 
+\ref{table:crosstab_5_ee}).
+
+As a consequence, a constrained version of model 13 (namely, Model 13b) without said variable was 
+estimated and contrasted with the original (Model 13a), full model. Likelihood-ratio test results show 
+that $H_0$ (namely, that the constrained model fits better than the full model) cannot be rejected 
+(see Table \ref{table:lrtest_1_ee}). Consequently, synthetic variables for respondents' vote choice for 
+party 906 have been predicted relying on the constrained model (Model 13b). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst6[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 13a (Unconstrained) and Model 13b (Constrained) \\label{table:lrtest_1_ee}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In \ref{table:crosstab_2_ee} there is no 0 disrupting our logit regression. As a consequence, a constrained version of model 14 (namely, Model 14b_1) without said variables and without D5_rec was 
+estimated and contrasted with the original (Model 14a), full model. 
+Likelihood-ratio test results show that $H_0$ (namely, that the constrained model fits better than the full model) cannot be rejected (see Table \ref{table:lrtest_2_ee}). 
+
+Furthermore, another constrained version of model 14 (namely, Model 14b_2) without said variables, but with D5_rec, was estimated and contrasted with the original (Model 14a), full model.
+Model 14b_2 is therefore less constrained than 14b_1 (by D5_rec).
+Likelihood-ratio test results show that $H_0$ (namely, that the constrained model fits better than the full model) cannot be rejected (see Table \ref{table:lrtest_3_ee}). 
+
+Then we compared the fit of 14b_1 and 14b_2. Likelihood-ratio test results show that $H_0$ (namely, that the 'fuller' constrained model with D5_rec fits better than the constrained model without D5_rec) cannot be rejected (see Table \ref{table:lrtest_3_ee}). Consequently, synthetic variables for respondents' vote choice for party 907 have been predicted relying on the less constrained model with D5_rec (Model 14b_2).  
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+anova_lst7_1[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 14b1 (Constrained and without D5rec) \\label{table:lrtest_2_ee}", booktabs = F, ) %>%
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+anova_lst7_2[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 14b2 (Constrained and with D5rec) \\label{table:lrtest_3_ee}", booktabs = F, ) %>%
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+anova_lst7_1vs2[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 14b1 (Constrained and without D5rec, here Constrained) and Model 14b2 (Constrained and with D5rec, here Unconstrained) \\label{table:lrtest_4_ee}", booktabs = F) %>%
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 3 cases out of 7 null models perform better than full ones. According to AIC 
+values the related null model appears to have a better fit than Model 13b and 14b_2 (see Table
+\ref{table:logit_aic_ee}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[7,1] <- 'stack_906*'
+logit_aic[9,1] <- 'stack_907*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_ee}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 13b for 906* (constrained) and 14b_2 for 907* (constrained and with D5_rec).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs6[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 906 and respondents' education 
+                   \\label{table:crosstab_1_ee}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs7[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 907 and respondents' marital status
+                   \\label{table:crosstab_2_ee}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs7[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 907 and respondents' education 
+                   \\label{table:crosstab_3_ee}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs7[[3]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 907 and respondents' trade union 
+                   membership \\label{table:crosstab_4_ee}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs7[[4]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 907 and respondents' employment status 
+                  \\label{table:crosstab_5_ee}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+```
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_ee',
+                     type = 'latex',
+                     column.labels = c('901', '902', '903', '904','905', '906', '907'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+```
+
+\newpage
+\blandscape
+```{r, results='asis', echo=F}
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_ee',
+                       type = 'latex',
+                       column.labels = c('901', '902', '903', '904','905','906','906','907', '907'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 1', 'Model 8x',.) %>% 
+  gsub('Model 9', 'Model 14b2',.) %>% 
+  gsub('Model 8', 'Model 14a',.) %>% 
+  gsub('Model 7', 'Model 13b',.)%>% 
+  gsub('Model 6', 'Model 13a',.) %>% 
+  gsub('Model 5', 'Model 12',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 3', 'Model 10',.) %>% 
+  gsub('Model 2', 'Model 9',.)  %>% 
+  gsub('Model 8x', 'Model 8',.) 
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+\elandscape
+
+\newpage
+# Finland
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Finland synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_fi_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Finnish parties available in the original 
+2019 EES Finland voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_fi}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Finland relevant parties \\label{table:relprty_tab_fi}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_fi}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that the full models perform better in all cases (see Table \ref{table:ols_aic_fi}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_fi}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+Similarly, only one out of the seven logistic regression models (see Table \ref{table:full_logit_fi}) shows 
+inflated standard errors for one of the coefficients of interest, in particular: 
+
+* Model 11: D6_une
+
+However, the constant term and the other regressors of model 11 seem not to be affected by the inflated standard errors. Thus, no further adjustments are made and model 11 is kept as is. 
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in two cases out of seven null models perform better than full ones (see Table \ref{table:logit_aic_fi}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_fi}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) 
+
+```
+
+```{r, results='asis', echo=F}
+
+ols_regtab <-
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_fi',
+                     type = 'latex',
+                       column.labels = c('1001', '1002', '1003', '1004', '1005', '1006', '1007'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps') %>%
+capture.output() 
+cat("\\blandscape", ols_regtab, "\\elandscape", sep = "\n")
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_fi',
+                       type = 'latex',
+                       column.labels = c('1001', '1002', '1003', '1004', '1005', '1006', '1007'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 2', 'Model 9',.) %>% 
+  gsub('Model 3', 'Model 10',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 5', 'Model 12',.) %>% 
+  gsub('Model 6', 'Model 13',.) %>% 
+  gsub('Model 7', 'Model 14',.) %>% 
+  sub('Model 1', 'Model 8',.) 
+
+cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
+  
+
+```
+
+
+\newpage
+# France
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the French synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_fr_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of French parties available in the original 
+2019 EES French voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_fr}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "French relevant parties \\label{table:relprty_tab_fr}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_fr}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 7 cases out of 7 null models perform better than full ones (see Table 
+\ref{table:ols_aic_fr}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_fr}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+Also the full Logit models converge and coefficients do not show any particular issue (see Table \ref{table:full_logit_fr}) 
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 2 cases out of 6 null models perform better than full ones.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_fr}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) 
+  
+```
+
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_fr',
+                     type = 'latex',
+                     column.labels = c('1113', '1105', '1111', '1114','1101', '1110', '1102'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_fr',
+                       type = 'latex',
+                       column.labels = c('1113', '1105', '1111', '1114','1101', '1110', '1102'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 1', 'Model 8',.) %>%
+  gsub('Model 7', 'Model 14',.) %>% 
+  gsub('Model 6', 'Model 13',.) %>% 
+  gsub('Model 5', 'Model 12',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 3', 'Model 10',.) %>% 
+  gsub('Model 2', 'Model 9',.) 
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+
+\newpage
+# Germany
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the German synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_de_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for all of German parties available in the original 
+2019 EES German voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_de}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "German relevant parties \\label{table:relprty_tab_de}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_de}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 0 cases out of 7 null models perform better than full ones (see Table 
+\ref{table:ols_aic_de}).
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_de}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, one out of seven logistic regression models (see Table \ref{table:full_logit_de}) show inflated standard errors for one of the coefficients of interest, in particular: 
+
+* Model 10: D6_une
+
+Nevertheless, model's 10 constant term and other regression coefficients are not affected by said 
+inflated standard error. Therefore, we do not adapt the model.
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 1 case out of 7 null models perform better than full ones (see Table
+\ref{table:logit_aic_de}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_de}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) 
+
+```
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_de',
+                     type = 'latex',
+                     column.labels = c('801', '802', '805', '803','804', '807', '806'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_de',
+                       type = 'latex',
+                       column.labels = c('801', '802', '805', '803','804', '807', '806'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 8',.) %>% 
+  gsub('Model 7', 'Model 14',.) %>% 
+  gsub('Model 6', 'Model 13',.) %>% 
+  gsub('Model 5', 'Model 12',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 3', 'Model 10',.) %>% 
+  gsub('Model 2', 'Model 9',.) 
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+
+
+
+\newpage
+# Greece
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Greece synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_el_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Greek parties available in the original 
+2019 EES Greece voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_el}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Greece relevant parties \\label{table:relprty_tab_el}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_el}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that the full models perform better in all cases (see Table \ref{table:ols_aic_el}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_el}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, two out of five logistic regression models (see Table \ref{table:full_logit_el}) show 
+inflated standard errors for some of the coefficients of interest, in particular: 
+
+* Model 8a: EDU_rec (both categories), D1_rec
+* Model 9: D7_rec (second category)
+
+However, for model 9 the constant term and other regressors are not affected by the inflated standard errors. Model 8a appears more problematic.
+
+The inflated standard errors in Model 8a are potentially due to separation issues. In short, no respondents with low education voted for party 1203 and only two respondents who were union members voted for party 1203. (See Tables \ref{table:crosstab_1_el}, \ref{table:crosstab_2_el})
+
+As a consequence, a constrained version of model 8 (namely, Model 8b) without said variables was 
+estimated and contrasted with the original (Model 8a), full model. Likelihood-ratio test results show 
+that $H_0$ (namely, that the constrained model fits better than the full model) can be rejected 
+(see Table \ref{table:lrtest_1_el}). Consequently, synthetic variables for respondents' vote choice for 
+party 1203 have been predicted relying on the unconstrained model (Model 8a).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 8a (Unconstrained) and Model 8b (Constrained)
+                  \\label{table:lrtest_1_el}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in one case out of five the null model performs better than the full ones. According to AIC 
+values the related null model appears to have a better fit than Model 8b (see Table \ref{table:logit_aic_el}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[4,1] <- 'stack_1203*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_el}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 8b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1203 and respondents' education level
+                   \\label{table:crosstab_1_el}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1203 and respondents' trade union membership status
+                   \\label{table:crosstab_2_el}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+
+
+
+```
+
+```{r, results='asis', echo=F}
+
+ols_regtab <-
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents'
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_el',
+                     type = 'latex',
+                     column.labels = c('1201','1202', '1203', '1204', '1205'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps') %>%
+capture.output() 
+cat("\\blandscape", ols_regtab, "\\elandscape", sep = "\n")
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_el',
+                       type = 'latex',
+                       column.labels = c('1201','1202', '1203', '1203', '1204', '1205'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 2', 'Model 7',.) %>% 
+  gsub('Model 3', 'Model 8a',.) %>% 
+  gsub('Model 4', 'Model 8b',.) %>% 
+  gsub('Model 5', 'Model 9',.) %>% 
+  gsub('Model 6', 'Model 10',.) %>% 
+  sub('Model 1', 'Model 6',.) 
+
+
+
+cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
+  
+
+```
+
+\newpage
+# Hungary
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Hungary synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_hu_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Hungarian parties available in the original 
+2019 EES Hungary voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_hu}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Hungary relevant parties \\label{table:relprty_tab_hu}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_hu}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that the full models perform better in all cases (see Table \ref{table:ols_aic_hu}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_hu}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, three out of seven logistic regression models (see Table \ref{table:full_logit_hu}) show 
+inflated standard errors for some of the coefficients of interest, in particular: 
+
+* Model 11: D7_rec (second category)
+* Model 12: D6_une
+* Model 13: D7_rec (second category), D6_une
+
+However, for these models the constant terms and other regressors are not affected by the inflated standard errors. Thus, no additional adjustments are made and models 11, 12 and 13 are not modified.
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in three cases out of seven null models perform better than full ones (see Table \ref{table:logit_aic_hu}).. 
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_hu}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+
+
+```{r, results='asis', echo=F}
+
+ols_regtab <-
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_hu',
+                     type = 'latex',
+                     column.labels = c('1301', '1302', '1303', '1304','1306', '1307', '1308'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps') %>%
+capture.output() 
+cat("\\blandscape", ols_regtab, "\\elandscape", sep = "\n")
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_hu',
+                       type = 'latex',
+                       column.labels = c('1301', '1302', '1303', '1304','1306', '1307', '1308'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 2', 'Model 9',.) %>% 
+  gsub('Model 3', 'Model 10',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 5', 'Model 12',.) %>% 
+  gsub('Model 6', 'Model 13',.) %>% 
+  gsub('Model 7', 'Model 14',.) %>% 
+  sub('Model 1', 'Model 8',.) 
+
+
+
+cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
+  
+
+```
+
+\newpage
+# Ireland
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Irish synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_ie_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Irish parties available in the original 
+2019 EES Irish voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_ie}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Irish relevant parties \\label{table:relprty_tab_ie}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_ie}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 6 cases out of 6 null models perform better than full ones (see Table 
+\ref{table:ols_aic_ie}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_ie}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, one out of six logistic regression models (see Table \ref{table:full_logit_ie}) shows 
+inflated standard errors for one of the coefficients of interest: 
+
+* Model 8: EDU_rec;
+
+It presents a problematic profile since the inflated standard error is affecting the constant term.
+
+Model 8a inflated standard errors are due to separation issues. In short, only one low educated 
+respondent did vote for party 1403 (see Tables \ref{table:crosstab_1_ie})
+
+As a consequence, a constrained version of model 8 (namely, Model 8b) without said variables was 
+estimated and contrasted with the original (Model 8a), full model. Likelihood-ratio test results show 
+that $H_0$ (namely, that the constrained model fits better than the full model) cannot be rejected 
+(see Table \ref{table:lrtest_1_ie}). Consequently, synthetic variables for respondents' vote choice for 
+party 1403 have been predicted relying on the constrained model (Model 8b). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 8a (Unconstrained) and Model 8b (Constrained)
+                  \\label{table:lrtest_1_ie}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 4 cases out of 6 null models perform better than full ones. According to AIC 
+values the related null model appears to have a better fit than Model 8b (see Table
+\ref{table:logit_aic_ie}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[4,1] <- 'stack_1403*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_ie}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 8b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 505 and respondents' education 
+                   \\label{table:crosstab_1_ie}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+```
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_ie',
+                     type = 'latex',
+                     column.labels = c('1402', '1403', '1401', '1404','1405', '1406'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_ie',
+                       type = 'latex',
+                       column.labels = c('1402', '1403', '1403', '1401', '1404','1405', '1406'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 7', 'Model 12',.) %>% 
+  gsub('Model 1$', 'Model 7',.) %>% 
+  gsub('Model 6', 'Model 11',.) %>% 
+  gsub('Model 5', 'Model 10',.) %>% 
+  gsub('Model 4', 'Model 9',.) %>% 
+  gsub('Model 3', 'Model 8b',.) %>% 
+  gsub('Model 2', 'Model 8a',.) 
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+
+
+
+\newpage
+# Latvia
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Latvian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_lv_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Latvian parties available in the original 
+2019 EES Latvian voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_lv}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "latvian relevant parties \\label{table:relprty_tab_lv}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_lv}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 5 cases out of 7 null models perform better than full ones (see Table 
+\ref{table:ols_aic_lv}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_lv}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, six out of seven logistic regression models (see Tables \ref{table:full_logit_lv_p1},
+\ref{table:full_logit_lv_p2}) show inflated standard errors for some of the coefficients of interest, 
+in particular: 
+
+* Model 8,14: EDU_rec, D6_une;
+* Model 9: D6_une;
+* Model 11: D5_rec;
+* Model 12,13: EDU_rec.
+
+Nevertheless, models 9 and 11 constant terms and other regression coefficients are not affected by said 
+inflated standard errors, whereas model 8,12,13,14 presents a more problematic profile. 
+
+Models 8,12,13,14 inflated standard errors are due to separation issues. In short, no respondents with low 
+education and unemployement did vote for party 1611 and 1616 (see Tables \ref{table:crosstab_1_lv}, 
+\ref{table:crosstab_2_lv}, \ref{table:crosstab_3_lv}, \ref{table:crosstab_4_lv}). For party 1610 and 1604
+no respondents with low education voted for them (see Tables \ref{table:crosstab_5_lv}, \ref{table:crosstab_6_lv}). 
+
+As a consequence, a constrained version of model 8,12,13,14 (namely, Model 8b,12b,13b,14b) without said variables was 
+estimated and contrasted with the original (Model 8a,12a,13a,14a), full model. Likelihood-ratio test results show 
+
+* that for Model 8 $H_0$ (namely, that the constrained model fits better than the full model) can be rejected at p<0.05 (see Table \ref{table:lrtest_1_lv}). However, if just EDU_rec is dropped, $H_0$ can be rejected at p<0.1 and the constant term is also not affected (see Table \ref{table:lrtest_2_lv}). Thus, synthetic variables for respondents' vote choice for party 1611 have been predicted relying on the constrained model dropping only EDU_rec.
+* that for Model 12 $H_0$ can be rejected at p<0.1 (see Table \ref{table:lrtest_3_lv}). Consequently, synthetic variables for respondents' vote choice for 
+party 1610 have been predicted relying on the constrained model (Model 12b).
+* that for Model 13 $H_0$ can be rejected at p<0.05 (see Table \ref{table:lrtest_4_lv}). Consequently, synthetic variables for respondents' vote choice for 
+party 1604 have been predicted relying on the constrained model (Model 13b).
+* that for Model 14 $H_0$ can be rejected at p<0.001 (see Table \ref{table:lrtest_5_lv}). Consequently, synthetic variables for respondents' vote choice for 
+party 1616 have been predicted relying on the unconstrained model (Model 14).
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst2[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 8a (Unconstrained) and (Fully Constrained)
+                  \\label{table:lrtest_1_lv}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+anova_lst[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 8a (Unconstrained) and Model 8b (Constrained)
+                  \\label{table:lrtest_2_lv}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+anova_lst[[4]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 12a (Unconstrained) and Model 12b (Constrained)
+                  \\label{table:lrtest_3_lv}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+anova_lst[[5]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 13a (Unconstrained) and Model 13b (Constrained)
+                  \\label{table:lrtest_4_lv}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+anova_lst[[6]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 14 (Unconstrained and Constrained)
+                  \\label{table:lrtest_5_lv}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 3 cases out of 7 null models perform better than full ones. According to AIC 
+values the related null model appears to have a better fit than Model 11b (see Table
+\ref{table:logit_aic_lv}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[2,1] <- 'stack_1611*'
+logit_aic[9,1] <- 'stack_1610*'
+logit_aic[11,1] <- 'stack_1604*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_lv}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 11b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1611 and respondents' education
+                   \\label{table:crosstab_1_lv}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1611 and respondents' employment status
+                   \\label{table:crosstab_2_lv}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs6[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1616 and respondents' education 
+                   \\label{table:crosstab_3_lv}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs6[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1616 and respondents' employment status
+                   \\label{table:crosstab_4_lv}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs4[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1610 and respondents' education
+                   membership \\label{table:crosstab_5_lv}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs5[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1604 and respondents' education
+                  \\label{table:crosstab_6_lv}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+```
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_lv',
+                     type = 'latex',
+                     column.labels = c('1611', '1608', '1609', '1605','1610', '1604', '1616'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+
+finalmod_lst2 <- finalmod_lst[["logit"]][-c(6,7,8,9,10)]
+finalmod_lst3 <- finalmod_lst[["logit"]][-c(1,2,3,4,5)]
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst2, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_lv_p1',
+                       type = 'latex',
+                       column.labels = c('1611', '1611', '1608', '1609', '1605'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab2 <- 
+  stargazer::stargazer(finalmod_lst3, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_lv_p2',
+                       type = 'latex',
+                       column.labels = c('1610', '1610', '1604', '1604', '1616'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+
+logit_regtab[9] %<>%
+  gsub('Model 1', 'Model 8',.) %>% 
+  gsub('Model 2', 'Model 8a',.) %>% 
+  gsub('Model 3', 'Model 9',.) %>% 
+  gsub('Model 4', 'Model 10',.) %>% 
+  gsub('Model 5', 'Model 11',.)
+
+cat(logit_regtab, sep = "\n")
+
+logit_regtab2[9] %<>%
+  gsub('Model 1', 'Model 12a',.) %>% 
+  gsub('Model 2', 'Model 12b',.) %>% 
+  gsub('Model 3', 'Model 13a',.) %>% 
+  gsub('Model 4', 'Model 13b',.) %>% 
+  gsub('Model 5', 'Model 14',.) 
+
+cat(logit_regtab2, sep = "\n")
+  
+  
+
+```
+
+
+\newpage
+# Lithuania
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Lithuania synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_lt_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Lithuanian parties available in the original 
+2019 EES Lithuania voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_lt}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Lithuania relevant parties \\label{table:relprty_tab_lt}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_lt}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that the full models perform better in six out of seven cases (see Table \ref{table:ols_aic_lt}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_lt}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, three out of seven logistic regression models (see Table \ref{table:full_logit_lt}) show 
+inflated standard errors for some of the coefficients of interest, in particular: 
+
+* Model 10a: EDU_rec (both categories)
+* Model 13a: EDU_rec (both categories), D7_rec (second category), D6_une
+* Model 14a: EDU_rec (both categories)
+
+Models 10a, 13a and 14a are all problematic as the constant terms seem to be affected by the inflated standard errors issue. These inflated standard errors are due to separation issues which are explored below.
+
+For Model 10a, we see that no respondent with low education voted for party 1706 (see Table \ref{table:crosstab_1_lt}).
+For Model 13a, we have that again no respondent with low education and no respondent who is unemployed voted for party 1707 (see Tables \ref{table:crosstab_2_lt}, \ref{table:crosstab_4_lt}). Furthermore, only one respondent with high subjective social class voted for party 1707 (see Table \ref{table:crosstab_3_lt}).
+Finally, for Model 14a Table \ref{table:crosstab_5_lt} shows that no respondent with low education voted for party 1702.
+
+As a consequence constrained versions of Models  10, 13 and 14 (namely 10b, 13b and 14b) were estimated. In Models 10b and 14b the EDU_rec variables were removed, while in Model 13b the EDU_rec variables, the D7_rec variables and the D6_une variable were removed. These constrained models were then contrasted with their respective (original) full models (i.e. 10a, 13a, 14a). Likelihood-ratio test results show that $H_0$ (constrained model fits better than the full model) cannot be rejected for any of the models (see Tables \ref{table:lrtest_1_lt}, \ref{table:lrtest_2_lt}, \ref{table:lrtest_3_lt}). Following these results, synthetic variables for respondents' vote choice for parties 1706, 1707 and 1702 have been predicted relying on the constrained models (Model 10b, 13b, 14b).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst3[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 10a (Unconstrained) and Model 10b (Constrained)
+                  \\label{table:lrtest_1_lt}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst6[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 13a (Unconstrained) and Model 13b (Constrained)
+                  \\label{table:lrtest_2_lt}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst7[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 14b (Constrained)
+                  \\label{table:lrtest_3_lt}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in two cases out of seven null models perform better than full ones. According to AIC 
+values the related null models appear to have a worse fit than Models 10b, 13b and 14b (see Table \ref{table:logit_aic_lt}). 
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[3,1] <- 'stack_1702*'
+logit_aic[8,1] <- 'stack_1706*'
+logit_aic[10,1] <- 'stack_1707*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_lt}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to constrained models (i.e. 14b, 10b, 13b)',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs3[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1706 and respondents' education 
+                   \\label{table:crosstab_1_lt}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs6[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1707 and respondents' education
+                   \\label{table:crosstab_2_lt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs6[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1707 and respondents' subjective social class
+                   \\label{table:crosstab_3_lt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs6[[3]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1707 and respondents' employment status
+                   \\label{table:crosstab_4_lt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs7[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1702 and respondents' education
+                   \\label{table:crosstab_5_lt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+
+
+```
+
+```{r, results='asis', echo=F}
+
+ols_regtab <-
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_lt',
+                     type = 'latex',
+                     column.labels = c('1701', '1703', '1706', '1705','1704', '1707', '1702'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps') %>%
+capture.output() 
+cat("\\blandscape", ols_regtab, "\\elandscape", sep = "\n")
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_lt',
+                       type = 'latex',
+                     column.labels = c('1701', '1703', '1706', '1706', '1705','1704', '1707', '1707', '1702', '1702'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  sub('\\\\\\[-1.8ex]','textbf{Model}',.) %>%
+  gsub('Model 9', '14a',.) %>%
+  gsub('Model 2', '9',.) %>%
+  gsub('Model 10', '14b',.) %>%
+  sub('Model 3', '10a',.) %>% 
+  sub('Model 4', '10b',.) %>% 
+  sub('Model 5', '11',.) %>% 
+  sub('Model 6', '12',.) %>% 
+  sub('Model 7', '13a',.) %>% 
+  sub('Model 8', '13b',.) %>% 
+  sub('Model 1', '8',.) 
+
+
+
+cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
+  
+
+```
+
+\newpage
+# Luxembourg
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Luxembourgian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_lu_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for seven of ten of Luxembourgian parties available in the original 
+2019 EES Luxembourgian voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_lu}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Luxembourgian relevant parties \\label{table:relprty_tab_lu}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_lu}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 1 case out of 7 null models perform better than full ones (see Table 
+\ref{table:ols_aic_lu}).
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_lu}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, four out of seven logistic regression models (see Table \ref{table:full_logit_lu}) show inflated standard errors for one of the coefficients of interest, in particular: 
+
+* Model 8, 9, 10 and 12: D6_une.
+
+Nevertheless, models 8, 9, 10 and 12 constant term and other regression coefficients are not affected by said inflated standard error. Therefore, we do not adapt the model.
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 6 cases out of 7 null models perform better than full ones (see Table
+\ref{table:logit_aic_lu}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_lu}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) 
+
+```
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_lu',
+                     type = 'latex',
+                     column.labels = c('1801', '1802', '1803', '1804','1805', '1806', '1807'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_lu',
+                       type = 'latex',
+                       column.labels = c('1801', '1802', '1803', '1804','1805', '1806', '1807'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 8',.) %>% 
+  gsub('Model 7', 'Model 14',.) %>% 
+  gsub('Model 6', 'Model 13',.) %>% 
+  gsub('Model 5', 'Model 12',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 3', 'Model 10',.) %>% 
+  gsub('Model 2', 'Model 9',.) 
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+
+
+\newpage
+# Malta
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Maltese synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_mt_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Maltese parties (5) available in the original 
+2019 EES Maltese voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_mt}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Maltese relevant parties \\label{table:relprty_tab_mt}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_mt}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 0 cases out of 5 null models perform better than full ones (see Table 
+\ref{table:ols_aic_mt}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_mt}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, three out of five logistic regression models (see Table \ref{table:full_logit_mt}) show 
+inflated standard errors for some of the coefficients of interest, in particular: 
+
+* Model 8a: D8_rec, EDU_rec, D1_rec, D7_rec (only for category 2), D6_une;
+* Model 9a: D8_rec, D7_rec (for category 1 and 2), D6_une;
+* Model 10a: D8_rec, EDU_rec (only for category 3), D7_rec (only for category 2), D6_une.
+
+Models 8a, 9a and 10a constant terms and other regression coefficients are affected by the above mentioned variables' inflated standard error showing unusual values.
+
+Model 8a inflated standard errors are due to separation issues. In short, no respondents from rural areas, with low education, with high subjective social status, members of trade unions, and unemployed did vote for party 1903 (see Tables \ref{table:crosstab_3_1_mt}, \ref{table:crosstab_3_2_mt}, \ref{table:crosstab_3_3_mt}, \ref{table:crosstab_3_4_mt}, \ref{table:crosstab_3_5_mt}, \ref{table:crosstab_3_6_mt}).
+
+Model 9a inflated standard errors are due to separation issues. In short, no respondents from rural areas, with NA in their subjective social status and NA in their employment information did vote for party 1904 (see Tables \ref{table:crosstab_4_1_mt}, \ref{table:crosstab_4_2_mt}, \ref{table:crosstab_4_3_mt}). 
+
+Model 10a inflated standard errors are due to separation issues. In short, no respondents from rural areas, with high education or NA in their education information, with high subjective social status, members of trade unions, and unemployed or NA in their employment information did vote for party 1905 (see Tables \ref{table:crosstab_5_1_mt}, \ref{table:crosstab_5_2_mt}, \ref{table:crosstab_5_3_mt}, \ref{table:crosstab_5_4_mt}).
+
+As a consequence, constrained versions of model 8, 9 and 10 (namely, Model 8b, 9b and 10b) without said variables were estimated and contrasted with the originals (Model 8a, 9a and 10a), full model. 
+
+For model 8 Likelihood-ratio test results show that $H_0$ (namely, that the constrained model fits better than the full model) is rejected (see Table \ref{table:lrtest_1_mt}). Consequently, synthetic variables for respondents' vote choice for party 1903 have been predicted relying on the unconstrained model (Model 8a). 
+
+For model 9 Likelihood-ratio test results show that $H_0$ (namely, that the constrained model fits better than the full model) can not be rejected (see Table \ref{table:lrtest_2_mt}). Consequently, synthetic variables for respondents' vote choice for party 1904 have been predicted relying on the constrained model (Model 9b). 
+
+For model 10 Likelihood-ratio test results show that $H_0$ (namely, that the constrained model fits better than the full model) can not be rejected (see Table \ref{table:lrtest_3_mt}). Consequently, synthetic variables for respondents' vote choice for party 1905 have been predicted relying on the constrained model (Model 10b). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst3[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 8a (Unconstrained) and Model 8b (Constrained)
+                  \\label{table:lrtest_1_mt}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+anova_lst4[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 9a (Unconstrained) and Model 9b (Constrained)
+                  \\label{table:lrtest_2_mt}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+anova_lst5[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 10a (Unconstrained) and Model 10b                               (Constrained)
+                  \\label{table:lrtest_3_mt}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 2 cases out of 5 null models perform better than full ones. According to AIC values the related null model appears to have a better fit than Model 9b and 10b (see Table \ref{table:logit_aic_mt}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[5,1] <- 'stack_1904*'
+logit_aic[7,1] <- 'stack_1905*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_mt}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 9b for 1904* (constrained) and to Model 10b for 1905* (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs3[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1903 and respondents' area of                       residency 
+                   \\label{table:crosstab_3_1_mt}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs3[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1903 and respondents' education                   \\label{table:crosstab_3_2_mt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs3[[3]] %>% 
+  kable(caption ="Cross tabulation between vote choice for party 1903 and respondents' subjective                     SES
+                   \\label{table:crosstab_3_3_mt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs3[[4]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1903 and respondents' trade union 
+                   membership \\label{table:crosstab_3_4_mt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs3[[5]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1903 and respondents' employment                     status 
+                  \\label{table:crosstab_3_5_mt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+
+
+tabs4[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1904 and respondents' area of residency 
+                   \\label{table:crosstab_4_1_mt}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs4[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1904 and respondents' subjective SES 
+                   \\label{table:crosstab_4_2_mt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs4[[3]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1904 and respondents' employment status 
+                  \\label{table:crosstab_4_3_mt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+
+
+tabs5[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1905 and respondents' area of residency 
+                   \\label{table:crosstab_5_1_mt}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs5[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1905 and respondents' education 
+                   \\label{table:crosstab_5_2_mt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs5[[3]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1905 and respondents' subjective SES 
+                   \\label{table:crosstab_5_3_mt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs5[[4]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 1905 and respondents' trade union 
+                   membership \\label{table:crosstab_5_4_mt}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+```
+
+\newpage
+\blandscape
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_mt',
+                     type = 'latex',
+                     column.labels = c('1901', '1902', '1903', '1904','1905'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+```
+\elandscape
+
+\newpage
+\blandscape
+```{r, results='asis', echo=F}
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_mt',
+                       type = 'latex',
+                       column.labels = c('1901', '1902', '1903', '1904','1905'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 6x',.) %>% 
+  gsub('Model 7', 'Model 10b',.) %>% 
+  gsub('Model 6', 'Model 10a',.) %>% 
+  gsub('Model 5', 'Model 9b',.) %>% 
+  gsub('Model 4', 'Model 9a',.) %>% 
+  gsub('Model 3', 'Model 8',.) %>% 
+  gsub('Model 6x', 'Model 7',.)  
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+\elandscape
+
+
+\newpage
+# Netherlands
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Dutch synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_nl_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for nine of 16 Dutch parties available in the original 
+2019 EES Dutch voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_nl}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Dutch relevant parties \\label{table:relprty_tab_nl}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_nl}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 0 cases out of 9 null models perform better than full ones (see Table 
+\ref{table:ols_aic_nl}).
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_nl}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+Full logit models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_logit_nl}). 
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and null models shows that in 4 cases out of 9 null models perform better than full ones (see Table
+\ref{table:logit_aic_nl}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_nl}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) 
+
+```
+
+\newpage
+\blandscape
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_nl',
+                     type = 'latex',
+                     column.labels = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", 
+                                       "2008", "2012"),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+``` 
+\elandscape
+
+\newpage
+\blandscape
+```{r, results='asis', echo=F}
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_nl',
+                       type = 'latex',
+                       column.labels = c("2001", "2002", "2003", "2004", "2005", "2006", "2007", 
+                                       "2008", "2012"),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 10',.) %>%
+  gsub('Model 9', 'Model 18',.) %>% 
+  gsub('Model 8', 'Model 17',.) %>%
+  gsub('Model 7', 'Model 16',.) %>% 
+  gsub('Model 6', 'Model 15',.) %>% 
+  gsub('Model 5', 'Model 14',.) %>% 
+  gsub('Model 4', 'Model 13',.) %>% 
+  gsub('Model 3', 'Model 12',.) %>% 
+  gsub('Model 2', 'Model 11',.) 
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+\elandscape
+
+
+\newpage
+# Slovakia
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Slovakia synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_sk_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Slovakian parties available in the original 
+2019 EES Slovakia voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_sk}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Slovakia relevant parties \\label{table:relprty_tab_sk}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_sk}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that the full models perform better in eight out of nine cases (see Table \ref{table:ols_aic_sk}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_sk}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, two out of nine logistic regression models (see Table \ref{table:full_logit_sk}) show 
+inflated standard errors for some of the coefficients of interest, in particular: 
+
+* Model 15: D6_une
+* Model 18a: EDU_rec (both categories), D1_rec, D6_une
+
+However, for model 15 the constant term and other regressors are not affected by the inflated standard errors. Model 18a appears more problematic.
+
+The inflated standard errors in Model 18a are due to separation issues. In short, no respondents with low education voted for party 2507. Furthermore, only one respondent with trade union membership status and only one repondent who is unemployed vote for party 2507. (See tables \ref{table:crosstab_1_sk}, \ref{table:crosstab_2_sk}, \ref{table:crosstab_3_sk})
+
+As a consequence, a constrained version of model 18 (namely, Model 18b) without said variables was 
+estimated and contrasted with the original (Model 18a), full model. Likelihood-ratio test results show 
+that $H_0$ (namely, that the constrained model fits better than the full model) cannot be rejected 
+(see Table \ref{table:lrtest_1_sk}). Consequently, synthetic variables for respondents' vote choice for 
+party 2507 have been predicted relying on the constrained model (Model 18b).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 18a (Unconstrained) and Model 18b (Constrained)
+                  \\label{table:lrtest_1_sk}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in six cases out of nine null models perform better than full ones. According to AIC 
+values the related null model appears to have a better fit than Model 18b (see Table \ref{table:logit_aic_sk}). 
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[7,1] <- 'stack_2507*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_sk}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 18b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 2507 and respondents' education 
+                   \\label{table:crosstab_1_sk}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 2507 and respondents' trade union membership status
+                   \\label{table:crosstab_2_sk}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs[[3]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 2507 and respondents' employment status 
+                   \\label{table:crosstab_3_sk}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+
+
+```
+
+```{r, results='asis', echo=F}
+
+ols_regtab <-
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_sk',
+                     type = 'latex',
+                     column.labels = c('2510', '2501', '2509', '2503', '2505', '2506', '2508', '2504', '2507'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps') %>%
+capture.output() 
+cat("\\blandscape", ols_regtab, "\\elandscape", sep = "\n")
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_sk',
+                       type = 'latex',
+                       column.labels = c('2510', '2501', '2509', '2503', '2505', '2506', '2508', '2504', '2507',                        '2507'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  sub('\\\\\\[-1.8ex]','textbf{Model}',.) %>%
+  gsub('Model 10', '18b',.) %>%
+  sub('Model 1', '10',.) %>%
+  gsub('Model 2', '11',.) %>% 
+  gsub('Model 3', '12',.) %>% 
+  gsub('Model 4', '13',.) %>% 
+  gsub('Model 5', '14',.) %>% 
+  gsub('Model 6', '15',.) %>% 
+  gsub('Model 7', '16',.) %>% 
+  gsub('Model 8', '17',.) %>% 
+  gsub('Model 9', '18a',.)
+
+
+
+
+
+cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
+  
+
+```
+
+\newpage
+# Poland
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Poland synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_pl_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Polish parties available in the original 
+2019 EES Poland voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_pl}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Poland relevant parties \\label{table:relprty_tab_pl}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_pl}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that the full models perform better in all cases (see Table \ref{table:ols_aic_pl}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_pl}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, one out of the five logistic regression models (see Table \ref{table:full_logit_pl}) shows
+inflated standard errors for some of the coefficients of interest, in particular: 
+
+* Model 9a: EDU_rec (both categories), D7_rec (second category), D6_une
+
+Model 9a appears to be problematic as the constant term seems to be affected by the inflated standard errors issue.
+
+The inflated standard errors in Model 9a are due to separation issues. In short, no respondents who are unemployed or of high subjective social status voted for party 2105. Only one respondent with low education voted for party 2105. (See tables \ref{table:crosstab_1_pl}, \ref{table:crosstab_2_pl}, \ref{table:crosstab_3_pl})
+
+As a consequence, a constrained version of model 9 (namely, Model 9b) without said variables was 
+estimated and contrasted with the original (Model 9a), full model. Likelihood-ratio test results show 
+that $H_0$ (namely, that the constrained model fits better than the full model) cannot be rejected 
+(see Table \ref{table:lrtest_1_pl}). Consequently, synthetic variables for respondents' vote choice for 
+party 2105 have been predicted relying on the constrained model (Model 9b).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 9a (Unconstrained) and Model 9b (Constrained)
+                  \\label{table:lrtest_1_pl}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in one case out of five null models perform better than full ones. According to AIC 
+values the related null model appears to have a better fit than Model 9b (see Table \ref{table:logit_aic_pl}). 
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[5,1] <- 'stack_2105*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_pl}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 9b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 2105 and respondents' education 
+                   \\label{table:crosstab_1_pl}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 2105 and respondents' subjective social class
+                   \\label{table:crosstab_2_pl}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs[[3]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 2105 and respondents' employment status 
+                   \\label{table:crosstab_3_pl}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+
+
+```
+
+```{r, results='asis', echo=F}
+
+ols_regtab <-
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_pl',
+                     type = 'latex',
+                     column.labels = c('2104', '2106', '2102', '2105', '2103'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps') %>%
+capture.output() 
+cat("\\blandscape", ols_regtab, "\\elandscape", sep = "\n")
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_pl',
+                       type = 'latex',
+                       column.labels = c('2104', '2106', '2102', '2105', '2105', '2103'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+
+  gsub('Model 2', 'Model 7',.) %>% 
+  gsub('Model 3', 'Model 8',.) %>% 
+  gsub('Model 4', 'Model 9a',.) %>% 
+  gsub('Model 5', 'Model 9b',.) %>% 
+  gsub('Model 6', 'Model 10',.) %>%
+  sub('Model 1', 'Model 6',.)
+  
+
+cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
+  
+
+```
+
+\newpage
+# Romania
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Romanian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_ro_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Romania parties available in the original 
+2019 EES Romanian voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_ro}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Romanian relevant parties \\label{table:relprty_tab_ro}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_ro}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 7 cases out of 7 null models perform better than full ones (see Table 
+\ref{table:ols_aic_ro}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_ro}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, one out of seven logistic regression models (see Table \ref{table:full_logit_ro}) show 
+inflated standard errors for some of the coefficients of interest: 
+
+* Model 12: EDU_rec, D6_une;
+
+It presents a problematic profile since the inflated standard errors affect the constant term.
+
+Model 12a inflated standard errors are due to separation issues. In short, no respondents with low 
+education and in unemployment did vote for party 2307 (see Tables \ref{table:crosstab_1_ro}, 
+\ref{table:crosstab_2_ro}). 
+
+As a consequence, a constrained version of model 12 (namely, Model 11b) without said variables was 
+estimated and contrasted with the original (Model 12a), full model. Likelihood-ratio test results show 
+that $H_0$ (namely, that the constrained model fits better than the full model) can be rejected at p<0.001
+(see Table \ref{table:lrtest_1_ro}). However, if just EDU_rec is dropped $H_0$ cannot be rejected 
+(see Table \ref{table:lrtest_2_ro}). Consequently, synthetic variables for respondents' vote choice for 
+party 2307 have been predicted relying on the constrained model where just EDU_rec is dropped (Model 12b). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst2[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 12a (Unconstrained) and (Fully Constrained)
+                  \\label{table:lrtest_1_ro}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+anova_lst[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 12a (Unconstrained) and Model 12b (Constrained)
+                  \\label{table:lrtest_2_ro}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 3 cases out of 7 null models perform better than full ones. According to AIC 
+values the related null model appears to have a better fit than Model 12b (see Table
+\ref{table:logit_aic_ro}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[7,1] <- 'stack_2307*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_ro}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 12b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 505 and respondents' education 
+                   \\label{table:crosstab_1_ro}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 505 and respondents' employment
+                   \\label{table:crosstab_2_ro}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+
+```
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_ro',
+                     type = 'latex',
+                     column.labels = c('2301', '2303', '2305', '2306', '2307', '2308', '2302'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_ro',
+                       type = 'latex',
+                       no.space = T, # to remove the spaces after each line of coefficients
+                       column.sep.width = '0.5pt', # to reduce column width
+                       font.size = 'small', # to make font size smaller
+                       column.labels = c('2301', '2303', '2305', '2306', '2307', '2307', '2308', '2302'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 8', 'Model 14',.) %>% 
+  gsub('Model 1$', 'Model 8',.) %>%
+  gsub('Model 7', 'Model 13',.) %>%
+  gsub('Model 6', 'Model 12b',.) %>% 
+  gsub('Model 5', 'Model 12a',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 3', 'Model 10',.) %>% 
+  gsub('Model 2', 'Model 9',.) 
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+
+
+
+\newpage
+# Slovenia
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Slovenian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_si_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Slovenian parties available in the original 
+2019 EES Slovenian voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_si}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Slovenian relevant parties \\label{table:relprty_tab_si}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_si}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 8 cases out of 9 null models perform better than full ones (see Table 
+\ref{table:ols_aic_si}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_si}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, three out of nine logistic regression models (see Tables \ref{table:full_logit_si_p1},
+\ref{table:full_logit_si_p2}) show inflated standard errors for some of the coefficients of interest, 
+in particular: 
+
+* Model 14: Edu_rec, D7_rec (category 2 only);
+* Model 16: D6_une;
+* Model 17: EDU_rec.
+
+Nevertheless, model 16 constant terms and other regression coefficients are not affected by said 
+inflated standard errors, whereas models 14a and 17a present a more problematic profile. 
+
+Model 14a inflated standard errors are due to separation issues. In short, no respondents with 
+low education and high subjective socioeconomic status (SES) did vote for party 2405 (see Tables \ref{table:crosstab_1_si}, 
+\ref{table:crosstab_2_si}). In Model 17a, no respondents with low education did cote for party 2408
+(see Table \ref{table:crosstab_3_si}).
+
+As a consequence, a constrained version of model 14 and 17 (namely, Model 14b,17b) without said variables was 
+estimated and contrasted with the original (Model 14a,17a), full model. Likelihood-ratio test results show 
+that in case of model 14 $H_0$ (namely, that the constrained model fits better than the full model) can be rejected 
+at p<0.001 (see Table \ref{table:lrtest_1_si}). However, if just EDU_rec is dropped $H_0$ can be rejected at p<0.1 
+(See Table \ref{table:lrtest_2_si}). For model 17 $H_0$ cannot be rejected (see Table \ref{table:lrtest_3_si}). 
+Consequently, synthetic variables for respondents' vote choice for party 2405 and 2408 both have been 
+predicted relying on the constrained model dropping EDU_rec (Model 14b,17b). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst2[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and (Fully Constrained)
+                  \\label{table:lrtest_1_si}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+anova_lst2[[1]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 14a (Unconstrained) and Model 14b (Constrained)
+                  \\label{table:lrtest_2_si}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+anova_lst[[2]] %>%
+  kable(caption = "Likelihood-ratio Test between Model 17a (Unconstrained) and Model 17b (Constrained)
+                  \\label{table:lrtest_3_si}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in 5 cases out of 9 null models perform better than full ones. According to AIC 
+values the related null model appears to have a better fit than Model 14b and 17b (see Table
+\ref{table:logit_aic_si}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+logit_aic[1,1] <- 'stack_2408*'
+logit_aic[7,1] <- 'stack_2405*'
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_si}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value refers to Model 14b and 17b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 2405 and respondents' education
+                   \\label{table:crosstab_1_si}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 2405 and respondents' subjective SES
+                   \\label{table:crosstab_2_si}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs2[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 2408 and respondents' education 
+                   \\label{table:crosstab_3_si}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+```
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_si',
+                     type = 'latex',
+                     no.space = T, # to remove the spaces after each line of coefficients
+                     column.sep.width = '0.5pt', # to reduce column width
+                     font.size = 'footnotesize', # to make font size smaller
+                     column.labels = c('2401', '2402', '2403', '2404','2405', '2406', '2407', '2408', '2409'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+
+finalmod_lst2 <- finalmod_lst[["logit"]][-c(7,8,9,10,11)]
+finalmod_lst3 <- finalmod_lst[["logit"]][-c(1,2,3,4,5,6)]
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst2, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_si_p1',
+                       type = 'latex',
+                       column.labels = c('2401', '2402', '2403', '2404', '2405', '2405'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab2 <- 
+  stargazer::stargazer(finalmod_lst3, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_si_p2',
+                       type = 'latex',
+                       column.labels = c('2406', '2407', '2408', '2408', '2409'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+
+logit_regtab[9] %<>%
+  gsub('Model 1', 'Model 10',.) %>% 
+  gsub('Model 2', 'Model 11',.) %>% 
+  gsub('Model 3', 'Model 12',.) %>% 
+  gsub('Model 4', 'Model 13',.) %>% 
+  gsub('Model 5', 'Model 14a',.) %>% 
+  gsub('Model 6', 'Model 14b',.) 
+
+cat(logit_regtab, sep = "\n")
+
+logit_regtab2[9] %<>%
+  gsub('Model 1', 'Model 15',.) %>% 
+  gsub('Model 2', 'Model 16',.) %>% 
+  gsub('Model 3', 'Model 17a',.) %>% 
+  gsub('Model 4', 'Model 17b',.) %>% 
+  gsub('Model 5', 'Model 18',.) 
+
+cat(logit_regtab2, sep = "\n")
+  
+
+```
+
+
+
+
+
+
+
+
+
+
+# Spain
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Spanish synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_es_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for seven of 15 Spanish parties available in the original 
+2019 EES Spanish voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_es}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Spanish relevant parties \\label{table:relprty_tab_es}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_es}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 0 cases out of 7 null models perform better than full ones (see Table 
+\ref{table:ols_aic_es}).
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_es}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, one out of seven logistic regression models (see Table \ref{table:full_logit_es}) show inflated standard errors for one of the coefficients of interest, in particular: 
+
+* Model 14: D10_rec.
+
+Nevertheless, model 7's constant term and other regression coefficients are not affected by said inflated standard error. Therefore, we do not adapt the models.
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and null models shows that in 3 cases out of 7 null models perform better than full ones (see Table \ref{table:logit_aic_es}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_es}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) 
+
+```
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_es',
+                     type = 'latex',
+                     column.labels = c("2601", "2602", "2603", "2604", "2605", "2606", "2609"),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_es',
+                       type = 'latex',
+                       column.labels = c("2601", "2602", "2603", "2604", "2605", "2606", "2609"),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 8',.) %>% 
+  gsub('Model 7', 'Model 14',.) %>% 
+  gsub('Model 6', 'Model 13',.) %>% 
+  gsub('Model 5', 'Model 12',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 3', 'Model 10',.) %>% 
+  gsub('Model 2', 'Model 9',.) 
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+
+
+
+\newpage
+# Sweden
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the Sweden synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_se_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Swedish parties available in the original 
+2019 EES Sweden voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_se}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "Sweden relevant parties \\label{table:relprty_tab_se}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_se}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that the full models perform better in all cases (see Table \ref{table:ols_aic_se}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_se}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, one out of the eight logistic regression models (see Table \ref{table:full_logit_se}) shows 
+inflated standard errors for one of the coefficients of interest, in particular: 
+
+* Model 10: D6_une
+
+However, the constant term and the other regressors of Model 10 are not affected by the inflated standard errors issue. Therefore, no additional adjustments are made and Model 10 is kept as is.
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and 
+null models shows that in three cases out of eight null models perform better than full ones (see Table \ref{table:logit_aic_se}). 
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_se}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) 
+
+```
+
+
+
+```{r, results='asis', echo=F}
+
+ols_regtab <-
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_se',
+                     type = 'latex',
+                     column.labels = c('2702', '2705', '2707', '2704', '2703', '2708', '2706', '2701'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps') %>%
+capture.output() 
+cat("\\blandscape", ols_regtab, "\\elandscape", sep = "\n")
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_se',
+                       type = 'latex',
+                       column.labels = c('2702', '2705', '2707', '2704', '2703', '2708', '2706', '2701'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  gsub('Model 2', 'Model 10',.) %>% 
+  gsub('Model 3', 'Model 11',.) %>% 
+  gsub('Model 4', 'Model 12',.) %>% 
+  gsub('Model 5', 'Model 13',.) %>% 
+  gsub('Model 6', 'Model 14',.) %>% 
+  gsub('Model 7', 'Model 15',.) %>% 
+  gsub('Model 8', 'Model 16',.) %>% 
+  sub('Model 1', 'Model 9',.) 
+
+
+
+cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
+  
+
+```
+
+# United Kingdom
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Source the British (UK) synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_uk_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for seven of 14 British (UK) parties available in the original 
+2019 EES British (UK) voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_uk}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)')
+
+relprty_df %>% 
+  kable(caption = "British (UK) relevant parties \\label{table:relprty_tab_uk}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_uk}). 
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in 0 cases out of 7 null models perform better than full ones (see Table 
+\ref{table:ols_aic_uk}).
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+names(ols_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_uk}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+On the contrary, one out of seven logistic regression models (see Table \ref{table:full_logit_uk}) show inflated standard errors for one of the coefficients of interest, in particular: 
+
+* Model 8: D6_une;
+* Model 12: D7_rec (only for category 2).
+
+Nevertheless, models 8 and 12 constant terms and other regression coefficients are not affected by said inflated standard errors. Therefore, we do not adapt the models.
+
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for logistic full models and null models shows that in 3 cases out of 7 null models perform better than full ones (see Table \ref{table:logit_aic_uk}). 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+logit_aic %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_uk}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) 
+
+```
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_uk',
+                     type = 'latex',
+                     column.labels = c("2801", "2802", "2803", "2804", "2805", "2806", "2807"),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_uk',
+                       type = 'latex',
+                       column.labels = c("2801", "2802", "2803", "2804", "2805", "2806", "2807"),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>% 
+  gsub('Model 1', 'Model 8',.) %>% 
+  gsub('Model 7', 'Model 14',.) %>% 
+  gsub('Model 6', 'Model 13',.) %>% 
+  gsub('Model 5', 'Model 12',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 3', 'Model 10',.) %>% 
+  gsub('Model 2', 'Model 9',.) 
+
+cat(logit_regtab, sep = "\n")
+  
+
+```
+
+
+
+
