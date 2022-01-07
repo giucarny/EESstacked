@@ -1,8 +1,12 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Auxiliary Functions for the Stacking Procedure
 # Author: G.Carteny
-# last update: 2021-10-09
+# last update: 2022-01-07
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Inverse %in% operator # ==============================================================================
+
+'%!in%' <- function(x,y) !('%in%'(x,y))
 
 # Generic dichotomous variables estimation # ===========================================================
 
