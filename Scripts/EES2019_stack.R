@@ -72,3 +72,6 @@ invisible(
 
 EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
 rm(list=ls(pattern='_stack'))
+
+write_sav(EES2019_stckd, here('Output', 'EES2019_stckd.sav'))
+fwrite(EES2019_stckd, here('Output', 'EES2019_stckd.csv'))
