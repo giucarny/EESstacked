@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Latvian Sample) 
 # Author: M.Koernig
-# last update: 2021-10-21
+# last update: 2022-01-07
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Subset the EES original data frame, the SDM, and the EES codebook # ==================================
@@ -122,7 +122,7 @@ EES2019_lv_stack <-
   left_join(EES2019_lv_stack %>% dplyr::select(-c(socdem_synt_vc)),
             EES2019_lv_stack %>% 
               dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party!=c(1611, 1610, 1604)) %>% 
+              filter(party %!in% c(1611, 1610, 1604)) %>% 
               rbind(pred_1611_1610_1604_lv),
             by = c('respid','party'))
 
