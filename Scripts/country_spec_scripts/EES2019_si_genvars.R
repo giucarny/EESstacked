@@ -123,7 +123,7 @@ EES2019_si_stack <-
   left_join(EES2019_si_stack %>% dplyr::select(-c(socdem_synt_vc)),
             EES2019_si_stack %>% 
               dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party!=c(2405, 2408)) %>% 
+              filter(party %!in% c(2405, 2408)) %>% 
               rbind(pred_2405_2408_si),
             by = c('respid','party'))
 

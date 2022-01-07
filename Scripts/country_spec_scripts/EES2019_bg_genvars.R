@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Estimating Generic Variables (EES 2019 Voter Study, Bulgarian Sample) 
 # Author: G.Carteny
-# last update: 2021-10-23
+# last update: 2022-01-07
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -164,8 +164,6 @@ pred_307_bg <-
              stack_party = '307'
   )
 
-'%!in%' <- function(x,y) !('%in%'(x,y))
-
 EES2019_bg_stack <-   
   left_join(EES2019_bg_stack %>% dplyr::select(-c(socdem_synt_vc)),
             EES2019_bg_stack %>% 
@@ -174,7 +172,6 @@ EES2019_bg_stack <-
               rbind(pred_302_bg, pred_303_bg, pred_306_bg, pred_307_bg),
             by = c('respid','party'))
 
-rm('%!in%')
 
 # Clean the environment # ==============================================================================
 
