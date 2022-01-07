@@ -32,7 +32,7 @@ The variables available in the dataset are grouped as it follows: ...
 # Identification Variables {-}
 
 ## respid {-}
-Unique identifier of individual respondents as it was assigned in the EES 2019 Italian voter study 
+Unique identifier of individual respondents as it was assigned in the EES 2019 voter study 
 (`respid`; See the [EES2019 Codebook](https://dbk.gesis.org/dbksearch/download.asp?id=67448)).
 
 ## party {-}

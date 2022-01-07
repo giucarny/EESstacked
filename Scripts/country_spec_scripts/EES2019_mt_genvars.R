@@ -146,7 +146,7 @@ pred_1904_mt <-
              cont.indvar =  c('D4_age', 'D10_rec'),
              yhat.name   = 'socdem_synt',
              regsum      = F,
-             stack_party = '19045'
+             stack_party = '1904'
   )
 
 EES2019_mt_stack <-   
