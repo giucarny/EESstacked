@@ -1,7 +1,7 @@
 ---
 title: EES2019 Stacked Data 
 subtitle: Codebook 
-date: 07.01.2022 
+date: 10.01.2022 
 toc: true
 output: 
   bookdown::pdf_document2:
@@ -19,13 +19,22 @@ of [ProConEU](https://www.mzes.uni-mannheim.de/proconeu/), a research project ai
 enlarging gaps between proponents and opponents of the European Integration in terms of party politics, 
 citizen politics and social media communication. The project is funded by the German Federal Ministry of 
 Education and Research, and it involves MZES Mannheim, LMU Munich, University of Thessaloniki, University 
-of Newcastle. 
+of Newcastle.  
+The 
  
 \newpage
 # Overview of the data file {-}
 
+The variables of the dataset are grouped first according to their relationship with the set of variables 
+available in the 2019 EES voter study. The first 132 variables consist in the original variables of said 
+data set, while the remaining 27 are variables computed from the former ones. This codebook refers to 
+the latter set.  
 
-The variables available in the dataset are grouped as it follows: ...
+The new variables are then grouped as it follows: 
+
+*  Identification variables: Additional variables in order to identify the the dataset observations. 
+This set include simple alternative version of former variables (e.g. countrycode, and countryshort).
+
 
 
 # Identification Variables {-}
