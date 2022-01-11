@@ -73,5 +73,30 @@ invisible(
 EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
 rm(list=ls(pattern='_stack'))
 
+
+# Reshape the dataset before saving # ==================================================================
+
+oldcols <- 
+  EES2019_stckd[ , c(1:131)] %>% 
+  dplyr::select(-c(party, stack)) # %>% distinct
+
+x <- EES2019_stckd[ , c('party','stack')]
+y <- EES2019_stckd[ , c(132:length(EES2019_stckd))]
+
+newcols <- 
+  cbind(x,y) %>% 
+  rename(D4_1_rec   = D4_age,
+         D6_std_rec = D6_std,
+         D6_une_rec = D6_une)
+
+EES2019_stckd <- 
+  cbind(oldcols, newcols) %>% 
+  as_tibble
+
+rm(x, y, oldcols, newcols)
+
+
+# Save the dataset # ===================================================================================
+
 write_sav(EES2019_stckd, here('Output', 'EES2019_stckd.sav'))
 fwrite(EES2019_stckd, here('Output', 'EES2019_stckd.csv'))

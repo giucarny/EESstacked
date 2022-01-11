@@ -11,6 +11,15 @@ urlcolor: NavyBlue
 ---
 
 
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+library(here)
+library(data.table)
+
+EES2019_stckd <- fread(here('Output', 'EES2019_stckd.csv'))
+
+```
+
 \newpage
 # Preface {-}
 This document consists in the codebook of a stacked data matrix (SDM) based on the data set of the 2019 
@@ -30,10 +39,22 @@ available in the 2019 EES voter study. The first 132 variables consist in the or
 data set, while the remaining 27 are variables computed from the former ones. This codebook refers to 
 the latter set.  
 
-The new variables are then grouped as it follows: 
+The variables computed for the SDM are then grouped as it follows: 
 
-*  Identification variables: Additional variables in order to identify the the dataset observations. 
-This set include simple alternative version of former variables (e.g. countrycode, and countryshort).
+*  **Identification variables**: A set of variables computed in order to identify EES 2019 respondents',
+their national contexts, the relevant parties of said contexts, and the dyadic relationships between 
+respondents and relevant parties, namely the SDM observations. Said variables do not share a common 
+suffix;
+
+*  **Recoded variables**: These variables consist in the building blocks of the generic variables 
+presented below. More specifically they represent recoded versions of a subset of variables composing 
+the original EES 2019 voter study data set. Said variables are identified by the suffix `_rec`;
+
+*  **Generic variables**: concern the dyadic relationships that consist in the specific unit of analysis 
+of the SDM approach, namely the relationship between each voter and each relevant party in a given party 
+system. These variables share the suffix `_gen`. 
+
+
 
 
 
