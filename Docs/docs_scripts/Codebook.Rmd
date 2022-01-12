@@ -35,9 +35,10 @@ The
 # Overview of the data file {-}
 
 The variables of the dataset are grouped first according to their relationship with the set of variables 
-available in the 2019 EES voter study. The first 132 variables consist in the original variables of said 
-data set, while the remaining 27 are variables computed from the former ones. This codebook refers to 
-the latter set.  
+available in the 2019 EES voter study. The first `r grep('countryname',names(EES2019_stckd))-1` 
+variables consist in the original variables of said data set, while the remaining 
+`r length(EES2019_stckd)-(grep('countryname',names(EES2019_stckd))-1)` are variables computed from the 
+former ones. This codebook refers to the latter set.  
 
 The variables computed for the SDM are then grouped as it follows: 
 
@@ -50,11 +51,9 @@ suffix;
 presented below. More specifically they represent recoded versions of a subset of variables composing 
 the original EES 2019 voter study data set. Said variables are identified by the suffix `_rec`;
 
-*  **Generic variables**: concern the dyadic relationships that consist in the specific unit of analysis 
+*  **Generic variables**: Concern the dyadic relationships that consist in the specific unit of analysis 
 of the SDM approach, namely the relationship between each voter and each relevant party in a given party 
 system. These variables share the suffix `_gen`. 
-
-
 
 
 
