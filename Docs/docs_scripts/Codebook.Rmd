@@ -8,6 +8,8 @@ output:
     includes:
       in_header: Codebook_header.tex
 urlcolor: NavyBlue
+bibliography: 'BibRef.bib'
+csl: apa.csl
 ---
 
 
@@ -29,8 +31,15 @@ enlarging gaps between proponents and opponents of the European Integration in t
 citizen politics and social media communication. The project is funded by the German Federal Ministry of 
 Education and Research, and it involves MZES Mannheim, LMU Munich, University of Thessaloniki, University 
 of Newcastle.  
-The 
- 
+More specifically, this data set is the product of the efforts of the ProConEU working package based at 
+the MZES of the University of Mannheim. The preparation of the 2019 EES SDM set was led by Hermann 
+Schmitt and coordinated by Giuseppe Carteny. Wilhelmine Häußling, Julian Leiser, and Matthias Körnig 
+actively participated to the realisation of both data and documentation. The data pipeline and workflow 
+were realised between July 2021 and January 2022 making use of R [@r_cit], and are deposited in a public 
+online repository available at 
+[https://github.com/giucarny/EESstacked](https://github.com/giucarny/EESstacked).
+
+
 \newpage
 # Overview of the data file {-}
 
@@ -165,4 +174,7 @@ Synthetic variable, measuring the affinity between the respondents' socio-demogr
 ### Continuous independent variables: {-}
 * `D4_age`: Respondent's age, recoded from the original `D4_1` (year of birth) EES2019 variable (ordinal treated as continuous);
 * `D10_rec`: Respondent's religiosity, recoded from the original `D10` EES2019 variable (ordinal treated as continuous). In particular, the values (min = 0, max = 6) are inverted, so that higher values indicate stronger religiosity and lower values indicate low/none religiosity.
+
+\newpage
+# Bibliographical References {-}
 
