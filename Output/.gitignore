@@ -1,3 +1,4 @@
 # Avoid SDM data sinc
 *.sav
 *.csv
+*.dta

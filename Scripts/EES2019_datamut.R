@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Mutating the original EES2019 voter study
 # Author: G.Carteny
-# last update: 2021-09-28
+# last update: 2022-02-03
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Notes # 
@@ -98,15 +98,20 @@ EES2019 %<>%
                             D9_rec==2 ~ 2, # 'Orthodox',  
                             D9_rec==3 ~ 3, # 'Protestant',  
                             D9_rec==4 ~ 4, # 'Other Christian',  
-                            D9_rec==5 ~ 6, # 'Other',   
-                            D9_rec==6 ~ 5, # 'Muslim',  
-                            D9_rec>6 & D9_rec<10 ~ 6, # 'Other', 
+                            D9_rec>=5 & D9_rec<10 ~ 5, # 'Other', 
                             D9_rec==10 | D9_rec==11 ~ 0, # 'Non-believer',
                             D9_rec==12 ~ 6, # 'Other'
-                            D9_rec>12 ~ NA_real_)) %>%
+                            D9_rec>12  ~ NA_real_)) %>%
   mutate(D10_rec = case_when(D10_rec>8 ~ NA_real_, T~D10_rec),
          D10_rec = abs(D10_rec-8),
-         D10_rec = case_when(D9_rec==0 ~ 0, T~D10_rec)) 
+         D10_rec = case_when(D9_rec==0 & D10==as.numeric(96)  ~ 0,
+                             T            ~ D10_rec))
+# ,
+#          D10_rec = case_when(D9_rec==0    ~ 0, 
+#                              T            ~ D10_rec),
+#          D10_rec = case_when(D10 > as.numeric(96) ~ NA_real_, 
+#                              T                    ~ D10_rec),
+#          ) 
 
 # Mutate marital status # ==============================================================================
 
@@ -145,8 +150,7 @@ EES2019 %<>%
                              EDU_0_rec > 15 &  EDU_0_rec <= 19 ~ 2,
                              EDU_0_rec > 19 ~ 3,
                              T ~ EDU_rec)) %>%
-  dplyr::select(-c(EDU_0_rec)) %>% 
-  mutate(EDU = case_when(D2_1==97 ~ 0))
+  dplyr::select(-c(EDU_0_rec))
 
 
 # Mutate trade union membership # ======================================================================

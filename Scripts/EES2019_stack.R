@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 Stacking Script 
-# Authors: G.Carteny
-# last update: 2022-01-11
+# Author: G.Carteny
+# last update: 2022-02-03
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -85,13 +85,43 @@ y <- EES2019_stckd[ , c(132:length(EES2019_stckd))]
 
 newcols <- 
   cbind(x,y) %>% 
-  rename(D4_1_rec   = D4_age,
+  rename(Q9_gen     = Q9_rec_gen, 
+         Q25_gen    = Q25_rec_gen,
+         D4_1_rec   = D4_age,
          D6_std_rec = D6_std,
-         D6_une_rec = D6_une)
+         D6_une_rec = D6_une) 
+
 
 EES2019_stckd <- 
   cbind(oldcols, newcols) %>% 
-  as_tibble
+  as_tibble %>% 
+  mutate(D1_rec      = as.numeric(D1_rec)-1,
+         D1_rec      = case_when(D1==as.numeric(98) ~ 98,
+                                 D1==as.numeric(99) ~ 99,
+                                 T                  ~ D1_rec),
+         D3_rec      = case_when(is.na(D3_rec)~3,  T~D3_rec),
+         D5_rec      = case_when(D5==as.numeric(98) ~ 98,
+                                 D5==as.numeric(99) ~ 99,
+                                 T                  ~ D5_rec),
+         D6_rec      = case_when(D6==as.numeric(99) ~ 99, T ~ D6_rec),
+         D6_std_rec  = case_when(D6==as.numeric(99) ~ 99, T ~ D6_std_rec),
+         D6_une_rec  = case_when(D6==as.numeric(99) ~ 99, T ~ D6_une_rec),
+         D7_rec      = as.numeric(D7_rec)-1,
+         D7_rec      = case_when(D7 %in% c(as.numeric(97), as.numeric(6)) ~ 97,
+                                 D7==as.numeric(98) ~ 98,
+                                 D7==as.numeric(99) ~ 99,
+                                 T                  ~ D7_rec),
+         D9_rec      = case_when(is.na(D9_rec)~99, T~D9_rec),
+         D10_rec     = case_when(is.na(D10_rec) & D10==as.numeric(96) ~ 99,
+                                 D10==as.numeric(98)                  ~ 98,
+                                 D10==as.numeric(99)                  ~ 99,
+                                 T                                    ~ D10_rec),
+         EDU_rec     = case_when(EDU==as.numeric(99) ~ 99, T ~ EDU_rec),
+         Q25_rec     = case_when(is.na(Q25_rec) ~ as.integer(90), T ~ Q25_rec),
+         socdem_synt_ptv = case_when(socdem_synt_ptv<0      ~ 0,
+                                     is.na(socdem_synt_ptv) ~ 99,
+                                     T                      ~ socdem_synt_ptv)
+         )
 
 rm(x, y, oldcols, newcols)
 
