@@ -139,14 +139,14 @@ Values:
 ## D3_rec {-}
 Respondent's sex (Recoded from the respondent 2019 EES sex variable, `D3`).
 
-## D4_1_rec {-}
-Respondent's age in 2019 (Recoded from the respondent 2019 EES year of birth variable, `D4_1`).
-
 Values: 
 
 1 - Male  
 2 - Female  
 3 - Other  
+
+## D4_1_rec {-}
+Respondent's age in 2019 (Recoded from the respondent 2019 EES year of birth variable, `D4_1`).
 
 ## D5_rec {-}
 Respondent's marital status (Recoded from the 2019 EES variable `D5`).
