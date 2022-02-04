@@ -129,4 +129,5 @@ rm(x, y, oldcols, newcols)
 # Save the dataset # ===================================================================================
 
 write_sav(EES2019_stckd, here('Output', 'EES2019_stckd.sav'))
+write_dta(EES2019_stckd, here('Output', 'EES2019_stckd.dta'))
 fwrite(EES2019_stckd, here('Output', 'EES2019_stckd.csv'))
