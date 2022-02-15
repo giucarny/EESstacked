@@ -187,8 +187,8 @@ Variable measuring whether the respondent is unemployed or not (Recoded from the
 
 Values: 
 
-0  - Unemployed  
-1  - Not unemployed  
+0  - Not Unemployed    
+1  - Unemployed  
 99 - No answer  
 
 
@@ -417,16 +417,21 @@ N.B.: Values are *not* centered.
 
 ## Independent variables for socdem_synt_ptv and socdem_synt_vc estimation {-} 
 
-**To be completed**
-<!-- ### Categorical independent variables: {-} -->
-<!-- * `D3_rec`: Respondent's gender (0 = Male, 1 = Female), recoded from the original `D3` EES2019 variable (categorical); -->
-<!-- * `D5_rec`: Whether the respondent is married/remarried/single living with a partner (1) or single/divorced/separated/widowed (0), recoded from the original `D5` EES2019 variable (categorical); -->
-<!-- * `D8_rec`: Whether the respondent lives in a rural (0) or urban area (1), recoded from the original `D8` variable (categorical); -->
-<!-- * `EDU_rec`: Respondent's years of formal education (1 = 15 years or less, 2 = 16-19 years, 3 = 20+); -->
 
-<!-- ### Continuous independent variables: {-} -->
-<!-- * `D4_age`: Respondent's age, recoded from the original `D4_1` (year of birth) EES2019 variable (ordinal treated as continuous); -->
-<!-- * `D10_rec`: Respondent's religiosity, recoded from the original `D10` EES2019 variable (ordinal treated as continuous). In particular, the values (min = 0, max = 6) are inverted, so that higher values indicate stronger religiosity and lower values indicate low/none religiosity. -->
+### Categorical independent variables: {-}
+
+* `D1_rec`: Variable measuring whether the respondent is a member of a trade union (1) or not (0);
+* `D3_rec`: Respondent's gender (0 = Male, 1 = Female);
+* `D5_rec`: Whether the respondent is married/remarried/single living with a partner (1) or single/divorced/separated/widowed (0);
+* `D6_une_rec`: Variable measuring whether the respondent is unemployed (1) or not (0);
+* `D7_rec`: Subjective social class (0 = working class or lower middle, 1 = middle class, 2 = upper
+middle or higher class);
+* `D8_rec`: Whether the respondent lives in a rural (0) or urban area (1);
+* `EDU_rec`: Respondent's years of formal education (1 = 15 years or less, 2 = 16-19 years, 3 = 20+).
+
+### Continuous independent variables: {-}
+* `D4_1_rec`: Respondent's age (min = 16, max = 98; ordinal treated as continuous);
+* `D10_rec`: Respondent's religiosity (min = 0, max = 6; ordinal treated as continuous). 
 
 \newpage
 # Bibliographical References {-}
