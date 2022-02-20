@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 Stacking Script 
 # Author: G.Carteny
-# last update: 2022-02-03
+# last update: 2022-02-20
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -73,6 +73,9 @@ invisible(
 EES2019_stckd <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
 rm(list=ls(pattern='_stack'))
 
+# Compute additional variables on the SDM # ============================================================
+
+source(here('Scripts','EES2019_stack_vrbls.R'))
 
 # Reshape the dataset before saving # ==================================================================
 
@@ -85,11 +88,12 @@ y <- EES2019_stckd[ , c(132:length(EES2019_stckd))]
 
 newcols <- 
   cbind(x,y) %>% 
-  rename(Q9_gen     = Q9_rec_gen, 
-         Q25_gen    = Q25_rec_gen,
-         D4_1_rec   = D4_age,
-         D6_std_rec = D6_std,
-         D6_une_rec = D6_une) 
+  rename(Q9_gen      = Q9_rec_gen, 
+         Q25_gen     = Q25_rec_gen,
+         D4_1_rec    = D4_age,
+         D6_std_rec  = D6_std,
+         D6_une_rec  = D6_une) 
+
 
 
 EES2019_stckd <- 
@@ -124,6 +128,10 @@ EES2019_stckd <-
          )
 
 rm(x, y, oldcols, newcols)
+
+EES2019_stckd %<>% 
+  relocate('Q26_rec', .after = 'Q25_rec') %>% 
+  relocate('Q26_gen', .after = 'Q25_gen') 
 
 
 # Save the dataset # ===================================================================================
