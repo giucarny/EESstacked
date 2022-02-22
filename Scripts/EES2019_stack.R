@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 Stacking Script 
 # Author: G.Carteny
-# last update: 2022-02-20
+# last update: 2022-02-22
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -132,6 +132,12 @@ rm(x, y, oldcols, newcols)
 EES2019_stckd %<>% 
   relocate('Q26_rec', .after = 'Q25_rec') %>% 
   relocate('Q26_gen', .after = 'Q25_gen') 
+
+
+# Possible position for a script imputing value labels for the new variables # =========================
+
+# # Variables to be labelled
+# EES2019_stckd[,132:length(EES2019_stckd)]
 
 
 # Save the dataset # ===================================================================================
