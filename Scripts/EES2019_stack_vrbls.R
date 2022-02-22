@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 Stacking - Additional variables directly computed on the SDM
 # Author: G.Carteny
-# last update: 2022-02-20
+# last update: 2022-02-22
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -15,3 +15,5 @@ EES2019_stckd %<>%
                              T                      ~ 99),
          Q26_gen = case_when(Q26_rec>90 ~ Q26_rec, 
                              T          ~ Q26_gen)) 
+
+# EES2019_stckd %>% dplyr::select(Q25_rec_gen,Q26, Q26_rec, Q26_gen) %>% distinct

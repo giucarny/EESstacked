@@ -268,6 +268,17 @@ Values:
 90 - Respondent feels close to a party not among the answer categories or a non-relevant party  
 101-2807 Respondent feels close to the party [`Q25_rec` value]   
 
+## Q26_rec {-}
+Variable measuring the strength of the respondent closeness to the political identified in `Q25_rec`.  
+
+Values: 
+
+0  - Respondent is merely a sympathiser of the party [`Q25_rec` value]   
+1  - Respondent is fairly close to the party [`Q25_rec` value]   
+2  - Respondent is very close to the party [`Q25_rec` value]   
+3  - Not asked (Respondent does not feel close to any party or doesn't know)  
+99 - Respondent does not remember/No answer   
+
 ## Q9_rec {-}
 Respondent's (recalled) vote choice at the last national elections prior to 2019. Differently from the 
 original variable (`Q9`) party codes are in line with those of the 2019 EP vote choice variable (`Q7`, 
@@ -338,6 +349,21 @@ Values:
 0 - Respondent does not feel close to the stack party  
 1 - Respondent feels close to the stack party  
 98 - Respondent does not know
+
+N.B.: 0 includes both the cases in which the respondent feels close to another party or does not feel 
+close to any party.  
+
+## Q26_gen {-}
+Ordinal variable, measuring the extent to which the respondent feels close to the stack party 
+(Recoded from `Q26_rec`).
+
+Values:
+
+0 - Respondent does not feel close to the stack party  
+1 - Respondent is merely a sympathiser of the stack party  
+2 - Respondent feels fairly close to the stack party  
+3 - Respondent feels very close to the stack party  
+98 - Respondent does not know/No answer
 
 N.B.: 0 includes both the cases in which the respondent feels close to another party or does not feel 
 close to any party.  
