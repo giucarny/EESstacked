@@ -1,13 +1,13 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 Stacking Script 
 # Author: G.Carteny
-# last update: 2022-02-22
+# last update: 2022-02-23
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
 
 want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr", "rlang", "car",
-         "caret")
+         "caret", "labelled")
 have = want %in% rownames(installed.packages())
 if ( any(!have) ) { install.packages( want[!have] ) }
 junk <- lapply(want, library, character.only = TRUE)
@@ -136,8 +136,7 @@ EES2019_stckd %<>%
 
 # Possible position for a script imputing value labels for the new variables # =========================
 
-# # Variables to be labelled
-# EES2019_stckd[,132:length(EES2019_stckd)]
+source(here('Scripts', 'EES2019_stack_lbls.R'))
 
 
 # Save the dataset # ===================================================================================
