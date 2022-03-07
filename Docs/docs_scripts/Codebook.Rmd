@@ -1,7 +1,7 @@
 ---
 title: 2019 EES Voter Study  
 subtitle: Stacked Data Matrix Codebook 
-date: 04.02.2022 
+date: 07.03.2022 
 toc: true
 output: 
   bookdown::pdf_document2:
@@ -198,9 +198,9 @@ Respondent's subjective social class (Recoded from the 2019 EES variable `D7`).
 Values: 
 
 0  - Working or lower middle class  
-1  - Middle class
-2  - Upper middle class or upper class
-97 - Other
+1  - Middle class  
+2  - Upper middle or upper class  
+97 - Other  
 98 - Don't know  
 99 - No answer  
 
@@ -291,7 +291,7 @@ Values:
 90 - Respondent voted for another party  
 96 - Respondent did vote blanc or nil  
 98 - Respondent does not remember  
-98 - No answer  
+99 - No answer  
 101-2814 Respondent voted for the party [`Q9_rec` value]   
 
 
