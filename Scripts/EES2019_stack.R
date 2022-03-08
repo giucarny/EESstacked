@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 Stacking Script 
 # Author: G.Carteny
-# last update: 2022-02-23
+# last update: 2022-03-08
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -134,7 +134,7 @@ EES2019_stckd %<>%
   relocate('Q26_gen', .after = 'Q25_gen') 
 
 
-# Possible position for a script imputing value labels for the new variables # =========================
+# Value labels # =======================================================================================
 
 source(here('Scripts', 'EES2019_stack_lbls.R'))
 
