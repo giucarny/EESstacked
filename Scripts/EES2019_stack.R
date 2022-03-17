@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 Stacking Script 
 # Author: G.Carteny
-# last update: 2022-03-08
+# last update: 2022-03-17
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -10,11 +10,8 @@ want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "st
          "caret", "labelled")
 have = want %in% rownames(installed.packages())
 if ( any(!have) ) { install.packages( want[!have] ) }
-junk <- lapply(want, library, character.only = TRUE)
 options(scipen = 99)
-
 rm(list = ls())
-# rm(list= ls()[!(ls() %in% c('keepThis','andThis'))]) # useful for further implementations
 
 # Load & Mutate EES data # =============================================================================
 
