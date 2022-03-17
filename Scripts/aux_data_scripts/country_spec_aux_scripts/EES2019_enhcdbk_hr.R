@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Croatian sample)
-# Author: G.Carteny
-# last update: 2021-08-30
+# Author: G.Carteny & J.Leiser
+# last update: 2022-03-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -59,6 +59,41 @@ EES2019_hr_enhcdbk <-
 # EES2019_hr_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats) %>% 
 #   print(., n=nrow(.))
+
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_hr_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_hr_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==412 ~ 81301,  # Social Democratic Party of Croatia  
+      Q7==404 ~ 81501,  # Croation Democratic Union
+      Q7==414 ~ 81001,  # Human Shield/Zivi Zid
+      Q7==405 ~ 81403,  # Amsterdamska koalicija
+      Q7==406 ~ 81601,  # Bridge of Independent Lists 
+      Q7==413 ~ 81402,  # START
+      Q7==401 ~ NA_real_,  # Bandi? Milan 365
+      Q7==402 ~ 81701,  # Coaltion of NHR (1191714) and HSP(1191713) 
+      Q7==403 ~ NA_real_,  # Croatian Growth
+      Q7==407 ~ NA_real_,  # MOZ?EMO
+      Q7==408 ~ NA_real_,  # NEZAVISNA LISTA MARIJANA PETIR
+      Q7==409 ~ 81002,  # NEZAVISNA LISTA MISLAV KOLAKUSI?
+      Q7==410 ~ NA_real_,  # PAMETNO + UNIJA KVARNERA
+      Q7==411 ~ NA_real_,  #  Independent Democratic Serbian Party  
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_hr_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs) %>% print(n = nrow(.))
+
 
 # Clean the environment # ==============================================================================
 

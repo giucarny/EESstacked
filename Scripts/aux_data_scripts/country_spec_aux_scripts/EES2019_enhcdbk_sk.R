@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Slovakia sample)
 # Author: J.Leiser
-# last update: 2021-08-26
+# last update: 2022-03-16
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Select the Slovakia codebook and EP results # =========================================================
@@ -59,6 +59,38 @@ EES2019_sk_enhcdbk <-
 # EES2019_sk_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
 # now 11 unique parties as expected
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_sk_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_sk_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==2510 ~ 96521,  # Kres?anskodemokraticke hnutie  (KDH) 
+      Q7==2501 ~ NA_real_,  # ?udova strana- Nase Slovensko (?SNS)
+      Q7==2509 ~ 96601,  # Sme rodina
+      Q7==2503 ~ 96423,  # Smer-socialna demokracia  (Smer-SD)
+      Q7==2505 ~ 96610,  # Sloboda a Solidarita (SaS)   
+      Q7==2506 ~ 96630,  # Oby?ajni ?udia a nezavisle osobnosti  (O?aNO)  
+      Q7==2508 ~ 96402,  # Progresivne Slovensko a SPOLU 
+      Q7==2504 ~ NA_real_,  # Slovenska narodna strana (SNS)  
+      Q7==2507 ~ 96410,  # Most-Hid 
+      Q7==2502 ~ 96955,  # Strana mad'arskej koalicie - Magyar Koalicio Partja (SMK-MKP) 
+      Q7==2511 ~ NA_real_,  # Komunisticka strana Slovenska (KSS)
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_sk_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
+
 
 # Clean the environment # ==============================================================================
 

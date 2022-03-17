@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (SLovenian sample)
-# Author: M.Koernig
-# last update: 2021-08-27
+# Author: M.Koernig & J.Leiser
+# last update: 2022-03-16
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -54,6 +54,40 @@ EES2019_si_enhcdbk <-
 
 # EES2019_si_enhcdbk %>% 
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_si_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_si_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==2401 ~ 97320,  # Slovenska demokratska stranka in Slovenska ljudska stranka (SDS in SLS)
+      Q7==2402 ~ 97401,  # Lista Marjana Sarca (LMS) 
+      Q7==2403 ~ 97321,  # Socialni demokrati (SD) 
+      Q7==2404 ~ 97510,  # Nova Slovenija - krs?anski demokrati  (NSi) 
+      Q7==2405 ~ NA_real_,  # Levica
+      Q7==2406 ~ NA_real_,  # Slovenska nacionalna stranka (SNS)
+      Q7==2407 ~ NA_real_,  # Stranka modernega centra (SMC)
+      Q7==2408 ~ NA_real_,  # Stranka Alenke Bratusek (SAB)
+      Q7==2409 ~ 97951,  # Demokrati?na stranka upokojencev Slovenije (DESUS)
+      Q7==2410 ~ NA_real_,  # Dom - domovinska liga (DOM)
+      Q7==2411 ~ NA_real_,  # Zeleni Slovenije  
+      Q7==2412 ~ NA_real_,  # Povezimo se
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_si_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
+
 
 # Clean the environment # ==============================================================================
 

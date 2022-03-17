@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Czech Rep. sample)
 # Author: J.Leiser
-# last update: 2021-08-25
+# last update: 2022-03-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -48,6 +48,35 @@ EES2019_cz_enhcdbk <-
 
 # EES2019_cz_enhcdbk %>% 
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_cz_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_cz_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==601 ~ 82523,  # KDU/CSL 
+      Q7==603 ~ 82320,  # CSSD
+      Q7==604 ~ 82413,  # ODS
+      Q7==605 ~ 82220,  # KSCM
+      Q7==606 ~ 82414,  # ANO  
+      Q7==607 ~ 82403,  # Pirati
+      Q7==608 ~ 82701,  # SPD
+      Q7==602 ~ 82610,  # TOP 09
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_cz_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
+
 
 # Clean the environment # ==============================================================================
 
