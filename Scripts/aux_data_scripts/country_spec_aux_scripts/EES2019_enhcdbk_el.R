@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Greek sample)
-# Author: G.Carteny
-# last update: 2021-09-28
+# Author: G.Carteny, M.Koernig
+# last update: 2022-03-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -65,6 +65,30 @@ EES2019_el_enhcdbk <-
 # EES2019_el_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats) %>%
 #   print(., n=nrow(.))
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+EES2019_el_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==1201 ~ 34211,
+      Q7==1202 ~ 34511,
+      Q7==1203 ~ 34701,
+      Q7==1204 ~ 34301,
+      Q7==1205 ~ 34210,
+      Q7==1206 ~ 34410,
+      Q7==1207 ~ 34312,
+      Q7==1211 ~ 34704,
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_el_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
 
 # Clean the environment # ==============================================================================
 

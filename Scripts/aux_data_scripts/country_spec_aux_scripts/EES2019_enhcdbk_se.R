@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Sweden sample)
-# Author: J.Leiser
-# last update: 2021-08-26
+# Author: J.Leiser, M.Koernig
+# last update: 2022-03-17
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Select the Sweden codebook and EP results # =========================================================
@@ -47,6 +47,31 @@ EES2019_se_enhcdbk <-
 
 # EES2019_se_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+EES2019_se_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==2702 ~ 11320,
+      Q7==2705 ~ 11620,
+      Q7==2707 ~ 11110,
+      Q7==2704 ~ 11420,
+      Q7==2703 ~ 11810,
+      Q7==2708 ~ 11710,
+      Q7==2706 ~ 11520,
+      Q7==2701 ~ 11220,
+      Q7==2709 ~ 11951,
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_se_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
 
 # Clean the environment # ==============================================================================
 

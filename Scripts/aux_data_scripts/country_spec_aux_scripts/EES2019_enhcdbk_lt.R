@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Lithuania sample)
-# Author: J.Leiser
-# last update: 2021-08-26
+# Author: J.Leiser, M.Koernig
+# last update: 2022-03-16
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Select the Lituania codebook and EP results # =========================================================
@@ -52,6 +52,31 @@ EES2019_lt_enhcdbk <-
 
 # EES2019_lt_enhcdbk %>%
 #  dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+EES2019_lt_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==1701 ~ 88621,
+      Q7==1703 ~ 88320,
+      Q7==1706 ~ 88423,
+      Q7==1705 ~ 88322,
+      Q7==1704 ~ 88522,
+      Q7==1702 ~ 88524,
+      Q7==1713 ~ 88001,
+      Q7==1710 ~ 88433, #in Euromanifesto it is called "Liberalų ir centro sąjunga" which later fused in 2014 with TAIP to Lietuvos laisvės sąjunga (liberalai), which is the name used in ESS2019
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+#possible Problem: "Valdemar Tomasevski´s Block-Coalition of Christion Families and Russion Alliance cant be found in EES2019 data
+
+# Check the new dataset 
+
+# EES2019_lt_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+ 
 
 # Clean the environment # ==============================================================================
 

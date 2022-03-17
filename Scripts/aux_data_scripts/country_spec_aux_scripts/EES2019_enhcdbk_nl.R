@@ -61,6 +61,33 @@ EES2019_nl_enhcdbk <-
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats) %>%
 #   print(., n=nrow(.))
 
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+EES2019_nl_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==2001 ~ 22420,
+      Q7==2002 ~ 22721,
+      Q7==2003 ~ 22521,
+      Q7==2004 ~ 22330,
+      Q7==2005 ~ 22110,
+      Q7==2006 ~ 22210,
+      Q7==2007 ~ 22320,
+      Q7==2008 ~ 22225, #Coalition of 2008 and Reformed political party in Euromanifesto
+      Q7==2012 ~ 22701,
+      Q7==2009 ~ 22120,
+      Q7==2010 ~ 22952,
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_nl_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
+
 # Clean the environment # ==============================================================================
 
 rm(list=ls(pattern='_nl$')) 

@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Finland sample)
-# Author: J.Leiser
-# last update: 2021-08-25
+# Author: J.Leiser, M.Koernig
+# last update: 2022-03-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -49,6 +49,30 @@ EES2019_fi_enhcdbk <-
 
 # EES2019_fi_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+EES2019_fi_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==1001 ~ 14320,
+      Q7==1002 ~ 14701,
+      Q7==1003 ~ 14620,
+      Q7==1004 ~ 14810,
+      Q7==1005 ~ 14110,
+      Q7==1006 ~ 14223,
+      Q7==1007 ~ 14901,
+      Q7==1008 ~ 14520,
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_fi_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
 
 # Clean the environment # ==============================================================================
 

@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Cypriot sample)
-# Author: G.Carteny
-# last update: 2021-08-30
+# Author: G.Carteny, M.Koernig
+# last update: 2022-03-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -63,6 +63,24 @@ EES2019_cy_enhcdbk <-
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats) %>%
 #   print(., n=nrow(.))
 
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+EES2019_cy_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==501 ~ 36220,
+      Q7==502 ~ 36510,
+      Q7==503 ~ 36420,
+      Q7==504 ~ 36322,
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_cy_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
 
 # Clean the environment # ==============================================================================
 

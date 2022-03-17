@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Estonia sample)
-# Author: W. Haeussling
-# last update: 2021-08-27
+# Author: W. Haeussling, M.Koernig
+# last update: 2022-03-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -48,8 +48,34 @@ EES2019_ee_enhcdbk <-
 
 # Check the new dataset 
 
-#EES2019_ee_enhcdbk %>% 
+# EES2019_ee_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+EES2019_ee_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==901 ~ 83430,
+      Q7==902 ~ 83411,
+      Q7==903 ~ 83630,
+      Q7==904 ~ 83601,  #here 83720 could also be fitting, however 83601 is the succesor-party-name from 2018 onwards
+      Q7==905 ~ 83410,
+      Q7==906 ~ 83401,
+      Q7==907 ~ 83102,
+      Q7==908 ~ 83101,
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+#Problem: There are two possible Euromanifesto candidates for Q7=904. Telling from the same estonian name 83601 is most fitting. However the translated english name suggests 83720 as most fitting
+
+# Check the new dataset 
+
+# EES2019_ee_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
 
 # Clean the environment # ==============================================================================
 
