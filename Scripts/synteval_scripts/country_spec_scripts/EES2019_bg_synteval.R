@@ -140,7 +140,7 @@ nullmod_lst <- list('OLS'   = lapply(X = regdf_lst$OLS,   regmod = 'OLS',   null
 #                      omit.stat=c("f", "ser"),
 #                      header = F,
 #                      style = 'ajps')
-
+# 
 
 # Syntvars evaluation: OLS models fit stats # ==========================================================
 
@@ -261,21 +261,52 @@ nulllogit_df<-
 
 # Syntvars evaluation: evaluating the source of misfit # ===============================================
 
-# Model 2
-tabs <- yxcontab.auxfun(regdf_lst$logit[[2]], contab = F)[[2]]
-# No respondents living in rural areas voted for party 302
+# Model 2 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-# Model 3 
-tabs <- yxcontab.auxfun(regdf_lst$logit[[3]], contab = F)[[6]]
-# No respondents of high social class voted for party 303
+mdl  <- 2
+df   <- regdf_lst$logit[[mdl]]
+cols <- c('D8_rec')
 
-# Model 6 
-tabs <- yxcontab.auxfun(regdf_lst$logit[[6]], contab = F)[[4]]
-# No respondents with low education voted for party 306
+tabs <- lapply(data=df, y='stack_302', na=T, X = cols, FUN = tab.auxfun)
+lapply(tabs, head)
 
-# Model 7 
-tabs <- yxcontab.auxfun(regdf_lst$logit[[7]], contab = F)[c(2,6)]
-# No respondents living in rural areas and of high social class voted for party 307
+# No respondents from rural areas voted 
+# for party 302
+
+# Model 3 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+mdl  <- 3
+df   <- regdf_lst$logit[[mdl]]
+cols <- c('D7_rec')
+
+tabs <- lapply(data=df, y='stack_303', na=T, X = cols, FUN = tab.auxfun)
+lapply(tabs, head)
+
+# No upper middle or upper class Rs voted for party 303 
+
+# Model 6 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+mdl  <- 6
+df   <- regdf_lst$logit[[mdl]]
+cols <- c('EDU_rec')
+
+tabs <- lapply(data=df, y='stack_306', na=T, X = cols, FUN = tab.auxfun)
+lapply(tabs, head)
+
+
+# No upper Rs with low education voted for party 3036
+
+# Model 7 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+mdl  <- 7
+df   <- regdf_lst$logit[[mdl]]
+cols <- c('D7_rec','D8_rec')
+
+tabs <- lapply(data=df, y='stack_307', na=T, X = cols, FUN = tab.auxfun)
+lapply(tabs, head)
+
+# No Rs with upper middle/upper social class or low educated Rs voted for party 307
+
 
 
 # Syntvars evaluation: partial logit models # ==========================================================
