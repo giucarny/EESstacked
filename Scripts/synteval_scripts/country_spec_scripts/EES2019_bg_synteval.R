@@ -323,7 +323,7 @@ part_fit <- glm(data = x, formula = frml, family = binomial)
 
 # anova(part_fit, fullmod_lst$logit[[mdl]], test='Chisq')
 
-# H0 cannot be rejected at p<.05
+# H0 rejected at p<.05
 
 # Model 3 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 mdl <- 3
@@ -335,7 +335,7 @@ part_fit <- glm(data = x, formula = frml, family = binomial)
 
 # anova(part_fit, fullmod_lst$logit[[mdl]], test='Chisq')
 
-# H0 rejected 
+# H0 cannot be rejected 
 
 # Model 6 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 mdl <- 6
@@ -347,7 +347,7 @@ part_fit <- glm(data = x, formula = frml, family = binomial)
 
 # anova(part_fit, fullmod_lst$logit[[mdl]], test='Chisq')
 
-# H0 rejected 
+# H0 cannot be rejected 
 
 # Model 7 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 mdl <- 7
@@ -359,7 +359,7 @@ part_fit <- glm(data = x, formula = frml, family = binomial)
 
 # anova(part_fit, fullmod_lst$logit[[mdl]], test='Chisq')
 
-# H0 rejected 
+# H0 cannot be rejected 
 
 # LR test evaluation # =================================================================================
 
