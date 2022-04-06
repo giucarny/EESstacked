@@ -45,7 +45,7 @@ EES2019_it_stack %<>%
 
 # Source auxiliary functions # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-source(here('Scripts', 'synteval_scripts', 'Synteval_auxfuns.R'))
+source(here('Scripts', 'synteval', 'Synteval_auxfuns.R'))
 
 # Country-specific data frames # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

@@ -2,7 +2,7 @@
 title: Summary of Synthetic Variables Estimation 
 subtitle: EES 2019 Voter Study (Austrian, Croatian, French, Irish, Latvian, Portugues, Romanian and Slovenian samples)
 author: Matthias Körnig
-date: 10.11.2021 
+date: 05.04.2022 
 toc: false
 output: 
   bookdown::pdf_document2:
@@ -17,7 +17,7 @@ urlcolor: RedOrange
 library('here')
 
 # Source the general workflow # - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
-source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
+source(here('Scripts', 'synteval', 'Synteval_gen.R'))
 
 ```
 
@@ -27,7 +27,7 @@ source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Austrain synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_at_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_at_synteval.R'))
 
 ```
 
@@ -198,7 +198,7 @@ cat(logit_regtab, sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Croatian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_hr_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_hr_synteval.R'))
 
 ```
 
@@ -409,7 +409,7 @@ cat(logit_regtab, sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the French synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_fr_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_fr_synteval.R'))
 
 ```
 
@@ -533,7 +533,7 @@ cat(logit_regtab, sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Irish synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_ie_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_ie_synteval.R'))
 
 ```
 
@@ -700,7 +700,7 @@ cat(logit_regtab, sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Latvian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_lv_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_lv_synteval.R'))
 
 ```
 
@@ -953,7 +953,7 @@ cat(logit_regtab2, sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Romanian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_ro_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_ro_synteval.R'))
 
 ```
 
@@ -1137,7 +1137,7 @@ cat(logit_regtab, sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Slovenian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_si_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_si_synteval.R'))
 
 ```
 

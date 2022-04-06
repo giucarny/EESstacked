@@ -42,7 +42,7 @@ source(here('Scripts', 'aux_data_scripts', 'EES2019_Q9_rec.R'))
 
 source(here('Scripts', 'EES2019_stack_funs.R'))
 
-source(here('Scripts', 'synteval_scripts', 'synteval_auxfuns.R'))
+source(here('Scripts', 'synteval', 'synteval_auxfuns.R'))
 
 
 # Stack observations # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

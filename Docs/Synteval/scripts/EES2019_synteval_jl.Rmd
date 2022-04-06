@@ -2,7 +2,7 @@
 title: Summary of Synthetic Variables Estimation 
 subtitle: EES 2019 Voter Study (Czech, Finnish, Greek, Hungarian, Lithuanian, Slovakian, Polish and Swedish Samples)
 author: Julian Leiser
-date: 12.11.2021 
+date: 05.04.2022 
 toc: false
 output: 
   bookdown::pdf_document2:
@@ -18,7 +18,7 @@ urlcolor: RedOrange
 library('here')
 
 # Source the general workflow # - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
-source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
+source(here('Scripts', 'synteval', 'Synteval_gen.R'))
 
 ```
 
@@ -28,7 +28,7 @@ source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Czech Rep. synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_cz_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_cz_synteval.R'))
 
 ```
 
@@ -213,7 +213,7 @@ cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Finland synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_fi_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_fi_synteval.R'))
 
 ```
 
@@ -344,7 +344,7 @@ cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Greece synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_el_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_el_synteval.R'))
 
 ```
 
@@ -518,7 +518,7 @@ cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Hungary synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_hu_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_hu_synteval.R'))
 
 ```
 
@@ -654,7 +654,7 @@ cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Lithuania synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_lt_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_lt_synteval.R'))
 
 ```
 
@@ -871,7 +871,7 @@ cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Slovakia synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_sk_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_sk_synteval.R'))
 
 ```
 
@@ -1057,7 +1057,7 @@ cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Poland synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_pl_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_pl_synteval.R'))
 
 ```
 
@@ -1235,7 +1235,7 @@ cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Sweden synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_se_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_se_synteval.R'))
 
 ```
 

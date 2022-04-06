@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Spanish Sample) 
 # Author: w.Haeussling
-# last update: 2021-11-21
+# last update: 2021-04-05
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Country-spec workflow # ==============================================================================
@@ -46,7 +46,7 @@ EES2019_es_stack %<>%
 
 # Source auxiliary functions # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-source(here('Scripts', 'synteval_scripts', 'Synteval_auxfuns.R'))
+source(here('Scripts', 'synteval', 'Synteval_auxfuns.R'))
 
 # Country-specific data frames # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

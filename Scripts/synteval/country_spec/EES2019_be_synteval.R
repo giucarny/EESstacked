@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Belgian Sample) 
 # Author: G.Carteny
-# last update: 2021-04-05
+# last update: 2022-04-05
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -17,7 +17,7 @@ rm(list = ls())
 
 # Source the general workflow # ========================================================================
 
-source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
+source(here('Scripts', 'synteval', 'Synteval_gen.R'))
 
 
 # Country-spec workflow # ==============================================================================
@@ -105,7 +105,7 @@ names(EES2019_be_stack) <- unlist(el_coll_be)
 
 # Source auxiliary functions # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-source(here('Scripts', 'synteval_scripts', 'Synteval_auxfuns.R'))
+source(here('Scripts', 'synteval', 'Synteval_auxfuns.R'))
 
 # Country-specific data frames # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

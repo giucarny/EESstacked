@@ -1,6 +1,6 @@
 ---
 title: Summary of Synthetic Variables Estimation 
-subtitle: EES 2019 Voter Study (Belgian, Bulgarian, Cypriot, and Italian samples)
+subtitle: EES 2019 Voter Study (Bulgarian, Cypriot, and Italian samples)
 author: Giuseppe Carteny
 date: 05.04.2022 
 toc: false
@@ -17,7 +17,7 @@ urlcolor: RedOrange
 library('here')
 
 # Source the general workflow # - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
-source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
+source(here('Scripts', 'synteval', 'Synteval_gen.R'))
 
 ```
 
@@ -27,7 +27,7 @@ source(here('Scripts', 'synteval_scripts', 'Synteval_gen.R'))
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Cypriot synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_bg_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_bg_synteval.R'))
 
 ```
 
@@ -237,7 +237,7 @@ tabs[[5]] %>%
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Cypriot synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_cy_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_cy_synteval.R'))
 
 ```
 
@@ -438,7 +438,7 @@ cat(logit_regtab, sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Cypriot synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval_scripts', 'country_spec_scripts', 'EES2019_it_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_it_synteval.R'))
 
 ```
 
