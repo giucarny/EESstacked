@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Synthetic Variables Estimation (Partial general workflow)
 # Author: G.Carteny
-# last update: 2021-10-28
+# last update: 2022-04-05
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -41,6 +41,8 @@ source(here('Scripts', 'aux_data_scripts', 'EES2019_Q9_rec.R'))
 # Load auxiliary functions # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 source(here('Scripts', 'EES2019_stack_funs.R'))
+
+source(here('Scripts', 'synteval_scripts', 'synteval_auxfuns.R'))
 
 
 # Stack observations # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
