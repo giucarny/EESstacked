@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Belgian Sample) 
 # Author: G.Carteny
-# last update: 2021-10-28
+# last update: 2021-04-05
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -262,7 +262,14 @@ names(fullmod_lst) <- unlist(el_coll_be)
 # Syntvars evaluation: evaluating the source of misfit # ===============================================
 
 # Model 5
-tabs <- yxcontab.auxfun(regdf_lst$`FR-el`$logit[[5]], contab = F)[[2]]
+mdl  <- 2
+df   <- regdf_lst$`FR-el`$logit[[mdl]]
+cols <- c('D8_rec', 'EDU_rec', 'D7_rec')
+
+tabs <- lapply(data=df, y='stack_209', na=T, X = cols, FUN = tab.auxfun)
+lapply(tabs, head)
+
+tabs <- (, contab = F)[[2]]
 # No respondents living in rural areas, of high social class, and highly educated voted for party 212
 
 

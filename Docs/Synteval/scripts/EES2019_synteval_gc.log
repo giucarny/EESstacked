@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.3.25)  5 APR 2022 15:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.3.25)  6 APR 2022 01:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -460,19 +460,49 @@ File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__pdf_internal_box=\box74
 ) (./EES2019_synteval_gc.aux
 
-LaTeX Warning: Label `tab:unnamed-chunk-7' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-5' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-7' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-5' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-7' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-5' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-7' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-8' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-7' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-8' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-8' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-8' multiply defined.
+
+
+LaTeX Warning: Label `table:crosstab_4_bg' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-14' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-14' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-14' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-14' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-14' multiply defined.
+
+
+LaTeX Warning: Label `table:full_ols_cy' multiply defined.
+
+
+LaTeX Warning: Label `table:full_logit_cy' multiply defined.
 
 )
 \openout1 = `EES2019_synteval_gc.aux'.
@@ -590,116 +620,212 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 152.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 152.
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 206.
+
+LaTeX Warning: Reference `table:full_ols_bg' on page 2 undefined on input line 169.
+
+
+LaTeX Warning: Reference `table:full_logit_bg' on page 2 undefined on input line 202.
+
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 208.
 (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [2pdfTeX warning (ext4): destination with the same identifier (name{table.1.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.227 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.1.2}) has been already used, duplicate ignored
+l.228   N
+         o low educated people voted for party 306 (Table \ref{table:crossta...pdfTeX warning (ext4): destination with the same identifier (name{table.1.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.227 
-      ]
-Overfull \hbox (49.53523pt too wide) in paragraph at lines 449--484
+l.228   N
+         o low educated people voted for party 306 (Table \ref{table:crossta...]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (12.65903pt too wide) in paragraph at lines 348--381
+ [][] 
+ []
+
+
+Overfull \hbox (300.7867pt too wide) in paragraph at lines 387--420
  [][] 
  []
 
 [3pdfTeX warning (ext4): destination with the same identifier (name{table.1.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.486 \newpage
+l.522 \newpage
               pdfTeX warning (ext4): destination with the same identifier (name{table.1.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.486 \newpage
+l.522 \newpage
               pdfTeX warning (ext4): destination with the same identifier (name{table.1.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.486 \newpage
-              ] [4pdfTeX warning (ext4): destination with the same identifier (name{table.1.6}) has been already used, duplicate ignored
+l.522 \newpage
+              pdfTeX warning (ext4): destination with the same identifier (name{table.1.6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.486 \newpage
-              pdfTeX warning (ext4): destination with the same identifier (name{table.1.7}) has been already used, duplicate ignored
+l.522 \newpage
+              ] [4pdfTeX warning (ext4): destination with the same identifier (name{table.1.7}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.486 \newpage
-              pdfTeX warning (ext4): destination with the same identifier (name{table.1.8}) has been already used, duplicate ignored
+l.530 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1.8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.486 \newpage
-              pdfTeX warning (ext4): destination with the same identifier (name{table.1.9}) has been already used, duplicate ignored
+l.530 
+      ] [5pdfTeX warning (ext4): destination with the same identifier (name{table.1.9}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.486 \newpage
-              pdfTeX warning (ext4): destination with the same identifier (name{table.1.10}) has been already used, duplicate ignored
+l.530 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1.10}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.486 \newpage
-              ] [5pdfTeX warning (ext4): destination with the same identifier (name{table.1.11}) has been already used, duplicate ignored
+l.530 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1.11}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.486 \newpage
-              ] [6pdfTeX warning (ext4): destination with the same identifier (name{table.1.12}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.486 \newpage
-              ]
+l.530 
+      ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (20.35104pt too wide) in paragraph at lines 595--628
- [][] 
- []
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6pdfTeX warning (ext4): destination with the same identifier (name{table.1.12}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.605 A
+       s a consequence, a constrained version of model 11 (namely, Model 11b...pdfTeX warning (ext4): destination with the same identifier (name{table.1.13}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.605 A
+       s a consequence, a constrained version of model 11 (namely, Model 11b...pdfTeX warning (ext4): destination with the same identifier (name{table.1.14}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.605 A
+       s a consequence, a constrained version of model 11 (namely, Model 11b...]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (18.18454pt too wide) in paragraph at lines 634--667
+Overfull \hbox (49.53523pt too wide) in paragraph at lines 832--867
  [][] 
  []
 
 [7pdfTeX warning (ext4): destination with the same identifier (name{table.2.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.669 \end{document}
-                    pdfTeX warning (ext4): destination with the same identifier (name{table.2.2}) has been already used, duplicate ignored
+l.869 \newpage
+              pdfTeX warning (ext4): destination with the same identifier (name{table.2.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.669 \end{document}
-                    ] [8pdfTeX warning (ext4): destination with the same identifier (name{table.2.3}) has been already used, duplicate ignored
+l.869 \newpage
+              pdfTeX warning (ext4): destination with the same identifier (name{table.2.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.669 \end{document}
-                    pdfTeX warning (ext4): destination with the same identifier (name{table.2.4}) has been already used, duplicate ignored
+l.869 \newpage
+              ]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (20.35104pt too wide) in paragraph at lines 976--1009
+ [][] 
+ []
+
+
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 1015--1048
+ [][] 
+ []
+
+[8pdfTeX warning (ext4): destination with the same identifier (name{table.2.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.669 \end{document}
-                    ] [9pdfTeX warning (ext4): destination with the same identifier (name{table.2.5}) has been already used, duplicate ignored
+l.1050 \end{document}
+                     pdfTeX warning (ext4): destination with the same identifier (name{table.2.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.669 \end{document}
-                    ] (./EES2019_synteval_gc.aux)
+l.1050 \end{document}
+                     pdfTeX warning (ext4): destination with the same identifier (name{table.2.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1050 \end{document}
+                     ] [9pdfTeX warning (ext4): destination with the same identifier (name{table.2.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1050 \end{document}
+                     pdfTeX warning (ext4): destination with the same identifier (name{table.2.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1050 \end{document}
+                     pdfTeX warning (ext4): destination with the same identifier (name{table.2.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1050 \end{document}
+                     pdfTeX warning (ext4): destination with the same identifier (name{table.2.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1050 \end{document}
+                     ] [10pdfTeX warning (ext4): destination with the same identifier (name{table.2.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1050 \end{document}
+                     ] [11pdfTeX warning (ext4): destination with the same identifier (name{table.2.12}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1050 \end{document}
+                     ] [12pdfTeX warning (ext4): destination with the same identifier (name{table.3.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1050 \end{document}
+                     pdfTeX warning (ext4): destination with the same identifier (name{table.3.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1050 \end{document}
+                     pdfTeX warning (ext4): destination with the same identifier (name{table.3.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1050 \end{document}
+                     ] [13pdfTeX warning (ext4): destination with the same identifier (name{table.3.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1050 \end{document}
+                     ] [14pdfTeX warning (ext4): destination with the same identifier (name{table.3.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1050 \end{document}
+                     ] (./EES2019_synteval_gc.aux)
+
+LaTeX Warning: There were undefined references.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `EES2019_synteval_gc.out' has not changed.
-(rerunfilecheck)             Checksum: EBEF49B28147876C4860FA0C7C4507F8;141.
+(rerunfilecheck)             Checksum: 09FED1EC11B916254B396680C4E9D2A6;224.
  ) 
 Here is how much of TeX's memory you used:
- 12880 strings out of 480236
- 206461 string characters out of 5893804
- 553459 words of memory out of 5000000
- 30543 multiletter control sequences out of 15000+600000
+ 12921 strings out of 480236
+ 207035 string characters out of 5893804
+ 591865 words of memory out of 5000000
+ 30563 multiletter control sequences out of 15000+600000
  515009 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,11n,63p,382b,338s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,63p,382b,395s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on EES2019_synteval_gc.pdf (9 pages, 186885 bytes).
+Output written on EES2019_synteval_gc.pdf (14 pages, 202623 bytes).
 PDF statistics:
- 155 PDF objects out of 1000 (max. 8388607)
- 122 compressed objects within 2 object streams
- 31 named destinations out of 1000 (max. 500000)
- 17 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 207 PDF objects out of 1000 (max. 8388607)
+ 169 compressed objects within 2 object streams
+ 52 named destinations out of 1000 (max. 500000)
+ 25 words of extra memory for PDF output out of 10000 (max. 10000000)
 
