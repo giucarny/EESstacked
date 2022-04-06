@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (United Kingdom sample)
-# Author: W.Haeussling
-# last update: 2021-08-27
+# Author: W.Haeussling & J.Leiser
+# last update: 2022-03-16
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -58,6 +58,40 @@ EES2019_uk_enhcdbk <-
 
 # EES2019_uk_enhcdbk %>% 
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_uk_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_uk_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==2801 ~ 51620,  # Conservative  (Con)  
+      Q7==2802 ~ 51320,  # Labour Party (Lab)
+      Q7==2803 ~ 51421,  # Liberal Democrats (LD)
+      Q7==2804 ~ 51110,  # Green Party (GP)
+      Q7==2805 ~ 51902,  # Scottish National Party (SNP) 
+      Q7==2806 ~ 51951,  # United Kingdom Independence Party (UKIP)
+      Q7==2807 ~ 51702,  # The Brexit Party  
+      Q7==2808 ~ NA_real_,  # Change UK - The Independent Group 
+      Q7==2809 ~ 51901,  # Plaid Cymru (Plaid) 
+      Q7==2810 ~ 51953,  # Sinn Fein (SF) 
+      Q7==2811 ~ 51903,  # Democratic Unionist Party (DUP)
+      Q7==2812 ~ 51904,  # Ulster Unionist Party
+      Q7==2813 ~ NA_real_,  # Social Democratic & Labour Party (SDLP)
+      Q7==2814 ~ NA_real_,  # Independent
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_uk_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
 
 # Clean the environment # ==============================================================================
 

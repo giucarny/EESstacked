@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Germany sample)
-# Author: W. Haeussling
-# last update: 2021-08-27
+# Author: W. Haeussling & J.Leiser
+# last update: 2022-03-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -54,6 +54,35 @@ EES2019_de_enhcdbk <-
 
 #EES2019_de_enhcdbk %>% 
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+EES2019_de_enhcdbk %>%
+  dplyr::select(partyname, partyname_eng, Q7) %>%
+  print(., n=nrow(.))
+
+EES2019_de_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==801 ~ 41501,  # Christian Democratic Union / Christian Social Unio
+      Q7==802 ~ 41320,  # Sozialdemokratische Partei Deutschlands (SPD) 
+      Q7==805 ~ 41420,  # Free Democratic Party
+      Q7==803 ~ 41113,  # Alliance 90 / The Greens  
+      Q7==804 ~ 41221,  # The Left 
+      Q7==807 ~ 41950,  # Alternative for Germany
+      Q7==806 ~ 41951,  # Pirates 
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_de_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
+
 
 # Clean the environment # ==============================================================================
 

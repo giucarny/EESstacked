@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Irish sample)
-# Author: M.Koernig
-# last update: 2021-08-27
+# Author: M.Koernig & J.Leiser
+# last update: 2022-03-16
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -50,6 +50,35 @@ EES2019_ie_enhcdbk <-
 
 # EES2019_ie_enhcdbk %>% 
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_ie_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_ie_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==1402 ~ 53520,  # Fine Gael 
+      Q7==1403 ~ 53320,  # Labour Party 
+      Q7==1401 ~ 53620,  # Fianna Fail 
+      Q7==1404 ~ 53110,  # Green Party 
+      Q7==1405 ~ 53951,  # Sinn Fein 
+      Q7==1406 ~ NA_real_,  # Solidarity - People Before Profit
+      Q7==1407 ~ 53301,  # Social Democrats 
+      Q7==1408 ~ 53302,  # Independents 4 Change
+      Q7==1409 ~ NA_real_,  # Independent
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_ie_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
 
 # Clean the environment # ==============================================================================
 

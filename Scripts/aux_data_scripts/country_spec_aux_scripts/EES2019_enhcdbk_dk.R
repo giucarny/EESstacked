@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Denmark sample)
-# Author: W. Haeussling
-# last update: 2021-08-27
+# Author: W. Haeussling & J.Leiser
+# last update: 2022-03-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -65,6 +65,36 @@ EP2019_dk[10,7] <- NA
 
 #EES2019_dk_enhcdbk %>% 
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_dk_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_dk_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==701 ~ 13320,  # Social Democratic Party
+      Q7==702 ~ 13420,  # Liberals
+      Q7==703 ~ 13710,  # Danish People's Party
+      Q7==704 ~ 13410,  # Radical Party
+      Q7==705 ~ 13230,  # Socialist People's Party 
+      Q7==706 ~ 13201,  # Red-Green Unity List
+      Q7==707 ~ 13620,  # Conservative People's Party  
+      Q7==708 ~ NA_real_,  # Liberal Alliance
+      Q7==709 ~ 13954,  # People's Movement against the EU 
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_dk_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
+
 
 # Clean the environment # ==============================================================================
 

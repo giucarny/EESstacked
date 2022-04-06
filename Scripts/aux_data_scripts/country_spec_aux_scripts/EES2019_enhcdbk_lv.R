@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Latvian sample)
-# Author: M.Koernig
-# last update: 2021-08-27
+# Author: M.Koernig & J.Leiser
+# last update: 2022-03-16
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -58,6 +58,44 @@ EES2019_lv_enhcdbk <-
 
 # EES2019_lv_enhcdbk %>% 
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_lv_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_lv_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==1611 ~ 87710,  # For Fatherland and Freedom - National Independence Movement of Latvia 
+      Q7==1608 ~ NA_real_,  # New Conservative Party
+      Q7==1609 ~ 87401,  # Development/For!
+      Q7==1605 ~ NA_real_,  # Who owns the state?
+      Q7==1610 ~ 87221,  # Social Democratic Party \"\"Harmony\"\
+      Q7==1604 ~ 87110,  # Green and Farmers' Union
+      Q7==1616 ~ 87402,  # Unity
+      Q7==1601 ~ 87951,  # Latvian Russian Union 
+      Q7==1602 ~ NA_real_,  # Latvian Nationalists
+      Q7==1603 ~ NA_real_,  # Latvian Association of Regions 
+      Q7==1606 ~ NA_real_,  # Progressives
+      Q7==1607 ~ NA_real_,  # New Harmony
+      Q7==1612 ~ NA_real_,  # Action Party
+      Q7==1613 ~ NA_real_,  #  Awakening
+      Q7==1614 ~ NA_real_,  # Center Party
+      Q7==1615 ~ NA_real_,  # Latvian Social Democratic Workers' Party
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_lv_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
+
 
 # Clean the environment # ==============================================================================
 

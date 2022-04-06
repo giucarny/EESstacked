@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Bulgarian sample)
-# Author: G.Carteny
-# last update: 2021-08-23
+# Author: G.Carteny & J.Leiser
+# last update: 2022-03-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -59,6 +59,34 @@ EES2019_bg_enhcdbk <-
 
 # EES2019_bg_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_bg_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_bg_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==301 ~ 80620,  # Citzizens for European Development of Bulgaria (GERB) 
+      Q7==302 ~ NA_real_,  # Coalition for Bulgaria (KB)
+      Q7==303 ~ 80420,  # Movements for Rights and Freedoms (DPS)
+      Q7==304 ~ NA_real_,  # IMRO – Bulgarian National Movement
+      Q7==305 ~ 80602,  # Democratic Bulgaria  
+      Q7==306 ~ NA_real_,  # Will
+      Q7==307 ~ 80710,  # National Union Attack (ATAKA/ATA)
+      Q7==308 ~ NA_real_,  # National Front for the Salvation of Bulgaria
+      Q7==309 ~ NA_real_,  # Alternative for Bulgarian Revival 
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_bg_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
 
 # Clean the environment # ==============================================================================
 

@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Belgian sample)
-# Author: G.Carteny
-# last update: 2021-08-30
+# Author: G.Carteny & J.Leiser
+# last update: 2022-03-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -58,6 +58,40 @@ EES2019_be_enhcdbk <-
 # EES2019_be_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats) %>%
 #   print(., n=nrow(.))
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_be_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_be_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==207 ~ 21201,  # Workers Party of Belgium 
+      Q7==201 ~ 21521,  # Christian Democratic and Flemish Party
+      Q7==204 ~ 21321,  # Socialist Party Different
+      Q7==206 ~ 21421,  # Open Flemish Liberals and Democrats
+      Q7==203 ~ 21913,  # New Flemish Alliance  
+      Q7==202 ~ 21112,  # Green
+      Q7==205 ~ 21914,  # Flemish Interest 
+      Q7==208 ~ 21322,  # Francophone Socialist Party 
+      Q7==209 ~ 21427,  # Reform Movement
+      Q7==210 ~ 21522,  # Humanist Democratic Centre 
+      Q7==211 ~ 21111,  # Ecologists
+      Q7==212 ~ NA_real_,  # National Front (Belgium)
+      Q7==213 ~ 21201,  # Workers Party of Belgium
+      Q7==214 ~ NA_real_,  #  Francophone Democratic Federalists
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_be_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
 
 # Clean the environment # ==============================================================================
 

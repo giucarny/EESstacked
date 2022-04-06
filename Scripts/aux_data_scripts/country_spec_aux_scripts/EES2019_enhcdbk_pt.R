@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Portuguese sample)
-# Author: M.Koernig
-# last update: 2021-08-27
+# Author: M.Koernig & J.Leiser
+# last update: 2022-03-16
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -49,6 +49,34 @@ EES2019_pt_enhcdbk <-
 
 # EES2019_pt_enhcdbk %>% 
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_pt_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_pt_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==2202 ~ 35319,  # Partido Social Democrata  (PSD) 
+      Q7==2204 ~ 35314,  # Centro Democratico e Social - Partido Popular (CDS-PP)
+      Q7==2201 ~ 35311,  # Partido Socialista (PS)
+      Q7==2203 ~ 35225,  # Coligacao Democratica Unitaria (CDU)  
+      Q7==2206 ~ 35223,  # Bloco de Esquerda (BE)  
+      Q7==2208 ~ 35101,  # Pessoas, Animais, Natureza (PAN) 
+      Q7==2205 ~ NA_real_,  # Partido da Terra (MPT) 
+      Q7==2207 ~ NA_real_,  # Partido Democratico Republicano (PDR) 
+      Q7==2209 ~ 35601,  # Alianca  
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_pt_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
 
 # Clean the environment # ==============================================================================
 

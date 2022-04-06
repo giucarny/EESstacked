@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Malta sample)
-# Author: W. Haeussling
-# last update: 2021-08-27
+# Author: W. Haeussling & J.Leiser
+# last update: 2022-03-16
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -48,6 +48,32 @@ EES2019_mt_enhcdbk <-
 
 #EES2019_mt_enhcdbk %>% 
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_mt_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_mt_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==1901 ~ 37320,  # Partit Laburista  
+      Q7==1902 ~ 37520,  # Partit Nazzjonalista
+      Q7==1903 ~ NA_real_,  # Alternattiva Demokratika
+      Q7==1904 ~ NA_real_,  # Partit Demokratiku
+      Q7==1905 ~ NA_real_,  # Imperu Ewropew 
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_mt_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
 
 # Clean the environment # ==============================================================================
 

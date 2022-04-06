@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Hungary sample)
 # Author: J.Leiser
-# last update: 2021-08-26
+# last update: 2022-03-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -47,6 +47,34 @@ EES2019_hu_enhcdbk <-
 
 # EES2019_hu_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+# EES2019_hu_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
+
+EES2019_hu_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==1301 ~ 86310,  # DK
+      Q7==1302 ~ 86524,  # FIDESZ-KDNP
+      Q7==1303 ~ 86701,  # JOBBIK
+      Q7==1304 ~ 86120,  # LMP
+      Q7==1306 ~ 86220,  # MSZP  
+      Q7==1307 ~ NA_real_,  # MH
+      Q7==1308 ~ 86951,  # Momentum Mozgalom  
+      Q7==1305 ~ NA_real_,  # MKKP
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_hu_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
 
 # Clean the environment # ==============================================================================
 
