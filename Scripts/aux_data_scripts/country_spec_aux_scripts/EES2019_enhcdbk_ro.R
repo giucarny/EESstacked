@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Romanian sample)
 # Author: M.Koernig
-# last update: 2021-08-27
+# last update: 2022-03-16
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -47,8 +47,30 @@ EES2019_ro_enhcdbk <-
 
 # Check the new dataset 
 
-# EES2019_ro_enhcdbk %>% 
+# EES2019_ro_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+EES2019_ro_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==2301 ~ 93691,
+      Q7==2305 ~ 93301,
+      Q7==2306 ~ 93430,
+      Q7==2308 ~ 93602,
+      Q7==2302 ~ 93402,
+      Q7==2307 ~ 93951,
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_ro_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
 
 # Clean the environment # ==============================================================================
 

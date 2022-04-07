@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (French sample)
 # Author: M.Koernig
-# last update: 2021-08-27
+# last update: 2022-03-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -47,8 +47,30 @@ EES2019_fr_enhcdbk <-
 
 # Check the new dataset 
 
-# EES2019_fr_enhcdbk %>% 
+# EES2019_fr_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+EES2019_fr_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==1113 ~ 31601,
+      Q7==1111 ~ 31701,
+      Q7==1114 ~ 31115,
+      Q7==1101 ~ 31201,
+      Q7==1105 ~ 31301, #in Euromanifesto it´s a coalition of partys with 1105 as the only Q7 party
+      Q7==1102 ~ 31401, #in Euromanifesto it´s a coalition of partys with 1102 as the only Q7 party
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_fr_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
 
 # Clean the environment # ==============================================================================
 

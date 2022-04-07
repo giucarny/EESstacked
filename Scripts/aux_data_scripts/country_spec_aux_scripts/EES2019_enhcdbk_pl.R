@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Poland sample)
-# Author: J.Leiser
-# last update: 2021-08-26
+# Author: J.Leiser, M.Koernig
+# last update: 2022-03-16
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Select the Poland codebook and EP results # =========================================================
@@ -47,6 +47,27 @@ EES2019_pl_enhcdbk <-
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
 
 # only KE, not its constituent parties have votesh and seats
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+EES2019_pl_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==2104 ~ 92436,
+      Q7==2102 ~ 92302,
+      Q7==2103 ~ 92951,
+      Q7==2101 ~ 92701,
+      Q7==2105 ~ 92301,
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_pl_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
 
 # Clean the environment # ==============================================================================
 

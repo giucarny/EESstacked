@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Luxembourg sample)
-# Author: W. Haeussling
-# last update: 2021-08-27
+# Author: W. Haeussling, M.Koernig
+# last update: 2022-03-16
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -58,8 +58,28 @@ EES2019_lu_enhcdbk [11, 21] <- NA
 
 # Check the new dataset 
 
-#EES2019_lu_enhcdbk %>% 
+# EES2019_lu_enhcdbk %>%
 #   dplyr::select(partyname, partyname_eng, Q7, votesh, seats)
+
+# Create a common variable for merging the codebook w/ EMCS # ==========================================
+
+EES2019_lu_enhcdbk %<>% 
+  mutate(
+    emcs = case_when(
+      Q7==1801 ~ 23520,
+      Q7==1802 ~ 23320,
+      Q7==1803 ~ 23420,
+      Q7==1804 ~ 23113,
+      T       ~ NA_real_
+    ),
+    emcs = as.integer(emcs)
+  )
+
+# Check the new dataset 
+
+# EES2019_lu_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7, emcs)
+
 
 # Clean the environment # ==============================================================================
 
