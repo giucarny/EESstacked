@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Belgian Sample) 
 # Author: G.Carteny
-# last update: 2022-04-05
+# last update: 2022-04-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -203,6 +203,14 @@ fullmod_lst <-
 
 names(fullmod_lst) <- unlist(el_coll_be)
 
+nullmod_lst <- list( 'DU-el' =
+                       list('OLS'   = lapply(X = regdf_lst[['DU-el']]$OLS,   regmod = 'OLS',   null_mod.auxfun),
+                            'logit' = lapply(X = regdf_lst[['DU-el']]$logit, regmod = 'logit', null_mod.auxfun)),
+                     'FR-el' = 
+                       list('OLS'   = lapply(X = regdf_lst[['FR-el']]$OLS,   regmod = 'OLS',   null_mod.auxfun),
+                            'logit' = lapply(X = regdf_lst[['FR-el']]$logit, regmod = 'logit', null_mod.auxfun))
+                   )
+
 # fullmod_lst[[1]]$logit %>% lapply(.,summary)
 # fullmod_lst[[2]]$logit %>% lapply(.,summary)
 
@@ -217,7 +225,7 @@ names(fullmod_lst) <- unlist(el_coll_be)
 #                      omit.stat=c("f", "ser"),
 #                      header = F,
 #                      style = 'ajps')
-# 
+
 # stargazer::stargazer(fullmod_lst[[2]]$OLS,
 #                      title = 'French Electoral College',
 #                      type = 'text',
@@ -239,7 +247,7 @@ names(fullmod_lst) <- unlist(el_coll_be)
 #                      omit.stat=c("f", "ser"),
 #                      header = F,
 #                      style = 'ajps')
-# 
+
 # stargazer::stargazer(fullmod_lst[[2]]$logit,
 #                      title = 'French Electoral College',
 #                      type = 'text',
@@ -250,6 +258,149 @@ names(fullmod_lst) <- unlist(el_coll_be)
 #                      header = F,
 #                      style = 'ajps')
 
+
+# Syntvars evaluation: OLS models fit stats # ==========================================================
+
+ols_df <- lapply(el_coll_be,
+                 function(y) {
+                   tibble(
+                     'depvar'  = lapply(1:length(regdf_lst[[y]]$OLS), 
+                                        function(x){
+                                          names(regdf_lst[[y]]$OLS[[x]]) %>% .[2]
+                                        }) %>% unlist,
+                     'model'   = rep('full',length(regdf_lst[[y]]$OLS)),
+                     'Rsq'     = lapply(1:length(fullmod_lst[[y]]$OLS),
+                                        function(x) {
+                                          fullmod_lst[[y]]$OLS[[x]] %>% summary %>% .$r.squared %>% round(., 3)
+                                        }) %>% unlist,
+                     'Adj_Rsq' = lapply(1:length(fullmod_lst[[y]]$OLS),
+                                        function(x) {
+                                          fullmod_lst[[y]]$OLS[[x]] %>% summary %>% .$adj.r.squared %>% round(., 3)
+                                        }) %>% unlist,
+                     'AIC'     = lapply(1:length(fullmod_lst[[y]]$OLS),
+                                        function(x) {
+                                          fullmod_lst[[y]]$OLS[[x]] %>% AIC
+                                        }) %>% unlist) %>% 
+                     rbind(.,
+                           tibble(
+                             'depvar'  = lapply(1:length(regdf_lst[[y]]$OLS), 
+                                                function(x){
+                                                  names(regdf_lst[[y]]$OLS[[x]]) %>% .[2]
+                                                }) %>% unlist,
+                             'model'   = rep('null',length(regdf_lst[[y]]$OLS)),
+                             'Rsq'     = lapply(1:length(nullmod_lst[[y]]$OLS),
+                                                function(x) {
+                                                  nullmod_lst[[y]]$OLS[[x]] %>% summary %>% .$r.squared %>% round(., 3)
+                                                }) %>% unlist,
+                             'Adj_Rsq' = lapply(1:length(nullmod_lst[[y]]$OLS),
+                                                function(x) {
+                                                  nullmod_lst[[y]]$OLS[[x]] %>% summary %>% .$adj.r.squared %>% round(., 3)
+                                                }) %>% unlist,
+                             'AIC'     = lapply(1:length(fullmod_lst[[y]]$OLS),
+                                                function(x) {
+                                                  nullmod_lst[[y]]$OLS[[x]] %>% AIC
+                                                }) %>% unlist))
+                   
+                 })
+
+names(ols_df) <- c('DU-el', 'FR-el')
+  
+ols_df %<>%
+  lapply(. ,
+         function(x) {
+           left_join(x, relprty_df, by='depvar', suffix = c("", ".y")) %>% 
+             dplyr::select(depvar, partycode, partyname_eng, model,
+                           Rsq, Adj_Rsq, AIC, -elcoll)
+         })
+
+# Syntvars evaluation: logit models fit stats # ========================================================
+
+
+logit_df <- lapply(el_coll_be,
+                   function(y) {
+                     tibble(
+                       'depvar'     = lapply(1:length(regdf_lst[[y]]$logit), 
+                                             function(x){
+                                               names(regdf_lst[[y]]$OLS[[x]]) %>% .[2]
+                                             }) %>% unlist,
+                       'model'      = rep('full',length(regdf_lst[[y]]$logit)),
+                       'Ps_Rsq'     = lapply(1:length(fullmod_lst[[y]]$logit),
+                                             function(x){
+                                               DescTools::PseudoR2(fullmod_lst[[y]]$logit[[x]], which = 'McFadden')
+                                             }) %>% unlist,
+                       'Adj_Ps_Rsq' = lapply(1:length(fullmod_lst[[y]]$logit),
+                                             function(x){
+                                               DescTools::PseudoR2(fullmod_lst[[y]]$logit[[x]], which = 'McFaddenAdj')
+                                             }) %>% unlist,
+                       'AIC'        = lapply(1:length(fullmod_lst[[y]]$logit),
+                                             function(x) {
+                                               fullmod_lst[[y]]$logit[[x]] %>% AIC
+                                             }) %>% unlist
+                     ) %>% 
+                       rbind(.,
+                             tibble(
+                               'depvar'     = lapply(1:length(regdf_lst[[y]]$logit), 
+                                                     function(x){
+                                                       names(regdf_lst[[y]]$OLS[[x]]) %>% .[2]
+                                                     }) %>% unlist,
+                               'model'      = rep('null',length(regdf_lst[[y]]$logit)),
+                               'Ps_Rsq'     = lapply(1:length(nullmod_lst[[y]]$logit),
+                                                     function(x){
+                                                       DescTools::PseudoR2(nullmod_lst[[y]]$logit[[x]], which = 'McFadden')
+                                                     }) %>% unlist,
+                               'Adj_Ps_Rsq' = lapply(1:length(nullmod_lst[[y]]$logit),
+                                                     function(x){
+                                                       DescTools::PseudoR2(nullmod_lst[[y]]$logit[[x]], which = 'McFaddenAdj')
+                                                     }) %>% unlist,
+                               'AIC'        = lapply(1:length(fullmod_lst[[y]]$logit),
+                                                     function(x) {
+                                                       nullmod_lst[[y]]$logit[[x]] %>% AIC
+                                                     }) %>% unlist
+                             ))
+                   })
+                      
+names(logit_df) <- c('DU-el', 'FR-el')
+
+logit_df %<>%
+  lapply(. ,
+         function(x) {
+           left_join(x , relprty_df, by='depvar') %>% 
+           dplyr::select(depvar, partycode, partyname_eng, model,
+                         Ps_Rsq, Adj_Ps_Rsq, AIC)
+         })
+
+
+# AIC data frames # ====================================================================================
+
+# OLS AIC df 
+
+ols_aic <- 
+  lapply(el_coll_be,
+         function(x) {
+            ols_df[[x]] %>%
+            pivot_wider(id_cols = c('depvar', 'partycode', 'partyname_eng'), values_from = 'AIC',
+                        names_from = 'model') %>%
+            mutate(diff = full - null) %>%
+            mutate(across(c('full', 'null', 'diff'), ~round(.,3))) %>%
+            dplyr::select(-c(partyname_eng))
+         })
+
+names(ols_aic) <- c('DU-el', 'FR-el')
+
+# Logit AIC df 
+
+logit_aic <- 
+  lapply(el_coll_be,
+         function(x) {
+            logit_df[[x]] %>%
+            pivot_wider(id_cols = c('depvar', 'partycode', 'partyname_eng'), values_from = 'AIC',
+                        names_from = 'model') %>%
+            mutate(diff = full - null) %>%
+            mutate(across(c('full', 'null', 'diff'), ~round(.,3))) %>%
+            dplyr::select(-c(partyname_eng))
+         })
+
+names(logit_aic) <- c('DU-el', 'FR-el')
 
 
 # Full models evaluation # =============================================================================
@@ -262,14 +413,14 @@ names(fullmod_lst) <- unlist(el_coll_be)
 # Syntvars evaluation: evaluating the source of misfit # ===============================================
 
 # Model 5
-mdl  <- 2
+mdl  <- 5
 df   <- regdf_lst$`FR-el`$logit[[mdl]]
 cols <- c('D8_rec', 'EDU_rec', 'D7_rec')
 
-tabs <- lapply(data=df, y='stack_209', na=T, X = cols, FUN = tab.auxfun)
+tabs <- lapply(data=df, y='stack_212', na=T, X = cols, FUN = tab.auxfun)
 lapply(tabs, head)
 
-tabs <- (, contab = F)[[2]]
+#tabs <- (, contab = F)[[2]]
 # No respondents living in rural areas, of high social class, and highly educated voted for party 212
 
 
@@ -287,7 +438,7 @@ xs   <- names(x)[3:length(x)]
 frml <- paste(y, paste0(xs, collapse = ' + '), sep = " ~ ") %>% as.formula
 part_fit <- glm(data = x, formula = frml, family = binomial)
 
-anova(part_fit, fullmod_lst[[el_coll]]$logit[[mdl]], test='Chisq')
+anova_lst <- anova(part_fit, fullmod_lst[[el_coll]]$logit[[mdl]], test='Chisq')
 
 # H0 cannot be rejected at p<.05
 
@@ -298,6 +449,36 @@ anova(part_fit, fullmod_lst[[el_coll]]$logit[[mdl]], test='Chisq')
 
 # The following variables are going to be excluded 
 # D7_rec, D8_rec, and EDU_rec
+
+# Syntvars evaluation: Updating logit models (and related data frames) lists # ===============================
+
+# fullmod_lst$logit[c(mdls)] <- partmod_lst[c(mdls)]
+
+finalmod_lst <- list()
+finalmod_lst[['DU-el']] <- fullmod_lst[['DU-el']]
+finalmod_lst[['FR-el']] <- fullmod_lst[['FR-el']]
+
+finalmod_lst$`FR-el`[['logit']][[8]] <- finalmod_lst$`FR-el`[['logit']][[7]]
+finalmod_lst$`FR-el`[['logit']][[7]] <- finalmod_lst$`FR-el`[['logit']][[6]]
+finalmod_lst$`FR-el`[['logit']][[6]] <- part_fit
+
+
+
+
+
+# Syntvars evaluation: Updating AIC data frames (logit only) # =========================================
+
+# logit AIC df 
+
+logit_aic$`FR-el` %<>% 
+          rbind(.,
+                tibble('depvar'    = 'stack_212*',
+                       'partycode' = 212, 
+                       'full'      = part_fit %>% AIC,
+                       'null'      = nullmod_lst$`FR-el`$logit[[5]] %>% AIC,
+                ) %>% 
+                  mutate(diff = full-null)) %>% 
+          .[order(.$depvar, .$partycode),] 
 
 
  

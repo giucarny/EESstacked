@@ -11,7 +11,7 @@ output:
 urlcolor: RedOrange
 ---
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
 
 # Load 'here' for sourcing # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 library('here')
@@ -79,12 +79,12 @@ ols_aic %>%
 On the contrary, four out of seven logistic regression models (see Table \ref{table:full_logit_bg}) show 
 inflated standard errors for some of the coefficients of interest, in particular: 
 
-* Model 9: D8_rec;
+* Model 9a: D8_rec;
 * Model 10a: D7_rec;
 * Model 13a: EDU_rec;
 * Model 14a: D7_rec and D8_rec.
 
-In Model 3 the constant term and other regression coefficients are not affected by said inflated 
+In Model 10a the constant term and other regression coefficients are not affected by said inflated 
 standard errors, whereas the remaining ones present a more problematic profile. 
 Inflated standard errors due to separation issues affect all th models. In short: 
 
@@ -99,7 +99,7 @@ removing the variables source of misfit. Likelihood-ratio test results show that
 only for Model 2, while in all the other cases the null hypothesis cannot be rejected. 
 
 Consequently, synthetic variables for respondents' vote choice for parties 303, 306, and 307 have been 
-generated relying on the constrained models (Models 9b, 10b, 13b, 14b). 
+generated relying on the constrained models (Models 10b, 13b, 14b). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -152,49 +152,6 @@ logit_aic %>%
            footnote_as_chunk = T)
 ```
 
-```{r, results='asis', echo=F}
-
-stargazer::stargazer(finalmod_lst$OLS, 
-                     title = "Propensity to vote for a relevant party according to respondents' 
-                     socio-demographic characteristics (OLS regression models)",
-                     label = 'table:full_ols_cy',
-                     type = 'latex',
-                     column.labels = c('501', '502', '503', '504','505', '507'),
-                     dep.var.labels.include = F,
-                     star.cutoffs = c(0.05, 0.01, 0.001),
-                     omit.stat=c("f", "ser"),
-                     header = F,
-                     style = 'ajps')
-
-logit_regtab <- 
-  stargazer::stargazer(finalmod_lst$logit, 
-                       title = "Vote choice for a relevant party according to respondents' 
-                       socio-demographic characteristics (Logistic regression models)",
-                       label = 'table:full_logit_cy',
-                       type = 'latex',
-                       column.labels = c('501', '502', '503', '504','505','505', '507'),
-                       dep.var.labels.include = F,
-                       star.cutoffs = c(0.05, 0.01, 0.001),
-                       omit.stat=c("f", "ser"),
-                       header = F,
-                       style = 'ajps') %>% 
-  capture.output() 
-
-logit_regtab[9] %<>%
-  gsub('Model 7', 'Model 12',.) %>% 
-  gsub('Model 1$', 'Model 7',.) %>% 
-  gsub('Model 6', 'Model 11b',.) %>% 
-  gsub('Model 5', 'Model 11a',.) %>% 
-  gsub('Model 4', 'Model 10',.) %>% 
-  gsub('Model 3', 'Model 9',.) %>% 
-  gsub('Model 2', 'Model 8',.) 
-
-cat(logit_regtab, sep = "\n")
-  
-
-```
-
-
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 options(knitr.kable.NA = 'NA')
@@ -228,8 +185,57 @@ tabs[[5]] %>%
 ```
 
 
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst$OLS, 
+                     title = "Propensity to vote for a relevant party according to respondents' 
+                     socio-demographic characteristics (OLS regression models)",
+                     label = 'table:full_ols_bg',
+                     type = 'latex',
+                     column.labels = c('301', '302', '303', '304','305','306', '307'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <- 
+  stargazer::stargazer(finalmod_lst$logit, 
+                       title = "Vote choice for a relevant party according to respondents' 
+                       socio-demographic characteristics (Logistic regression models)",
+                       label = 'table:full_logit_bg',
+                       type = 'latex',
+                       no.space = T, # to remove the spaces after each line of coefficients
+                       column.sep.width = '0.5pt', # to reduce column width
+                       column.labels = c('301', '302', '302', '303','303','304', '305', '306', '306', '307','307'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>% 
+  capture.output() 
+
+logit_regtab[9] %<>%
+  sub('\\\\\\[-1.8ex]','textbf{Model}',.) %>%
+  gsub('Model 9', '13b',.) %>%
+  gsub('Model 2', '9a',.) %>%
+  gsub('Model 10', '14a',.) %>%
+  sub('Model 11', '14b',.) %>%
+  sub('Model 3', '9b',.) %>% 
+  sub('Model 4', '10a',.) %>% 
+  sub('Model 5', '10b',.) %>% 
+  sub('Model 6', '11',.) %>% 
+  sub('Model 7', '12',.) %>%
+  sub('Model 8', '13a',.) %>%
+  sub('Model 1', '8',.) 
+
+cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
 
 
+```
+
+
+\clearpage
 
 \newpage
 # Cyprus
@@ -295,7 +301,7 @@ inflated standard errors for some of the coefficients of interest, in particular
 Nevertheless, models 9 and 12 constant terms and other regression coefficients are not affected by said 
 inflated standard errors, whereas model 5a presents a more problematic profile. 
 
-Model 5a inflated standard errors are due to separation issues. In short, no respondents from rural areas
+Model 11a inflated standard errors are due to separation issues. In short, no respondents from rural areas
 or small cities, single, low educated, with high subjective socioeconomic status (SES), members of trade 
 unions, and unemployed did vote for party 505 (see Tables \ref{table:crosstab_1_cy}, 
 \ref{table:crosstab_2_cy}, \ref{table:crosstab_3_cy}, \ref{table:crosstab_4_cy}, 
@@ -405,6 +411,8 @@ logit_regtab <-
                        socio-demographic characteristics (Logistic regression models)",
                        label = 'table:full_logit_cy',
                        type = 'latex',
+                       no.space = T, # to remove the spaces after each line of coefficients
+                       column.sep.width = '0.5pt', # to reduce column width
                        column.labels = c('501', '502', '503', '504','505','505', '507'),
                        dep.var.labels.include = F,
                        star.cutoffs = c(0.05, 0.01, 0.001),
@@ -415,12 +423,12 @@ logit_regtab <-
 
 logit_regtab[9] %<>%
   gsub('Model 7', 'Model 12',.) %>% 
-  gsub('Model 1$', 'Model 7',.) %>% 
   gsub('Model 6', 'Model 11b',.) %>% 
   gsub('Model 5', 'Model 11a',.) %>% 
   gsub('Model 4', 'Model 10',.) %>% 
   gsub('Model 3', 'Model 9',.) %>% 
-  gsub('Model 2', 'Model 8',.) 
+  gsub('Model 2', 'Model 8',.) %>%
+  sub('Model 1', 'Model 7',.)
 
 cat(logit_regtab, sep = "\n")
   
@@ -428,15 +436,13 @@ cat(logit_regtab, sep = "\n")
 ```
 
 
-
-
-
+\clearpage
 
 \newpage
-# italy
+# Italy
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
-# Source the Cypriot synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+# Source the Italian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
 source(here('Scripts', 'synteval', 'country_spec', 'EES2019_it_synteval.R'))
 

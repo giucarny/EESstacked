@@ -1,0 +1,311 @@
+---
+title: Summary of Synthetic Variables Estimation 
+subtitle: EES 2019 Voter Study (Belgian sample)
+author: Matthias Körnig
+date: 18.04.2022 
+toc: false
+output: 
+  bookdown::pdf_document2:
+    includes:
+      in_header: eval_header.tex
+urlcolor: RedOrange
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
+
+# Load 'here' for sourcing # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+library('here')
+
+# Source the general workflow # - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+source(here('Scripts', 'synteval', 'Synteval_gen.R'))
+
+```
+
+\newpage
+# Belgium
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, , results='hide'}
+# Source the Belgian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
+
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_be_synteval.R'))
+
+```
+
+Synthetic variables have been estimated for the full set of Belgian parties available in the original 
+2019 EES Belgian voter study selected according to the criteria stated in the EES 2019 SDM codebook (
+for the criteria see Sect. XXX; for the relevant parties see Tables \ref{table:relprty_tab_be_du} and \ref{table:relprty_tab_be_fr}).
+Note that the Belgian sample is splitted according to the two electoral colleges of Belgium, namely the 
+Dutch and the French electoral college. 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+#names(relprty_df) <- c('Dep. Var.', 'Party', 'Party name (eng)', 'El. Col.')
+
+relprty_df %>% 
+  filter(elcoll == 'DU-el') %>%
+  select(depvar, partycode, partyname_eng, -elcoll) %>%
+  rename('Dep. Var.' = depvar, 'Party' = partycode, 'Party name (eng)' = partyname_eng) %>%
+  kable(caption = "Belgian relevant parties in Dutch electoral college \\label{table:relprty_tab_be_du}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+relprty_df %>% 
+  filter(elcoll == 'FR-el') %>%
+  select(depvar, partycode, partyname_eng, -elcoll) %>%
+  rename('Dep. Var.' = depvar, 'Party' = partycode, 'Party name (eng)' = partyname_eng) %>%
+  kable(caption = "Belgian relevant parties in French electoral college \\label{table:relprty_tab_be_fr}", booktabs = T, 
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+Full OLS models converge and coefficients do not show any particular issue (see Table 
+\ref{table:full_ols_be_du} and Table \ref{table:full_ols_be_fr}). 
+
+For the Dutch electoral college:
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df[['DU-el']] %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df[['DU-el']] %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df[['DU-el']] %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df[['DU-el']] %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df[['DU-el']] %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df[['DU-el']] %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in all 7 cases out of 7 null models perform better than full ones (see Table 
+\ref{table:ols_aic_be_du}).
+
+For the French electoral college:
+In terms of model fit, the adjusted coefficient of determination ($R^2$) values vary between 
+a minimum value of `r ols_df[['FR-el']] %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['Adj_Rsq']]` 
+for party `r ols_df[['FR-el']] %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partycode']]` 
+(`r ols_df[['FR-el']] %>% filter(model=='full') %>% filter(Adj_Rsq==min(Adj_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of `r ols_df[['FR-el']] %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['Adj_Rsq']]`
+for party `r ols_df[['FR-el']] %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partycode']]`
+(`r ols_df[['FR-el']] %>% filter(model=='full') %>% filter(Adj_Rsq==max(Adj_Rsq)) %>% .[['partyname_eng']]`). 
+Moreover, the difference between Akaike Information Criterion (AIC) values for full OLS models and null 
+models shows that in all 7 cases out of 7 null models perform better than full ones (see Table 
+\ref{table:ols_aic_be_fr}).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+colnames(ols_aic[['DU-el']]) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+colnames(ols_aic[['FR-el']]) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+ols_aic[['DU-el']] %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_be_du}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+ols_aic[['FR-el']] %>% 
+  kable(caption = "Akaike Information Criterion values for OLS full and null models 
+        \\label{table:ols_aic_be_fr}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
+
+Also all seven logistic regression models in the Dutch electoral college show no issue (see Table \ref{table:full_logit_be_du})
+On the contrary, one out of seven logistic regression models in the French electoral college (see Table \ref{table:full_logit_be_fr}) show inflated standard errors for some of the coefficients of interest: 
+
+* Model 26a: D8_rec, EDU_rec, D7_rec;
+
+Model 26a of the French electoral college presents a more problematic profile, since it affects the models constant terms with its inflated standard errors.
+
+Inflated standard errors are due to separation issues. In short:
+
+* No respondents from rural areas voted for party 212 (Table \ref{table:crosstab_1_be});
+
+* No low and high educated respondents voted for party 212 (Table \ref{table:crosstab_2_be})
+
+* No upper class respondents voted for party 212 (Table \ref{table:crosstab_3_be}); 
+
+As a consequence, a constrained version of model 26a without said variables was 
+estimated and contrasted with the original, full model. Likelihood-ratio test results show 
+that $H_0$ (namely, that the constrained model does not fit better than the full model) cannot be rejected at p<0.05
+(see Table \ref{table:lrtest_1_be}). Consequently, synthetic variables for respondents' vote choice for 
+party 212 have been predicted relying on the constrained model. 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = '')
+
+anova_lst %>%
+  kable(caption = "Likelihood-ratio Test between Model 26a (Unconstrained) and Model 26b (Constrained)
+                  \\label{table:lrtest_1_be}", booktabs = F, ) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+```
+
+In the case of the Dutch electoral college:
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df[['DU-el']] %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df[['DU-el']] %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df[['DU-el']] %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df[['DU-el']] %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df[['DU-el']] %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df[['DU-el']] %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`). 
+
+In the case of the Fench electoral college:
+In terms of model fit, adjusted McFadden's pseudo $R^2$ values for the logistic full models vary between 
+a minimum value of 
+`r logit_df[['FR-el']] %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)` 
+for party `r logit_df[['FR-el']] %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partycode']]` 
+(`r logit_df[['FR-el']] %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==min(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`) 
+and a maximum of 
+`r logit_df[['FR-el']] %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['Adj_Ps_Rsq']] %>% round(.,3)`
+for party `r logit_df[['FR-el']] %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partycode']]`
+(`r logit_df[['FR-el']] %>% filter(model=='full') %>% filter(Adj_Ps_Rsq==max(Adj_Ps_Rsq)) %>% .[['partyname_eng']]`).
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+colnames(logit_aic[['DU-el']]) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+colnames(logit_aic[['FR-el']]) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Full-Null)')
+
+
+logit_aic[['DU-el']] %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_be_du}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+           
+
+logit_aic[['FR-el']] %>% 
+  kable(caption = "Akaike Information Criterion values for logistic full and null models 
+        \\label{table:logit_aic_be_fr}", booktabs = T, 
+        align = c('l', 'c', rep('r',3))) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position')) %>% 
+  footnote(symbol = 'AIC value of 212 refers to Model 26b (constrained).',
+           threeparttable = T,
+           footnote_as_chunk = T)
+```
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+options(knitr.kable.NA = 'NA')
+
+tabs[[1]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 212 and respondents' area of residency 
+                   \\label{table:crosstab_1_be}", booktabs = F) %>%  #  align = c('l', 'c', rep('r',3))
+  kable_styling(latex_options = c('striped'))
+
+tabs[[2]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 212 and respondents' education
+                   \\label{table:crosstab_2_be}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+tabs[[3]] %>% 
+  kable(caption = "Cross tabulation between vote choice for party 212 and respondents' subjective social class
+                   \\label{table:crosstab_3_be}", booktabs = F) %>% 
+  kable_styling(latex_options = c('striped'))
+
+
+```
+
+
+```{r, results='asis', echo=F}
+
+stargazer::stargazer(finalmod_lst[['DU-el']]$OLS,
+                     title = 'Vote choice for a relevant party according to respondents 
+                       socio-demographic characteristics at Dutch Electoral College (Ordinary square models)',
+                     label = 'table:full_ols_be_du',
+                     type = 'latex',
+                     column.labels = c('207', '201', '204', '206', '203', '202', '205'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps')
+
+logit_regtab <-
+  stargazer::stargazer(finalmod_lst[['DU-el']]$logit,
+                     title = 'Vote choice for a relevant party according to respondents 
+                       socio-demographic characteristics at Dutch Electoral College (Logistic regression models)',
+                     label = 'table:full_logit_be_du',
+                     type = 'latex',
+                     column.labels = c('207', '201', '204', '206', '203', '202', '205'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps') %>%
+capture.output() 
+
+
+logit_regtab[9] %<>%
+  gsub('Model 1', 'Model 8',.) %>%
+  gsub('Model 7', 'Model 14',.) %>%
+  gsub('Model 6', 'Model 13',.) %>% 
+  gsub('Model 5', 'Model 12',.) %>% 
+  gsub('Model 4', 'Model 11',.) %>% 
+  gsub('Model 3', 'Model 10',.) %>% 
+  gsub('Model 2', 'Model 9',.) 
+
+cat(logit_regtab, sep = "\n")
+
+
+ols_regtab <-
+  stargazer::stargazer(finalmod_lst[['FR-el']]$OLS,
+                       title = 'Vote choice for a relevant party according to respondents
+                         socio-demographic characteristics at French Electoral College (OLS regression models)',
+                       label = 'table:full_ols_be_fr',
+                       type = 'latex',
+                       no.space = T, # to remove the spaces after each line of coefficients
+                       column.sep.width = '0.5pt', # to reduce column width
+                       column.labels = c('208', '209', '210', '211', '212', '213', '214'),
+                       dep.var.labels.include = F,
+                       star.cutoffs = c(0.05, 0.01, 0.001),
+                       omit.stat=c("f", "ser"),
+                       header = F,
+                       style = 'ajps') %>%
+capture.output()
+
+ols_regtab[9] %<>%
+  gsub('Model 1', 'Model 15',.) %>%
+  gsub('Model 2', 'Model 16',.) %>%
+  gsub('Model 7', 'Model 21',.) %>%
+  gsub('Model 6', 'Model 20',.) %>%
+  gsub('Model 5', 'Model 19',.) %>%
+  gsub('Model 4', 'Model 18',.) %>%
+  gsub('Model 3', 'Model 17',.)
+
+cat(ols_regtab, sep = "\n")
+
+logit_regtab2 <-
+  stargazer::stargazer(finalmod_lst[['FR-el']]$logit,
+                     title = 'Vote choice for a relevant party according to respondents 
+                       socio-demographic characteristics at French Electoral College (Logistic regression models)',
+                     label = 'table:full_logit_be_fr',
+                     type = 'latex',
+                     no.space = T, # to remove the spaces after each line of coefficients
+                     column.sep.width = '0.5pt', # to reduce column width
+                     font.size = 'footnotesize', # to make font size smaller
+                     column.labels = c('208', '209', '210', '211', '212', '212', '213', '214'),
+                     dep.var.labels.include = F,
+                     star.cutoffs = c(0.05, 0.01, 0.001),
+                     omit.stat=c("f", "ser"),
+                     header = F,
+                     style = 'ajps') %>%
+capture.output() 
+
+logit_regtab2[10] %<>%
+  gsub('Model 2', 'Model 23',.) %>%
+  gsub('Model 8', 'Model 28',.) %>%
+  gsub('Model 7', 'Model 27',.) %>%
+  gsub('Model 6', 'Model 26b',.) %>%
+  gsub('Model 5', 'Model 26a',.) %>%
+  gsub('Model 4', 'Model 25',.) %>%
+  gsub('Model 3', 'Model 24',.) %>%
+  gsub('Model 1', 'Model 22',.)
+
+cat(logit_regtab2, sep = "\n")
+  
+
+```
