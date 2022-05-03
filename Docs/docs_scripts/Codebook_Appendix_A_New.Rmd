@@ -1,8 +1,8 @@
 ---
 title: Appendix A 
 subtitle: Summary of Synthetic Variables Estimation 
-author: Giuseppe Carteny, Wilhelmine Haeussling, Julian Leiser, Matthias Körnig
-date: 05.04.2022
+author: Giuseppe Carteny, Wilhelmine Haeussling,  Matthias Körnig, Julian Leiser
+date: 03.05.2022
 toc: false
 output: 
   bookdown::pdf_document2:
