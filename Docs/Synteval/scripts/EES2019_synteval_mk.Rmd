@@ -11,7 +11,7 @@ output:
 urlcolor: RedOrange
 ---
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
 
 # Load 'here' for sourcing # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 library('here')
@@ -27,11 +27,11 @@ source(here('Scripts', 'synteval', 'Synteval_gen.R'))
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Austrain synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_at_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_at_synteval.R'))
 
 ```
 
-Synthetic variables have been estimated for the full set of Austrain parties available in the original 
+Synthetic variables have been estimated for the full set of Austrian parties available in the original 
 2019 EES Austrian voter study selected according to the criteria stated in the EES 2019 SDM codebook (
 for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_at}). 
 
@@ -86,7 +86,7 @@ Model 12 inflated standard errors are due to separation issues. In short, no res
 or small cities and members of trade unions did vote for party 505 (see Tables \ref{table:crosstab_1_at}, 
 \ref{table:crosstab_2_at}). 
 
-As a consequence, a constrained version of model 6 without said variables was 
+As a consequence, a constrained version of model 12 without said variables was 
 estimated and contrasted with the original, full model. Likelihood-ratio test results show 
 that $H_0$ (namely, that the constrained model does not fit better than the full model) can be rejected at p<0.001
 (see Table \ref{table:lrtest_1_at}). Consequently, synthetic variables for respondents' vote choice for 
@@ -123,7 +123,7 @@ names(logit_aic) <- c('Dep. Var.', 'Party', 'Full Mod.', 'Null Mod.', 'Diff. (Fu
 
 logit_aic %>% 
   kable(caption = "Akaike Information Criterion values for logistic full and null models 
-        \\label{table:logit_aic_cy}", booktabs = T, 
+        \\label{table:logit_aic_at}", booktabs = T, 
         align = c('l', 'c', rep('r',3))) %>% 
   kable_styling(latex_options = c('striped', 'hold_position')) %>% 
   footnote(symbol = 'AIC value refers to Model 6b (constrained).',
@@ -198,7 +198,7 @@ cat(logit_regtab, sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Croatian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_hr_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_hr_synteval.R'))
 
 ```
 
@@ -367,15 +367,13 @@ stargazer::stargazer(finalmod_lst$OLS,
                      header = F,
                      style = 'ajps')
 
+
 logit_regtab <- 
   stargazer::stargazer(finalmod_lst$logit, 
                        title = "Vote choice for a relevant party according to respondents' 
                        socio-demographic characteristics (Logistic regression models)",
                        label = 'table:full_logit_hr',
                        type = 'latex',
-                       no.space = T, # to remove the spaces after each line of coefficients
-                       column.sep.width = '0.5pt', # to reduce column width
-                       font.size = 'footnotesize', # to make font size smaller
                        column.labels = c('412', '404', '414', '405','406', '413',  '413', '401', '401'),
                        dep.var.labels.include = F,
                        star.cutoffs = c(0.05, 0.01, 0.001),
@@ -388,20 +386,19 @@ logit_regtab[9] %<>%
   gsub('Model 9', 'Model 14b',.) %>%
   gsub('Model 8', 'Model 14a',.) %>%
   gsub('Model 7', 'Model 13b',.) %>% 
-  gsub('Model 1$', 'Model 8',.) %>% 
   gsub('Model 6', 'Model 13a',.) %>% 
   gsub('Model 5', 'Model 12',.) %>% 
   gsub('Model 4', 'Model 11',.) %>% 
   gsub('Model 3', 'Model 10',.) %>% 
-  gsub('Model 2', 'Model 9',.) 
+  gsub('Model 2', 'Model 9',.) %>%
+  sub('Model 1', 'Model 8',.) 
   
 
-cat(logit_regtab, sep = "\n")
-  
+cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
 
-```
+``` 
 
-
+\clearpage
 
 \newpage
 # France
@@ -409,7 +406,7 @@ cat(logit_regtab, sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the French synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_fr_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_fr_synteval.R'))
 
 ```
 
@@ -526,14 +523,15 @@ cat(logit_regtab, sep = "\n")
 
 ```
 
-\newpage
+\clearpage
+
 \newpage
 # Ireland
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Irish synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_ie_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_ie_synteval.R'))
 
 ```
 
@@ -680,12 +678,12 @@ logit_regtab <-
 
 logit_regtab[9] %<>%
   gsub('Model 7', 'Model 12',.) %>% 
-  gsub('Model 1$', 'Model 7',.) %>% 
   gsub('Model 6', 'Model 11',.) %>% 
   gsub('Model 5', 'Model 10',.) %>% 
   gsub('Model 4', 'Model 9',.) %>% 
   gsub('Model 3', 'Model 8b',.) %>% 
-  gsub('Model 2', 'Model 8a',.) 
+  gsub('Model 2', 'Model 8a',.) %>%
+  sub('Model 1', 'Model 7',.) 
 
 cat(logit_regtab, sep = "\n")
   
@@ -700,7 +698,7 @@ cat(logit_regtab, sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Latvian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_lv_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_lv_synteval.R'))
 
 ```
 
@@ -892,60 +890,40 @@ stargazer::stargazer(finalmod_lst$OLS,
                      style = 'ajps')
 
 
-finalmod_lst2 <- finalmod_lst[["logit"]][-c(6,7,8,9,10)]
-finalmod_lst3 <- finalmod_lst[["logit"]][-c(1,2,3,4,5)]
-
-logit_regtab <- 
-  stargazer::stargazer(finalmod_lst2, 
-                       title = "Vote choice for a relevant party according to respondents' 
+logit_regtab <-
+  stargazer::stargazer(finalmod_lst[["logit"]],
+                       title = "Vote choice for a relevant party according to respondents'
                        socio-demographic characteristics (Logistic regression models)",
                        label = 'table:full_logit_lv_p1',
                        type = 'latex',
-                       column.labels = c('1611', '1611', '1608', '1609', '1605'),
+                       no.space = T, # to remove the spaces after each line of coefficients
+                       column.sep.width = '0.5pt', # to reduce column width
+                       column.labels = c('1611', '1611', '1608', '1609', '1605', '1610', '1610', '1604', '1604', '1616'),
                        dep.var.labels.include = F,
                        star.cutoffs = c(0.05, 0.01, 0.001),
                        omit.stat=c("f", "ser"),
                        header = F,
-                       style = 'ajps') %>% 
-  capture.output() 
-
-logit_regtab2 <- 
-  stargazer::stargazer(finalmod_lst3, 
-                       title = "Vote choice for a relevant party according to respondents' 
-                       socio-demographic characteristics (Logistic regression models)",
-                       label = 'table:full_logit_lv_p2',
-                       type = 'latex',
-                       column.labels = c('1610', '1610', '1604', '1604', '1616'),
-                       dep.var.labels.include = F,
-                       star.cutoffs = c(0.05, 0.01, 0.001),
-                       omit.stat=c("f", "ser"),
-                       header = F,
-                       style = 'ajps') %>% 
-  capture.output() 
-
+                       style = 'ajps') %>%
+  capture.output()
 
 logit_regtab[9] %<>%
-  gsub('Model 1', 'Model 8',.) %>% 
-  gsub('Model 2', 'Model 8a',.) %>% 
-  gsub('Model 3', 'Model 9',.) %>% 
-  gsub('Model 4', 'Model 10',.) %>% 
-  gsub('Model 5', 'Model 11',.)
+  gsub('Model 10', 'Model 14',.) %>%
+  gsub('Model 9', 'Model 13b',.) %>%
+  gsub('Model 3', 'Model 9',.) %>%
+  gsub('Model 4', 'Model 10',.) %>%
+  gsub('Model 5', 'Model 11',.) %>%
+  gsub('Model 6', 'Model 12a',.) %>%
+  gsub('Model 7', 'Model 12b',.) %>%
+  sub('Model 8', 'Model 13a',.) %>%
+  sub('Model 2', 'Model 8b',.) %>%
+  sub('Model 1', 'Model 8a',.)
 
-cat(logit_regtab, sep = "\n")
-
-logit_regtab2[9] %<>%
-  gsub('Model 1', 'Model 12a',.) %>% 
-  gsub('Model 2', 'Model 12b',.) %>% 
-  gsub('Model 3', 'Model 13a',.) %>% 
-  gsub('Model 4', 'Model 13b',.) %>% 
-  gsub('Model 5', 'Model 14',.) 
-
-cat(logit_regtab2, sep = "\n")
-  
-  
+cat("\\blandscape",logit_regtab, "\\elandscape", sep = "\n")
 
 ```
 
+
+\clearpage
 
 \newpage
 # Romania
@@ -953,7 +931,7 @@ cat(logit_regtab2, sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Romanian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_ro_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_ro_synteval.R'))
 
 ```
 
@@ -1114,13 +1092,13 @@ logit_regtab <-
                        style = 'ajps') %>% 
   capture.output() 
 
-logit_regtab[9] %<>%
+logit_regtab[10] %<>%
   gsub('Model 8', 'Model 14',.) %>% 
-  gsub('Model 1$', 'Model 8',.) %>%
+  sub('Model 1', 'Model 8',.) %>%
   gsub('Model 7', 'Model 13',.) %>%
   gsub('Model 6', 'Model 12b',.) %>% 
   gsub('Model 5', 'Model 12a',.) %>% 
-  gsub('Model 4', 'Model 11',.) %>% 
+  sub('Model 4', 'Model 11',.) %>% 
   gsub('Model 3', 'Model 10',.) %>% 
   gsub('Model 2', 'Model 9',.) 
 
@@ -1137,7 +1115,7 @@ cat(logit_regtab, sep = "\n")
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # Source the Slovenian synteval script # - - - - - - - - - - - - - - - - - - - - - - - - - #
 
-source(here('Scripts', 'synteval', 'country_spec_scripts', 'EES2019_si_synteval.R'))
+source(here('Scripts', 'synteval', 'country_spec', 'EES2019_si_synteval.R'))
 
 ```
 
@@ -1285,73 +1263,53 @@ tabs2[[1]] %>%
 
 ```{r, results='asis', echo=F}
 
+ols_regtab <-
 stargazer::stargazer(finalmod_lst$OLS, 
                      title = "Propensity to vote for a relevant party according to respondents' 
                      socio-demographic characteristics (OLS regression models)",
                      label = 'table:full_ols_si',
                      type = 'latex',
-                     no.space = T, # to remove the spaces after each line of coefficients
-                     column.sep.width = '0.5pt', # to reduce column width
-                     font.size = 'footnotesize', # to make font size smaller
                      column.labels = c('2401', '2402', '2403', '2404','2405', '2406', '2407', '2408', '2409'),
                      dep.var.labels.include = F,
                      star.cutoffs = c(0.05, 0.01, 0.001),
                      omit.stat=c("f", "ser"),
                      header = F,
-                     style = 'ajps')
+                     style = 'ajps') %>%
+  capture.output()
+cat("\\blandscape", ols_regtab, "\\elandscape", sep = "\n")
 
-
-finalmod_lst2 <- finalmod_lst[["logit"]][-c(7,8,9,10,11)]
-finalmod_lst3 <- finalmod_lst[["logit"]][-c(1,2,3,4,5,6)]
-
-logit_regtab <- 
-  stargazer::stargazer(finalmod_lst2, 
-                       title = "Vote choice for a relevant party according to respondents' 
+logit_regtab <-
+  stargazer::stargazer(finalmod_lst[["logit"]],
+                       title = "Vote choice for a relevant party according to respondents'
                        socio-demographic characteristics (Logistic regression models)",
                        label = 'table:full_logit_si_p1',
                        type = 'latex',
-                       column.labels = c('2401', '2402', '2403', '2404', '2405', '2405'),
+                       no.space = T, # to remove the spaces after each line of coefficients
+                       column.sep.width = '0.5pt', # to reduce column width
+                       column.labels = c('2401', '2402', '2403', '2404', '2405', '2405', '2406', '2407', '2408', '2408', '2409'),
                        dep.var.labels.include = F,
                        star.cutoffs = c(0.05, 0.01, 0.001),
                        omit.stat=c("f", "ser"),
                        header = F,
-                       style = 'ajps') %>% 
-  capture.output() 
-
-logit_regtab2 <- 
-  stargazer::stargazer(finalmod_lst3, 
-                       title = "Vote choice for a relevant party according to respondents' 
-                       socio-demographic characteristics (Logistic regression models)",
-                       label = 'table:full_logit_si_p2',
-                       type = 'latex',
-                       column.labels = c('2406', '2407', '2408', '2408', '2409'),
-                       dep.var.labels.include = F,
-                       star.cutoffs = c(0.05, 0.01, 0.001),
-                       omit.stat=c("f", "ser"),
-                       header = F,
-                       style = 'ajps') %>% 
-  capture.output() 
-
-
-logit_regtab[9] %<>%
-  gsub('Model 1', 'Model 10',.) %>% 
-  gsub('Model 2', 'Model 11',.) %>% 
-  gsub('Model 3', 'Model 12',.) %>% 
-  gsub('Model 4', 'Model 13',.) %>% 
-  gsub('Model 5', 'Model 14a',.) %>% 
-  gsub('Model 6', 'Model 14b',.) 
-
-cat(logit_regtab, sep = "\n")
-
-logit_regtab2[9] %<>%
-  gsub('Model 1', 'Model 15',.) %>% 
-  gsub('Model 2', 'Model 16',.) %>% 
-  gsub('Model 3', 'Model 17a',.) %>% 
-  gsub('Model 4', 'Model 17b',.) %>% 
-  gsub('Model 5', 'Model 18',.) 
-
-cat(logit_regtab2, sep = "\n")
+                       style = 'ajps') %>%
+  capture.output()
   
+logit_regtab[9] %<>%
+  sub('\\\\\\[-1.8ex]','textbf{Model}',.) %>%
+  gsub('Model 9', '17a',.) %>%
+  gsub('Model 2', '11',.) %>%
+  gsub('Model 10', '17b',.) %>%
+  sub('Model 11', '18',.) %>%
+  sub('Model 3', '12',.) %>% 
+  sub('Model 4', '13',.) %>% 
+  sub('Model 5', '14a',.) %>% 
+  sub('Model 6', '14b',.) %>% 
+  sub('Model 7', '15',.) %>% 
+  sub('Model 8', '16',.) %>% 
+  sub('Model 1', '10',.) 
+
+cat("\\blandscape", logit_regtab, "\\elandscape", sep = "\n")
+
 
 ```
 

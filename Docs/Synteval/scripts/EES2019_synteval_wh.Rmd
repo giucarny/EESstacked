@@ -11,7 +11,7 @@ output:
 urlcolor: RedOrange
 ---
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
 
 # Load 'here' for sourcing # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 library('here')
@@ -145,10 +145,9 @@ cat(logit_regtab, sep = "\n")
 
 ```
 
+\clearpage
 
-
-
-\pagebreak
+\newpage
 # Estonia
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -365,22 +364,23 @@ logit_regtab <-
   capture.output() 
 
 logit_regtab[9] %<>%
-  gsub('Model 1', 'Model 8x',.) %>% 
-  gsub('Model 9', 'Model 14b2',.) %>% 
+  gsub('Model 9', 'Model 14b',.) %>% 
   gsub('Model 8', 'Model 14a',.) %>% 
   gsub('Model 7', 'Model 13b',.)%>% 
   gsub('Model 6', 'Model 13a',.) %>% 
   gsub('Model 5', 'Model 12',.) %>% 
-  gsub('Model 4', 'Model 11',.) %>% 
   gsub('Model 3', 'Model 10',.) %>% 
   gsub('Model 2', 'Model 9',.)  %>% 
-  gsub('Model 8x', 'Model 8',.) 
+  sub('Model 4', 'Model 11',.) %>% 
+  sub('Model 1', 'Model 8',.) 
 
 cat(logit_regtab, sep = "\n")
   
 
 ```
 \elandscape
+
+\clearpage
 
 \newpage
 # Germany
@@ -511,7 +511,7 @@ cat(logit_regtab, sep = "\n")
 
 ```
 
-
+\clearpage
 
 \newpage
 # Luxembourg
@@ -641,6 +641,7 @@ cat(logit_regtab, sep = "\n")
 
 ```
 
+\clearpage
 
 \newpage
 # Malta
@@ -838,8 +839,6 @@ tabs5[[4]] %>%
 
 ```
 
-\newpage
-\blandscape
 ```{r, results='asis', echo=F}
 
 stargazer::stargazer(finalmod_lst$OLS, 
@@ -853,19 +852,16 @@ stargazer::stargazer(finalmod_lst$OLS,
                      omit.stat=c("f", "ser"),
                      header = F,
                      style = 'ajps')
-```
-\elandscape
 
-\newpage
-\blandscape
-```{r, results='asis', echo=F}
 logit_regtab <- 
   stargazer::stargazer(finalmod_lst$logit, 
                        title = "Vote choice for a relevant party according to respondents' 
                        socio-demographic characteristics (Logistic regression models)",
                        label = 'table:full_logit_mt',
                        type = 'latex',
-                       column.labels = c('1901', '1902', '1903', '1904','1905'),
+                       no.space = T, # to remove the spaces after each line of coefficients
+                       column.sep.width = '0.5pt', # to reduce column width
+                       column.labels = c('1901', '1902', '1903', '1904', '1904', '1905', '1905'),
                        dep.var.labels.include = F,
                        star.cutoffs = c(0.05, 0.01, 0.001),
                        omit.stat=c("f", "ser"),
@@ -874,20 +870,20 @@ logit_regtab <-
   capture.output() 
 
 logit_regtab[9] %<>% 
-  gsub('Model 1', 'Model 6x',.) %>% 
   gsub('Model 7', 'Model 10b',.) %>% 
   gsub('Model 6', 'Model 10a',.) %>% 
   gsub('Model 5', 'Model 9b',.) %>% 
   gsub('Model 4', 'Model 9a',.) %>% 
   gsub('Model 3', 'Model 8',.) %>% 
-  gsub('Model 6x', 'Model 7',.)  
+  gsub('Model 2', 'Model 7',.) %>%
+  sub('Model 1', 'Model 6',.) 
 
 cat(logit_regtab, sep = "\n")
   
 
 ```
-\elandscape
 
+\clearpage
 
 \newpage
 # Netherlands
@@ -1025,6 +1021,7 @@ cat(logit_regtab, sep = "\n")
 ```
 \elandscape
 
+\clearpage
 
 \newpage
 # Spain
@@ -1152,7 +1149,7 @@ cat(logit_regtab, sep = "\n")
 
 ```
 
-
+\clearpage
 
 \newpage
 # United Kingdom
