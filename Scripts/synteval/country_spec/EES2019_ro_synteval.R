@@ -344,8 +344,8 @@ anova_lst2 <-
                table = F)
 
 
-# lapply(anova_lst, head)
-# lapply(anova_lst2, head)
+lapply(anova_lst, head)
+lapply(anova_lst2, head)
 
 # For Model 5 H0 can be rejected at p<0.001 (H0 can not be rejected if only EDU_rec is dropped, high SE for constant also vanishes)
 # Thus, we include only the partial model with EDU_rec dropped, since the high SE of D6_une does not affect the constant

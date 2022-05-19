@@ -439,8 +439,7 @@ finalmod_lst[['OLS']] <- fullmod_lst[['OLS']]
 finalmod_lst[['logit']] <- fullmod_lst[['logit']]
 
 finalmod_lst[['logit']][[8]] <- finalmod_lst[['logit']][[6]]
-finalmod_lst[['logit']][[9]] <- partmod_lst[[6]]
-finalmod_lst[['logit']][[10]] <- finalmod_lst[['logit']][[7]]
+finalmod_lst[['logit']][[9]] <- finalmod_lst[['logit']][[7]]
 finalmod_lst[['logit']][[5]] <- finalmod_lst[['logit']][[4]]
 finalmod_lst[['logit']][[6]] <- finalmod_lst[['logit']][[5]]
 finalmod_lst[['logit']][[7]] <- partmod_lst[[5]]
@@ -476,13 +475,6 @@ logit_aic %<>%
                'full'      = partmod_lst[[5]] %>% AIC,
                'null'      = nullmod_lst$logit[[5]] %>% AIC,
         ) %>% 
-          mutate(diff = full-null)) %>%
-  rbind(.,
-        tibble('depvar'    = 'stack_1604',
-               'partycode' = 1604, 
-               'full'      = partmod_lst[[6]] %>% AIC,
-               'null'      = nullmod_lst$logit[[6]] %>% AIC,
-        ) %>% 
-          mutate(diff = full-null)) %>%
+          mutate(diff = full-null)) %>% 
   .[order(.$depvar, .$partycode),] 
 

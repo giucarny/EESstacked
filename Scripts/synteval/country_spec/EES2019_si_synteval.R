@@ -297,7 +297,7 @@ lapply(tabs, head)
 table(df$stack_2405)
 
 # No respondents with 15 years or less education and from the upper social class 
-# did vote for party 2405 (voted by 38 respondents of the Slovenian sample).
+# did vote for party 2405 (voted by 38 respondents of the Slovene sample).
 
 mdl  <- 8
 df   <- regdf_lst$logit[[mdl]]
@@ -308,7 +308,7 @@ lapply(tabs2, head)
 table(df$stack_2408)
 
 # No respondents with 15 years or less education did vote
-# for party 2408 (voted by only 17 respondents of the Slovenian sample).
+# for party 2408 (voted by only 17 respondents of the Slovene sample).
 
 
 # Syntvars evaluation: partial logit models # ==========================================================
@@ -359,9 +359,9 @@ anova_lst2 <-
 # lapply(anova_lst2, head)
 
 # For Model 5 H0 can be rejected at p<0.001 if EDU_rec and D7_rec is dropped
-# However, if only EDU_rec is dropped H0 can be rejected at p<0.1 and the constant shows no high SE
+# However, if only EDU_rec is dropped H0 can still be rejected at p<0.1 and the constant shows no high SE
 # Thus, we will just drop EDU_rec and include it to the partial model
-# For Model 8 H0 can not be rejected
+# For Model 8 H0 cannot be rejected
 
 # stargazer::stargazer(partmod_lst, type = 'text',
 #                      column.labels = as.character(relprty_df$Q7),
