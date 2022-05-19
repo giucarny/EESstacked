@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.18)  19 MAY 2022 12:29
+=======
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.3.25)  4 MAY 2022 10:43
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Codebook_Appendix_A.tex
-(./Codebook_Appendix_A.tex
+**Codebook_Appendix_A_New.tex
+(./Codebook_Appendix_A_New.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-05-04> (/Users/matthias/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -461,14 +465,26 @@ Package: ulem 2019/11/18
 \ULdepth=\dimen195
 ) (/Users/matthias/Library/TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+<<<<<<< HEAD
 \rotheadsize=\dimen196
 \c@nlinenum=\count306
 \TeXr@lab=\toks36
 ) (/Users/matthias/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-04-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count307
+=======
+\rotheadsize=\dimen198
+\c@nlinenum=\count308
+\TeXr@lab=\toks35
+)
+\cslhangindent=\skip68
+\csllabelwidth=\skip69
+(c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count309
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 \l__pdf_internal_box=\box74
-) (./Codebook_Appendix_A.aux
+) (./Codebook_Appendix_A_New.aux
 
 LaTeX Warning: Label `tab:unnamed-chunk-7' multiply defined.
 
@@ -509,10 +525,11 @@ LaTeX Warning: Label `tab:unnamed-chunk-21' multiply defined.
 LaTeX Warning: Label `tab:unnamed-chunk-21' multiply defined.
 
 
+<<<<<<< HEAD
 LaTeX Warning: Label `table:crosstab_4_bg' multiply defined.
-
-
+=======
 LaTeX Warning: Label `tab:unnamed-chunk-28' multiply defined.
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 
 
 LaTeX Warning: Label `tab:unnamed-chunk-28' multiply defined.
@@ -521,6 +538,13 @@ LaTeX Warning: Label `tab:unnamed-chunk-28' multiply defined.
 LaTeX Warning: Label `tab:unnamed-chunk-33' multiply defined.
 
 
+<<<<<<< HEAD
+LaTeX Warning: Label `tab:unnamed-chunk-33' multiply defined.
+=======
+LaTeX Warning: Label `tab:unnamed-chunk-35' multiply defined.
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
+
+
 LaTeX Warning: Label `tab:unnamed-chunk-35' multiply defined.
 
 
@@ -532,6 +556,7 @@ LaTeX Warning: Label `tab:unnamed-chunk-35' multiply defined.
 
 LaTeX Warning: Label `tab:unnamed-chunk-35' multiply defined.
 
+<<<<<<< HEAD
 
 LaTeX Warning: Label `tab:unnamed-chunk-35' multiply defined.
 
@@ -540,20 +565,24 @@ LaTeX Warning: Label `tab:unnamed-chunk-35' multiply defined.
 
 
 LaTeX Warning: Label `table:logit_aic_cy' multiply defined.
+=======
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
+
+LaTeX Warning: Label `tab:unnamed-chunk-35' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-43' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-42' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-43' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-42' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-43' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-42' multiply defined.
 
 
-LaTeX Warning: Label `tab:unnamed-chunk-43' multiply defined.
+LaTeX Warning: Label `tab:unnamed-chunk-42' multiply defined.
 
-
+<<<<<<< HEAD
 LaTeX Warning: Label `tab:unnamed-chunk-43' multiply defined.
 
 
@@ -643,6 +672,88 @@ LaTeX Warning: Label `tab:unnamed-chunk-126' multiply defined.
 
 LaTeX Warning: Label `tab:unnamed-chunk-126' multiply defined.
 
+=======
+
+LaTeX Warning: Label `tab:unnamed-chunk-42' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-57' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-57' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-57' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-57' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-80' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-102' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-102' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-102' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-102' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-104' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-104' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-104' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-104' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-104' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-113' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-113' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-113' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-113' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-123' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-123' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-125' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-125' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-125' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-125' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-125' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-125' multiply defined.
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 
 LaTeX Warning: Label `tab:unnamed-chunk-126' multiply defined.
 
@@ -652,12 +763,21 @@ LaTeX Warning: Label `tab:unnamed-chunk-126' multiply defined.
 
 LaTeX Warning: Label `tab:unnamed-chunk-126' multiply defined.
 
+<<<<<<< HEAD
+=======
+LaTeX Warning: Label `tab:unnamed-chunk-125' multiply defined.
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 
 LaTeX Warning: Label `tab:unnamed-chunk-140' multiply defined.
 
+<<<<<<< HEAD
+=======
+LaTeX Warning: Label `tab:unnamed-chunk-125' multiply defined.
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 
 LaTeX Warning: Label `tab:unnamed-chunk-140' multiply defined.
 
+<<<<<<< HEAD
 
 LaTeX Warning: Label `tab:unnamed-chunk-152' multiply defined.
 
@@ -701,15 +821,88 @@ LaTeX Font Info:    ... okay on input line 131.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 131.
 LaTeX Font Info:    ... okay on input line 131.
 (/Users/matthias/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+=======
+LaTeX Warning: Label `tab:unnamed-chunk-125' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-138' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-138' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-143' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-145' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-152' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-152' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-157' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-157' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-159' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-159' multiply defined.
+
+)
+\openout1 = `Codebook_Appendix_A_New.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 156.
+LaTeX Font Info:    ... okay on input line 156.
+(c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 (/Users/matthias/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
+<<<<<<< HEAD
 Package hyperref Info: Link coloring ON on input line 131.
 (./Codebook_Appendix_A.out) (./Codebook_Appendix_A.out)
+=======
+Package hyperref Info: Link coloring ON on input line 156.
+(c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+(c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count310
+)
+LaTeX Info: Redefining \ref on input line 156.
+LaTeX Info: Redefining \pageref on input line 156.
+LaTeX Info: Redefining \nameref on input line 156.
+(./Codebook_Appendix_A_New.out) (./Codebook_Appendix_A_New.out)
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 \@outlinefile=\write3
-\openout3 = `Codebook_Appendix_A.out'.
+\openout3 = `Codebook_Appendix_A_New.out'.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -745,6 +938,7 @@ Package hyperref Info: Link coloring ON on input line 131.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+<<<<<<< HEAD
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 133.
 (/Users/matthias/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -938,10 +1132,182 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.3.2}) ha
                                                   \__shipout_drop_firstpage_...
 l.928   N
          o low educated people voted for party 306 (Table \ref{table:crossta...]
+=======
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 158.
+(c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 158.
+(c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 158.
+(c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 158.
+(c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 158.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 158.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 158.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 158.
+(c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 158.
+(c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 185.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 185.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 185.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 239.
+(c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [3pdfTeX warning (ext4): destination with the same identifier (name{table.2.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.268 \end{table}
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.2.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.268 \end{table}
+                 ] [4pdfTeX warning (ext4): destination with the same identifier (name{table.2.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.429 \clearpage
+                pdfTeX warning (ext4): destination with the same identifier (name{table.2.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.429 \clearpage
+                pdfTeX warning (ext4): destination with the same identifier (name{table.2.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.429 \clearpage
+                ] [5pdfTeX warning (ext4): destination with the same identifier (name{table.2.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.429 \clearpage
+                pdfTeX warning (ext4): destination with the same identifier (name{table.2.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.429 \clearpage
+                ] [6pdfTeX warning (ext4): destination with the same identifier (name{table.2.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.429 \clearpage
+                ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[7
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.558 \end{itemize}
+                   pdfTeX warning (ext4): destination with the same identifier (name{table.3.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.558 \end{itemize}
+                   ] [8pdfTeX warning (ext4): destination with the same identifier (name{table.3.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.606 I
+       n the case of the Fench electoral college:pdfTeX warning (ext4): destination with the same identifier (name{table.3.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.606 I
+       n the case of the Fench electoral college:pdfTeX warning (ext4): destination with the same identifier (name{table.3.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.606 I
+       n the case of the Fench electoral college:]
+Overfull \hbox (14.58203pt too wide) in paragraph at lines 729--762
+ [][] 
+ []
+
+
+Overfull \hbox (39.24245pt too wide) in paragraph at lines 768--801
+ [][] 
+ []
+
+
+Overfull \hbox (21.40892pt too wide) in paragraph at lines 807--840
+ [][] 
+ []
+
+
+Overfull \hbox (23.4349pt too wide) in paragraph at lines 847--880
+ [][] 
+ []
+
+[9pdfTeX warning (ext4): destination with the same identifier (name{table.3.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.882 \clearpage
+                pdfTeX warning (ext4): destination with the same identifier (name{table.3.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.882 \clearpage
+                pdfTeX warning (ext4): destination with the same identifier (name{table.3.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.882 \clearpage
+                ] [10pdfTeX warning (ext4): destination with the same identifier (name{table.3.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.882 \clearpage
+                pdfTeX warning (ext4): destination with the same identifier (name{table.3.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.882 \clearpage
+                pdfTeX warning (ext4): destination with the same identifier (name{table.3.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.882 \clearpage
+                ] [11pdfTeX warning (ext4): destination with the same identifier (name{table.3.12}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.882 \clearpage
+                ] [12pdfTeX warning (ext4): destination with the same identifier (name{table.3.13}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.882 \clearpage
+                ] [13pdfTeX warning (ext4): destination with the same identifier (name{table.3.14}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.882 \clearpage
+                ] [14
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.4.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.974   N
+         o upper middle or upper class respondents and living in rural areas...pdfTeX warning (ext4): destination with the same identifier (name{table.4.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.974   N
+         o upper middle or upper class respondents and living in rural areas...]
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+<<<<<<< HEAD
 Overfull \hbox (12.65903pt too wide) in paragraph at lines 1149--1182
  [][] 
  []
@@ -1224,16 +1590,263 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.6.12}) h
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.2254 \clearpage
+=======
+Overfull \hbox (12.65903pt too wide) in paragraph at lines 1192--1225
+ [][] 
+ []
+
+[15pdfTeX warning (ext4): destination with the same identifier (name{table.4.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1226 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.4.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1226 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.4.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1226 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.4.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1226 \blandscape
+                  ] [16pdfTeX warning (ext4): destination with the same identifier (name{table.4.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1226 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.4.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1226 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.4.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1226 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.4.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1226 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.4.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1226 \blandscape
+                  ] [17pdfTeX warning (ext4): destination with the same identifier (name{table.4.12}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1226 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.4.13}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1226 \blandscape
+                  ]
+Overfull \hbox (21.52936pt too wide) in paragraph at lines 1232--1265
+ [][] 
+ []
+
+[18
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.4.14}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1266 \elandscape
+                  ] [19
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.5.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1353 T
+        he inflated standard errors in Model 10a are due to separation issue...pdfTeX warning (ext4): destination with the same identifier (name{table.5.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1353 T
+        he inflated standard errors in Model 10a are due to separation issue...] [20pdfTeX warning (ext4): destination with the same identifier (name{table.5.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1478 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.5.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1478 \blandscape
+                  ] [21pdfTeX warning (ext4): destination with the same identifier (name{table.5.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1478 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.5.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1478 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.5.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1478 \blandscape
+                  ] [22
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.5.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1520 \elandscape
+                  ]
+Overfull \hbox (8.99419pt too wide) in paragraph at lines 1527--1562
+ [][] 
+ []
+
+[23
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.5.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1563 \elandscape
+                  ]
+Overfull \hbox (36.18898pt too wide) in paragraph at lines 1580--1594
+ [][] 
+ []
+
+[24
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.6.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1647 A
+        s a consequence, a constrained version of model 8 and 13 (namely, Mo...pdfTeX warning (ext4): destination with the same identifier (name{table.6.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1647 A
+        s a consequence, a constrained version of model 8 and 13 (namely, Mo...]
+Overfull \hbox (22.27405pt too wide) in paragraph at lines 1871--1906
+ [][] 
+ []
+
+[25pdfTeX warning (ext4): destination with the same identifier (name{table.6.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1907 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.6.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1907 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.6.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1907 \blandscape
+                  ] [26pdfTeX warning (ext4): destination with the same identifier (name{table.6.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1907 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.6.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1907 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.6.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1907 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.6.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1907 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.6.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1907 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.6.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1907 \blandscape
+                  ] [27pdfTeX warning (ext4): destination with the same identifier (name{table.6.12}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1907 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.6.13}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1907 \blandscape
+                  ]
+Overfull \hbox (15.15544pt too wide) in paragraph at lines 1913--1948
+ [][] 
+ []
+
+[28
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.6.14}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1949 \elandscape
+                  ] [29
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.7.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2041 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.7.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2041 
+       ]
+Overfull \hbox (18.03523pt too wide) in paragraph at lines 2263--2298
+ [][] 
+ []
+
+[30pdfTeX warning (ext4): destination with the same identifier (name{table.7.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2300 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.7.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2300 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.7.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2300 \clearpage
+                 ] [31pdfTeX warning (ext4): destination with the same identifier (name{table.7.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2300 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.7.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2300 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.7.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2300 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.7.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2300 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.7.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2300 \clearpage
+                 ] [32pdfTeX warning (ext4): destination with the same identifier (name{table.7.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2300 \clearpage
+                 ] [33pdfTeX warning (ext4): destination with the same identifier (name{table.7.12}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2300 \clearpage
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
                  ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
+<<<<<<< HEAD
 Overfull \hbox (18.42804pt too wide) in paragraph at lines 2358--2393
+=======
+Overfull \hbox (18.42804pt too wide) in paragraph at lines 2405--2440
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
  [][] 
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (43.08846pt too wide) in paragraph at lines 2399--2434
  [][] 
  []
@@ -1344,10 +1957,113 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.8.14}) h
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.2820 \elandscape
+=======
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 2446--2481
+ [][] 
+ []
+
+[34
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.8.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2483 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.8.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2483 \clearpage
+                 ] [35pdfTeX warning (ext4): destination with the same identifier (name{table.8.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2483 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.8.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2483 \clearpage
+                 ] [36pdfTeX warning (ext4): destination with the same identifier (name{table.8.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2483 \clearpage
+                 ] [37
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.9.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2566 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.9.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2566 
+       ]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[38pdfTeX warning (ext4): destination with the same identifier (name{table.9.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2656 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.9.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2656 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.9.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2656 
+       ]
+Overfull \hbox (20.35104pt too wide) in paragraph at lines 2789--2824
+ [][] 
+ []
+
+[39pdfTeX warning (ext4): destination with the same identifier (name{table.9.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2826 \newpage
+               pdfTeX warning (ext4): destination with the same identifier (name{table.9.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2826 \newpage
+               pdfTeX warning (ext4): destination with the same identifier (name{table.9.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2826 \newpage
+               ] [40pdfTeX warning (ext4): destination with the same identifier (name{table.9.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2826 \newpage
+               pdfTeX warning (ext4): destination with the same identifier (name{table.9.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2826 \newpage
+               pdfTeX warning (ext4): destination with the same identifier (name{table.9.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2826 \newpage
+               pdfTeX warning (ext4): destination with the same identifier (name{table.9.12}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2826 \newpage
+               ] [41pdfTeX warning (ext4): destination with the same identifier (name{table.9.13}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2826 \newpage
+               ]
+Overfull \hbox (15.15544pt too wide) in paragraph at lines 2833--2868
+ [][] 
+ []
+
+[42
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.9.14}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2869 \elandscape
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
                   ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+<<<<<<< HEAD
 [42
 
 
@@ -1381,16 +2097,51 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.9.5}) ha
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.3014 \elandscape
+=======
+[43
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.10.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2979 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.10.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2979 \blandscape
+                  ] [44pdfTeX warning (ext4): destination with the same identifier (name{table.10.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2979 \blandscape
+                  ] [45
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.10.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3021 \elandscape
+                  ] [46
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.10.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3064 \elandscape
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
                   ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
+<<<<<<< HEAD
 Overfull \hbox (18.42804pt too wide) in paragraph at lines 3119--3154
+=======
+Overfull \hbox (18.42804pt too wide) in paragraph at lines 3169--3204
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
  [][] 
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (43.08846pt too wide) in paragraph at lines 3160--3195
  [][] 
  []
@@ -1424,15 +2175,54 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.10.5}) h
                                                   \__shipout_drop_firstpage_...
 l.3197 \clearpage
                  ]
+=======
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 3210--3245
+ [][] 
+ []
+
+[47
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.11.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3247 \newpage
+               pdfTeX warning (ext4): destination with the same identifier (name{table.11.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3247 \newpage
+               ]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[48pdfTeX warning (ext4): destination with the same identifier (name{table.11.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3288 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.11.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3288 
+       ] [49pdfTeX warning (ext4): destination with the same identifier (name{table.11.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3288 
+       ]
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
+<<<<<<< HEAD
 Overfull \hbox (18.42804pt too wide) in paragraph at lines 3310--3345
+=======
+Overfull \hbox (18.42804pt too wide) in paragraph at lines 3359--3394
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
  [][] 
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (43.08846pt too wide) in paragraph at lines 3351--3386
  [][] 
  []
@@ -1464,10 +2254,37 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.11.5}) h
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.3388 \clearpage
+=======
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 3400--3435
+ [][] 
+ []
+
+[50pdfTeX warning (ext4): destination with the same identifier (name{table.12.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3437 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.12.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3437 \clearpage
+                 ] [51pdfTeX warning (ext4): destination with the same identifier (name{table.12.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3437 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.12.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3437 \clearpage
+                 ] [52pdfTeX warning (ext4): destination with the same identifier (name{table.12.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3437 \clearpage
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
                  ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+<<<<<<< HEAD
 [52
 
 
@@ -1548,10 +2365,80 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.13.5}) h
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.3843 \elandscape
+=======
+[53
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.13.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3544 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.13.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3544 
+       ] [54pdfTeX warning (ext4): destination with the same identifier (name{table.13.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3610 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.13.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3610 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.13.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3610 \blandscape
+                  ] [55pdfTeX warning (ext4): destination with the same identifier (name{table.13.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3610 \blandscape
+                  ] [56
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.13.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3652 \elandscape
+                  ] [57
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.13.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3695 \elandscape
+                  ] [58
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.14.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3787 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.14.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3787 
+       ] [59pdfTeX warning (ext4): destination with the same identifier (name{table.14.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3809 \blandscape
+                  ] [60
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.14.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3851 \elandscape
+                  ] [61
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.14.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.3894 \elandscape
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
                   ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+<<<<<<< HEAD
 [61
 
 
@@ -1595,16 +2482,59 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.14.7}) h
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.4083 \clearpage
+=======
+[62
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.15.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4008 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.15.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4008 
+       ]
+Overfull \hbox (43.78525pt too wide) in paragraph at lines 4100--4135
+ [][] 
+ []
+
+[63pdfTeX warning (ext4): destination with the same identifier (name{table.15.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4137 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.15.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4137 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.15.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4137 \clearpage
+                 ] [64pdfTeX warning (ext4): destination with the same identifier (name{table.15.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4137 \clearpage
+                 ] [65pdfTeX warning (ext4): destination with the same identifier (name{table.15.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4137 \clearpage
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
                  ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
+<<<<<<< HEAD
 Overfull \hbox (20.35104pt too wide) in paragraph at lines 4191--4224
+=======
+Overfull \hbox (20.35104pt too wide) in paragraph at lines 4246--4279
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
  [][] 
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (18.18454pt too wide) in paragraph at lines 4230--4263
  [][] 
  []
@@ -1756,10 +2686,132 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.17.2}) h
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.4817 
+=======
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 4285--4318
+ [][] 
+ []
+
+[66
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.16.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4320 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.16.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4320 \clearpage
+                 ] [67pdfTeX warning (ext4): destination with the same identifier (name{table.16.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4320 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.16.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4320 \clearpage
+                 ] [68pdfTeX warning (ext4): destination with the same identifier (name{table.16.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4320 \clearpage
+                 ] [69
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.17.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4408 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.17.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4408 
        ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+[70pdfTeX warning (ext4): destination with the same identifier (name{table.17.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4520 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.17.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4520 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.17.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4520 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.17.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4520 
+       ]
+Overfull \hbox (16.50504pt too wide) in paragraph at lines 4676--4711
+ [][] 
+ []
+
+[71pdfTeX warning (ext4): destination with the same identifier (name{table.17.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4712 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.17.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4712 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.17.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4712 \blandscape
+                  ] [72pdfTeX warning (ext4): destination with the same identifier (name{table.17.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4712 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.17.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4712 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.17.12}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4712 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.17.13}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4712 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.17.14}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4712 \blandscape
+                  ] [73pdfTeX warning (ext4): destination with the same identifier (name{table.17.15}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4712 \blandscape
+                  ]
+Overfull \hbox (41.06197pt too wide) in paragraph at lines 4718--4753
+ [][] 
+ []
+
+[74
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.17.16}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4754 \elandscape
+                  ] [75
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.18.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4838 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.18.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.4838 
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
+       ]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<<<<<<< HEAD
 [76
 pdfTeX warning (ext4): destination with the same identifier (name{table.17.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -1814,10 +2866,57 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.17.12}) 
 l.5052 \elandscape
                   ]
 Overfull \hbox (16.84843pt too wide) in paragraph at lines 5059--5094
+=======
+[76pdfTeX warning (ext4): destination with the same identifier (name{table.18.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5031 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.18.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5031 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.18.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5031 \blandscape
+                  ] [77pdfTeX warning (ext4): destination with the same identifier (name{table.18.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5031 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.18.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5031 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.18.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5031 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.18.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5031 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.18.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5031 \blandscape
+                  ] [78pdfTeX warning (ext4): destination with the same identifier (name{table.18.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5031 \blandscape
+                  ] [79
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.18.12}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5073 \elandscape
+                  ]
+Overfull \hbox (16.84843pt too wide) in paragraph at lines 5080--5115
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
  [][] 
  []
 
 [80
+<<<<<<< HEAD
 
 
 
@@ -1825,23 +2924,40 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.17.13}) 
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.5095 \elandscape
+=======
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.18.13}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5116 \elandscape
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
                   ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
+<<<<<<< HEAD
 Overfull \hbox (18.42804pt too wide) in paragraph at lines 5209--5244
+=======
+Overfull \hbox (18.42804pt too wide) in paragraph at lines 5231--5266
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
  [][] 
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (41.16545pt too wide) in paragraph at lines 5250--5285
+=======
+Overfull \hbox (41.16545pt too wide) in paragraph at lines 5272--5307
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
  [][] 
  []
 
 [81
 
 
+<<<<<<< HEAD
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.18.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -1879,10 +2995,43 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.19.2}) h
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.5365 
+=======
+pdfTeX warning (ext4): destination with the same identifier (name{table.19.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5309 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.19.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5309 \clearpage
+                 ] [82pdfTeX warning (ext4): destination with the same identifier (name{table.19.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5309 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.19.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5309 \clearpage
+                 ] [83pdfTeX warning (ext4): destination with the same identifier (name{table.19.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5309 \clearpage
+                 ] [84
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.20.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5388 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.20.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5388 
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
        ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+<<<<<<< HEAD
 [85
 pdfTeX warning (ext4): destination with the same identifier (name{table.19.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
@@ -2072,10 +3221,121 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.21.9}) h
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.6260 \elandscape
+=======
+
+Overfull \hbox (29.26433pt too wide) in paragraph at lines 5767--5802
+ [][] 
+ []
+
+[85pdfTeX warning (ext4): destination with the same identifier (name{table.20.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 ] [86pdfTeX warning (ext4): destination with the same identifier (name{table.20.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 ] [87pdfTeX warning (ext4): destination with the same identifier (name{table.20.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.12}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.13}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.14}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.15}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.16}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 ] [88pdfTeX warning (ext4): destination with the same identifier (name{table.20.17}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.18}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.20.19}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 ] [89pdfTeX warning (ext4): destination with the same identifier (name{table.20.20}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5804 \clearpage
+                 ]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[90
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.21.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5911 \newpage
+               pdfTeX warning (ext4): destination with the same identifier (name{table.21.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5911 \newpage
+               ] [91pdfTeX warning (ext4): destination with the same identifier (name{table.21.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5912 \blandscape
+                  ] [92
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.21.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5954 \elandscape
+                  ] [93
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.21.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5999 \elandscape
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
                   ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+<<<<<<< HEAD
 [100
 
 
@@ -2118,10 +3378,70 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.23.2}) h
 l.6537 \end{table}
                   ]
 Overfull \hbox (16.50504pt too wide) in paragraph at lines 6624--6659
+=======
+[94
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.22.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6106 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.22.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6106 
+       ] [95pdfTeX warning (ext4): destination with the same identifier (name{table.22.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6192 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.22.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6192 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.22.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6192 \blandscape
+                  ] [96pdfTeX warning (ext4): destination with the same identifier (name{table.22.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6192 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.22.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6192 \blandscape
+                  ] [97
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.22.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6234 \elandscape
+                  ] [98
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.22.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6277 \elandscape
+                  ] [99
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.23.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6365 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.23.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6365 
+       ]
+Overfull \hbox (16.50504pt too wide) in paragraph at lines 6483--6518
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
  [][] 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
+<<<<<<< HEAD
 (Font)              <9> on input line 6666.
 
 Overfull \hbox (50.50366pt too wide) in paragraph at lines 6666--6701
@@ -2197,10 +3517,78 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.24.7}) h
 l.6909 \blandscape
                   ] [110
 
+=======
+(Font)              <9> on input line 6525.
+
+Overfull \hbox (50.50366pt too wide) in paragraph at lines 6525--6560
+ [][] 
+ []
+
+[100pdfTeX warning (ext4): destination with the same identifier (name{table.23.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6562 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.23.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6562 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.23.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6562 \clearpage
+                 ] [101pdfTeX warning (ext4): destination with the same identifier (name{table.23.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6562 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.23.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6562 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.23.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6562 \clearpage
+                 ] [102pdfTeX warning (ext4): destination with the same identifier (name{table.23.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6562 \clearpage
+                 ] [103
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.24.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6644 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.24.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6644 
+       ] [104pdfTeX warning (ext4): destination with the same identifier (name{table.24.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6769 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.24.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6769 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.24.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6769 \blandscape
+                  ] [105pdfTeX warning (ext4): destination with the same identifier (name{table.24.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6769 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.24.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6769 \blandscape
+                  ] [106
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.24.8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
+<<<<<<< HEAD
 l.6951 \elandscape
                   ]
 Overfull \hbox (26.52882pt too wide) in paragraph at lines 6958--6993
@@ -2221,11 +3609,28 @@ LaTeX Warning: Reference `table:full_logit_si_p2' on page 112 undefined on input
 
 [112
 
+=======
+l.6811 \elandscape
+                  ]
+Overfull \hbox (26.52882pt too wide) in paragraph at lines 6818--6853
+ [][] 
+ []
+
+[107
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.24.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6854 \elandscape
+                  ] [108
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.25.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
+<<<<<<< HEAD
 l.7080 M
         odel 14´s inflated standard errors are due to separation issues. In...
 pdfTeX warning (ext4): destination with the same identifier (name{table.25.2}) has been already used, duplicate ignored
@@ -2273,10 +3678,51 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.25.9}) h
 l.7247 \blandscape
                   ] [115
 
+=======
+l.6942 M
+        odel 14a inflated standard errors are due to separation issues. In s...pdfTeX warning (ext4): destination with the same identifier (name{table.25.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6942 M
+        odel 14a inflated standard errors are due to separation issues. In s...]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[109pdfTeX warning (ext4): destination with the same identifier (name{table.25.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7108 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.25.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7108 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.25.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7108 \blandscape
+                  ] [110pdfTeX warning (ext4): destination with the same identifier (name{table.25.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7108 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.25.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7108 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.25.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7108 \blandscape
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.25.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7108 \blandscape
+                  ] [111
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.25.10}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
+<<<<<<< HEAD
 l.7289 \elandscape
                   ] [116
 
@@ -2292,21 +3738,51 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 Overfull \hbox (18.42804pt too wide) in paragraph at lines 7446--7481
+=======
+l.7150 \elandscape
+                  ]
+Overfull \hbox (42.11273pt too wide) in paragraph at lines 7157--7192
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
  [][] 
  []
 
+[112
 
+<<<<<<< HEAD
 Overfull \hbox (43.08846pt too wide) in paragraph at lines 7487--7522
  [][] 
  []
 
 [117
 
+=======
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.25.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7193 \elandscape
+                  ]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (18.42804pt too wide) in paragraph at lines 7306--7341
+ [][] 
+ []
+
+
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 7347--7382
+ [][] 
+ []
+
+[113
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.26.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
+<<<<<<< HEAD
 l.7524 \clearpage
                  
 pdfTeX warning (ext4): destination with the same identifier (name{table.26.2}) has been already used, duplicate ignored
@@ -2330,10 +3806,31 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.26.5}) h
 l.7524 \clearpage
                  ] [120
 
+=======
+l.7384 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.26.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7384 \clearpage
+                 ] [114pdfTeX warning (ext4): destination with the same identifier (name{table.26.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7384 \clearpage
+                 pdfTeX warning (ext4): destination with the same identifier (name{table.26.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7384 \clearpage
+                 ] [115pdfTeX warning (ext4): destination with the same identifier (name{table.26.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7384 \clearpage
+                 ] [116
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.27.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
+<<<<<<< HEAD
 l.7611 
        
 pdfTeX warning (ext4): destination with the same identifier (name{table.27.2}) has been already used, duplicate ignored
@@ -2375,10 +3872,48 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.28.2}) h
 l.7827 \end{table}
                   ]
 Overfull \hbox (20.35104pt too wide) in paragraph at lines 7833--7868
+=======
+l.7472 
+       pdfTeX warning (ext4): destination with the same identifier (name{table.27.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7472 
+       ] [117pdfTeX warning (ext4): destination with the same identifier (name{table.27.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7495 \blandscape
+                  ] [118
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.27.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7537 \elandscape
+                  ] [119
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.27.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7580 \elandscape
+                  ] [120
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.28.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7689 \end{table}
+                  pdfTeX warning (ext4): destination with the same identifier (name{table.28.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7689 \end{table}
+                  ]
+Overfull \hbox (20.35104pt too wide) in paragraph at lines 7695--7730
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
  [][] 
  []
 
 
+<<<<<<< HEAD
 Overfull \hbox (43.08846pt too wide) in paragraph at lines 7874--7909
  [][] 
  []
@@ -2401,10 +3936,34 @@ l.7911 \end{document}
                      ] (./Codebook_Appendix_A.aux)
 
 LaTeX Warning: There were undefined references.
+=======
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 7736--7771
+ [][] 
+ []
 
+[121pdfTeX warning (ext4): destination with the same identifier (name{table.28.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7773 \newpage
+               pdfTeX warning (ext4): destination with the same identifier (name{table.28.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7773 \newpage
+               ] [122pdfTeX warning (ext4): destination with the same identifier (name{table.28.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.7773 \newpage
+               ]
+Underfull \hbox (badness 10000) in paragraph at lines 7781--7783
+[][]$\T1/lmr/m/n/10 https : / / www . researchgate . net / publication / 339474208 _ Generic _ variable _ analysis _ climbing _ the _
+ []
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
+
+[123] (./Codebook_Appendix_A_New.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
+<<<<<<< HEAD
 Package rerunfilecheck Info: File `Codebook_Appendix_A.out' has not changed.
 (rerunfilecheck)             Checksum: 6593BDAAE25D804DF60B4885373700BF;2303.
  ) 
@@ -2423,4 +3982,24 @@ PDF statistics:
  1187 compressed objects within 12 object streams
  430 named destinations out of 1000 (max. 500000)
  225 words of extra memory for PDF output out of 10000 (max. 10000000)
+=======
+Package rerunfilecheck Info: File `Codebook_Appendix_A_New.out' has not changed.
+(rerunfilecheck)             Checksum: 1AD6051D5DB872DE9B76568F9176773E;2418.
+ ) 
+Here is how much of TeX's memory you used:
+ 13694 strings out of 480236
+ 218092 string characters out of 5893804
+ 616312 words of memory out of 5000000
+ 30951 multiletter control sequences out of 15000+600000
+ 535266 words of font info for 78 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 60i,11n,63p,841b,395s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy9.pfb>
+Output written on Codebook_Appendix_A_New.pdf (123 pages, 629169 bytes).
+PDF statistics:
+ 1361 PDF objects out of 1440 (max. 8388607)
+ 1184 compressed objects within 12 object streams
+ 429 named destinations out of 1000 (max. 500000)
+ 233 words of extra memory for PDF output out of 10000 (max. 10000000)
+>>>>>>> 1e0662c899ddb7637ec815125b5adedc65561a74
 
