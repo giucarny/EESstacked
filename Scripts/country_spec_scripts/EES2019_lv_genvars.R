@@ -108,22 +108,22 @@ EES2019_lv_stack %<>%
 
 # prediction for party 1611, 1610, 1604 created w/ a different model
 
-pred_1611_1610_1604_lv <- 
+pred_1611_1610_lv <- 
   gensyn.fun(data        = EES2019_lv_stack,
              depvar      = 'Q7_gen',
              cat.indvar  = c('D3_rec', 'D8_rec', 'D5_rec', 'D1_rec', 'D7_rec', 'D6_une'),
              cont.indvar =  c('D4_age', 'D10_rec'),
              yhat.name   = 'socdem_synt',
              regsum      = F,
-             stack_party = c('1611', '1610', '1604')
+             stack_party = c('1611', '1610')
   )
 
 EES2019_lv_stack <-   
   left_join(EES2019_lv_stack %>% dplyr::select(-c(socdem_synt_vc)),
             EES2019_lv_stack %>% 
               dplyr::select(respid, party, socdem_synt_vc) %>% 
-              filter(party %!in% c(1611, 1610, 1604)) %>% 
-              rbind(pred_1611_1610_1604_lv),
+              filter(party %!in% c(1611, 1610)) %>% 
+              rbind(pred_1611_1610_lv),
             by = c('respid','party'))
 
 

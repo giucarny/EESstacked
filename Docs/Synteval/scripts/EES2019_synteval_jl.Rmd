@@ -12,7 +12,7 @@ urlcolor: RedOrange
 ---
 
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
 
 # Load 'here' for sourcing # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 library('here')
