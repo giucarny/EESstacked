@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  24 JUN 2022 14:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.24)  24 JUN 2022 14:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Codebook_Appendix_A_20220624.tex
 (./Codebook_Appendix_A_20220624.tex
-LaTeX2e <2022-06-01> patch level 1
+LaTeX2e <2022-06-01> patch level 2
 L3 programming layer <2022-06-16> (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
@@ -145,7 +145,7 @@ Package: inputenc 2021/02/14 v1.3d Input encoding file
 ) (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ) (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
-Package: microtype 2022/06/20 v3.0e Micro-typographical refinements (RS)
+Package: microtype 2022/06/23 v3.0f Micro-typographical refinements (RS)
 (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks23
@@ -159,19 +159,19 @@ Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 LaTeX Info: Redefining \noprotrusionifhmode on input line 1045.
 LaTeX Info: Redefining \leftprotrusion on input line 1046.
 LaTeX Info: Redefining \rightprotrusion on input line 1056.
-LaTeX Info: Redefining \textls on input line 1240.
+LaTeX Info: Redefining \textls on input line 1234.
 \MT@outer@kern=\dimen148
-LaTeX Info: Redefining \textmicrotypecontext on input line 1864.
+LaTeX Info: Redefining \textmicrotypecontext on input line 1858.
 \MT@listname@count=\count273
 (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/microtype-pdftex.def
-File: microtype-pdftex.def 2022/06/20 v3.0e Definitions specific to pdftex (RS)
-LaTeX Info: Redefining \lsstyle on input line 902.
-LaTeX Info: Redefining \lslig on input line 902.
+File: microtype-pdftex.def 2022/06/23 v3.0f Definitions specific to pdftex (RS)
+LaTeX Info: Redefining \lsstyle on input line 900.
+LaTeX Info: Redefining \lslig on input line 900.
 \MT@outer@space=\skip52
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/microtype/microtype.cfg
-File: microtype.cfg 2022/06/20 v3.0e microtype main configuration file (RS)
+File: microtype.cfg 2022/06/23 v3.0f microtype main configuration file (RS)
 )) (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
@@ -498,8 +498,26 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 File: l3backend-pdftex.def 2022-04-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count312
 \l__pdf_internal_box=\box76
+) (./Codebook_Appendix_A_20220624.aux
+
+LaTeX Warning: Label `tab:unnamed-chunk-7' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-10' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-11' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-13' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-14' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-14' multiply defined.
+
 )
-No file Codebook_Appendix_A_20220624.aux.
 \openout1 = `Codebook_Appendix_A_20220624.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 136.
@@ -546,6 +564,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package hyperref Info: Link coloring ON on input line 136.
+(./Codebook_Appendix_A_20220624.out) (./Codebook_Appendix_A_20220624.out)
 \@outlinefile=\write3
 \openout3 = `Codebook_Appendix_A_20220624.out'.
 
@@ -619,1745 +638,174 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) [1
 
 {c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: Reference `table:relprty_tab_at' on page 2 undefined on input line 145.
-
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 151.
+(Font)              <10> on input line 161.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 151.
+(Font)              <7> on input line 161.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 151.
-
-LaTeX Warning: Reference `table:full_ols_at' on page 2 undefined on input line 167.
-
-
-LaTeX Warning: Reference `table:ols_aic_at' on page 2 undefined on input line 177.
-
-
-LaTeX Warning: Reference `table:full_logit_at' on page 2 undefined on input line 199.
-
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 205.
+(Font)              <5> on input line 161.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 215.
 (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-
-LaTeX Warning: Reference `table:crosstab_1_at' on page 2 undefined on input line 210.
-
-
-LaTeX Warning: Reference `table:crosstab_2_at' on page 2 undefined on input line 211.
-
-
-LaTeX Warning: Reference `table:lrtest_1_at' on page 2 undefined on input line 216.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[2
-pdfTeX warning (ext4): destination with the same identifier (name{table.1.1}) has been already used, duplicate ignored
+) [2
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.246 
+l.228 
       
-pdfTeX warning (ext4): destination with the same identifier (name{table.1.2}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.246 
+l.228 
       ] [3
-pdfTeX warning (ext4): destination with the same identifier (name{table.1.3}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.389 \clearpage
+l.399 \clearpage
                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.1.4}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.389 \clearpage
+l.399 \clearpage
                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.1.5}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.389 \clearpage
+l.399 \clearpage
                 ] [4
-pdfTeX warning (ext4): destination with the same identifier (name{table.1.6}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.389 \clearpage
+l.399 \clearpage
                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.1.7}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.7}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.389 \clearpage
+l.399 \clearpage
                 ] [5
-pdfTeX warning (ext4): destination with the same identifier (name{table.1.8}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.389 \clearpage
+l.399 \clearpage
                 ]
 
-LaTeX Warning: Reference `table:relprty_tab_be_du' on page 6 undefined on input line 397.
-
-
-LaTeX Warning: Reference `table:relprty_tab_be_fr' on page 6 undefined on input line 397.
-
-
-LaTeX Warning: Reference `table:full_ols_be_du' on page 6 undefined on input line 441.
-
-
-LaTeX Warning: Reference `table:full_ols_be_fr' on page 6 undefined on input line 441.
-
-
-LaTeX Warning: Reference `table:ols_aic_be_du' on page 6 undefined on input line 453.
-
-
-LaTeX Warning: Reference `table:ols_aic_be_fr' on page 6 undefined on input line 465.
-
-
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: Reference `table:full_logit_be_du' on page 6 undefined on input line 509.
-
-
-LaTeX Warning: Reference `table:full_logit_be_fr' on page 6 undefined on input line 510.
 
 [6
 
 
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.1}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.9}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.519 
+l.526 \end{itemize}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.526 \end{itemize}
+                   ] [7
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.574 
       
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.2}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.12}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.519 
+l.574 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.13}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.574 
       ]
-
-LaTeX Warning: Reference `table:crosstab_1_be' on page 7 undefined on input line 524.
-
-
-LaTeX Warning: Reference `table:crosstab_2_be' on page 7 undefined on input line 526.
-
-
-LaTeX Warning: Reference `table:crosstab_3_be' on page 7 undefined on input line 528.
-
-
-LaTeX Warning: Reference `table:lrtest_1_be' on page 7 undefined on input line 534.
-
-
-LaTeX Warning: Reference `table:logit_aic_be_du' on page 7 undefined on input line 563.
-
-[7
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.564 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.564 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.564 
-      ]
-
-LaTeX Warning: Reference `table:logit_aic_be_fr' on page 8 undefined on input line 576.
-
-
-Overfull \hbox (14.58203pt too wide) in paragraph at lines 690--723
+Overfull \hbox (14.58203pt too wide) in paragraph at lines 700--733
  [][] 
  []
 
 
-Overfull \hbox (39.24245pt too wide) in paragraph at lines 729--762
+Overfull \hbox (39.24245pt too wide) in paragraph at lines 739--772
  [][] 
  []
 
 
-Overfull \hbox (21.40892pt too wide) in paragraph at lines 768--801
+Overfull \hbox (21.40892pt too wide) in paragraph at lines 778--811
  [][] 
  []
 
 
-Overfull \hbox (23.4349pt too wide) in paragraph at lines 808--841
+Overfull \hbox (23.4349pt too wide) in paragraph at lines 818--851
  [][] 
  []
 
 [8
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.6}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.14}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.843 \clearpage
+l.853 \clearpage
                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.7}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.15}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.843 \clearpage
+l.853 \clearpage
                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.8}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.16}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.843 \clearpage
+l.853 \clearpage
                 ] [9
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.9}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.17}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.843 \clearpage
+l.853 \clearpage
                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.10}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.18}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.843 \clearpage
+l.853 \clearpage
                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.11}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.19}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.843 \clearpage
+l.853 \clearpage
                 ] [10
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.12}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.20}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.843 \clearpage
+l.853 \clearpage
                 ] [11
-pdfTeX warning (ext4): destination with the same identifier (name{table.2.13}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.21}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.843 \clearpage
+l.853 \clearpage
                 ] [12
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[13
-
-]
-
-LaTeX Warning: Reference `table:relprty_tab_bg' on page 14 undefined on input line 851.
-
-
-LaTeX Warning: Reference `table:full_ols_bg' on page 14 undefined on input line 875.
-
-
-LaTeX Warning: Reference `table:ols_aic_bg' on page 14 undefined on input line 885.
-
-
-LaTeX Warning: Reference `table:full_logit_bg' on page 14 undefined on input line 908.
-
-
-LaTeX Warning: Reference `table:crosstab_1_bg' on page 14 undefined on input line 929.
-
-
-LaTeX Warning: Reference `table:crosstab_2_bg' on page 14 undefined on input line 931.
-
-
-LaTeX Warning: Reference `table:crosstab_3_bg' on page 14 undefined on input line 933.
-
-[14
-pdfTeX warning (ext4): destination with the same identifier (name{table.3.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.935   N
-         o upper middle or upper class respondents and living in rural areas...
-pdfTeX warning (ext4): destination with the same identifier (name{table.3.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.935   N
-         o upper middle or upper class respondents and living in rural areas...]
-
-LaTeX Warning: Reference `table:crosstab_4_bg' on page 15 undefined on input line 936.
-
-
-LaTeX Warning: Reference `table:logit_aic_bg' on page 15 undefined on input line 1009.
-
-
-LaTeX Warning: Reference `table:logit_aic_bg' on page 15 undefined on input line 1019.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (12.65903pt too wide) in paragraph at lines 1154--1187
- [][] 
- []
-
-[15
-pdfTeX warning (ext4): destination with the same identifier (name{table.3.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1188 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.3.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1188 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.3.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1188 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.3.6}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1188 \blandscape
-                  ] [16
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-
-Overfull \hbox (21.52936pt too wide) in paragraph at lines 1194--1227
- [][] 
- []
-
-[17
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.3.14}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1228 \elandscape
-                  ]
-
-LaTeX Warning: Reference `table:relprty_tab_cz' on page 18 undefined on input line 1238.
-
-
-LaTeX Warning: Reference `table:full_ols_cz' on page 18 undefined on input line 1262.
-
-
-LaTeX Warning: Reference `table:ols_aic_cz' on page 18 undefined on input line 1271.
-
-
-LaTeX Warning: Reference `table:full_logit_cz' on page 18 undefined on input line 1295.
-
-
-LaTeX Warning: Reference `table:crosstab_1_cz' on page 18 undefined on input line 1314.
-
-
-LaTeX Warning: Reference `table:crosstab_2_cz' on page 18 undefined on input line 1314.
-
-
-LaTeX Warning: Reference `table:crosstab_3_cz' on page 18 undefined on input line 1314.
-
-[18
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1315 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1315 
-       ]
-
-LaTeX Warning: Reference `table:lrtest_1_cz' on page 19 undefined on input line 1319.
-
-
-LaTeX Warning: Reference `table:logit_aic_cz' on page 19 undefined on input line 1349.
-
-[19
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1439 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1439 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1439 \blandscape
-                  ] [20
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[21
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.8}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1481 \elandscape
-                  ]
-Overfull \hbox (8.99419pt too wide) in paragraph at lines 1488--1523
- [][] 
- []
-
-[22
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.9}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1524 \elandscape
-                  ]
-
-LaTeX Warning: Reference `table:relprty_tab_hr' on page 23 undefined on input line 1534.
-
-
-Overfull \hbox (36.18898pt too wide) in paragraph at lines 1540--1554
- [][] 
- []
-
-
-LaTeX Warning: Reference `table:full_ols_hr' on page 23 undefined on input line 1557.
-
-
-LaTeX Warning: Reference `table:ols_aic_hr' on page 23 undefined on input line 1567.
-
-
-LaTeX Warning: Reference `table:full_logit_hr' on page 23 undefined on input line 1590.
-
-
-LaTeX Warning: Reference `table:crosstab_1_hr' on page 23 undefined on input line 1604.
-
-
-LaTeX Warning: Reference `table:crosstab_2_hr' on page 23 undefined on input line 1604.
-
-
-LaTeX Warning: Reference `table:crosstab_3_hr' on page 23 undefined on input line 1604.
-
-
-LaTeX Warning: Reference `table:crosstab_4_hr' on page 23 undefined on input line 1604.
-
-
-LaTeX Warning: Reference `table:crosstab_5_hr' on page 23 undefined on input line 1604.
-
-
-LaTeX Warning: Reference `table:crosstab_6_hr' on page 23 undefined on input line 1604.
-
-
-LaTeX Warning: Reference `table:crosstab_7_hr' on page 23 undefined on input line 1604.
-
-
-LaTeX Warning: Reference `table:lrtest_1_hr' on page 23 undefined on input line 1608.
-
-
-LaTeX Warning: Reference `table:lrtest_2_hr' on page 23 undefined on input line 1610.
-
-[23
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1612 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1612 
-       ]
-
-LaTeX Warning: Reference `table:logit_aic_hr' on page 24 undefined on input line 1657.
-
-
-Overfull \hbox (22.27405pt too wide) in paragraph at lines 1831--1866
- [][] 
- []
-
-[24
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1868 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1868 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1868 \newpage
-               ] [25
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.6}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1868 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.7}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1868 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.8}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1868 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.9}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1868 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.10}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1868 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.11}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1868 \newpage
-               ] [26
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.12}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1868 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.13}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1868 \newpage
-               ] [27
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.14}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1911 \elandscape
-                  ]
-
-LaTeX Warning: Reference `table:relprty_tab_cy' on page 28 undefined on input line 1921.
-
-
-LaTeX Warning: Reference `table:full_ols_cy' on page 28 undefined on input line 1943.
-
-
-LaTeX Warning: Reference `table:ols_aic_cy' on page 28 undefined on input line 1953.
-
-
-LaTeX Warning: Reference `table:full_logit_cy' on page 28 undefined on input line 1975.
-
-
-LaTeX Warning: Reference `table:crosstab_1_cy' on page 28 undefined on input line 1991.
-
-
-LaTeX Warning: Reference `table:crosstab_2_cy' on page 28 undefined on input line 1992.
-
-
-LaTeX Warning: Reference `table:crosstab_3_cy' on page 28 undefined on input line 1992.
-
-
-LaTeX Warning: Reference `table:crosstab_4_cy' on page 28 undefined on input line 1992.
-
-
-LaTeX Warning: Reference `table:crosstab_5_cy' on page 28 undefined on input line 1993.
-
-
-LaTeX Warning: Reference `table:crosstab_6_cy' on page 28 undefined on input line 1993.
-
-
-LaTeX Warning: Reference `table:lrtest_1_cy' on page 28 undefined on input line 1998.
-
-[28
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2000 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2000 
-       ]
-
-LaTeX Warning: Reference `table:logit_aic_cy' on page 29 undefined on input line 2029.
-
-
-Overfull \hbox (49.53523pt too wide) in paragraph at lines 2222--2257
- [][] 
- []
-
-[29
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2259 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2259 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2259 \clearpage
-                 ] [30
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.6}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2259 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.7}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2259 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.8}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2259 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.9}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2259 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.10}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2259 \clearpage
-                 ] [31
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.11}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2259 \clearpage
-                 ] [32
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.12}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2259 \clearpage
-                 ]
-
-LaTeX Warning: Reference `table:relprty_tab_dk' on page 33 undefined on input line 2267.
-
-
-LaTeX Warning: Reference `table:full_ols_dk' on page 33 undefined on input line 2290.
-
-
-LaTeX Warning: Reference `table:ols_aic_dk' on page 33 undefined on input line 2300.
-
-
-LaTeX Warning: Reference `table:full_logit_dk' on page 33 undefined on input line 2323.
-
-
-LaTeX Warning: Reference `table:logit_aic_dk' on page 33 undefined on input line 2336.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (18.42804pt too wide) in paragraph at lines 2363--2398
- [][] 
- []
-
-
-Overfull \hbox (43.08846pt too wide) in paragraph at lines 2404--2439
- [][] 
- []
-
-[33
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.7.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2441 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.7.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2441 \clearpage
-                 ] [34
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[35
-
-]
-
-LaTeX Warning: Reference `table:relprty_tab_ee' on page 36 undefined on input line 2450.
-
-
-LaTeX Warning: Reference `table:full_ols_ee' on page 36 undefined on input line 2473.
-
-
-LaTeX Warning: Reference `table:ols_aic_ee' on page 36 undefined on input line 2483.
-
-
-LaTeX Warning: Reference `table:full_logit_ee' on page 36 undefined on input line 2506.
-
-
-LaTeX Warning: Reference `table:crosstab_1_ee' on page 36 undefined on input line 2521.
-
-
-LaTeX Warning: Reference `table:crosstab_2_ee' on page 36 undefined on input line 2522.
-
-
-LaTeX Warning: Reference `table:crosstab_3_ee' on page 36 undefined on input line 2522.
-
-
-LaTeX Warning: Reference `table:crosstab_4_ee' on page 36 undefined on input line 2522.
-
-
-LaTeX Warning: Reference `table:crosstab_5_ee' on page 36 undefined on input line 2523.
-
-[36
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2525 A
-        s a consequence, a constrained version of model 13 (namely, model 13...
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2525 A
-        s a consequence, a constrained version of model 13 (namely, model 13...]
-
-LaTeX Warning: Reference `table:lrtest_1_ee' on page 37 undefined on input line 2528.
-
-
-LaTeX Warning: Reference `table:lrtest_2_ee' on page 37 undefined on input line 2548.
-
-
-LaTeX Warning: Reference `table:lrtest_3_ee' on page 37 undefined on input line 2550.
-
-
-LaTeX Warning: Reference `table:lrtest_3_ee' on page 37 undefined on input line 2552.
-
-
-LaTeX Warning: Reference `table:logit_aic_ee' on page 37 undefined on input line 2611.
-
-[37
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2612 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2612 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2612 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.6}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2612 
-       ]
-Overfull \hbox (20.35104pt too wide) in paragraph at lines 2745--2780
- [][] 
- []
-
-[38
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.7}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2782 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.8}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2782 \newpage
-               ] [39
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.9}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2782 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.10}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2782 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.11}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2782 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.12}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2782 \newpage
-               ] [40
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.13}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2782 \newpage
-               ] [41
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.8.14}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2825 \elandscape
-                  ]
-
-LaTeX Warning: Reference `table:relprty_tab_fi' on page 42 undefined on input line 2835.
-
-
-LaTeX Warning: Reference `table:full_ols_fi' on page 42 undefined on input line 2858.
-
-
-LaTeX Warning: Reference `table:ols_aic_fi' on page 42 undefined on input line 2867.
-
-
-LaTeX Warning: Reference `table:full_logit_fi' on page 42 undefined on input line 2890.
-
-
-LaTeX Warning: Reference `table:logit_aic_fi' on page 42 undefined on input line 2911.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[42
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.9.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2934 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.9.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2934 \blandscape
-                  ] [43
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[44
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.9.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.2976 \elandscape
-                  ] [45
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.9.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3019 \elandscape
-                  ]
-
-LaTeX Warning: Reference `table:relprty_tab_fr' on page 46 undefined on input line 3029.
-
-
-LaTeX Warning: Reference `table:full_ols_fr' on page 46 undefined on input line 3052.
-
-
-LaTeX Warning: Reference `table:ols_aic_fr' on page 46 undefined on input line 3062.
-
-
-LaTeX Warning: Reference `table:full_logit_fr' on page 46 undefined on input line 3085.
-
-
-LaTeX Warning: Reference `table:logit_aic_fr' on page 46 undefined on input line 3097.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (18.42804pt too wide) in paragraph at lines 3124--3159
- [][] 
- []
-
-
-Overfull \hbox (43.08846pt too wide) in paragraph at lines 3165--3200
- [][] 
- []
-
-[46
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.10.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3202 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.10.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3202 \clearpage
-                 ] [47
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[48
-
-]
-
-LaTeX Warning: Reference `table:relprty_tab_de' on page 49 undefined on input line 3210.
-
-
-LaTeX Warning: Reference `table:full_ols_de' on page 49 undefined on input line 3233.
-
-
-LaTeX Warning: Reference `table:ols_aic_de' on page 49 undefined on input line 3243.
-
-
-LaTeX Warning: Reference `table:full_logit_de' on page 49 undefined on input line 3266.
-
-
-LaTeX Warning: Reference `table:logit_aic_de' on page 49 undefined on input line 3288.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (18.42804pt too wide) in paragraph at lines 3315--3350
- [][] 
- []
-
-
-Overfull \hbox (43.08846pt too wide) in paragraph at lines 3356--3391
- [][] 
- []
-
-[49
-pdfTeX warning (ext4): destination with the same identifier (name{table.11.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3393 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.11.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3393 \clearpage
-                 ] [50
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[51
-
-]
-
-LaTeX Warning: Reference `table:relprty_tab_el' on page 52 undefined on input line 3401.
-
-
-LaTeX Warning: Reference `table:full_ols_el' on page 52 undefined on input line 3421.
-
-
-LaTeX Warning: Reference `table:ols_aic_el' on page 52 undefined on input line 3430.
-
-
-LaTeX Warning: Reference `table:full_logit_el' on page 52 undefined on input line 3450.
-
-
-LaTeX Warning: Reference `table:crosstab_1_el' on page 52 undefined on input line 3463.
-
-
-LaTeX Warning: Reference `table:crosstab_2_el' on page 52 undefined on input line 3463.
-
-
-LaTeX Warning: Reference `table:lrtest_1_el' on page 52 undefined on input line 3468.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: Reference `table:logit_aic_el' on page 52 undefined on input line 3498.
-
-[52
-pdfTeX warning (ext4): destination with the same identifier (name{table.12.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3499 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.12.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3499 
-       ] [53
-pdfTeX warning (ext4): destination with the same identifier (name{table.12.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3565 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.12.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3565 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.12.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3565 \blandscape
-                  ] [54
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[55
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.12.7}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3607 \elandscape
-                  ] [56
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.12.8}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3650 \elandscape
-                  ]
-
-LaTeX Warning: Reference `table:relprty_tab_hu' on page 57 undefined on input line 3660.
-
-
-LaTeX Warning: Reference `table:full_ols_hu' on page 57 undefined on input line 3683.
-
-
-LaTeX Warning: Reference `table:ols_aic_hu' on page 57 undefined on input line 3692.
-
-
-LaTeX Warning: Reference `table:full_logit_hu' on page 57 undefined on input line 3715.
-
-
-LaTeX Warning: Reference `table:logit_aic_hu' on page 57 undefined on input line 3740.
-
-[57
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.13.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3761 \end{table}
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.13.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3761 \end{table}
-                  ] [58
-pdfTeX warning (ext4): destination with the same identifier (name{table.13.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3763 \blandscape
-                  ] [59
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.13.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3805 \elandscape
-                  ] [60
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.13.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3848 \elandscape
-                  ]
-
-LaTeX Warning: Reference `table:relprty_tab_ie' on page 61 undefined on input line 3858.
-
-
-LaTeX Warning: Reference `table:full_ols_ie' on page 61 undefined on input line 3880.
-
-
-LaTeX Warning: Reference `table:ols_aic_ie' on page 61 undefined on input line 3890.
-
-
-LaTeX Warning: Reference `table:full_logit_ie' on page 61 undefined on input line 3912.
-
-
-LaTeX Warning: Reference `table:crosstab_1_ie' on page 61 undefined on input line 3922.
-
-
-LaTeX Warning: Reference `table:lrtest_1_ie' on page 61 undefined on input line 3927.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: Reference `table:logit_aic_ie' on page 61 undefined on input line 3958.
-
-[61
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.14.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3959 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.14.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.3959 
-       ]
-Overfull \hbox (43.78525pt too wide) in paragraph at lines 4051--4086
- [][] 
- []
-
-[62
-pdfTeX warning (ext4): destination with the same identifier (name{table.14.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4088 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.14.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4088 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.14.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4088 \clearpage
-                 ] [63
-pdfTeX warning (ext4): destination with the same identifier (name{table.14.6}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4088 \clearpage
-                 ] [64
-pdfTeX warning (ext4): destination with the same identifier (name{table.14.7}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4088 \clearpage
-                 ]
-
-LaTeX Warning: Reference `table:relprty_tab_it' on page 65 undefined on input line 4096.
-
-
-LaTeX Warning: Reference `table:full_ols_it' on page 65 undefined on input line 4119.
-
-
-LaTeX Warning: Reference `table:ols_aic_it' on page 65 undefined on input line 4129.
-
-
-LaTeX Warning: Reference `table:full_logit_it' on page 65 undefined on input line 4153.
-
-
-LaTeX Warning: Reference `table:logit_aic_it' on page 65 undefined on input line 4164.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (20.35104pt too wide) in paragraph at lines 4196--4229
- [][] 
- []
-
-
-Overfull \hbox (43.08846pt too wide) in paragraph at lines 4235--4268
- [][] 
- []
-
-[65
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.15.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4270 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.15.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4270 \clearpage
-                 ] [66
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[67
-
-]
-
-LaTeX Warning: Reference `table:relprty_tab_lv' on page 68 undefined on input line 4278.
-
-
-LaTeX Warning: Reference `table:full_ols_lv' on page 68 undefined on input line 4301.
-
-
-LaTeX Warning: Reference `table:ols_aic_lv' on page 68 undefined on input line 4311.
-
-
-LaTeX Warning: Reference `table:full_logit_lv_p1' on page 68 undefined on input line 4334.
-
-
-LaTeX Warning: Reference `table:full_logit_lv_p2' on page 68 undefined on input line 4335.
-
-
-LaTeX Warning: Reference `table:crosstab_1_lv' on page 68 undefined on input line 4354.
-
-
-LaTeX Warning: Reference `table:crosstab_2_lv' on page 68 undefined on input line 4355.
-
-
-LaTeX Warning: Reference `table:crosstab_3_lv' on page 68 undefined on input line 4355.
-
-
-LaTeX Warning: Reference `table:crosstab_4_lv' on page 68 undefined on input line 4355.
-
-
-LaTeX Warning: Reference `table:crosstab_5_lv' on page 68 undefined on input line 4356.
-
-
-LaTeX Warning: Reference `table:crosstab_6_lv' on page 68 undefined on input line 4356.
-
-[68
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4360 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4360 
-       ]
-
-LaTeX Warning: Reference `table:lrtest_1_lv' on page 69 undefined on input line 4364.
-
-
-LaTeX Warning: Reference `table:lrtest_2_lv' on page 69 undefined on input line 4364.
-
-
-LaTeX Warning: Reference `table:lrtest_3_lv' on page 69 undefined on input line 4366.
-
-
-LaTeX Warning: Reference `table:lrtest_4_lv' on page 69 undefined on input line 4369.
-
-
-LaTeX Warning: Reference `table:lrtest_5_lv' on page 69 undefined on input line 4372.
-
-
-LaTeX Warning: Reference `table:logit_aic_lv' on page 69 undefined on input line 4468.
-
-[69
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.3}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.0.22}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.4469 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4469 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4469 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.6}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4469 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.7}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4469 
-       ]
-Overfull \hbox (16.50504pt too wide) in paragraph at lines 4622--4657
- [][] 
- []
-
-[70
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.8}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4658 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.9}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4658 \blandscape
-                  ] [71
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.10}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4658 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.11}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4658 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.12}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4658 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.13}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4658 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.14}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4658 \blandscape
-                  ] [72
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.15}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4658 \blandscape
-                  ] [73
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.16.16}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4700 \elandscape
-                  ]
-
-LaTeX Warning: Reference `table:relprty_tab_lt' on page 74 undefined on input line 4710.
-
-
-LaTeX Warning: Reference `table:full_ols_lt' on page 74 undefined on input line 4733.
-
-
-LaTeX Warning: Reference `table:ols_aic_lt' on page 74 undefined on input line 4742.
-
-
-LaTeX Warning: Reference `table:full_logit_lt' on page 74 undefined on input line 4765.
-
-
-LaTeX Warning: Reference `table:crosstab_1_lt' on page 74 undefined on input line 4780.
-
-
-LaTeX Warning: Reference `table:crosstab_2_lt' on page 74 undefined on input line 4781.
-
-
-LaTeX Warning: Reference `table:crosstab_4_lt' on page 74 undefined on input line 4781.
-
-
-LaTeX Warning: Reference `table:crosstab_3_lt' on page 74 undefined on input line 4781.
-
-
-LaTeX Warning: Reference `table:crosstab_5_lt' on page 74 undefined on input line 4782.
-
-[74
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.17.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4784 A
-        s a consequence constrained versions of model 10, 13 and 14 (namely ...
-pdfTeX warning (ext4): destination with the same identifier (name{table.17.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4784 A
-        s a consequence constrained versions of model 10, 13 and 14 (namely ...]
-
-LaTeX Warning: Reference `table:lrtest_1_lt' on page 75 undefined on input line 4784.
-
-
-LaTeX Warning: Reference `table:lrtest_2_lt' on page 75 undefined on input line 4784.
-
-
-LaTeX Warning: Reference `table:lrtest_3_lt' on page 75 undefined on input line 4784.
-
-
-LaTeX Warning: Reference `table:logit_aic_lt' on page 75 undefined on input line 4845.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[75
-pdfTeX warning (ext4): destination with the same identifier (name{table.17.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4976 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.17.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4976 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.17.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.4976 \blandscape
-                  ] [76
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[77
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.17.12}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5018 \elandscape
-                  ]
-Overfull \hbox (16.84843pt too wide) in paragraph at lines 5025--5060
- [][] 
- []
-
-[78
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.17.13}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5061 \elandscape
-                  ]
-
-LaTeX Warning: Reference `table:relprty_tab_lu' on page 79 undefined on input line 5071.
-
-
-LaTeX Warning: Reference `table:full_ols_lu' on page 79 undefined on input line 5094.
-
-
-LaTeX Warning: Reference `table:ols_aic_lu' on page 79 undefined on input line 5104.
-
-
-LaTeX Warning: Reference `table:full_logit_lu' on page 79 undefined on input line 5127.
-
-
-LaTeX Warning: Reference `table:logit_aic_lu' on page 79 undefined on input line 5148.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (18.42804pt too wide) in paragraph at lines 5175--5210
- [][] 
- []
-
-
-Overfull \hbox (41.16545pt too wide) in paragraph at lines 5216--5251
- [][] 
- []
-
-[79
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.18.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5253 \clearpage
-                 
-pdfTeX warning (ext4): destination with the same identifier (name{table.18.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5253 \clearpage
-                 ] [80
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[81
-
-]
-
-LaTeX Warning: Reference `table:relprty_tab_mt' on page 82 undefined on input line 5261.
-
-
-LaTeX Warning: Reference `table:full_ols_mt' on page 82 undefined on input line 5281.
-
-
-LaTeX Warning: Reference `table:ols_aic_mt' on page 82 undefined on input line 5291.
-
-
-LaTeX Warning: Reference `table:full_logit_mt' on page 82 undefined on input line 5311.
-
-
-LaTeX Warning: Reference `table:crosstab_3_1_mt' on page 82 undefined on input line 5326.
-
-
-LaTeX Warning: Reference `table:crosstab_3_2_mt' on page 82 undefined on input line 5326.
-
-
-LaTeX Warning: Reference `table:crosstab_3_3_mt' on page 82 undefined on input line 5326.
-
-
-LaTeX Warning: Reference `table:crosstab_3_4_mt' on page 82 undefined on input line 5326.
-
-
-LaTeX Warning: Reference `table:crosstab_3_5_mt' on page 82 undefined on input line 5326.
-
-
-LaTeX Warning: Reference `table:crosstab_4_1_mt' on page 82 undefined on input line 5328.
-
-
-LaTeX Warning: Reference `table:crosstab_4_2_mt' on page 82 undefined on input line 5328.
-
-
-LaTeX Warning: Reference `table:crosstab_4_3_mt' on page 82 undefined on input line 5328.
-
-
-LaTeX Warning: Reference `table:crosstab_5_1_mt' on page 82 undefined on input line 5330.
-
-
-LaTeX Warning: Reference `table:crosstab_5_2_mt' on page 82 undefined on input line 5330.
-
-
-LaTeX Warning: Reference `table:crosstab_5_3_mt' on page 82 undefined on input line 5330.
-
-
-LaTeX Warning: Reference `table:crosstab_5_4_mt' on page 82 undefined on input line 5330.
-
-[82
-pdfTeX warning (ext4): destination with the same identifier (name{table.19.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5331 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.19.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5331 
-       ]
-
-LaTeX Warning: Reference `table:lrtest_1_mt' on page 83 undefined on input line 5334.
-
-
-LaTeX Warning: Reference `table:lrtest_2_mt' on page 83 undefined on input line 5336.
-
-
-LaTeX Warning: Reference `table:lrtest_3_mt' on page 83 undefined on input line 5338.
-
-
-LaTeX Warning: Reference `table:logit_aic_mt' on page 83 undefined on input line 5398.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[83
-pdfTeX warning (ext4): destination with the same identifier (name{table.19.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5665 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.19.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5665 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.19.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5665 \newpage
-               ] [84
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[85
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.19.19}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5708 \elandscape
-                  ] [86
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.19.20}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5753 \elandscape
-                  ]
-
-LaTeX Warning: Reference `table:relprty_tab_nl' on page 87 undefined on input line 5763.
-
-
-LaTeX Warning: Reference `table:full_ols_nl' on page 87 undefined on input line 5788.
-
-
-LaTeX Warning: Reference `table:ols_aic_nl' on page 87 undefined on input line 5798.
-
-
-LaTeX Warning: Reference `table:full_logit_nl' on page 87 undefined on input line 5824.
-
-
-LaTeX Warning: Reference `table:logit_aic_nl' on page 87 undefined on input line 5836.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[87
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.20.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5861 \newpage
-               
-pdfTeX warning (ext4): destination with the same identifier (name{table.20.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5861 \newpage
-               ] [88
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[89
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.20.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5904 \elandscape
-                  ] [90
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.20.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.5949 \elandscape
-                  ]
-
-LaTeX Warning: Reference `table:relprty_tab_pl' on page 91 undefined on input line 5959.
-
-
-LaTeX Warning: Reference `table:full_ols_pl' on page 91 undefined on input line 5979.
-
-
-LaTeX Warning: Reference `table:ols_aic_pl' on page 91 undefined on input line 5988.
-
-
-LaTeX Warning: Reference `table:full_logit_pl' on page 91 undefined on input line 6008.
-
-
-LaTeX Warning: Reference `table:crosstab_1_pl' on page 91 undefined on input line 6019.
-
-
-LaTeX Warning: Reference `table:crosstab_2_pl' on page 91 undefined on input line 6019.
-
-
-LaTeX Warning: Reference `table:crosstab_3_pl' on page 91 undefined on input line 6019.
-
-
-LaTeX Warning: Reference `table:lrtest_1_pl' on page 91 undefined on input line 6024.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: Reference `table:logit_aic_pl' on page 91 undefined on input line 6054.
-
-[91
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.21.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.6055 
-       
-pdfTeX warning (ext4): destination with the same identifier (name{table.21.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.6055 
-       ] [92
-pdfTeX warning (ext4): destination with the same identifier (name{table.21.3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.6141 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.21.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.6141 \blandscape
-                  
-pdfTeX warning (ext4): destination with the same identifier (name{table.21.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.6141 \blandscape
-                  ] [93
-
-]
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
-[94
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.21.8}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.6183 \elandscape
-                  ] [95
-
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.21.9}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.6226 \elandscape
-                  ]
-
-LaTeX Warning: Reference `table:relprty_tab_fr' on page 96 undefined on input line 6236.
-
-
-LaTeX Warning: Reference `table:full_ols_pt' on page 96 undefined on input line 6258.
-
-
-LaTeX Warning: Reference `table:ols_aic_pt' on page 96 undefined on input line 6268.
-
-
-LaTeX Warning: Reference `table:full_logit_pt' on page 96 undefined on input line 6290.
-
-
-LaTeX Warning: Reference `table:logit_aic_pt' on page 96 undefined on input line 6302.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+l.853 \clearpage
+                ] (./Codebook_Appendix_A_20220624.aux)
 
-! LaTeX Error: Too many unprocessed floats.
+LaTeX Warning: There were multiply-defined labels.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6324 \begin{table}[!htbp]
-                            \centering 
+Package rerunfilecheck Info: File `Codebook_Appendix_A_20220624.out' has not changed.
+(rerunfilecheck)             Checksum: 5BB392135737C528FCF6C70B34E83851;521.
+ ) 
 Here is how much of TeX's memory you used:
- 15308 strings out of 479998
- 249997 string characters out of 5886384
- 914862 words of memory out of 5000000
- 32772 multiletter control sequences out of 15000+600000
- 527112 words of font info for 144 fonts, out of 8000000 for 9000
+ 14865 strings out of 479997
+ 244382 string characters out of 5886368
+ 667911 words of memory out of 5000000
+ 32617 multiletter control sequences out of 15000+600000
+ 528200 words of font info for 121 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,11n,67p,1025b,546s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 60i,11n,67p,1025b,507s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
+Output written on Codebook_Appendix_A_20220624.pdf (12 pages, 261170 bytes).
+PDF statistics:
+ 209 PDF objects out of 1000 (max. 8388607)
+ 163 compressed objects within 2 object streams
+ 41 named destinations out of 1000 (max. 500000)
+ 34841 words of extra memory for PDF output out of 35830 (max. 10000000)
 
-!  ==> Fatal error occurred, no output PDF file produced!
