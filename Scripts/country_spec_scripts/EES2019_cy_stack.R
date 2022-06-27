@@ -29,18 +29,29 @@ respid <-
 
 # Check the parties about which we have the PTV variable # - - - - - - - - - - - - - - - - - - - - - - -
 
+# ptv_crit <-
+#   EES2019_cdbk_cy %>% 
+#   dplyr::select(partyname_eng, Q10_PTV, Q7) 
+
 ptv_crit <-
   EES2019_cdbk_cy %>% 
-  dplyr::select(partyname_eng, Q10_PTV, Q7) 
+  dplyr::select(partyname_eng, Q10_PTV) 
+
 
 #ptv_crit: 6 parties
 
 # Check the seats obtained by each party - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-seats_crit <- 
-  EES2019_cdbk_cy %>% 
-  dplyr::select(partyname_eng, seats) %>% 
-  mutate(seats = case_when(seats==0 ~ NA_integer_, T~seats))
+# seats_crit <- 
+#   EES2019_cdbk_cy %>% 
+#   dplyr::select(partyname_eng, seats) %>% 
+#   mutate(seats = case_when(seats==0 ~ NA_integer_, T~seats))
+
+votes_crit <- 
+  EES2019_cdbk_cy %>%
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
+
 
 # seats_crit: 4 parties
 
