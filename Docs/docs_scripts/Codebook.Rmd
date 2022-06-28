@@ -32,7 +32,7 @@ options(knitr.table.format = "latex")
 ```
 
 \newpage
-# Preface {-}
+# Preface 
 This document consists in the codebook of a stacked data matrix (SDM) based on the dataset of the 2019 
 European Election Studies (EES) voter study. The creation of this SDM is part of the research activities 
 of [ProConEU](https://www.mzes.uni-mannheim.de/proconeu/), a research project aiming to analyse the 
@@ -77,6 +77,10 @@ unit of analysis of the SDM approach, namely the dyadic relationship between eac
 observation of the original data matrix (the 2019 EES voter study dataset) and each relevant party of a 
 given party system. These variables share the suffix `_gen`. Generic variables are then subset in three 
 distinct groups, namely *categorical*, *proximity*, and *synthetic* variables.
+
+Political parties are considered "*relevant*" on the bases of two criteria. First, a party is considered 
+relevant if a 2019 EES voter study includes a propensity to vote (PTV) measure for it. Second, a party 
+is labelled as relevant if it obtained at least one seat in the 2019 EP elections. 
 
 \bigskip
 \bigskip
