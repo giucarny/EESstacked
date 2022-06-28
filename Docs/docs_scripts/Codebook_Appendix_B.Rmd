@@ -34,7 +34,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_at_synteval.R'))
 ```
 
 Synthetic variables have been estimated for the full set of Austrian parties available in the original 
-2019 EES Austrian voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_at}). 
+2019 EES Austrian voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_at}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -199,7 +199,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_be_synteval.R'))
 ```
 
 Synthetic variables have been estimated for the full set of Belgian parties available in the original 
-2019 EES Belgian voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Tables \ref{table:relprty_tab_be_du} and \ref{table:relprty_tab_be_fr}).
+2019 EES Belgian voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Tables \ref{table:relprty_tab_be_du} and \ref{table:relprty_tab_be_fr}).
 Note that the Belgian sample is splitted according to the two electoral colleges of Belgium, namely the Dutch and the French electoral college. 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
@@ -706,7 +706,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_cz_synteval.R'))
 ```
 
 Synthetic variables have been estimated for the full set of Czech parties available in the original 
-2019 EES Czech Republic voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_cz}).
+2019 EES Czech Republic voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_cz}).
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -892,7 +892,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_hr_synteval.R'))
 ```
 
 Synthetic variables have been estimated for seven out of fourteen Croatian parties available in the original 
-2019 EES Croatian voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_hr}). 
+2019 EES Croatian voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_hr}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -1108,7 +1108,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_cy_synteval.R'))
 ```
 
 Synthetic variables have been estimated for six out of seven Cypriot parties available in the original 
-2019 EES Cypriot voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_cy}). 
+2019 EES Cypriot voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_cy}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -1303,7 +1303,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_dk_synteval.R'))
 ```
 
 Synthetic variables have been estimated for seven of ten of Danish parties available in the original 
-2019 EES Danish voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_dk}). 
+2019 EES Danish voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_dk}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -1429,7 +1429,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_ee_synteval.R'))
 
 Synthetic variables have been estimated for seven of twelve Estonian parties available in the original 
 2019 EES Estonian voter study selected according to the criteria stated in the EES 2019 SDM codebook (
-for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_ee}). 
+for the relevant parties see Table \ref{table:relprty_tab_ee}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -1664,7 +1664,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_fi_synteval.R'))
 ```
 
 Synthetic variables have been estimated for the full set of Finnish parties available in the original 
-2019 EES Finnish voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_fi}).
+2019 EES Finnish voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_fi}).
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -1795,7 +1795,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_fr_synteval.R'))
 ```
 
 Synthetic variables have been estimated for seven out of forteen French parties available in the original 
-2019 EES French voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_fr}). 
+2019 EES French voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_fr}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -1920,7 +1920,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_de_synteval.R'))
 ```
 
 Synthetic variables have been estimated for all of German parties available in the original 
-2019 EES German voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_de}). 
+2019 EES German voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_de}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -2050,7 +2050,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_el_synteval.R'))
 ```
 
 Synthetic variables have been estimated for the full set of Greek parties available in the original 
-2019 EES Greece voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_el}).
+2019 EES Greece voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_el}).
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -2225,7 +2225,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_hu_synteval.R'))
 ```
 
 Synthetic variables have been estimated for seven out of eight Hungarian parties available in the original 
-2019 EES Hungarian voter study selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_hu}).
+2019 EES Hungarian voter study selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_hu}).
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -2362,7 +2362,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_ie_synteval.R'))
 ```
 
 Synthetic variables have been estimated for the full set of Irish parties available in the original 
-2019 EES Irish voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_ie}). 
+2019 EES Irish voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_ie}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -2526,7 +2526,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_it_synteval.R'))
 ```
 
 Synthetic variables have been estimated for the full set of relevant parties available in the original 
-2019 EES Italian voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_it}). 
+2019 EES Italian voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_it}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -2652,7 +2652,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_lv_synteval.R'))
 ```
 
 Synthetic variables have been estimated for seven out of eighteen Latvian parties available in the original 
-2019 EES Latvian voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_lv}). 
+2019 EES Latvian voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_lv}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -2882,7 +2882,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_lt_synteval.R'))
 ```
 
 Synthetic variables have been estimated for the full set of Lithuanian parties available in the original 
-2019 EES Lithuania voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_lt}).
+2019 EES Lithuania voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_lt}).
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -3100,7 +3100,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_lu_synteval.R'))
 ```
 
 Synthetic variables have been estimated for seven out of ten Luxembourgian parties available in the original 
-2019 EES Luxembourgian voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_lu}). 
+2019 EES Luxembourgian voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_lu}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -3229,7 +3229,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_mt_synteval.R'))
 ```
 
 Synthetic variables have been estimated for the full set of Maltese parties available in the original 
-2019 EES Maltese voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_mt}). 
+2019 EES Maltese voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_mt}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -3476,7 +3476,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_nl_synteval.R'))
 ```
 
 Synthetic variables have been estimated for nine of sixteen Dutch parties available in the original 
-2019 EES Dutch voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_nl}). 
+2019 EES Dutch voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_nl}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -3613,7 +3613,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_pl_synteval.R'))
 ```
 
 Synthetic variables have been estimated for five out of six Polish parties available in the original 
-2019 EES Poland voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_pl}).
+2019 EES Poland voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_pl}).
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -3792,7 +3792,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_pt_synteval.R'))
 ```
 
 Synthetic variables have been estimated for six out of thirteen Portugues parties available in the original 
-2019 EES Portugues voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_fr}). 
+2019 EES Portugues voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_fr}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -3917,7 +3917,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_ro_synteval.R'))
 
 Synthetic variables have been estimated for seven out of eight Romanian parties available in the original 
 2019 EES Romanian voter study selected according to the criteria stated in the EES 2019 SDM codebook (
-for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_ro}). 
+for the relevant parties see Table \ref{table:relprty_tab_ro}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -4092,7 +4092,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_sk_synteval.R'))
 ```
 
 Synthetic variables have been estimated for nine out of ten Slovakian parties available in the original 
-2019 EES Slovakia voter study selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_sk}).
+2019 EES Slovakia voter study selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_sk}).
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -4276,7 +4276,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_si_synteval.R'))
 ```
 
 Synthetic variables have been estimated for the full set of Slovene parties available in the original 
-2019 EES Slovene voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_si}). 
+2019 EES Slovene voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_si}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -4489,7 +4489,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_es_synteval.R'))
 ```
 
 Synthetic variables have been estimated for seven of fifteen Spanish parties available in the original 
-2019 EES Spanish voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_es}). 
+2019 EES Spanish voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_es}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -4616,7 +4616,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_se_synteval.R'))
 ```
 
 Synthetic variables have been estimated for the full set of Swedish parties available in the original 
-2019 EES Swedish voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_se}).
+2019 EES Swedish voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_se}).
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
@@ -4753,7 +4753,7 @@ source(here('Scripts', 'synteval', 'country_spec', 'EES2019_uk_synteval.R'))
 ```
 
 Synthetic variables have been estimated for seven out of fourteen British (UK) parties available in the original 
-2019 EES British (UK) voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the criteria see Sect. XXX; for the relevant parties see Table \ref{table:relprty_tab_uk}). 
+2019 EES British (UK) voter study and selected according to the criteria stated in the EES 2019 SDM codebook (for the relevant parties see Table \ref{table:relprty_tab_uk}). 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 options(knitr.kable.NA = 'NA')
