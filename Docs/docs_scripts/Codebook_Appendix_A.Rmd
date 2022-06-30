@@ -1,0 +1,79 @@
+---
+title: Appendix A 
+subtitle: Summary of relevant parties 
+date: 30.06.2022
+toc: false
+output: 
+  bookdown::pdf_document2:
+    includes:
+      in_header: eval_header.tex
+urlcolor: RedOrange
+---
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
+
+# Load 'here' for sourcing # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+library('here')
+
+source(here('Scripts', 'synteval', 'Synteval_gen.R'))
+
+```
+
+
+# Relevant parties
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+
+# source the country specific stacks to extract all relevant parties
+invisible(
+  lapply(
+    paste0(here('Scripts', 'synteval', 'country_spec'), '/',
+           list.files(here('Scripts', 'synteval', 'country_spec'))),
+    source)
+)
+
+# the Belgium stack needs to be recoded from a list to two individual dataframes in order to rbind all country specific scripts into one dataframe
+EES2019_be_fr_stack <- EES2019_be_stack$`FR-el` %>% select(-'el_coll_be')
+EES2019_be_du_stack <- EES2019_be_stack$`DU-el` %>% select(-'el_coll_be')
+rm(EES2019_be_stack)
+
+# rbind all country specific scripts togehter
+EES2019_partylist <- mget(ls(pattern = '_stack')) %>% do.call('rbind',.)
+
+# extract the partycodes of all relevant parties from the stack
+partycode <- EES2019_partylist %>%
+  distinct(party) %>%
+  group_by(party) %>%
+  .$party
+
+# extract countrynames fitting to the coutryshort code
+countrylist <- EES2019 %>% 
+  distinct(countryname,countryshort) 
+
+# filter the party codebook for relevant parties of the EES2019 stack and merge with countrynames
+partylist <- EES2019_cdbk %>%
+  filter(Q7 %in% partycode) %>%
+  left_join(countrylist, by='countryshort') %>%
+  select(countryname,Q7,partyname_eng) %>%
+  group_by(Q7)
+
+# rename parties
+partylist[partylist$Q7==304, 'partyname_eng'] <- 'IMRO – Bulgarian National Movement'
+partylist[partylist$Q7==2508, 'partyname_eng'] <- 'Electoral alliance Progressive Slovakia and TOGEHTER - Civic Democracy'
+  
+#delete all objects in environment except the partylist  
+rm(list=setdiff(ls(), "partylist"))
+
+
+#table
+options(knitr.kable.NA = 'NA')
+options(knitr.table.format = "latex")
+
+names(partylist) <- c('Country','Party','Party name (eng)')
+
+partylist %>%
+kable(caption = "Austrian relevant parties \\label{table:relprty_tab_at}", booktabs = T, longtable = T,
+        align = c('l', 'c', 'l')) %>% 
+  kable_styling(latex_options = c('striped', 'hold_position'))
+
+
+```
