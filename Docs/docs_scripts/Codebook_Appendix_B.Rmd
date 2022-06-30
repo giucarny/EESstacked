@@ -3860,8 +3860,6 @@ logit_aic %>%
   
 ```
 
-
-
 ```{r, results='asis', echo=F}
 
 stargazer::stargazer(finalmod_lst$OLS, 
