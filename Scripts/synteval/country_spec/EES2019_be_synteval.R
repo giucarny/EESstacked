@@ -4,20 +4,10 @@
 # last update: 2022-04-15
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Admin # ==============================================================================================
 
-want = c("tidyverse", "magrittr", "haven", "data.table", "labelled", "here", "stringr", "rlang", "car",
-         "caret", "DescTools", "stargazer", "kableExtra")
-have = want %in% rownames(installed.packages())
-if ( any(!have) ) { install.packages( want[!have] ) }
-junk <- lapply(want, library, character.only = TRUE)
-options(scipen = 99)
-
-rm(list = ls())
-
-# Source the general workflow # ========================================================================
-
-source(here('Scripts', 'synteval', 'Synteval_gen.R'))
+# # Source the general workflow # ========================================================================
+# 
+# source(here('Scripts', 'synteval', 'Synteval_gen.R'))
 
 
 # Country-spec workflow # ==============================================================================
@@ -116,6 +106,8 @@ csdf_lst <-
                 'cdbk' = EES2019_cdbk_be[[x]],
                 'SDM'  = EES2019_be_stack[[x]])
          })
+
+csdf_lst$`DU-el`$cdbk %<>% arrange(Q7)
 
 names(csdf_lst)  <- unlist(el_coll_be)
 
