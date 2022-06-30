@@ -37,10 +37,15 @@ ptv_crit <-
 
 # Check the seats obtained by each party - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-seats_crit <- 
+# seats_crit <- 
+#   EES2019_cdbk_el %>% 
+#   dplyr::select(partyname_eng, seats) %>% 
+#   mutate(seats = case_when(seats==0 ~ NA_integer_, T~seats))
+
+votes_crit <- 
   EES2019_cdbk_el %>% 
-  dplyr::select(partyname_eng, seats) %>% 
-  mutate(seats = case_when(seats==0 ~ NA_integer_, T~seats))
+  mutate(seats = case_when(seats==as.integer(0) ~ NA_integer_, T~seats)) %>% 
+  dplyr::select(partyname, votesh, seats)
 
 # seats_crit: 6 parties
 

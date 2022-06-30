@@ -54,10 +54,17 @@ ptv_crit <- lapply(el_coll_be,
 
 # Check the seats obtained by each party - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-seats_crit <- lapply(el_coll_be, 
+# seats_crit <- lapply(el_coll_be, 
+#                      function(x) {
+#                        EES2019_cdbk_be[[x]] %>%  
+#                          dplyr::select(partyname, seats) %>% 
+#                          mutate(seats = case_when(seats==0 ~ NA_integer_, T~seats))
+#                      })
+
+votes_crit <- lapply(el_coll_be, 
                      function(x) {
                        EES2019_cdbk_be[[x]] %>%  
-                         dplyr::select(partyname, seats) %>% 
+                         dplyr::select(partyname, seats, votesh) %>% 
                          mutate(seats = case_when(seats==0 ~ NA_integer_, T~seats))
                      })
 
