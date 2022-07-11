@@ -1,7 +1,6 @@
 ---
 title: Appendix A 
-subtitle: Summary of relevant parties 
-date: 30.06.2022
+date: 10.07.2022
 toc: false
 output: 
   bookdown::pdf_document2:
@@ -9,6 +8,14 @@ output:
       in_header: eval_header.tex
 urlcolor: RedOrange
 ---
+
+
+\renewcommand{\thesection}{A}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}  
+\setcounter{table}{0}
+\setcounter{figure}{0}
+
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
 
@@ -20,7 +27,7 @@ source(here('Scripts', 'synteval', 'Synteval_gen.R'))
 ```
 
 
-# Relevant parties
+# {-}
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 
 # source the country specific stacks to extract all relevant parties
@@ -28,10 +35,16 @@ invisible(
   lapply(
     paste0(here('Scripts', 'synteval', 'country_spec'), '/',
            list.files(here('Scripts', 'synteval', 'country_spec'))),
-    source)
+    function(x){
+      # print(x)
+      source(x)
+    })
 )
 
+
+
 # the Belgium stack needs to be recoded from a list to two individual dataframes in order to rbind all country specific scripts into one dataframe
+
 EES2019_be_fr_stack <- EES2019_be_stack$`FR-el` %>% select(-'el_coll_be')
 EES2019_be_du_stack <- EES2019_be_stack$`DU-el` %>% select(-'el_coll_be')
 rm(EES2019_be_stack)
@@ -59,6 +72,7 @@ partylist <- EES2019_cdbk %>%
 # rename parties
 partylist[partylist$Q7==304, 'partyname_eng'] <- 'IMRO – Bulgarian National Movement'
 partylist[partylist$Q7==2508, 'partyname_eng'] <- 'Electoral alliance Progressive Slovakia and TOGEHTER - Civic Democracy'
+partylist[partylist$Q7==405, 'partyname_eng'] <- 'Coalition between HSS and GLAS–IDS'
   
 #delete all objects in environment except the partylist  
 rm(list=setdiff(ls(), "partylist"))
@@ -68,12 +82,76 @@ rm(list=setdiff(ls(), "partylist"))
 options(knitr.kable.NA = 'NA')
 options(knitr.table.format = "latex")
 
-names(partylist) <- c('Country','Party','Party name (eng)')
+names(partylist) <- c('Country','Party','Party name (English)')
 
-partylist %>%
-kable(caption = "Austrian relevant parties \\label{table:relprty_tab_at}", booktabs = T, longtable = T,
-        align = c('l', 'c', 'l')) %>% 
-  kable_styling(latex_options = c('striped', 'hold_position'))
+  # arrange(Country, Party) %>% 
+  # group_by(Country) %>%
+  # mutate_at(vars(group_cols()), ~replace(., row_number() != 1, '')) %>% # print(., n=nrow(.))
+  # mutate(
+  #   Country = case_when(
+  #     Country=='Belgium' & Party==201 ~ 'Belgium (Flanders)',
+  #     Country=='Belgium' & Party==208 ~ 'Belgium (Wallonia)',
+  #     T                               ~ Country
+  #   )
+  # ) %>% 
+
+partylist %<>%
+  # mutate(
+  #   Country = case_when(
+  #     Country=='Belgium' & Party==201 ~ 'Belgium (Flanders)',
+  #     Country=='Belgium' & Party==208 ~ 'Belgium (Wallonia)',
+  #     T                               ~ Country
+  #   )
+  # ) %>%
+  arrange(Country, Party)
+
+partylist %>% 
+  mutate(
+    Country = '' # ifelse(Country %in% setdiff(Country, c('Austria')), '', Country)
+  ) %>%
+  kable(
+    caption = "2019 European Election Study SDM Relevant Parties \\label{table:relprty_tab_at}", 
+    booktabs = T, 
+    longtable = T,
+    align = c('l', 'c', 'l')) %>% 
+  kable_styling(
+    latex_options = c('hold_position','repeat_header'),
+    repeat_header_continued = "\\textit{(Continued)}"
+  ) %>%
+  # pack_rows(index = table(partylist$Country))
+  pack_rows('Austria', 1, 6) %>%
+  pack_rows('Belgium (Fl.)', 7, 12) %>%
+  pack_rows('Belgium (Wa.)', 13, 20)  %>%
+  pack_rows('Bulgaria', 21, 27)  %>%
+  pack_rows('Croatia', 28, 34) %>%
+  pack_rows('Cyprus', 35, 40) %>%
+  pack_rows('Czech Rep.', 41, 48) %>%
+  pack_rows('Denmark', 49, 55)  %>%
+  pack_rows('Estonia', 56, 62) %>%
+  pack_rows('Finland', 63, 69) %>%
+  pack_rows('France', 70, 76) %>%
+  pack_rows('Germany', 77, 83) %>%
+  pack_rows('Greece', 84, 88) %>%
+  pack_rows('Hungary', 89, 95) %>%
+  pack_rows('Ireland', 96, 101) %>%
+  pack_rows('Italy', 102, 108) %>%
+  pack_rows('Latvia', 109, 115) %>%
+  pack_rows('Lithuania', 116, 122) %>%
+  pack_rows('Luxembourg', 123, 129) %>%
+  pack_rows('Malta', 130, 134) %>%
+  pack_rows('Netherlands', 135, 143) %>%
+  pack_rows('Poland', 144, 148) %>%
+  pack_rows('Portugal', 149, 154) %>% 
+  pack_rows('Romania', 155, 161) %>% 
+  pack_rows('Slovakia', 162, 170) %>% 
+  pack_rows('Slovenia', 171, 179) %>% 
+  pack_rows('Spain', 180, 186) %>% 
+  pack_rows('Sweden', 187, 194) %>% 
+  pack_rows('United Kingdom', 195, 201) 
+
+  
+
+
 
 
 ```

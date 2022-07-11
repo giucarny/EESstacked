@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: Script for Evaluating Synthetic Variables Estimation (EES 2019 Voter Study, Belgian Sample) 
 # Author: G.Carteny
-# last update: 2022-04-15
+# last update: 2022-07-10
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -107,7 +107,7 @@ csdf_lst <-
                 'SDM'  = EES2019_be_stack[[x]])
          })
 
-csdf_lst$`DU-el`$cdbk %<>% arrange(Q7)
+# csdf_lst$`DU-el`$cdbk %<>% arrange(Q7)
 
 names(csdf_lst)  <- unlist(el_coll_be)
 

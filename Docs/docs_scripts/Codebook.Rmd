@@ -33,7 +33,7 @@ options(knitr.table.format = "latex")
 ```
 
 \newpage
-# Preface {-}
+# Preface 
 This document consists in the codebook of a stacked data matrix (SDM) based on the dataset of the 2019 
 European Election Studies (EES) voter study. The creation of this SDM is part of the research activities 
 of [ProConEU](https://www.mzes.uni-mannheim.de/proconeu/), a research project aiming to analyse the 
@@ -51,7 +51,29 @@ available at [https://github.com/giucarny/EESstacked](https://github.com/giucarn
 
 
 \newpage
-# Overview of the data file {-}
+
+# Introduction 
+
+## The stacked data matrix
+
+The stacked data matrix consists in a ...
+
+## Original data file
+
+The dataset from which the stacked data matrix (version 1) is computed is the 2019 European Election 
+Study (EES) voter study (Schmitt et al. 2020). This study consists in a cross-national post-election 
+survey, conducted by Gallup International in all 28 EU member states after the 2019 European 
+Parliament elections. Respondents were selected randomly from access panel databases using 
+stratification variables, with the exception of Malta and Cyprus where a multi-stage Random Digit 
+Dialing (RDD) approach was used. In all countries, the samples were stratified by gender, age, region, 
+and type of locality, and the sample size is roughly 1000 interviews in each EU member state (except 
+Cyprus, Luxembourg, and Malta where the sample size is 500), with a total number of observations equal 
+to 26,538. 
+
+
+
+
+## Overview of the data file 
 
 The variables of the dataset are grouped first according to their relationship with the set of variables 
 available in the 2019 EES voter study. The first `r grep('countryname',names(EES2019_stckd))-1` 
@@ -85,7 +107,7 @@ relevant. Second, if said party obtained at least one seat in the 2019 EP electi
 considered relevant. 
 
 \newpage
-# Variables {-}
+# Variables 
 ## Identification variables {-}
 
 ### party {-}
@@ -467,5 +489,5 @@ middle or higher class);
 \clearpage
 \newpage
 
-# Bibliographical References {-}
+# Bibliographical References 
 
