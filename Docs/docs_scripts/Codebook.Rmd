@@ -1,7 +1,7 @@
 ---
 title: 2019 EES Voter Study - Stacked Data Matrix Codebook
 author: Giuseppe Carteny, Wilhelmine Häußling, Matthias Körnig, Julian Leiser
-date: 28.06.2022 
+date: 11.07.2022 
 toc: true
 output: 
   bookdown::pdf_document2:
@@ -34,14 +34,14 @@ options(knitr.table.format = "latex")
 
 \newpage
 # Preface 
-This document consists in the codebook of a stacked data matrix (SDM) based on the dataset of the 2019 
-European Election Studies (EES) voter study. The creation of this SDM is part of the research activities 
-of [ProConEU](https://www.mzes.uni-mannheim.de/proconeu/), a research project aiming to analyse the 
-enlarging gaps between proponents and opponents of the European Integration in terms of party politics, 
-citizen politics, and social media communication. The project is funded by the German Federal Ministry 
-of Education and Research (BMBF), and it involves the Mannheim Centre for European Social Research 
-(MZES) of the University of Mannheim, the Ludwig Maximilian University of Munich, the University of
-Thessaloniki, and the University of Newcastle.  
+This document consists in the codebook of a stacked data matrix based on the dataset 
+of the 2019 European Election Studies (EES) voter study. The creation of this SDM is part of the 
+research activities of [ProConEU](https://www.mzes.uni-mannheim.de/proconeu/), a research project aiming
+to analyse the enlarging gaps between proponents and opponents of the European Integration in terms of 
+party politics, citizen politics, and social media communication. The project is funded by the German 
+Federal Ministry of Education and Research (BMBF), and it involves the Mannheim Centre for European 
+Social Research (MZES) of the University of Mannheim, the Ludwig Maximilian University of Munich, the 
+University of Thessaloniki, and the University of Newcastle.  
 More specifically, this dataset is the product of the efforts of the ProConEU working package based at 
 the MZES. The preparation of the 2019 EES SDM set was led by Hermann Schmitt and coordinated by Giuseppe 
 Carteny. Wilhelmine Häußling, Julian Leiser, and Matthias Körnig actively participated to the 
@@ -56,11 +56,34 @@ available at [https://github.com/giucarny/EESstacked](https://github.com/giucarn
 
 ## The stacked data matrix
 
-The stacked data matrix consists in a ...
+The stacked data matrix (hereinafter, SDM) consists of a long format data matrix in which each row 
+represents the (dyadic) relationship between two sets of relevant elements.  
+Among its applications, this data matrix has been extensively used for the study of voting behaviour, 
+and in particular voters' propensity to vote and vote choice (**citations**). In this setting, the SDM 
+observations are usually voter-party dyads, namely dyadic relationships between individual voters and 
+the relevant vote choices available to each individual voter in a given election.  
+These new observations allow, then, *a shift downward* in terms of unit of analysis (the new units 
+are analytically nested within the original sets of elements), and a *shift upward* in terms of 
+conceptual generalisation, as explained below.
+
+The reason behind the development of the SDM for voting behaviour studies is that it allows to go 
+beyond problems related to the comparability of vote choice across different party systems, especially 
+multi-party ones.  
+By relying on party-voted dyads the SDM allows to address research questions concerning *entire* party 
+systems, thus enhancing the possibility to develop longitudinal and/or cross-national comparative 
+analyses without: 
+
+1. Arbitrarily reducing the number of relevant vote choices (parties) of the system; 
+2. Reducing the vote alternatives available in a given election to a single property of said alternatives 
+(e.g., party positions on the Left-Right continuum).
+
+Hence, the SDM allows to include in the analyses all the relevant individual-, party-, and context-level 
+factors that might affect the vote choice. 
+
 
 ## Original data file
 
-The dataset from which the stacked data matrix (version 1) is computed is the 2019 European Election 
+The dataset from which the SDM (version 1) is computed is the 2019 European Election 
 Study (EES) voter study (Schmitt et al. 2020). This study consists in a cross-national post-election 
 survey, conducted by Gallup International in all 28 EU member states after the 2019 European 
 Parliament elections. Respondents were selected randomly from access panel databases using 
@@ -73,7 +96,7 @@ to 26,538.
 
 
 
-## Overview of the data file 
+## Overview of the SDM data file 
 
 The variables of the dataset are grouped first according to their relationship with the set of variables 
 available in the 2019 EES voter study. The first `r grep('countryname',names(EES2019_stckd))-1` 
@@ -108,22 +131,22 @@ considered relevant.
 
 \newpage
 # Variables 
-## Identification variables {-}
+## Identification variables 
 
-### party {-}
+### party 
 Unique identifier of the relevant parties participating to the European Parliament (EP) elections of 
 2019. Only parties for which the EES 2019 voter study propensity to vote (PTV) variable is available 
 have been selected. Values equate to those defined in the original EES 2019 vote choice variable 
 referring to the 2019 EP elections 
 (`Q7`; See the [2019 EES voter study codebook](https://dbk.gesis.org/dbksearch/download.asp?id=67448)). 
 
-### stack {-} 
+### stack  
 Unique identifier combining the individual respondent identification code as assigned in the EES 2019 
 voter study (`respid`; See the 
 [2019 EES voter study codebook](https://dbk.gesis.org/dbksearch/download.asp?id=67448)) (`respid`) and 
 party codes (`party`). 
 
-### countryname and countryshort {-}
+### countryname and countryshort 
 The first variable (`countryname`) consists in the complete name of the European Union member states in 
 2019, whereas the second variable (`countryshort`) consists in the two-letter country code of said 
 states as defined by  
@@ -149,9 +172,9 @@ states as defined by
 \bigskip
 \bigskip
 \hrule
-## Recoded variables {-}
+## Recoded variables 
 
-### D1_rec {-}
+### D1_rec 
 Variable measuring whether the respondent is a member of a trade union or not (Recoded from the 2019 
 EES variable `D1`).
 
@@ -163,7 +186,7 @@ Values:
 99 - No answer  
 
 
-### D3_rec {-}
+### D3_rec 
 Respondent's sex (Recoded from the respondent 2019 EES sex variable, `D3`).
 
 Values: 
@@ -172,10 +195,10 @@ Values:
 2 - Female  
 3 - Other  
 
-### D4_1_rec {-}
+### D4_1_rec 
 Respondent's age in 2019 (Recoded from the respondent 2019 EES year of birth variable, `D4_1`).
 
-### D5_rec {-}
+### D5_rec 
 Respondent's marital status (Recoded from the 2019 EES variable `D5`).
 
 Values: 
@@ -185,7 +208,7 @@ Values:
 98 - Don't know  
 99 - No answer
 
-### D6_rec {-}
+### D6_rec 
 Respondent's occupational status (Recoded from the 2019 EES variable `D6`).
 
 Values: 
@@ -199,7 +222,7 @@ Values:
 7  - Other  
 99 - No answer  
 
-### D6_std_rec {-}
+### D6_std_rec 
 Variable measuring whether the respondent is a student or not (Recoded from the 2019 EES variable `D6`).
 
 Values: 
@@ -209,7 +232,7 @@ Values:
 99 - No answer  
 
 
-### D6_une_rec {-}
+### D6_une_rec 
 Variable measuring whether the respondent is unemployed or not (Recoded from the 2019 EES variable `D6`).
 
 Values: 
@@ -219,7 +242,7 @@ Values:
 99 - No answer  
 
 
-### D7_rec {-}
+### D7_rec 
 Respondent's subjective social class (Recoded from the 2019 EES variable `D7`).
 
 Values: 
@@ -232,7 +255,7 @@ Values:
 99 - No answer  
 
 
-### D8_rec {-}
+### D8_rec 
 Respondent's area of residency (Recoded from the 2019 EES variable `D8`).
 
 Values: 
@@ -240,7 +263,7 @@ Values:
 0 - Rural area or village  
 1 - Small, middle, or large town
 
-### D9_rec {-}
+### D9_rec 
 Respondent's religious denomination (Recoded from the 2019 EES variable `D9`).
 
 Values: 
@@ -253,7 +276,7 @@ Values:
 5  - Other  
 99 - No answer
 
-### D10_rec {-}
+### D10_rec 
 Respondent's frequency of religious service attendance (Recoded from the 2019 EES variable `D10`).
 
 Values: 
@@ -272,7 +295,7 @@ Values:
 N.B.: 0 includes "*Non believer/Atheist/Agnostic*" in `D9_rec` if and only if "*No answer*" in `D10`.  
 
 
-### EDU_rec {-}
+### EDU_rec 
 Respondent's level of education (Recoded from the 2019 EES variables `EDU` and `D2`).
 
 Values:  
@@ -283,7 +306,7 @@ Values:
 99 - No answer    
 
 
-### Q25_rec {-}
+### Q25_rec 
 Variable measuring whether the respondent feels close to any political party or not. Differently from 
 the original variable (`Q25`) party codes have been recoded in order to be line with those of the 2019 
 EP vote choice variable (`Q7`, see the 
@@ -295,7 +318,7 @@ Values:
 90 - Respondent feels close to a party not among the answer categories or a non-relevant party  
 101-2807 Respondent feels close to the party [`Q25_rec` value]   
 
-### Q26_rec {-}
+### Q26_rec 
 Variable measuring the strength of the respondent closeness to the political identified in `Q25_rec`.  
 
 Values: 
@@ -306,7 +329,7 @@ Values:
 3  - Not asked (Respondent does not feel close to any party or doesn't know)  
 99 - Respondent does not remember/No answer   
 
-### Q9_rec {-}
+### Q9_rec 
 Respondent's (recalled) vote choice at the last national elections prior to 2019. Differently from the 
 original variable (`Q9`) party codes are in line with those of the 2019 EP vote choice variable (`Q7`, 
 see the 
@@ -325,9 +348,9 @@ Values:
 \bigskip
 \bigskip
 \hrule
-## Generic categorical variables {-}
+## Generic categorical variables 
 
-### Q2_gen {-}
+### Q2_gen 
 Variable measuring whether the respondent believes that the stack party would be the best 
 at dealing with the most important issue (as identified by the respondent herself) faced by the 
 respondent's country (Recoded from the 2019 EES variables `Q2`). 
@@ -340,7 +363,7 @@ Values:
 98 - Respondent does not know    
 99 - No answer
 
-### Q7_gen {-}
+### Q7_gen 
 Variable measuring whether the respondent (recalls to have) voted for the stack party at 
 the 2019 European Parliament (EP) elections (Recoded from the original 2019 EP vote choice variable of 
 the EES voter study, `Q7`; see the 
@@ -355,7 +378,7 @@ Values:
 N.B.: 0 includes all the cases in which the respondent voted for another party, did not vote, voted 
 blank or nil.  
 
-### Q9_gen {-}
+### Q9_gen 
 Variable measuring whether the respondent (recalls to have) voted for the stack party at the last 
 national general elections (Recoded from `Q9_rec`).
 
@@ -368,7 +391,7 @@ Values:
 N.B.: 0 includes all the cases in which the respondent voted for another party, did not vote, voted 
 blank or nil.  
 
-### Q25_gen {-}
+### Q25_gen 
 Dichotomous variable, measuring whether the repondent feels close to the stack party (Recoded from `Q25_rec`).
 
 Values:
@@ -380,7 +403,7 @@ Values:
 N.B.: 0 includes both the cases in which the respondent feels close to another party or does not feel 
 close to any party.  
 
-### Q26_gen {-}
+### Q26_gen 
 Ordinal variable, measuring the extent to which the respondent feels close to the stack party 
 (Recoded from `Q26_rec`).
 
@@ -399,9 +422,9 @@ close to any party.
 \bigskip
 \bigskip
 \hrule
-## Generic proximity variables {-}
+## Generic proximity variables 
 
-### Q10_gen {-}
+### Q10_gen 
 Variable measuring the respondent’s propensity to vote for the stack party (computed from the 
 2019 EES variable `Q10`).
 
@@ -412,7 +435,7 @@ Values:
 98 - Respondent does not know  
 
 
-### Q11_Q13_gen {-}
+### Q11_Q13_gen 
 Variable measuring the proximity between the respondent's self-placement on the Left-Right ideological 
 axis (`Q11`) and her perception of a specific party position on the same dimension (`Q13`). 
 
@@ -423,7 +446,7 @@ Values:
 98 - Respondent does not know  
 
 
-### Q23_Q24_gen {-}
+### Q23_Q24_gen 
 Variable measuring the proximity between the respondent's position about the EU integration process 
 (`Q23`) and her perception of a specific party position about the same process 
 (`Q24`).
@@ -438,9 +461,9 @@ Values:
 \bigskip
 \bigskip
 \hrule
-## Generic synthetic variables {-}
+## Generic synthetic variables 
 
-### socdem_synt_ptv {-}
+### socdem_synt_ptv 
 Variable measuring the affinity between respondent's socio-demographic characteristics and her 
 propensity to vote for the stack party (`Q7_gen`). This variable is estimated using the linear 
 predictions of an ordinary least squares (OLS) model. The list predictors for said model is presented 
@@ -455,7 +478,7 @@ Values:
 N.B.: Values are *not* centered.
 
 
-### socdem_synt_vc {-}
+### socdem_synt_vc 
 Variable measuring the affinity between respondent's socio-demographic characteristics and her 
 generic vote choice (`Q10_gen`). This variable is estimated using the linear predictions (log-odds) 
 of a binomial logistic regression model. The list predictors for said model is presented below. 
@@ -468,10 +491,10 @@ $+2.5$ or above - Respondent has a very high affinity with the stack party
 
 N.B.: Values are *not* centered.
 
-### Independent variables for socdem_synt_ptv and socdem_synt_vc estimation {-} 
+### Independent variables for socdem_synt_ptv and socdem_synt_vc estimation  
 
 
-#### Categorical independent variables: {-}
+#### Categorical independent variables: 
 
 * `D1_rec`: Variable measuring whether the respondent is a member of a trade union (1) or not (0);
 * `D3_rec`: Respondent's gender (0 = Male, 1 = Female);
@@ -482,7 +505,7 @@ middle or higher class);
 * `D8_rec`: Whether the respondent lives in a rural (0) or urban area (1);
 * `EDU_rec`: Respondent's years of formal education (1 = 15 years or less, 2 = 16-19 years, 3 = 20+).
 
-#### Continuous independent variables: {-}
+#### Continuous independent variables: 
 * `D4_1_rec`: Respondent's age (min = 16, max = 98; ordinal treated as continuous);
 * `D10_rec`: Respondent's religiosity (min = 0, max = 6; ordinal treated as continuous). 
 
