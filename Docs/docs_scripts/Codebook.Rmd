@@ -1,7 +1,7 @@
 ---
 title: 2019 EES Voter Study - Stacked Data Matrix Codebook
-author: Giuseppe Carteny, Wilhelmine Häußling, Matthias Körnig, Julian Leiser
-date: 11.07.2022 
+author: Giuseppe Carteny, Hermann Schmitt, Wilhelmine Häußling, Matthias Körnig, Julian Leiser
+date: 28.07.2022 
 toc: true
 output: 
   bookdown::pdf_document2:
@@ -11,6 +11,8 @@ output:
 urlcolor: NavyBlue
 bibliography: 'BibRef.bib'
 csl: apa.csl
+nocite: |
+ @schmitt_consequences_2021
 ---
 
 
@@ -35,9 +37,9 @@ options(knitr.table.format = "latex")
 \newpage
 # Preface 
 This document consists in the codebook of a stacked data matrix based on the dataset 
-of the 2019 European Election Studies (EES) voter study. The creation of this SDM is part of the 
+of the 2019 European Election Studies (EES) voter study. The creation of this matrix is part of the 
 research activities of [ProConEU](https://www.mzes.uni-mannheim.de/proconeu/), a research project aiming
-to analyse the enlarging gaps between proponents and opponents of the European Integration in terms of 
+to analyse the enlarging gaps between proponents and opponents of the European Union (EU) in terms of 
 party politics, citizen politics, and social media communication. The project is funded by the German 
 Federal Ministry of Education and Research (BMBF), and it involves the Mannheim Centre for European 
 Social Research (MZES) of the University of Mannheim, the Ludwig Maximilian University of Munich, the 
@@ -58,20 +60,20 @@ available at [https://github.com/giucarny/EESstacked](https://github.com/giucarn
 
 The stacked data matrix (hereinafter, SDM) consists of a long format data matrix in which each row 
 represents the (dyadic) relationship between two sets of relevant elements.  
+
 Among its applications, this data matrix has been extensively used for the study of voting behaviour, 
-and in particular voters' propensity to vote and vote choice (**citations**). In this setting, the SDM 
-observations are usually voter-party dyads, namely dyadic relationships between individual voters and 
-the relevant vote choices available to each individual voter in a given election.  
-These new observations allow, then, *a shift downward* in terms of unit of analysis (the new units 
-are analytically nested within the original sets of elements), and a *shift upward* in terms of 
-conceptual generalisation, as explained below.
+and in particular voters' propensity to vote and vote choice (for a recent application and review, see 
+Schmitt, Segatti, and Eijk 2021). In this setting, the SDM observations are usually voter-party dyads, 
+namely dyadic relationships between individual voters and the relevant vote choices available to each 
+individual voter in a given election.  These new observations allow, then, *a shift downward* in terms 
+of unit of analysis (the new units are analytically nested within the original sets of elements), and a 
+*shift upward* in terms of conceptual generalisation, as explained below.
 
 The reason behind the development of the SDM for voting behaviour studies is that it allows to go 
 beyond problems related to the comparability of vote choice across different party systems, especially 
-multi-party ones.  
-By relying on party-voted dyads the SDM allows to address research questions concerning *entire* party 
-systems, thus enhancing the possibility to develop longitudinal and/or cross-national comparative 
-analyses without: 
+multi-party ones. By relying on party-voted dyads the SDM allows to address research questions 
+concerning *entire* party systems, thus enhancing the possibility to develop longitudinal and/or 
+cross-national comparative analyses without: 
 
 1. Arbitrarily reducing the number of relevant vote choices (parties) of the system; 
 2. Reducing the vote alternatives available in a given election to a single property of said alternatives 
@@ -512,5 +514,5 @@ middle or higher class);
 \clearpage
 \newpage
 
-# Bibliographical References 
+# References 
 
