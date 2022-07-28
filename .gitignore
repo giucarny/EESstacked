@@ -1,7 +1,8 @@
 # Subdir
 /Docs/tutorials/
 /Docs/drafts/
-
+/Data/EES2019/
+/Data/EP2019/
 
 # History files
 .Rhistory
