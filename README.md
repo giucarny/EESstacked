@@ -48,10 +48,11 @@ vote choice.
 1.  Fork the repository;
 2.  Download the [EES 2019 voter study
     dataset](http://europeanelectionstudies.net/european-election-studies/ees-2019-study/voter-study-2019),
-    and the related [codebook](https://access.gesis.org/dbk/67448);
+    and the related [codebook](https://access.gesis.org/dbk/67448)
+    (rename the latter ‘ZA7581\_codebook.csv’);
 3.  Create a new folder in
     [`Data`](https://github.com/giucarny/EESstacked/tree/main/Data),
-    rename it ‘EES2019’ and transfer/paste the EES data there;  
+    rename it ‘EES2019’ and transfer/paste the EES data here;  
 4.  Run the
     [`EES2019_stack`](https://github.com/giucarny/EESstacked/blob/NewREADME/Scripts/EES2019_stack.R)
     script.
