@@ -15,9 +15,8 @@ the general workflow were completed mostly between July 2021 and January
 
 # What is an SDM
 
-An SDM consists of a long format data matrix in which each row
-represents the (dyadic) relationship between two sets of relevant
-elements.
+A SDM consists of a long format data matrix in which each row represents
+the (dyadic) relationship between two sets of relevant elements.
 
 Among its applications, this data matrix has been extensively used for
 the study of voting behaviour. In this setting, the SDM observations are

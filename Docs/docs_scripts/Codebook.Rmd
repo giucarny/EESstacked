@@ -1,7 +1,7 @@
 ---
 title: 2019 EES Voter Study - Stacked Data Matrix Codebook
 author: Giuseppe Carteny, Hermann Schmitt, Wilhelmine Häußling, Matthias Körnig, Julian Leiser
-date: 28.07.2022 
+date: 01.08.2022 
 toc: true
 output: 
   bookdown::pdf_document2:
@@ -58,7 +58,7 @@ available at [https://github.com/giucarny/EESstacked](https://github.com/giucarn
 
 ## The stacked data matrix
 
-The stacked data matrix (hereinafter, SDM) consists of a long format data matrix in which each row 
+A stacked data matrix (hereinafter, SDM) consists of a long format data matrix in which each row 
 represents the (dyadic) relationship between two sets of relevant elements.  
 
 Among its applications, this data matrix has been extensively used for the study of voting behaviour, 

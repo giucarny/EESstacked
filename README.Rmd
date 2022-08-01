@@ -14,7 +14,7 @@ social media communication. The data pipeline and the general workflow were comp
 
 # What is an SDM
 
-An SDM consists of a long format data matrix in which each row represents the (dyadic) relationship 
+A SDM consists of a long format data matrix in which each row represents the (dyadic) relationship 
 between two sets of relevant elements.  
 
 Among its applications, this data matrix has been extensively used for the study of voting behaviour. 
