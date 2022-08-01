@@ -7,12 +7,11 @@ This repository contains the code for building the stacked data matrix
 ([EES](http://europeanelectionstudies.net/)) voter study. The creation
 of this SDM is part of the research activities of the
 [ProConEU](https://www.mzes.uni-mannheim.de/proconeu/) project, an
-academic research effort[1] analysing the enlarging gaps between
-proponents and opponents of the European Union (EU) in terms of party
-politics, citizen politics, and social media communication. The data
-pipeline and the general workflow were completed mostly between July
-2021 and January 2022 making use of [R](https://cran.r-project.org/)
-version 4.1-4.2.
+academic research effort analysing the enlarging gaps between proponents
+and opponents of the European Union (EU) in terms of party politics,
+citizen politics, and social media communication. The data pipeline and
+the general workflow were completed mostly between July 2021 and January
+2022 making use of [R](https://cran.r-project.org/) version 4.1-4.2.
 
 # What is an SDM
 
@@ -54,6 +53,3 @@ vote choice.
 3.  Run the
     [`EES2019_stack`](https://github.com/giucarny/EESstacked/blob/NewREADME/Scripts/EES2019_stack.R)
     script.
-
-[1]  Funded by the German Federal Ministry of Education and Research
-([BMBF]((https://www.bmbf.de/bmbf/en/home/home_node.html)))
