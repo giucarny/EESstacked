@@ -1,10 +1,11 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: European Parliament 2019 election results 
 # Author: G.Carteny
-# last update: 2021-08-01
+# last update: 2022-08-01
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Get the EP election results files path # ============================================================
+# Get the EP election results files path # =============================================================
+
 votes <- 
   list.files(path = here('Data','EP2019', 'votes'), pattern = '^votes.*csv$') %>% 
   paste0(here('Data', 'EP2019', 'votes'), '/', .)
