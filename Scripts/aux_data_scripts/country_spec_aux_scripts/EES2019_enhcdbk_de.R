@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 enhanced codebook (Germany sample)
 # Author: W. Haeussling & J.Leiser
-# last update: 2022-03-15
+# last update: 2022-08-01
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -58,9 +58,9 @@ EES2019_de_enhcdbk <-
 
 # Create a common variable for merging the codebook w/ EMCS # ==========================================
 
-EES2019_de_enhcdbk %>%
-  dplyr::select(partyname, partyname_eng, Q7) %>%
-  print(., n=nrow(.))
+# EES2019_de_enhcdbk %>%
+#   dplyr::select(partyname, partyname_eng, Q7) %>%
+#   print(., n=nrow(.))
 
 EES2019_de_enhcdbk %<>% 
   mutate(

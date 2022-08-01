@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 Stacking Script 
 # Author: G.Carteny
-# last update: 2022-03-08
+# last update: 2022-08-01
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -142,5 +142,5 @@ source(here('Scripts', 'EES2019_stack_lbls.R'))
 # Save the dataset # ===================================================================================
 
 write_sav(EES2019_stckd, here('Output', 'EES2019_stckd.sav'))
-write_dta(EES2019_stckd, here('Output', 'EES2019_stckd.dta'))
+write_dta(EES2019_stckd, here('Output', 'EES2019_stckd.dta'), version = 15)
 fwrite(EES2019_stckd, here('Output', 'EES2019_stckd.csv'))

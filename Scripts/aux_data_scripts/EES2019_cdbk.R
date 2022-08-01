@@ -7,7 +7,7 @@
 # Load the EES Codebook # ==============================================================================
 
 EES2019_cdbk <- 
-  fread(here('Data', 'EES2019', 'ZA7581_codebook.csv')) %>% 
+  fread(here('Data', 'EES2019', 'ZA7581_cp.csv')) %>% 
   as_tibble() 
 
 # Substitute empty cells w/ NA by vector type # ========================================================
