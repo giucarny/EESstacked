@@ -43,7 +43,7 @@ Hence, the SDM allows to include in the analyses all the relevant
 individual-, party-, and context-level factors that might affect the
 vote choice.
 
-# How to build the EES 2019 SDM
+# How to build the 2019 EES SDM
 
 1.  Fork the repository;
 2.  Download the [EES 2019 voter study
