@@ -1,7 +1,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Title: EES2019 Stacking Script 
 # Author: G.Carteny
-# last update: 2022-08-01
+# last update: 2022-08-0
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Admin # ==============================================================================================
@@ -123,8 +123,10 @@ EES2019_stckd <-
          EDU_rec     = case_when(EDU==as.numeric(99) ~ 99, T ~ EDU_rec),
          Q25_rec     = case_when(is.na(Q25_rec) ~ as.integer(90), T ~ Q25_rec),
          socdem_synt_ptv = case_when(socdem_synt_ptv<0      ~ 0,
-                                     is.na(socdem_synt_ptv) ~ 99,
-                                     T                      ~ socdem_synt_ptv)
+                                     is.na(socdem_synt_ptv) ~ 999,
+                                     T                      ~ socdem_synt_ptv),
+         socdem_synt_vc = case_when(is.na(socdem_synt_vc)  ~ 999,
+                                    T                      ~ socdem_synt_vc)
          )
 
 rm(x, y, oldcols, newcols)
@@ -141,6 +143,7 @@ source(here('Scripts', 'EES2019_stack_lbls.R'))
 
 # Save the dataset # ===================================================================================
 
-write_sav(EES2019_stckd, here('Output', 'EES2019_stckd.sav'))
-write_dta(EES2019_stckd, here('Output', 'EES2019_stckd.dta'), version = 15)
-fwrite(EES2019_stckd, here('Output', 'EES2019_stckd.csv'))
+write_sav(EES2019_stckd, here('Output', 'EES2019_SDM.sav'))
+write_dta(EES2019_stckd, here('Output', 'EES2019_SDM.dta'), version = 15)
+fwrite(EES2019_stckd, here('Output', 'EES2019_SDM.csv'))
+save(EES2019_stckd, file = here('Output', 'EES2019_SDM.RData'))

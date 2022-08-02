@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.1)  1 AUG 2022 16:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.1)  2 AUG 2022 12:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -502,7 +502,236 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 File: l3backend-pdftex.def 2022-07-01 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count313
 \l__pdf_internal_box=\box76
-) (./Codebook.aux)
+) (./Codebook.aux
+
+LaTeX Warning: Label `tab:unnamed-chunk-3' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-3' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-3' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-3' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-3' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-3' multiply defined.
+
+
+LaTeX Warning: Label `table:relprty_tab_at' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-10' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-13' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-14' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-16' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-17' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-17' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-22' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-22' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-22' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-24' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-24' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-24' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-24' multiply defined.
+
+
+LaTeX Warning: Label `table:crosstab_4_bg' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-31' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-31' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-36' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-38' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-38' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-38' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-38' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-38' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-38' multiply defined.
+
+
+LaTeX Warning: Label `table:logit_aic_cy' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-46' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-46' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-46' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-46' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-46' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-61' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-61' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-61' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-61' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-84' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-106' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-106' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-106' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-106' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-108' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-108' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-108' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-108' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-108' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-117' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-117' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-117' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-117' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-127' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-127' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-129' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-129' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-129' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-129' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-129' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-129' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-129' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-129' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-129' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-129' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-129' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-143' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-143' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-155' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-162' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-162' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-167' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-167' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-169' multiply defined.
+
+
+LaTeX Warning: Label `tab:unnamed-chunk-169' multiply defined.
+
+)
 \openout1 = `Codebook.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 149.
@@ -632,47 +861,3001 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 3.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 3.
-)
+[1
+
+{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
 \tf@toc=\write4
 \openout4 = `Codebook.toc'.
 
-[1
-
-{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+[2] [3]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 241.
 (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [3]
+) [4]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 251.
 (c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [4] [5] [6] [7] [8] [9] [10]
-Underfull \hbox (badness 1259) in paragraph at lines 679--681
+) [5] [6] [7] [8] [9] [10] [11]
+Underfull \hbox (badness 1259) in paragraph at lines 680--682
 []\T1/lmtt/m/n/10 D5_rec\T1/lmr/m/n/10 (+20) : Whether the re-spon-dent is mar-ried/remarried/single liv-ing with a part-ner (1) or
  []
 
-[11] [12] [13
+[12] [13]
+Overfull \hbox (7.85638pt too wide) in alignment at lines 717--722
+ [] [] [] 
+ []
+
+
+Overfull \hbox (7.85638pt too wide) in alignment at lines 722--727
+ [] [] [] 
+ []
+
+
+Overfull \hbox (7.85638pt too wide) in alignment at lines 727--730
+ [] [] [] 
+ []
+
+
+Overfull \hbox (7.85638pt too wide) in alignment at lines 730--732
+ [] [] [] 
+ []
+
+
+Overfull \hbox (7.85638pt too wide) in alignment at lines 732--959
+ [] [] [] 
+ []
+
+
+Overfull \hbox (7.85638pt too wide) in alignment at lines 959--992
+ [] [] [] 
+ []
+
+[14
+
+] [15] [16] [17] [18] [19]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1025 \caption
+               {\label{tab:unnamed-chunk-6}Relevant Austrian parties \label{...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1025 ...an parties \label{table:relprty_tab_at}}
+                                                   [20]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[21
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1265 \clearpage
+                 
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1265 \clearpage
+                 ] [22
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1265 \clearpage
+                 
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1265 \clearpage
+                 
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1265 \clearpage
+                 ] [23
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1265 \clearpage
+                 ] [24
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1265 \clearpage
+                 ]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1281 \caption
+               {\label{tab:unnamed-chunk-13}Relevant Belgian parties in Dutc...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1281 ...college \label{table:relprty_tab_be_du}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1301 \caption
+               {\label{tab:unnamed-chunk-13}Relevant Belgian parties in Fren...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1301 ...college \label{table:relprty_tab_be_fr}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1348 \caption
+               {\label{tab:unnamed-chunk-14}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1349         \label{table:ols_aic_be_du}}
+                                           
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1369 \caption
+               {\label{tab:unnamed-chunk-14}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1370         \label{table:ols_aic_be_fr}}
+                                           
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[25
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1418 \caption
+               {\label{tab:unnamed-chunk-15}Likelihood-ratio Test between Mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1419 ...              \label{table:lrtest_1_be}}
+                                                   [26]
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1459 \caption
+               {\label{tab:unnamed-chunk-16}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1460         \label{table:logit_aic_be_du}}
+                                             
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1480 \caption
+               {\label{tab:unnamed-chunk-16}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1481         \label{table:logit_aic_be_fr}}
+                                             
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1507 \caption
+               {\label{tab:unnamed-chunk-17}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1508 ...            \label{table:crosstab_1_be}}
+                                                  
+Overfull \hbox (14.58203pt too wide) in paragraph at lines 1569--1602
+ [][] 
+ []
+
+
+Overfull \hbox (39.24245pt too wide) in paragraph at lines 1608--1641
+ [][] 
+ []
+
+
+Overfull \hbox (21.40892pt too wide) in paragraph at lines 1647--1680
+ [][] 
+ []
+
+
+Overfull \hbox (23.4349pt too wide) in paragraph at lines 1687--1720
+ [][] 
+ []
+
+[27] [28
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1722 \clearpage
+                 
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1722 \clearpage
+                 
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1722 \clearpage
+                 ] [29
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1722 \clearpage
+                 ] [30
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1722 \clearpage
+                 ] [31
+pdfTeX warning (ext4): destination with the same identifier (name{table.14}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1722 \clearpage
+                 ]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1738 \caption
+               {\label{tab:unnamed-chunk-20}Relevant Bulgarian parties \labe...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1738 ...an parties \label{table:relprty_tab_bg}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1771 \caption
+               {\label{tab:unnamed-chunk-21}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1772         \label{table:ols_aic_bg}}
+                                         [32
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1829 \caption
+               {\label{tab:unnamed-chunk-22}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1830 ...              \label{table:lrtest_1_bg}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1845 \caption
+               {\label{tab:unnamed-chunk-22}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1846 ...              \label{table:lrtest_2_bg}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1861 \caption
+               {\label{tab:unnamed-chunk-22}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1862 ...              \label{table:lrtest_3_bg}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1877 \caption
+               {\label{tab:unnamed-chunk-22}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1878 ...              \label{table:lrtest_4_bg}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1905 \caption
+               {\label{tab:unnamed-chunk-23}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1906         \label{table:logit_aic_bg}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1934 \caption
+               {\label{tab:unnamed-chunk-24}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1935 ...            \label{table:crosstab_1_bg}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1954 \caption
+               {\label{tab:unnamed-chunk-24}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1955 ...            \label{table:crosstab_2_bg}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1974 \caption
+               {\label{tab:unnamed-chunk-24}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1975 ...            \label{table:crosstab_3_bg}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1994 \caption
+               {\label{tab:unnamed-chunk-24}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1995 ...            \label{table:crosstab_4_bg}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2014 \caption
+               {\label{tab:unnamed-chunk-24}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2015 ...            \label{table:crosstab_4_bg}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2033   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2034 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2034 ...characteristics (OLS regression models)}
+                                                  
+Overfull \hbox (12.65903pt too wide) in paragraph at lines 2036--2069
+ [][] 
+ []
+
+[33] [34] [35]
+pdfTeX warning (ext4): destination with the same identifier (name{table.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2073   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2074 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (21.52936pt too wide) in paragraph at lines 2076--2109
+ [][] 
+ []
+
+[36
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2127 \caption
+               {\label{tab:unnamed-chunk-27}Czech Republic relevant parties ...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2127 ...nt parties \label{table:relprty_tab_cz}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2160 \caption
+               {\label{tab:unnamed-chunk-28}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2161         \label{table:ols_aic_cz}}
+                                         [37
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2209 \caption
+               {\label{tab:unnamed-chunk-29}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2210 ...              \label{table:lrtest_1_cz}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2238 \caption
+               {\label{tab:unnamed-chunk-30}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2239         \label{table:logit_aic_cz}}
+                                          
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2266 \caption
+               {\label{tab:unnamed-chunk-31}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2267 ...            \label{table:crosstab_1_cz}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2286 \caption
+               {\label{tab:unnamed-chunk-31}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2287 ...            \label{table:crosstab_2_cz}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2306 \caption
+               {\label{tab:unnamed-chunk-31}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2307 ...            \label{table:crosstab_3_cz}}
+                                                   [38] [39]
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2327   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2328 ...characteristics (OLS regression models)}
+                                                   [40
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2370   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2371 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (8.99419pt too wide) in paragraph at lines 2373--2408
+ [][] 
+ []
+
+[41
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2426 \caption
+               {\label{tab:unnamed-chunk-34}Relevant Croatian parties \label...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2426 ...an parties \label{table:relprty_tab_hr}}
+                                                  
+Overfull \hbox (36.18898pt too wide) in paragraph at lines 2428--2442
+ [][] 
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2459 \caption
+               {\label{tab:unnamed-chunk-35}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2460         \label{table:ols_aic_hr}}
+                                         [42
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2503 \caption
+               {\label{tab:unnamed-chunk-36}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2504 ...              \label{table:lrtest_1_hr}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2519 \caption
+               {\label{tab:unnamed-chunk-36}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2520 ...              \label{table:lrtest_2_hr}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2549 \caption
+               {\label{tab:unnamed-chunk-37}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2550         \label{table:logit_aic_hr}}
+                                          
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2577 \caption
+               {\label{tab:unnamed-chunk-38}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2578 ...            \label{table:crosstab_1_hr}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2597 \caption
+               {\label{tab:unnamed-chunk-38}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2598 ...            \label{table:crosstab_2_hr}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2617 \caption
+               {\label{tab:unnamed-chunk-38}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2618 ...            \label{table:crosstab_3_hr}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2637 \caption
+               {\label{tab:unnamed-chunk-38}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2638 ...            \label{table:crosstab_4_hr}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2657 \caption
+               {\label{tab:unnamed-chunk-38}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2658 ... membership \label{table:crosstab_5_hr}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2658 ... membership \label{table:crosstab_5_hr}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2677 \caption
+               {\label{tab:unnamed-chunk-38}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2678 ...            \label{table:crosstab_6_hr}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2697 \caption
+               {\label{tab:unnamed-chunk-38}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2698 ...            \label{table:crosstab_7_hr}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2716   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2717 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2717 ...characteristics (OLS regression models)}
+                                                  
+Overfull \hbox (22.27405pt too wide) in paragraph at lines 2719--2754
+ [][] 
+ []
+
+[43] [44] [45]
+pdfTeX warning (ext4): destination with the same identifier (name{table.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2760   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2761 ...cteristics (Logistic regression models)}
+                                                   [46
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2816 \caption
+               {\label{tab:unnamed-chunk-42}Relevant Cypriot parties \label{...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2816 ...ot parties \label{table:relprty_tab_cy}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2848 \caption
+               {\label{tab:unnamed-chunk-43}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2849         \label{table:ols_aic_cy}}
+                                         [47
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2894 \caption
+               {\label{tab:unnamed-chunk-44}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2895 ...              \label{table:lrtest_1_cy}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2924 \caption
+               {\label{tab:unnamed-chunk-45}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2925         \label{table:logit_aic_cy}}
+                                          
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2950 \caption
+               {\label{tab:unnamed-chunk-46}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2951 ...            \label{table:crosstab_1_cy}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2970 \caption
+               {\label{tab:unnamed-chunk-46}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2971 ...            \label{table:crosstab_2_cy}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2990 \caption
+               {\label{tab:unnamed-chunk-46}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2991 ...            \label{table:crosstab_3_cy}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3010 \caption
+               {\label{tab:unnamed-chunk-46}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3011 ...            \label{table:crosstab_4_cy}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3030 \caption
+               {\label{tab:unnamed-chunk-46}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3031 ... membership \label{table:crosstab_5_cy}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3031 ... membership \label{table:crosstab_5_cy}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3050 \caption
+               {\label{tab:unnamed-chunk-46}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3051 ...            \label{table:crosstab_6_cy}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3069   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3070 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3070 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3110   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3111 ...cteristics (Logistic regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3111 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (49.53523pt too wide) in paragraph at lines 3113--3148
+ [][] 
+ []
+
+[48] [49] [50] [51]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3165 \caption
+               {\label{tab:unnamed-chunk-49}Relevant Danish parties \label{t...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3165 ...sh parties \label{table:relprty_tab_dk}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3198 \caption
+               {\label{tab:unnamed-chunk-50}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3199         \label{table:ols_aic_dk}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3234 \caption
+               {\label{tab:unnamed-chunk-51}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3235         \label{table:logit_aic_dk}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3254   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3255 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3255 ...characteristics (OLS regression models)}
+                                                  
+Overfull \hbox (18.42804pt too wide) in paragraph at lines 3257--3292
+ [][] 
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3295   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3296 ...cteristics (Logistic regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3296 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 3298--3333
+ [][] 
+ []
+
+[52
+
+] [53] [54]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3351 \caption
+               {\label{tab:unnamed-chunk-54}Relevant Estonian parties \label...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3351 ...an parties \label{table:relprty_tab_ee}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3384 \caption
+               {\label{tab:unnamed-chunk-55}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3385         \label{table:ols_aic_ee}}
+                                         [55
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3430 \caption
+               {\label{tab:unnamed-chunk-56}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3430 ...(constrained) \label{table:lrtest_1_ee}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3453 \caption
+               {\label{tab:unnamed-chunk-57}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3453 ...(constrained) \label{table:lrtest_2_ee}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3468 \caption
+               {\label{tab:unnamed-chunk-58}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3468 ...(constrained) \label{table:lrtest_3_ee}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3483 \caption
+               {\label{tab:unnamed-chunk-59}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3483 ...(constrained) \label{table:lrtest_4_ee}}
+                                                   [56]
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3512 \caption
+               {\label{tab:unnamed-chunk-60}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3513         \label{table:logit_aic_ee}}
+                                          
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3540 \caption
+               {\label{tab:unnamed-chunk-61}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3541 ...            \label{table:crosstab_1_ee}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3560 \caption
+               {\label{tab:unnamed-chunk-61}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3561 ...            \label{table:crosstab_2_ee}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3580 \caption
+               {\label{tab:unnamed-chunk-61}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3581 ...            \label{table:crosstab_3_ee}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3600 \caption
+               {\label{tab:unnamed-chunk-61}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3601 ... membership \label{table:crosstab_4_ee}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3601 ... membership \label{table:crosstab_4_ee}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3620 \caption
+               {\label{tab:unnamed-chunk-61}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3621 ...            \label{table:crosstab_5_ee}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3639   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3640 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3640 ...characteristics (OLS regression models)}
+                                                  
+Overfull \hbox (20.35104pt too wide) in paragraph at lines 3642--3677
+ [][] 
+ []
+
+[57] [58] [59]
+pdfTeX warning (ext4): destination with the same identifier (name{table.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3683   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3684 ...cteristics (Logistic regression models)}
+                                                   [60
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3739 \caption
+               {\label{tab:unnamed-chunk-65}Relevant Finnish parties \label{...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3739 ...sh parties \label{table:relprty_tab_fi}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3771 \caption
+               {\label{tab:unnamed-chunk-66}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3772         \label{table:ols_aic_fi}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3815 \caption
+               {\label{tab:unnamed-chunk-67}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3816         \label{table:logit_aic_fi}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[61
+
+
+] [62]
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3837   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3838 ...characteristics (OLS regression models)}
+                                                   [63
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3880   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3881 ...cteristics (Logistic regression models)}
+                                                   [64
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3936 \caption
+               {\label{tab:unnamed-chunk-70}Relevant French parties \label{t...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3936 ...ch parties \label{table:relprty_tab_fr}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3969 \caption
+               {\label{tab:unnamed-chunk-71}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3970         \label{table:ols_aic_fr}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4004 \caption
+               {\label{tab:unnamed-chunk-72}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4005         \label{table:logit_aic_fr}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4024   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4025 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4025 ...characteristics (OLS regression models)}
+                                                  
+Overfull \hbox (18.42804pt too wide) in paragraph at lines 4027--4062
+ [][] 
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4065   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4066 ...cteristics (Logistic regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4066 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 4068--4103
+ [][] 
+ []
+
+[65
+
+
+] [66] [67]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4120 \caption
+               {\label{tab:unnamed-chunk-75}Relevant german parties \label{t...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4120 ...an parties \label{table:relprty_tab_de}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4153 \caption
+               {\label{tab:unnamed-chunk-76}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4154         \label{table:ols_aic_de}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4198 \caption
+               {\label{tab:unnamed-chunk-77}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4199         \label{table:logit_aic_de}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4218   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4219 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4219 ...characteristics (OLS regression models)}
+                                                  
+Overfull \hbox (18.42804pt too wide) in paragraph at lines 4221--4256
+ [][] 
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4259   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4260 ...cteristics (Logistic regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4260 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 4262--4297
+ [][] 
+ []
+
+[68
+
+] [69] [70]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4314 \caption
+               {\label{tab:unnamed-chunk-80}Relevant Greece parties \label{t...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4314 ...ce parties \label{table:relprty_tab_el}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4343 \caption
+               {\label{tab:unnamed-chunk-81}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4344         \label{table:ols_aic_el}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4382 \caption
+               {\label{tab:unnamed-chunk-82}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4383 ...              \label{table:lrtest_1_el}}
+                                                  
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[71
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4411 \caption
+               {\label{tab:unnamed-chunk-83}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4412         \label{table:logit_aic_el}}
+                                          
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4436 \caption
+               {\label{tab:unnamed-chunk-84}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4437 ...            \label{table:crosstab_1_el}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4456 \caption
+               {\label{tab:unnamed-chunk-84}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4457 ...            \label{table:crosstab_2_el}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4457 ...            \label{table:crosstab_2_el}}
+                                                   [72] [73]
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4477   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4478 ...characteristics (OLS regression models)}
+                                                   [74
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4520   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4521 ...cteristics (Logistic regression models)}
+                                                   [75
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4576 \caption
+               {\label{tab:unnamed-chunk-87}Relevant Hungarian parties \labe...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4576 ...an parties \label{table:relprty_tab_hu}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4608 \caption
+               {\label{tab:unnamed-chunk-88}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4609         \label{table:ols_aic_hu}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4656 \caption
+               {\label{tab:unnamed-chunk-89}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4657         \label{table:logit_aic_hu}}
+                                           [76
+
+
+] [77]
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4678   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4679 ...characteristics (OLS regression models)}
+                                                   [78
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4721   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4722 ...cteristics (Logistic regression models)}
+                                                   [79
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4777 \caption
+               {\label{tab:unnamed-chunk-92}Irish relevant parties \label{ta...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4777 ...nt parties \label{table:relprty_tab_ie}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4809 \caption
+               {\label{tab:unnamed-chunk-93}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4810         \label{table:ols_aic_ie}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4847 \caption
+               {\label{tab:unnamed-chunk-94}Likelihood-ratio Test between mo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4848 ...              \label{table:lrtest_1_ie}}
+                                                  
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[80
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4877 \caption
+               {\label{tab:unnamed-chunk-95}Akaike Information Criterion val...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4878         \label{table:logit_aic_ie}}
+                                          
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4903 \caption
+               {\label{tab:unnamed-chunk-96}Cross tabulation between vote ch...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4904 ...            \label{table:crosstab_1_ie}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4922   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4923 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4923 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4963   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4964 ...cteristics (Logistic regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4964 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (43.78525pt too wide) in paragraph at lines 4966--5001
+ [][] 
+ []
+
+[81] [82] [83]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5018 \caption
+               {\label{tab:unnamed-chunk-99}Relevant Italian parties \label{...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5018 ...an parties \label{table:relprty_tab_it}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5051 \caption
+               {\label{tab:unnamed-chunk-100}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5052         \label{table:ols_aic_it}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5086 \caption
+               {\label{tab:unnamed-chunk-101}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5087         \label{table:logit_aic_it}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5111   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5112 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5112 ...characteristics (OLS regression models)}
+                                                  
+Overfull \hbox (20.35104pt too wide) in paragraph at lines 5114--5147
+ [][] 
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5150   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5151 ...cteristics (Logistic regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5151 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 5153--5186
+ [][] 
+ []
+
+[84
+
+] [85] [86]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5203 \caption
+               {\label{tab:unnamed-chunk-104}Relevant Latvian parties \label...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5203 ...an parties \label{table:relprty_tab_lv}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5236 \caption
+               {\label{tab:unnamed-chunk-105}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5237         \label{table:ols_aic_lv}}
+                                        
+
+LaTeX Warning: Reference `table:full_logit_lv_p2' on page 87 undefined on input line 5256.
+
+[87
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5299 \caption
+               {\label{tab:unnamed-chunk-106}Likelihood-ratio Test between M...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5300 ...              \label{table:lrtest_1_lv}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5315 \caption
+               {\label{tab:unnamed-chunk-106}Likelihood-ratio Test between M...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5316 ...              \label{table:lrtest_2_lv}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5331 \caption
+               {\label{tab:unnamed-chunk-106}Likelihood-ratio Test between M...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5332 ...              \label{table:lrtest_3_lv}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5347 \caption
+               {\label{tab:unnamed-chunk-106}Likelihood-ratio Test between M...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5348 ...              \label{table:lrtest_4_lv}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5363 \caption
+               {\label{tab:unnamed-chunk-106}Likelihood-ratio Test between M...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5364 ...              \label{table:lrtest_5_lv}}
+                                                  
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5393 \caption
+               {\label{tab:unnamed-chunk-107}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5394         \label{table:logit_aic_lv}}
+                                           [88]
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5421 \caption
+               {\label{tab:unnamed-chunk-108}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5422 ...            \label{table:crosstab_1_lv}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5441 \caption
+               {\label{tab:unnamed-chunk-108}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5442 ...            \label{table:crosstab_2_lv}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5461 \caption
+               {\label{tab:unnamed-chunk-108}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5462 ...            \label{table:crosstab_3_lv}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5481 \caption
+               {\label{tab:unnamed-chunk-108}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5482 ...            \label{table:crosstab_4_lv}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5501 \caption
+               {\label{tab:unnamed-chunk-108}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5502 ... membership \label{table:crosstab_5_lv}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5502 ... membership \label{table:crosstab_5_lv}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5521 \caption
+               {\label{tab:unnamed-chunk-108}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5522 ...            \label{table:crosstab_6_lv}}
+                                                  
+Overfull \hbox (16.50504pt too wide) in paragraph at lines 5543--5578
+ [][] 
+ []
+
+[89] [90] [91
+pdfTeX warning (ext4): destination with the same identifier (name{table.15}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5579 \blandscape
+                  ] [92
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.16}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.5621 \elandscape
+                  ]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5638 \caption
+               {\label{tab:unnamed-chunk-111}Relevant Lithuanian parties \la...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5638 ...an parties \label{table:relprty_tab_lt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5670 \caption
+               {\label{tab:unnamed-chunk-112}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5671         \label{table:ols_aic_lt}}
+                                         [93
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5712 \caption
+               {\label{tab:unnamed-chunk-113}Likelihood-ratio Test between m...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5713 ...              \label{table:lrtest_1_lt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5728 \caption
+               {\label{tab:unnamed-chunk-114}Likelihood-ratio Test between m...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5729 ...              \label{table:lrtest_2_lt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5744 \caption
+               {\label{tab:unnamed-chunk-115}Likelihood-ratio Test between m...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5745 ...              \label{table:lrtest_3_lt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5773 \caption
+               {\label{tab:unnamed-chunk-116}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5774         \label{table:logit_aic_lt}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5802 \caption
+               {\label{tab:unnamed-chunk-117}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5803 ...            \label{table:crosstab_1_lt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5822 \caption
+               {\label{tab:unnamed-chunk-117}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5823 ...            \label{table:crosstab_2_lt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5842 \caption
+               {\label{tab:unnamed-chunk-117}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5843 ...            \label{table:crosstab_3_lt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5862 \caption
+               {\label{tab:unnamed-chunk-117}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5863 ...            \label{table:crosstab_4_lt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5882 \caption
+               {\label{tab:unnamed-chunk-117}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5883 ...            \label{table:crosstab_5_lt}}
+                                                   [94] [95] [96]
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5903   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5904 ...characteristics (OLS regression models)}
+                                                   [97
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5946   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5947 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (16.84843pt too wide) in paragraph at lines 5949--5984
+ [][] 
+ []
+
+[98
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6002 \caption
+               {\label{tab:unnamed-chunk-120}Relevant Luxembourgian parties ...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6002 ...an parties \label{table:relprty_tab_lu}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6035 \caption
+               {\label{tab:unnamed-chunk-121}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6036         \label{table:ols_aic_lu}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6079 \caption
+               {\label{tab:unnamed-chunk-122}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6080         \label{table:logit_aic_lu}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6099   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6100 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6100 ...characteristics (OLS regression models)}
+                                                  
+Overfull \hbox (18.42804pt too wide) in paragraph at lines 6102--6137
+ [][] 
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6140   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6141 ...cteristics (Logistic regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6141 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (41.16545pt too wide) in paragraph at lines 6143--6178
+ [][] 
+ []
+
+[99
+
+
+] [100] [101]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6195 \caption
+               {\label{tab:unnamed-chunk-125}Relevant Maltese parties \label...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6195 ...se parties \label{table:relprty_tab_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6225 \caption
+               {\label{tab:unnamed-chunk-126}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6226         \label{table:ols_aic_mt}}
+                                         [102
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6272 \caption
+               {\label{tab:unnamed-chunk-127}Likelihood-ratio Test between m...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6273 ...              \label{table:lrtest_1_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6288 \caption
+               {\label{tab:unnamed-chunk-127}Likelihood-ratio Test between m...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6289 ...              \label{table:lrtest_2_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6304 \caption
+               {\label{tab:unnamed-chunk-127}Likelihood-ratio Test between m...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6305 ...              \label{table:lrtest_3_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6332 \caption
+               {\label{tab:unnamed-chunk-128}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6333         \label{table:logit_aic_mt}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6358 \caption
+               {\label{tab:unnamed-chunk-129}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6359 ...          \label{table:crosstab_3_1_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6378 \caption
+               {\label{tab:unnamed-chunk-129}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6378 ...          \label{table:crosstab_3_2_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6397 \caption
+               {\label{tab:unnamed-chunk-129}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6398 ...          \label{table:crosstab_3_3_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6417 \caption
+               {\label{tab:unnamed-chunk-129}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6418 ...embership \label{table:crosstab_3_4_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6418 ...embership \label{table:crosstab_3_4_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6437 \caption
+               {\label{tab:unnamed-chunk-129}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6438 ...          \label{table:crosstab_3_5_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6457 \caption
+               {\label{tab:unnamed-chunk-129}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6458 ...          \label{table:crosstab_4_1_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6477 \caption
+               {\label{tab:unnamed-chunk-129}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6478 ...          \label{table:crosstab_4_2_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6497 \caption
+               {\label{tab:unnamed-chunk-129}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6498 ...          \label{table:crosstab_4_3_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.15}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6517 \caption
+               {\label{tab:unnamed-chunk-129}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.15}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6518 ...          \label{table:crosstab_5_1_mt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.16}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6537 \caption
+               {\label{tab:unnamed-chunk-129}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.16}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6538 ...          \label{table:crosstab_5_2_mt}}
+                                                   [103] [104] [105] [106
+pdfTeX warning (ext4): destination with the same identifier (name{table.17}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6596 \blandscape
+                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.18}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6596 \blandscape
+                  ] [107
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.19}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6638 \elandscape
+                  ] [108
+
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.20}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.6683 \elandscape
+                  ]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6700 \caption
+               {\label{tab:unnamed-chunk-133}Dutch relevant parties \label{t...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6700 ...nt parties \label{table:relprty_tab_nl}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6735 \caption
+               {\label{tab:unnamed-chunk-134}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6736         \label{table:ols_aic_nl}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6773 \caption
+               {\label{tab:unnamed-chunk-135}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6774         \label{table:logit_aic_nl}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[109
+
+
+] [110]
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6798   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6799 ...characteristics (OLS regression models)}
+                                                   [111
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6843   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6844 ...cteristics (Logistic regression models)}
+                                                   [112
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6899 \caption
+               {\label{tab:unnamed-chunk-139}Relevant Polish parties \label{...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6899 ...sh parties \label{table:relprty_tab_pl}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6928 \caption
+               {\label{tab:unnamed-chunk-140}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6929         \label{table:ols_aic_pl}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6965 \caption
+               {\label{tab:unnamed-chunk-141}Likelihood-ratio Test between m...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6966 ...              \label{table:lrtest_1_pl}}
+                                                  
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[113
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6994 \caption
+               {\label{tab:unnamed-chunk-142}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.6995         \label{table:logit_aic_pl}}
+                                          
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7019 \caption
+               {\label{tab:unnamed-chunk-143}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7020 ...            \label{table:crosstab_1_pl}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7039 \caption
+               {\label{tab:unnamed-chunk-143}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7040 ...            \label{table:crosstab_2_pl}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7059 \caption
+               {\label{tab:unnamed-chunk-143}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7060 ...            \label{table:crosstab_3_pl}}
+                                                   [114] [115]
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7080   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7081 ...characteristics (OLS regression models)}
+                                                   [116
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7123   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7124 ...cteristics (Logistic regression models)}
+                                                   [117
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7179 \caption
+               {\label{tab:unnamed-chunk-146}Relevant Portugues parties \lab...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7179 ...es parties \label{table:relprty_tab_pt}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7211 \caption
+               {\label{tab:unnamed-chunk-147}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7212         \label{table:ols_aic_pt}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7245 \caption
+               {\label{tab:unnamed-chunk-148}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7246         \label{table:logit_aic_pt}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7264   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7265 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7265 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7305   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7306 ...cteristics (Logistic regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7306 ...cteristics (Logistic regression models)}
+                                                   [118
+
+
+] [119] [120]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7361 \caption
+               {\label{tab:unnamed-chunk-151}Relevant Romanian parties \labe...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7361 ...an parties \label{table:relprty_tab_ro}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7394 \caption
+               {\label{tab:unnamed-chunk-152}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7395         \label{table:ols_aic_ro}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7433 \caption
+               {\label{tab:unnamed-chunk-153}Likelihood-ratio Test between m...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7434 ...              \label{table:lrtest_1_ro}}
+                                                  
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[121
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7463 \caption
+               {\label{tab:unnamed-chunk-154}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7464         \label{table:logit_aic_ro}}
+                                          
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7490 \caption
+               {\label{tab:unnamed-chunk-155}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7491 ...            \label{table:crosstab_1_ro}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7510 \caption
+               {\label{tab:unnamed-chunk-155}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7511 ...            \label{table:crosstab_2_ro}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7529   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7530 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7530 ...characteristics (OLS regression models)}
+                                                  
+Overfull \hbox (16.50504pt too wide) in paragraph at lines 7532--7567
+ [][] 
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7570   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7571 ...cteristics (Logistic regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7571 ...cteristics (Logistic regression models)}
+                                                  
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 7574.
+
+Overfull \hbox (50.50366pt too wide) in paragraph at lines 7574--7609
+ [][] 
+ []
+
+[122] [123] [124]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7626 \caption
+               {\label{tab:unnamed-chunk-158}Relevant Slovakian parties \lab...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7626 ...an parties \label{table:relprty_tab_sk}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7660 \caption
+               {\label{tab:unnamed-chunk-159}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7661         \label{table:ols_aic_sk}}
+                                         [125
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7704 \caption
+               {\label{tab:unnamed-chunk-160}Likelihood-ratio Test between m...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7705 ...              \label{table:lrtest_1_sk}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7733 \caption
+               {\label{tab:unnamed-chunk-161}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7734         \label{table:logit_aic_sk}}
+                                          
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7762 \caption
+               {\label{tab:unnamed-chunk-162}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7763 ...            \label{table:crosstab_1_sk}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7782 \caption
+               {\label{tab:unnamed-chunk-162}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7783 ...            \label{table:crosstab_2_sk}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7783 ...            \label{table:crosstab_2_sk}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7802 \caption
+               {\label{tab:unnamed-chunk-162}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7803 ...            \label{table:crosstab_3_sk}}
+                                                   [126] [127]
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7823   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7824 ...characteristics (OLS regression models)}
+                                                   [128
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7866   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7867 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (26.52882pt too wide) in paragraph at lines 7869--7904
+ [][] 
+ []
+
+[129
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7922 \caption
+               {\label{tab:unnamed-chunk-165}Relevant Slovene parties \label...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7922 ...ne parties \label{table:relprty_tab_si}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7957 \caption
+               {\label{tab:unnamed-chunk-166}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.7958         \label{table:ols_aic_si}}
+                                        
+
+LaTeX Warning: Reference `table:full_logit_si_p2' on page 130 undefined on input line 7979.
+
+[130
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8009 \caption
+               {\label{tab:unnamed-chunk-167}Likelihood-ratio Test between m...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8010 ...              \label{table:lrtest_1_si}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8025 \caption
+               {\label{tab:unnamed-chunk-167}Likelihood-ratio Test between m...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8026 ...              \label{table:lrtest_2_si}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8041 \caption
+               {\label{tab:unnamed-chunk-167}Likelihood-ratio Test between m...
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8042 ...              \label{table:lrtest_3_si}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8071 \caption
+               {\label{tab:unnamed-chunk-168}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8072         \label{table:logit_aic_si}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8102 \caption
+               {\label{tab:unnamed-chunk-169}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8103 ...            \label{table:crosstab_1_si}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8122 \caption
+               {\label{tab:unnamed-chunk-169}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8123 ...            \label{table:crosstab_2_si}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8142 \caption
+               {\label{tab:unnamed-chunk-169}Cross tabulation between vote c...
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8143 ...            \label{table:crosstab_3_si}}
+                                                   [131] [132]
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8164   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8165 ...characteristics (OLS regression models)}
+                                                   [133
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8208   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8209 ...cteristics (Logistic regression models)}
+                                                   [134
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8265 \caption
+               {\label{tab:unnamed-chunk-173}Relevant Spanish parties \label...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8265 ...sh parties \label{table:relprty_tab_es}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8298 \caption
+               {\label{tab:unnamed-chunk-174}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8299         \label{table:ols_aic_es}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8340 \caption
+               {\label{tab:unnamed-chunk-175}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8341         \label{table:logit_aic_es}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8360   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8361 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8361 ...characteristics (OLS regression models)}
+                                                  
+Overfull \hbox (18.42804pt too wide) in paragraph at lines 8363--8398
+ [][] 
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8401   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8402 ...cteristics (Logistic regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8402 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 8404--8439
+ [][] 
+ []
+
+[135
+
+
+] [136] [137]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8456 \caption
+               {\label{tab:unnamed-chunk-178}Relevant Swedish parties \label...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8456 ...sh parties \label{table:relprty_tab_se}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8489 \caption
+               {\label{tab:unnamed-chunk-179}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8490         \label{table:ols_aic_se}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8534 \caption
+               {\label{tab:unnamed-chunk-180}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8535         \label{table:logit_aic_se}}
+                                           [138
+
+] [139]
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8557   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8558 ...characteristics (OLS regression models)}
+                                                   [140
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8600   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8601 ...cteristics (Logistic regression models)}
+                                                   [141
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8656 \caption
+               {\label{tab:unnamed-chunk-183}Relevant British (UK) parties \...
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8656 ...K) parties \label{table:relprty_tab_uk}}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8689 \caption
+               {\label{tab:unnamed-chunk-184}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8690         \label{table:ols_aic_uk}}
+                                        
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8733 \caption
+               {\label{tab:unnamed-chunk-185}Akaike Information Criterion va...
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8734         \label{table:logit_aic_uk}}
+                                          
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8753   \caption
+                 {Propensity to vote for a relevant party according to respo...
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8754 ...characteristics (OLS regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8754 ...characteristics (OLS regression models)}
+                                                  
+Overfull \hbox (20.35104pt too wide) in paragraph at lines 8756--8791
+ [][] 
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8794   \caption
+                 {Vote choice for a relevant party according to respondents'
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8795 ...cteristics (Logistic regression models)}
+                                                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8795 ...cteristics (Logistic regression models)}
+                                                  
+Overfull \hbox (43.08846pt too wide) in paragraph at lines 8797--8832
+ [][] 
+ []
+
+[142
+
+
+] [143] [144]
+Underfull \hbox (badness 10000) in paragraph at lines 8842--8844
+[][]$\T1/lmr/m/n/10 (+20) https : / / www . researchgate . net / publication / 339474208 _ Generic _ variable _ analysis _ climbing _ the _
+ []
+
+[145
 
 ] (./Codebook.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `Codebook.out' has not changed.
-(rerunfilecheck)             Checksum: 5742ECAA3F63F25798732A052DCC2DD2;1846.
+(rerunfilecheck)             Checksum: 8DD75CC037B12FD7D1F1AD0086704E4F;5111.
  ) 
 Here is how much of TeX's memory you used:
- 15036 strings out of 479983
- 246439 string characters out of 5885983
- 593326 words of memory out of 5000000
- 32695 multiletter control sequences out of 15000+600000
- 534353 words of font info for 139 fonts, out of 8000000 for 9000
+ 15769 strings out of 479983
+ 258035 string characters out of 5885983
+ 706232 words of memory out of 5000000
+ 33152 multiletter control sequences out of 15000+600000
+ 549631 words of font info for 174 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,8n,67p,1005b,511s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 60i,11n,67p,1005b,569s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
-{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Codebook.pdf (13 pages, 291509 bytes).
+{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi9.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy9.pfb><c:/Users/homeoffice/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on Codebook.pdf (145 pages, 730583 bytes).
 PDF statistics:
- 313 PDF objects out of 1000 (max. 8388607)
- 269 compressed objects within 3 object streams
- 107 named destinations out of 1000 (max. 500000)
- 36961 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 1419 PDF objects out of 1440 (max. 8388607)
+ 1214 compressed objects within 13 object streams
+ 323 named destinations out of 1000 (max. 500000)
+ 45393 words of extra memory for PDF output out of 51595 (max. 10000000)
 
