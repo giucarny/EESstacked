@@ -1,17 +1,19 @@
 The 2019 EES Stacked Data Matrix
 ================
-2022-07-28
+2022-10-10
 
 This repository contains the code for building the stacked data matrix
-(SDM) of the 2019 European Election Studies
-([EES](http://europeanelectionstudies.net/)) voter study. The creation
-of this SDM is part of the research activities of the
-[ProConEU](https://www.mzes.uni-mannheim.de/proconeu/) project, an
-academic research effort analysing the enlarging gaps between proponents
-and opponents of the European Union (EU) in terms of party politics,
-citizen politics, and social media communication. The data pipeline and
-the general workflow were completed mostly between July 2021 and January
-2022 making use of [R](https://cran.r-project.org/) version 4.1-4.2.
+([SDM](https://search.gesis.org/research_data/ZA7890)) of the 2019
+European Election Studies
+([EES](https://www.gesis.org/en/services/finding-and-accessing-data/international-survey-programs/european-election-studies))
+voter study. The creation of this SDM is part of the research activities
+of the [ProConEU](https://www.mzes.uni-mannheim.de/proconeu/) project,
+an academic research effort analysing the enlarging gaps between
+proponents and opponents of the European Union (EU) in terms of party
+politics, citizen politics, and social media communication. The data
+pipeline and the general workflow were completed mostly between July
+2021 and January 2022 making use of [R](https://cran.r-project.org/)
+version 4.1-4.2.
 
 # What is an SDM
 
@@ -48,7 +50,7 @@ vote choice.
 2.  Download the [EES 2019 voter study
     dataset](http://europeanelectionstudies.net/european-election-studies/ees-2019-study/voter-study-2019),
     and the related [codebook](https://access.gesis.org/dbk/67448)
-    (rename the latter ‘ZA7581\_codebook.csv’);
+    (rename the latter ‘ZA7581_codebook.csv’);
 3.  Create a new folder in
     [`Data`](https://github.com/giucarny/EESstacked/tree/main/Data),
     rename it ‘EES2019’ and transfer/paste the EES data here;  
