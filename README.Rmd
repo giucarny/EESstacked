@@ -1,11 +1,11 @@
 ---
 title: "The 2019 EES Stacked Data Matrix"
 output: github_document
-date: "2022-07-28"
+date: "2022-10-10"
 ---
 
-This repository contains the code for building the stacked data matrix (SDM) of the 2019 European 
-Election Studies ([EES](http://europeanelectionstudies.net/)) voter study. The creation of this SDM is 
+This repository contains the code for building the stacked data matrix ([SDM](https://search.gesis.org/research_data/ZA7890)) of the 2019 European 
+Election Studies ([EES](https://www.gesis.org/en/services/finding-and-accessing-data/international-survey-programs/european-election-studies)) voter study. The creation of this SDM is 
 part of the research activities of the [ProConEU](https://www.mzes.uni-mannheim.de/proconeu/) project, 
 an academic research effort analysing the enlarging gaps between 
 proponents and opponents of the European Union (EU) in terms of party politics, citizen politics, and 
